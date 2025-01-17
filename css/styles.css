@@ -1,10 +1,9 @@
-
 /* styles.css */
 :root {
   --bg-color: #000000; /* Fundo preto */
   --text-color: #e0e0e0; /* Quase branco */
-  --highlight-color: #ff9800; /* Laranja para cliques e seleções */
-  --hover-color: #ffc107; /* Laranja mais claro para hover */
+  --highlight-color: #007bff; /* Azul CSI2 para cliques e seleções */
+  --hover-color: #0056b3; /* Azul mais escuro para hover */
 }
 
 body {
@@ -43,11 +42,12 @@ nav ul li a {
 
 nav ul li a:hover {
   background-color: var(--hover-color);
-  color: #000; /* Texto preto no hover */
+  color: #fff; /* Texto branco no hover */
 }
 
 section {
   padding: 2rem 1rem;
+  text-align: center;
 }
 
 #widget-container {
@@ -65,10 +65,10 @@ footer {
   padding: 1rem 0;
 }
 
-/* Destaque para botões */
+/* Botões */
 button, .button {
   background-color: var(--highlight-color);
-  color: #000;
+  color: #fff;
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
@@ -82,7 +82,7 @@ button:hover, .button:hover {
 /* Seleção de texto */
 ::selection {
   background-color: var(--highlight-color);
-  color: #000; /* Texto preto na seleção */
+  color: #fff;
 }
 
 /* Foco nos links */
