@@ -1,2 +1,2 @@
 # csi
-site de consultori
+site de consultoria
