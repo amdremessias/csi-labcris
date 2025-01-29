@@ -4,6 +4,8 @@
   --text-color: #e0e0e0;
   --highlight-color: #007bff;
   --hover-color: #0056b3;
+  --container-bg: #111;
+  --shadow-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -18,11 +20,24 @@ body {
 header {
   background: var(--bg-color);
   padding: 1rem 0;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--highlight-color);
 }
 
 nav ul {
   display: flex;
-  justify-content: center;
   list-style: none;
   padding: 0;
 }
@@ -36,6 +51,7 @@ nav ul li a {
   text-decoration: none;
   padding: 5px 10px;
   transition: background-color 0.3s ease;
+  border-radius: 5px;
 }
 
 nav ul li a:hover {
@@ -63,6 +79,19 @@ main {
   text-align: center;
 }
 
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--container-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.hero-content {
+  padding: 4rem 0;
+}
+
 .service-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -71,14 +100,72 @@ main {
 }
 
 .service-list article {
-  background: #111;
+  background: var(--container-bg);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transition: transform 0.3s ease;
+}
+
+.service-list article:hover {
+  transform: scale(1.05);
 }
 
 .service-list h2 {
   color: var(--highlight-color);
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 20px auto;
+  background: var(--container-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--text-color);
+  background: #222;
+  color: var(--text-color);
+}
+
+form button {
+  padding: 10px;
+  background-color: var(--highlight-color);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background-color: var(--hover-color);
+}
+
+.map-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.map-container iframe {
+  width: 80%;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 footer {
