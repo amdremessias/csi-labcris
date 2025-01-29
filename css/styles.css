@@ -21,6 +21,17 @@ body {
   background-attachment: fixed;
 }
 
+/* Camada escura para melhorar legibilidade */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
 header {
   background: rgba(0, 0, 0, 0.8);
   padding: 1rem 0;
@@ -177,4 +188,5 @@ footer {
   background: rgba(0, 0, 0, 0.8);
   text-align: center;
   padding: 1rem 0;
+  color: var(--text-color);
 }
