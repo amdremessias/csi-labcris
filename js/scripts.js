@@ -22,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Mensagem no console para indicar carregamento do site
+  // Exibir mensagem no console indicando carregamento
   console.log('%cCSI2 - Site carregado com sucesso!', 'color: green; font-size: 16px;');
+
+  // Formulário de contato - Validação simples
+  const contactForm = document.querySelector('form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Mensagem enviada com sucesso!');
+      contactForm.reset();
+    });
+  }
 });
