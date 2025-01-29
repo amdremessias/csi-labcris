@@ -15,10 +15,14 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  background-image: url('../images/cybersecurity.gif'); /* Fundo animado */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 header {
-  background: var(--bg-color);
+  background: rgba(0, 0, 0, 0.8);
   padding: 1rem 0;
   text-align: center;
 }
@@ -86,6 +90,7 @@ main {
   background: var(--container-bg);
   border-radius: 10px;
   box-shadow: 0 4px 8px var(--shadow-color);
+  opacity: 0.95;
 }
 
 .hero-content {
@@ -169,7 +174,7 @@ form button:hover {
 }
 
 footer {
-  background: var(--bg-color);
+  background: rgba(0, 0, 0, 0.8);
   text-align: center;
   padding: 1rem 0;
 }
