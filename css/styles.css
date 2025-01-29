@@ -4,10 +4,18 @@
   --text-color: #e0e0e0; /* Quase branco */
   --highlight-color: #007bff; /* Azul CSI2 para cliques e seleções */
   --hover-color: #0056b3; /* Azul mais escuro para hover */
+  --error-color: #ff4d4d; /* Vermelho para mensagens de erro */
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
   margin: 0;
@@ -22,6 +30,7 @@ header {
   position: fixed;
   width: 100%;
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 nav ul {
@@ -92,6 +101,29 @@ footer {
   color: var(--text-color);
   text-align: center;
   padding: 1rem 0;
+  border-top: 1px solid #333;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+footer ul li {
+  margin: 0 10px;
+}
+
+footer ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+footer ul li a:hover {
+  color: var(--highlight-color);
 }
 
 button, .button {
@@ -101,11 +133,33 @@ button, .button {
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover, .button:hover {
   background-color: var(--hover-color);
+  transform: scale(1.05);
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  background: #111;
+  color: var(--text-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
+  border-color: var(--highlight-color);
+  box-shadow: 0 0 5px var(--highlight-color);
+}
+
+form button {
+  margin-top: 10px;
 }
 
 ::selection {
@@ -130,5 +184,9 @@ a:focus {
   nav ul {
     flex-direction: column;
     gap: 10px;
+  }
+
+  form input, form textarea {
+    font-size: 0.9rem;
   }
 }
