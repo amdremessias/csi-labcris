@@ -24,6 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Elemento widget-container não encontrado. Verifique o HTML.');
   }
 
+  // Adiciona scroll suave para os links do menu
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
   // Mensagem de inicialização no console
   console.log('%cSite CSI2 está funcionando perfeitamente!', 'color: green; font-size: 16px;');
 });
