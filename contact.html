@@ -3,94 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Entre em Contato - Chat Bussines">
-  <link rel="stylesheet" href="./css/styles.css">
-  <title>Contato - Chat Bussines</title>
+  <title>Formulário de Contato</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input {
+      background: #333;
+      color: #fff;
+    }
+    input::placeholder {
+      color: #aaa;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .message {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="logo">Chat Bussines</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Serviços</a></li>
-        <li><a href="contact.html">Contato</a></li>
-      </ul>
-    </nav>
-    <button id="admin-button" class="admin-button">Administração</button>
-  </header>
 
-  <main>
-    <section id="contact">
-      <div class="container">
-        <h1>Fale Conosco</h1>
-        <p>Estamos prontos para ajudá-lo. Entre em contato e descubra nossas soluções de tecnologia para sua empresa.</p>
-      </div>
-
-      <div class="contact-form">
-        <form id="contact-form">
-          <label for="name">Nome:</label>
-          <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
-          
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Digite seu email" required>
-
-          <label for="phone">Telefone:</label>
-          <input type="text" id="phone" name="phone" placeholder="Digite seu telefone" required>
-
-          <label for="city">Cidade:</label>
-          <input type="text" id="city" name="city" placeholder="Digite sua cidade" required>
-
-          <button type="submit" class="button">Enviar Mensagem</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Chat Bussines. Todos os direitos reservados.</p>
-      <p><strong>Telefone: 14 9 9791 1398</strong></p>
-    </div>
-  </footer>
+  <div class="container">
+    <h2>Entre em Contato</h2>
+    <form id="contact-form">
+      <input type="text" id="name" name="name" placeholder="Nome" required>
+      <input type="email" id="email" name="email" placeholder="E-mail" required>
+      <input type="tel" id="phone" name="phone" placeholder="Telefone" required>
+      <input type="text" id="city" name="city" placeholder="Cidade" required>
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="response-message" class="message"></p>
+  </div>
 
   <script>
     document.getElementById("contact-form").addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const formData = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        city: document.getElementById("city").value,
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        city: document.getElementById("city").value.trim(),
       };
 
+      const responseMessage = document.getElementById("response-message");
+
+      if (!formData.name || !formData.email || !formData.phone || !formData.city) {
+        responseMessage.textContent = "Por favor, preencha todos os campos.";
+        responseMessage.style.color = "red";
+        return;
+      }
+
       try {
-        const response = await fetch("/.netlify/functions/submit-form", {
+        const response = await fetch("/.netlify/functions/submit-to-airtable", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
 
         if (response.ok) {
-          alert("Cadastro enviado com sucesso!\nLogin: demo@demo.lab\nSenha: demo");
+          responseMessage.textContent = "Cadastro enviado com sucesso para o Airtable!";
+          responseMessage.style.color = "green";
           document.getElementById("contact-form").reset();
         } else {
-          alert("Erro ao enviar cadastro. Tente novamente.");
+          responseMessage.textContent = "Erro ao enviar cadastro!";
+          responseMessage.style.color = "red";
         }
       } catch (error) {
-        alert("Erro ao conectar com o servidor.");
-      }
-    });
-
-    document.getElementById("admin-button").addEventListener("click", () => {
-      const password = prompt("Digite a senha de administrador:");
-      if (password === "m4st3r0ffpupl3s") {
-        window.location.href = "admin.html";
-      } else {
-        alert("Senha incorreta!");
+        responseMessage.textContent = "Erro na comunicação com o servidor!";
+        responseMessage.style.color = "red";
       }
     });
   </script>
+
 </body>
 </html>
