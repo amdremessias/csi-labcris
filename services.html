@@ -6,6 +6,70 @@
   <meta name="description" content="Serviços Bussines">
   <link rel="stylesheet" href="./css/styles.css">
   <title>Serviços de Chat Bussines</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: #0af;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .service-list article {
+      background: #111;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+    .moving-footer {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      background: #0af;
+      color: #fff;
+      padding: 5px 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+    .moving-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: moveText 10s linear infinite;
+    }
+    @keyframes moveText {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -22,7 +86,7 @@
   <main>
     <section id="services">
       <div class="container">
-        <h2>Chat Bussines Solução para Chat Corportativo Integrado ao WhatsApp</h2>
+        <h2>Chat Bussines Solução para Chat Corporativo Integrado ao WhatsApp</h2>
         <p>Organize seus atendimentos por departamentos, Centralize 2 ou mais números de atendimento em um único lugar, Transfira chats entre agentes com apenas um clique, sem perder o fio da meada e Muito Mais.</p>
       </div>
 
@@ -34,7 +98,7 @@
         
         <article>
           <h2>🛡️ Gestão para Bares e Restaurantes</h2>
-          <p>Gerencie suas vendas com facilidade e precisão, obtenha relatorio de caixa e movimentações.</p>
+          <p>Gerencie suas vendas com facilidade e precisão, obtenha relatório de caixa e movimentações.</p>
         </article>
         
         <article>
@@ -44,7 +108,7 @@
         
         <article>
           <h2>📡 Quadro de tarefas Corporativo</h2>
-          <p>Distrubua tarefas aos seus times com uma Dashboard simples e eficiente.</p>
+          <p>Distribua tarefas aos seus times com uma Dashboard simples e eficiente.</p>
         </article>
         
         <article>
@@ -54,7 +118,7 @@
         
         <article>
           <h2>🦠 Monitoramento de Servidor 24/7</h2>
-          <p>Monitoramento da Saudde e incidentes de Servidores e Hosts da rede e infra estrutura.</p>
+          <p>Monitoramento da saúde e incidentes de Servidores e Hosts da rede e infraestrutura.</p>
         </article>
         
         <article>
@@ -71,12 +135,8 @@
   </main>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2025 Chat Bussines. Todos os direitos reservados.</p>
-      <ul>
-        <li><a href="#">Política de Privacidade</a></li>
-        <li><a href="#">Termos de Uso</a></li>
-      </ul>
+    <div class="moving-footer">
+      <div class="moving-text">📞 (14) 9 9791 1398 - Suporte e Consultoria 24h | 🔧 Soluções Tecnológicas para Empresas | 🌍 Segurança Digital e Monitoramento</div>
     </div>
   </footer>
 </body>
