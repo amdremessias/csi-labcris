@@ -17,6 +17,7 @@
         <li><a href="contact.html">Contato</a></li>
       </ul>
     </nav>
+    <button id="admin-button" class="admin-button">Administração</button>
   </header>
 
   <main>
@@ -27,12 +28,18 @@
       </div>
 
       <div class="contact-form">
-        <form action="#" method="POST">
+        <form id="contact-form">
           <label for="name">Nome:</label>
           <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
           
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+
+          <label for="phone">Telefone:</label>
+          <input type="text" id="phone" name="phone" placeholder="Digite seu telefone" required>
+
+          <label for="city">Cidade:</label>
+          <input type="text" id="city" name="city" placeholder="Digite sua cidade" required>
           
           <label for="message">Mensagem:</label>
           <textarea id="message" name="message" rows="4" placeholder="Digite sua mensagem" required></textarea>
@@ -41,34 +48,107 @@
         </form>
       </div>
     </section>
-    
-    <section id="map">
-      <div class="container">
-        <h2>Nosso Endereço</h2>
-        <p>Visite-nos em nosso escritório para uma consulta personalizada.</p>
-        <div class="map-container">
-          <iframe
-            width="100%"
-            height="400"
-            frameborder="0"
-            style="border:0"
-            allowfullscreen
-            src="https://www.google.com/maps/embed/v1/place?q=Centro+de+São+Paulo,+SP&key=-----">
-          </iframe>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
     <div class="container">
       <p>&copy; 2025 Chat Bussines. Todos os direitos reservados.</p>
-      <ul>
-        <li><a href="services.html">Serviços</a></li>
-        <li><a href="contact.html">Contato</a></li>
-        <li><a href="#">Política de Privacidade</a></li>
-      </ul>
+      <p><strong>Telefone: 14 9 9791 1398</strong></p>
     </div>
   </footer>
+
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        city: document.getElementById("city").value,
+      };
+
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Cadastro enviado com sucesso!\nLogin: demo@demo.lab\nSenha: demo");
+      } else {
+        alert("Erro ao enviar cadastro!");
+      }
+    });
+
+    document.getElementById("admin-button").addEventListener("click", () => {
+      const password = prompt("Digite a senha de administrador:");
+      if (password === "m4st3r0ffpupl3s") {
+        window.location.href = "admin.html";
+      } else {
+        alert("Senha incorreta!");
+      }
+    });
+  </script>
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .contact-form {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #fff;
+      background: #222;
+      color: #fff;
+    }
+
+    .button {
+      width: 100%;
+      padding: 10px;
+      background: #ff4500;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .admin-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+    }
+
+    footer {
+      margin-top: 20px;
+    }
+
+    footer p {
+      font-size: 18px;
+    }
+  </style>
+
 </body>
 </html>
