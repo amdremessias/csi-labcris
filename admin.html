@@ -10,3 +10,44 @@
   <header>
     <h1>Administração</h1>
   </header>
+
+  <main>
+    <h2>Cadastros Recebidos</h2>
+    <p>Total de cadastros: <span id="cadastro-count">0</span></p>
+    <button id="show-cadastros">Exibir Cadastros</button>
+    <table id="cadastro-table" style="display: none;">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Cidade</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script>
+    async function fetchCadastros() {
+      const response = await fetch("/.netlify/functions/get-cadastros");
+      const data = await response.json();
+
+      document.getElementById("cadastro-count").textContent = data.length;
+      
+      const tableBody = document.querySelector("#cadastro-table tbody");
+      tableBody.innerHTML = "";
+
+      data.forEach(cadastro => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${cadastro.name}</td><td>${cadastro.email}</td><td>${cadastro.phone}</td><td>${cadastro.city}</td>`;
+        tableBody.appendChild(row);
+      });
+
+      document.getElementById("cadastro-table").style.display = "block";
+    }
+
+    document.getElementById("show-cadastros").addEventListener("click", fetchCadastros);
+  </script>
+</body>
+</html>
