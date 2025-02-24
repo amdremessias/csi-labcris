@@ -3,51 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administração - Chat Bussines</title>
+  <title>Área Administrativa</title>
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Administração</h1>
-  </header>
-
-  <main>
-    <h2>Cadastros Recebidos</h2>
-    <p>Total de cadastros: <span id="cadastro-count">0</span></p>
-    <button id="show-cadastros">Exibir Cadastros</button>
-    <table id="cadastro-table" style="display: none;">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Telefone</th>
-          <th>Cidade</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </main>
+  <h1>Área Administrativa</h1>
+  
+  <div>
+    <p>Total de Cadastros: <span id="total-count">0</span></p>
+    <button id="load-data">Exibir Cadastros</button>
+  </div>
+  
+  <table id="data-table" border="1">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Cidade</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
   <script>
-    async function fetchCadastros() {
-      const response = await fetch("/.netlify/functions/get-cadastros");
-      const data = await response.json();
+    document.getElementById("load-data").addEventListener("click", async () => {
+      try {
+        const response = await fetch("/.netlify/functions/get-airtable-data");
+        if (!response.ok) throw new Error("Erro ao carregar dados.");
 
-      document.getElementById("cadastro-count").textContent = data.length;
-      
-      const tableBody = document.querySelector("#cadastro-table tbody");
-      tableBody.innerHTML = "";
+        const data = await response.json();
+        document.getElementById("total-count").innerText = data.length;
 
-      data.forEach(cadastro => {
-        const row = document.createElement("tr");
-        row.innerHTML = `<td>${cadastro.name}</td><td>${cadastro.email}</td><td>${cadastro.phone}</td><td>${cadastro.city}</td>`;
-        tableBody.appendChild(row);
-      });
+        const tableBody = document.querySelector("#data-table tbody");
+        tableBody.innerHTML = "";
 
-      document.getElementById("cadastro-table").style.display = "block";
-    }
-
-    document.getElementById("show-cadastros").addEventListener("click", fetchCadastros);
+        data.forEach(entry => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${entry.name}</td>
+            <td>${entry.email}</td>
+            <td>${entry.phone}</td>
+            <td>${entry.city}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        alert(error.message);
+      }
+    });
   </script>
 </body>
 </html>
