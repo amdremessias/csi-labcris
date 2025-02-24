@@ -40,10 +40,7 @@
 
           <label for="city">Cidade:</label>
           <input type="text" id="city" name="city" placeholder="Digite sua cidade" required>
-          
-          <label for="message">Mensagem:</label>
-          <textarea id="message" name="message" rows="4" placeholder="Digite sua mensagem" required></textarea>
-          
+
           <button type="submit" class="button">Enviar Mensagem</button>
         </form>
       </div>
@@ -68,16 +65,21 @@
         city: document.getElementById("city").value,
       };
 
-      const response = await fetch("/api/submit-form", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      try {
+        const response = await fetch("/.netlify/functions/submit-form", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
 
-      if (response.ok) {
-        alert("Cadastro enviado com sucesso!\nLogin: demo@demo.lab\nSenha: demo");
-      } else {
-        alert("Erro ao enviar cadastro!");
+        if (response.ok) {
+          alert("Cadastro enviado com sucesso!\nLogin: demo@demo.lab\nSenha: demo");
+          document.getElementById("contact-form").reset();
+        } else {
+          alert("Erro ao enviar cadastro. Tente novamente.");
+        }
+      } catch (error) {
+        alert("Erro ao conectar com o servidor.");
       }
     });
 
@@ -90,65 +92,5 @@
       }
     });
   </script>
-
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    .contact-form {
-      max-width: 400px;
-      margin: 50px auto;
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #fff;
-      background: #222;
-      color: #fff;
-    }
-
-    .button {
-      width: 100%;
-      padding: 10px;
-      background: #ff4500;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 10px;
-    }
-
-    .admin-button {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: #007bff;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      border: none;
-    }
-
-    footer {
-      margin-top: 20px;
-    }
-
-    footer p {
-      font-size: 18px;
-    }
-  </style>
-
 </body>
 </html>
