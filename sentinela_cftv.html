@@ -6,21 +6,20 @@
     <title>Sentinela CFTV - SaaS Surveillance</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        /* Estilos específicos para esta página */
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            /* Estilos para a imagem de fundo */
-            background-image: url('caminho/para/sua/imagem-de-fundo.jpg'); /* Mude este caminho! */
+            /* Remove o background do styles.css global, se houver conflito */
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-sentinela.jpg'); /* Caminho direto para a imagem raw */
             background-size: cover; /* Faz a imagem cobrir toda a área */
             background-position: center center; /* Centraliza a imagem */
             background-repeat: no-repeat; /* Evita que a imagem se repita */
             background-attachment: fixed; /* Mantém a imagem fixa ao rolar */
+            /* Garante que as propriedades de cor e fonte do body continuem do styles.css ou sejam redefinidas aqui se desejar */
+            color: var(--text-color); /* Mantém a cor do texto do seu CSS global */
+            font-family: Arial, sans-serif; /* Mantém a fonte do seu CSS global */
         }
-        /* Adicione um overlay escuro para melhorar a leitura do texto */
+
+        /* Camada escura para melhorar legibilidade - Aplicada diretamente no body para maior controle */
         body::before {
             content: '';
             position: fixed;
@@ -31,45 +30,25 @@
             background: rgba(0, 0, 0, 0.6); /* Cor preta com 60% de opacidade */
             z-index: -1; /* Fica atrás do conteúdo, mas acima do background-image */
         }
+        
+        .container, .plan-card, .contact-info {
+            /* Ajusta a opacidade do fundo dos contêineres para que a imagem apareça sutilmente através deles */
+            background: rgba(17, 17, 17, 0.85); /* #111 com 85% de opacidade */
+        }
 
-        header {
-            background: #111;
-            padding: 20px;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #0af;
-            text-decoration: none;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            text-align: center;
-            position: relative; /* Garante que o conteúdo fique acima do overlay */
-            z-index: 1;
-        }
         h1 {
-            color: #0af;
+            color: #0af; /* Pode ajustar a cor para combinar melhor com seu estilo */
             font-size: 2.8em;
             margin-bottom: 10px;
         }
         h2 {
-            color: #0af;
+            color: #0af; /* Pode ajustar a cor */
             font-size: 2.2em;
             margin-top: 40px;
             margin-bottom: 20px;
         }
         h3 {
-            color: #0af;
+            color: #0af; /* Pode ajustar a cor */
             font-size: 1.8em;
             margin-top: 30px;
         }
@@ -87,7 +66,7 @@
             margin-bottom: 40px;
         }
         .features-list li {
-            background: #1a1a1a;
+            background: rgba(26, 26, 26, 0.85); /* #1a1a1a com 85% de opacidade */
             padding: 15px 25px;
             border-radius: 5px;
             border-left: 3px solid #0af;
@@ -109,7 +88,7 @@
             margin-top: 30px;
         }
         .plan-card {
-            background: #1a1a1a;
+            background: rgba(26, 26, 26, 0.85); /* #1a1a1a com 85% de opacidade */
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
@@ -143,7 +122,7 @@
             left: 0;
         }
         .contact-info {
-            background: #111;
+            background: rgba(17, 17, 17, 0.85); /* #111 com 85% de opacidade */
             padding: 30px;
             margin-top: 50px;
             border-radius: 8px;
@@ -163,9 +142,9 @@
             color: #fff;
         }
         footer {
+            background: rgba(0, 0, 0, 0.8); /* Fundo do rodapé com opacidade */
             text-align: center; 
             padding: 20px; 
-            background: #111; 
             color: #0af; 
             margin-top: 50px;
         }
