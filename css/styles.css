@@ -15,7 +15,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  background-image: url('../images/cybersecurity.gif'); /* Fundo animado */
+  background-image: url('images/bg-sentinela.jpg'); /* Fundo animado */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
