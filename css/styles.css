@@ -1,243 +1,192 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentinela CFTV - SaaS Surveillance</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <style>
-        /* Estilos específicos para esta página */
-        body {
-            /* Remove o background do styles.css global, se houver conflito */
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-sentinela.jpg'); /* Caminho direto para a imagem raw */
-            background-size: cover; /* Faz a imagem cobrir toda a área */
-            background-position: center center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita que a imagem se repita */
-            background-attachment: fixed; /* Mantém a imagem fixa ao rolar */
-            /* Garante que as propriedades de cor e fonte do body continuem do styles.css ou sejam redefinidas aqui se desejar */
-            color: var(--text-color); /* Mantém a cor do texto do seu CSS global */
-            font-family: Arial, sans-serif; /* Mantém a fonte do seu CSS global */
-        }
+/* styles.css */
+:root {
+  --bg-color: #000000;
+  --text-color: #e0e0e0;
+  --highlight-color: #007bff;
+  --hover-color: #0056b3;
+  --container-bg: #111;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+}
 
-        /* Camada escura para melhorar legibilidade - Aplicada diretamente no body para maior controle */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Cor preta com 60% de opacidade */
-            z-index: -1; /* Fica atrás do conteúdo, mas acima do background-image */
-        }
-        
-        .container, .plan-card, .contact-info {
-            /* Ajusta a opacidade do fundo dos contêineres para que a imagem apareça sutilmente através deles */
-            background: rgba(17, 17, 17, 0.85); /* #111 com 85% de opacidade */
-        }
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-image: url('https://github.com/amdremessias/csi-labcris/blob/main/images/bg-sentinela.jpg'); /* Fundo animado */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 
-        h1 {
-            color: #0af; /* Pode ajustar a cor para combinar melhor com seu estilo */
-            font-size: 2.8em;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: #0af; /* Pode ajustar a cor */
-            font-size: 2.2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        h3 {
-            color: #0af; /* Pode ajustar a cor */
-            font-size: 1.8em;
-            margin-top: 30px;
-        }
-        .intro-text {
-            font-size: 1.3em;
-            margin-bottom: 30px;
-        }
-        .features-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-        .features-list li {
-            background: rgba(26, 26, 26, 0.85); /* #1a1a1a com 85% de opacidade */
-            padding: 15px 25px;
-            border-radius: 5px;
-            border-left: 3px solid #0af;
-            font-size: 1.1em;
-            text-align: left;
-            flex-basis: calc(50% - 15px);
-            box-sizing: border-box;
-        }
-        @media (max-width: 768px) {
-            .features-list li {
-                flex-basis: 100%;
-            }
-        }
+/* Camada escura para melhorar legibilidade */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
 
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .plan-card {
-            background: rgba(26, 26, 26, 0.85); /* #1a1a1a com 85% de opacidade */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-            text-align: left;
-            transition: transform 0.3s ease-in-out;
-        }
-        .plan-card:hover {
-            transform: translateY(-10px);
-        }
-        .plan-card h3 {
-            color: #0af;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.6em;
-            text-align: center;
-        }
-        .plan-card ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-        .plan-card ul li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-        .plan-card ul li::before {
-            content: '✔️';
-            color: #0af;
-            position: absolute;
-            left: 0;
-        }
-        .contact-info {
-            background: rgba(17, 17, 17, 0.85); /* #111 com 85% de opacidade */
-            padding: 30px;
-            margin-top: 50px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-        .contact-info p {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-        }
-        .contact-info a {
-            color: #0af;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        .contact-info a:hover {
-            color: #fff;
-        }
-        footer {
-            background: rgba(0, 0, 0, 0.8); /* Fundo do rodapé com opacidade */
-            text-align: center; 
-            padding: 20px; 
-            color: #0af; 
-            margin-top: 50px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">Chat Bussines</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Serviços</a></li>
-                <li><a href="contact.html">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+header {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem 0;
+  text-align: center;
+}
 
-    <main>
-        <section id="hero">
-            <div class="container">
-                <h1>Sua segurança começa pela **prevenção**!</h1>
-                <p class="intro-text">Com o **Sentinela CFTV**, tenha controle total e a tranquilidade que sua empresa merece com nossa solução de vigilância por vídeo como serviço (SaaS).</p>
-            </div>
-        </section>
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
 
-        <section id="features">
-            <div class="container">
-                <h2>Recursos Essenciais do Sentinela CFTV</h2>
-                <ul class="features-list">
-                    <li>BACKUP REMOTO DE VÍDEO E SEGURANÇA</li>
-                    <li>MONITORAMENTO DEDICADO PARA INCIDENTES</li>
-                    <li>CONEXÃO PROTEGIDA POR VPN</li>
-                    <li>RESPOSTA RÁPIDA PARA ALERTAS DE VIOLAÇÃO</li>
-                    <li>VÍDEO-MONITORADO COM INTELIGÊNCIA ARTIFICIAL 24/7</li>
-                </ul>
-            </div>
-        </section>
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--highlight-color);
+}
 
-        <section id="plans">
-            <div class="container">
-                <h2>Planos e Serviços</h2>
-                <div class="plans-grid">
-                    <article class="plan-card">
-                        <h3>Plano Básico</h3>
-                        <ul>
-                            <li>Gerenciamento de Servidor de Vídeo</li>
-                            <li>Monitoramento de Incidentes</li>
-                        </ul>
-                    </article>
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
 
-                    <article class="plan-card">
-                        <h3>Plano Padrão</h3>
-                        <ul>
-                            <li>Conexão Cliente VPN Segura</li>
-                            <li>Backup de Vídeo Segurança</li>
-                            <li>Cloud-Backup Externo de Segurança</li>
-                            <li>Gerenciamento de Servidor de Vídeo</li>
-                            <li>Monitoramento de Incidentes</li>
-                        </ul>
-                    </article>
+nav ul li {
+  margin: 0 15px;
+}
 
-                    <article class="plan-card">
-                        <h3>Plano Enterprise</h3>
-                        <ul>
-                            <li>Backup de Vídeo Segurança</li>
-                            <li>Conexão Cliente VPN Segura</li>
-                            <li>Cloud-Backup Externo de Segurança</li>
-                            <li>Gerenciamento de Servidor de Vídeo</li>
-                            <li>Monitoramento de Incidentes</li>
-                            <li>Resposta para Alertas de Violação</li>
-                            <li>Vídeo Monitorado com I.A 24/7</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
+nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
 
-        <section id="contact">
-            <div class="container">
-                <div class="contact-info">
-                    <h2>Pronto para proteger seu negócio?</h2>
-                    <p>Entre em contato com um consultor especialista e solicite um orçamento personalizado para o seu plano Sentinela CFTV!</p>
-                    <p>
-                        📞 <a href="tel:+5514997135218">(14) 9 9713 5218</a> <br>
-                        📧 <a href="mailto:messias.consultoria@yahoo.com">messias.consultoria@yahoo.com</a>
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
+nav ul li a:hover {
+  background-color: var(--hover-color);
+  color: #fff;
+}
 
-    <footer>
-        <p>&copy; 2025 Chat Bussines. Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+.button {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: var(--highlight-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--hover-color);
+}
+
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--container-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  opacity: 0.95;
+}
+
+.hero-content {
+  padding: 4rem 0;
+}
+
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.service-list article {
+  background: var(--container-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transition: transform 0.3s ease;
+}
+
+.service-list article:hover {
+  transform: scale(1.05);
+}
+
+.service-list h2 {
+  color: var(--highlight-color);
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 20px auto;
+  background: var(--container-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--text-color);
+  background: #222;
+  color: var(--text-color);
+}
+
+form button {
+  padding: 10px;
+  background-color: var(--highlight-color);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background-color: var(--hover-color);
+}
+
+.map-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.map-container iframe {
+  width: 80%;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+footer {
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding: 1rem 0;
+  color: var(--text-color);
+}
