@@ -3,21 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Serviços Bussines">
+    <meta name="description" content="Serviços MC infra TI">
     <link rel="stylesheet" href="./css/styles.css">
     <title>MC infra TI</title>
     <style>
         body {
-            background-color: #000;
+            /* Estilos de fundo para a página de serviços */
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-services.jpg'); /* SUBSTITUA este link pela URL REAL da sua imagem de fundo */
+            background-size: cover; /* Faz a imagem cobrir toda a área */
+            background-position: center center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            background-attachment: fixed; /* Mantém a imagem fixa ao rolar */
+            
+            /* Garante que as propriedades de cor e fonte do body continuem do styles.css ou sejam redefinidas aqui se desejar */
+            background-color: #000; /* Cor de fallback caso a imagem não carregue */
             color: #fff;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
+
+        /* Adicione um overlay escuro para melhorar a leitura do texto sobre a imagem */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* Cor preta com 65% de opacidade */
+            z-index: -1; /* Fica atrás do conteúdo, mas acima do background-image */
+        }
+
         header {
-            background: #111;
+            background: rgba(17, 17, 17, 0.9); /* Fundo do cabeçalho com mais opacidade */
             padding: 20px;
             text-align: center;
+            position: relative; /* Garante que o header fique acima do overlay */
+            z-index: 1;
         }
         nav ul {
             list-style: none;
@@ -36,20 +60,60 @@
             margin: auto;
             padding: 20px;
             text-align: center;
+            background: rgba(17, 17, 17, 0.85); /* Fundo do container com opacidade */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 255, 255, 0.2); /* Sombra mais visível */
+            position: relative; /* Garante que o container fique acima do overlay */
+            z-index: 1;
         }
         .service-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         .service-list article {
-            background: #111;
+            background: rgba(17, 17, 17, 0.85); /* Fundo dos artigos com opacidade */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s ease; /* Adicionando transição para hover */
         }
-        /* As classes e keyframes para o rodapé animado foram removidas */
+        .service-list article:hover {
+            transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+        }
+        h2 {
+            color: #0af; /* Cor para os títulos de serviço */
+            margin-bottom: 15px;
+        }
+        p {
+            color: #e0e0e0; /* Cor para o texto dos parágrafos */
+        }
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .whatsapp-link:hover {
+            background-color: #1DA851;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(17, 17, 17, 0.9); /* Fundo do rodapé com opacidade */
+            color: #0af;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
