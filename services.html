@@ -1,143 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Serviços Bussines">
-  <link rel="stylesheet" href="./css/styles.css">
-  <title>Serviços de Chat Bussines</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #111;
-      padding: 20px;
-      text-align: center;
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-    }
-    nav ul li {
-      display: inline;
-      margin: 0 15px;
-    }
-    nav ul li a {
-      color: #0af;
-      text-decoration: none;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-      text-align: center;
-    }
-    .service-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .service-list article {
-      background: #111;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    }
-    .moving-footer {
-      width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      background: #0af;
-      color: #fff;
-      padding: 5px 0;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-    }
-    .moving-text {
-      display: inline-block;
-      padding-left: 100%;
-      animation: moveText 10s linear infinite;
-    }
-    @keyframes moveText {
-      from { transform: translateX(100%); }
-      to { transform: translateX(-100%); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Serviços Bussines">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Serviços de Chat Bussines</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #111;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #0af;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .service-list article {
+            background: #111;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        /* As classes e keyframes para o rodapé animado foram removidas */
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="logo">Chat Bussines</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Serviços</a></li>
-        <li><a href="contact.html">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <div class="logo">Chat Bussines</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <section id="services">
-      <div class="container">
-        <h2>Chat Bussines Solução para Chat Corporativo Integrado ao WhatsApp</h2>
-        <p>Organize seus atendimentos por departamentos, Centralize 2 ou mais números de atendimento em um único lugar, Transfira chats entre agentes com apenas um clique, sem perder o fio da meada e Muito Mais.</p>
-      </div>
+    <main>
+        <section id="services">
+            <div class="container">
+                <h2>Chat Bussines Solução para Chat Corporativo Integrado ao WhatsApp</h2>
+                <p>Organize seus atendimentos por departamentos, Centralize 2 ou mais números de atendimento em um único lugar, Transfira chats entre agentes com apenas um clique, sem perder o fio da meada e Muito Mais.</p>
+            </div>
 
-      <div class="service-list">
-        <article>
-          <h2>🔍 Chat Bussines</h2>
-          <p>Centralize e gerencie seus atendimentos WhatsApp com facilidade e agilidade.</p>
-        </article>
-        
-        <article>
-          <h2>🛡️ Gestão para Bares e Restaurantes</h2>
-          <p>Gerencie suas vendas com facilidade e precisão, obtenha relatório de caixa e movimentações.</p>
-        </article>
-        
-        <article>
-          <h2>🔐 Cofre de senha Corporativo</h2>
-          <p>Mantenha suas senhas de acessos protegidas em um cofre de acesso Restrito, compartilhe acessos de maneira segura para membros da sua empresa.</p>
-        </article>
-        
-        <article>
-          <h2>📡 Quadro de tarefas Corporativo</h2>
-          <p>Distribua tarefas aos seus times com uma Dashboard simples e eficiente.</p>
-        </article>
-        
-        <article>
-          <h2>🌍 Rede Virtual Privada (VPN)</h2>
-          <p>Acesso remoto seguro para sua equipe e filiais.</p>
-        </article>
-        
-        <article>
-          <h2>🦠 Monitoramento de Servidor 24/7</h2>
-          <p>Monitoramento da saúde e incidentes de Servidores e Hosts da rede e infraestrutura.</p>
-        </article>
-        
-        <article>
-          <h2>🔄 Virtualização de Ambiente Computacional</h2>
-          <p>Administração e Gestão de Ambiente Computacional Virtualizado.</p>
-        </article>
-        
-        <article>
-          <h2>📞 (14) 9 9791 1398 Entre em contato com um consultor especialista</h2>
-          <p>Precisa de um diagnóstico personalizado? Fale conosco!</p>
-        </article>
-      </div>
-    </section>
-  </main>
+            <div class="service-list">
+                <article>
+                    <h2>🔍 Chat Bussines</h2>
+                    <p>Centralize e gerencie seus atendimentos WhatsApp com facilidade e agilidade.</p>
+                </article>
+                
+                <article>
+                    <h2>🛡️ Gestão para Bares e Restaurantes</h2>
+                    <p>Gerencie suas vendas com facilidade e precisão, obtenha relatório de caixa e movimentações.</p>
+                </article>
+                
+                <article>
+                    <h2>🔐 Cofre de senha Corporativo</h2>
+                    <p>Mantenha suas senhas de acessos protegidas em um cofre de acesso Restrito, compartilhe acessos de maneira segura para membros da sua empresa.</p>
+                </article>
+                
+                <article>
+                    <h2>📡 Quadro de tarefas Corporativo</h2>
+                    <p>Distribua tarefas aos seus times com uma Dashboard simples e eficiente.</p>
+                </article>
+                
+                <article>
+                    <h2>🌍 Rede Virtual Privada (VPN)</h2>
+                    <p>Acesso remoto seguro para sua equipe e filiais.</p>
+                </article>
+                
+                <article>
+                    <h2>🦠 Monitoramento de Servidor 24/7</h2>
+                    <p>Monitoramento da saúde e incidentes de Servidores e Hosts da rede e infraestrutura.</p>
+                </article>
+                
+                <article>
+                    <h2>🔄 <a href="sentinela_cftv.html">Sentinela CFTV, novo produto SaaS Surveillance.</a></h2>
+                    <p>Solução de vigilância por vídeo como serviço, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real.</p>
+                </article>
+                
+                <article>
+                    <h2>📞 (14) 9 9791 1398 Entre em contato com um consultor especialista</h2>
+                    <p>Precisa de um diagnóstico personalizado? Fale conosco!</p>
+                </article>
+            </div>
+        </section>
+    </main>
 
-  <footer>
-    <div class="moving-footer">
-      <div class="moving-text">📞 (14) 9 9791 1398 - Suporte e Consultoria 24h | 🔧 Soluções Tecnológicas para Empresas | 🌍 Segurança Digital e Monitoramento</div>
-    </div>
-  </footer>
+    <footer>
+        <p style="text-align: center; padding: 20px; background: #111; color: #0af; margin-top: 20px;">
+            &copy; 2025 Chat Bussines. Todos os direitos reservados.
+        </p>
+    </footer>
 </body>
 </html>
