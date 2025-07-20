@@ -15,7 +15,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  background-image: url('images/bg-sentinela.jpg'); /* Fundo animado */
+  background-image: url('https://github.com/amdremessias/csi-labcris/blob/main/images/bg-sentinela.jpg'); /* Fundo animado */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
