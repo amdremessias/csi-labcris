@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Entre em Contato - Chat Bussines">
+    <meta name="description" content="Entre em Contato - MC infra TI">
     <link rel="stylesheet" href="./css/styles.css">
     <title>MC infra TI</title>
     <style>
-        /* Adicione estilos específicos para o QR Code e o container dele aqui, se necessário */
+        /* Seus estilos existentes para qrcode-container */
         .qrcode-container {
             text-align: center;
             margin-top: 40px;
             padding: 20px;
-            background: var(--container-bg); /* Usa o fundo do container do seu styles.css */
+            background: var(--container-bg);
             border-radius: 10px;
-            box-shadow: 0 4px 8px var(--shadow-color); /* Usa a sombra do container */
-            max-width: 350px; /* Limita a largura para o QR Code não ficar muito grande */
+            box-shadow: 0 4px 8px var(--shadow-color);
+            max-width: 350px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -31,7 +31,7 @@
         }
         .qrcode-container a.whatsapp-link {
             display: inline-block;
-            background-color: #25D366; /* Cor verde do WhatsApp */
+            background-color: #25D366;
             color: #fff;
             padding: 10px 20px;
             border-radius: 5px;
@@ -43,6 +43,27 @@
         .qrcode-container a.whatsapp-link:hover {
             background-color: #1DA851;
         }
+
+        /* Novo estilo para o bloco do Google Forms (se for um link/botão) */
+        .google-form-link-container {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--container-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .google-form-link-container h2 {
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+        }
+        .google-form-link-container .button {
+            margin-top: 15px;
+        }
+
     </style>
 </head>
 <body>
@@ -63,14 +84,15 @@
         <section id="contact">
             <div class="container">
                 <h1>Fale Conosco</h1>
-                <p>Estamos prontos para ajudá-lo. Entre em contato e descubra nossas soluções.</p>
+                <p>Estamos prontos para ajudá-lo. Preencha o formulário abaixo ou utilize uma das opções alternativas de contato.</p>
             </div>
 
             <div class="contact-form">
+                <h2>Envie sua Mensagem</h2>
                 <form id="contact-form">
                     <label for="name">Nome:</label>
                     <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
-                    
+
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" placeholder="Digite seu email" required>
 
@@ -79,9 +101,15 @@
 
                     <label for="city">Cidade:</label>
                     <input type="text" id="city" name="city" placeholder="Digite sua cidade" required>
-                    
+
                     <button type="submit" class="button">Enviar Mensagem</button>
                 </form>
+            </div>
+
+            <div class="google-form-link-container">
+                <h2>Prefere um Formulário Mais Completo?</h2>
+                <p>Clique no botão abaixo para preencher nosso formulário detalhado e nos ajudar a entender melhor suas necessidades. As informações serão armazenadas de forma segura no Google Drive.</p>
+                <a href="SEU_LINK_DIRETO_DO_GOOGLE_FORMS_AQUI" target="_blank" class="button">Abrir Formulário Detalhado</a>
             </div>
 
             <div class="qrcode-container">
@@ -122,6 +150,10 @@
             }
         });
     </script>
-
+    <footer>
+        <p style="text-align: center; padding: 20px; background: #111; color: #0af; margin-top: 20px;">
+            &copy; 2025 MC infra TI. Todos os direitos reservados.
+        </p>
+    </footer>
 </body>
 </html>
