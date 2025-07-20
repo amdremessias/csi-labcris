@@ -12,6 +12,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
         header {
             background: #111;
@@ -31,27 +32,122 @@
             text-decoration: none;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px; /* Um pouco mais largo para acomodar os planos */
             margin: auto;
             padding: 20px;
             text-align: center;
         }
+        h1 {
+            color: #0af;
+            font-size: 2.8em; /* Maior para o título principal */
+            margin-bottom: 10px;
+        }
         h2 {
             color: #0af;
+            font-size: 2.2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
-        ul {
+        h3 {
+            color: #0af;
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+        .intro-text {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+        .features-list {
             list-style: none;
             padding: 0;
+            display: flex; /* Para centralizar os itens */
+            flex-wrap: wrap; /* Para quebrar linha se necessário */
+            justify-content: center; /* Centraliza horizontalmente */
+            gap: 15px; /* Espaço entre os itens */
+            margin-bottom: 40px;
         }
-        ul li {
+        .features-list li {
+            background: #1a1a1a;
+            padding: 15px 25px;
+            border-radius: 5px;
+            border-left: 3px solid #0af;
+            font-size: 1.1em;
+            text-align: left; /* Alinha o texto das features à esquerda */
+            flex-basis: calc(50% - 15px); /* Dois itens por linha em telas maiores */
+            box-sizing: border-box; /* Inclui padding na largura */
+        }
+        @media (max-width: 768px) {
+            .features-list li {
+                flex-basis: 100%; /* Um item por linha em telas menores */
+            }
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .plan-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            text-align: left;
+            transition: transform 0.3s ease-in-out;
+        }
+        .plan-card:hover {
+            transform: translateY(-10px);
+        }
+        .plan-card h3 {
+            color: #0af;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            text-align: center;
+        }
+        .plan-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .plan-card ul li {
             margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .plan-card ul li::before {
+            content: '✔️'; /* Ícone de checkmark */
+            color: #0af;
+            position: absolute;
+            left: 0;
+        }
+        .contact-info {
+            background: #111;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        .contact-info p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .contact-info a {
+            color: #0af;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: #fff;
         }
         footer {
             text-align: center; 
             padding: 20px; 
             background: #111; 
             color: #0af; 
-            margin-top: 20px;
+            margin-top: 50px; /* Mais espaço antes do rodapé */
         }
     </style>
 </head>
@@ -68,20 +164,75 @@
     </header>
 
     <main>
-        <section id="sentinela-cftv-details">
+        <section id="hero">
             <div class="container">
-                <h2>Sentinela CFTV: Seu Novo Produto SaaS Surveillance</h2>
-                <p>O **Sentinela CFTV** é a solução de vigilância por vídeo como serviço (SaaS) que oferece **monitoramento avançado**, armazenamento em nuvem seguro e acesso remoto em tempo real, tudo para garantir a segurança da sua empresa.</p>
-                <p>Com ele, você pode:</p>
-                <ul>
-                    <li>✅ **Monitorar suas instalações** de qualquer lugar, a qualquer hora, via web ou aplicativo móvel.</li>
-                    <li>✅ **Gravar e armazenar suas imagens de segurança** de forma segura na nuvem, eliminando a necessidade de equipamentos físicos caros.</li>
-                    <li>✅ **Receber alertas em tempo real** sobre eventos importantes, como detecção de movimento ou invasões.</li>
-                    <li>✅ Contar com **escalabilidade flexível** para atender às suas necessidades de segurança, seja para pequenas empresas ou grandes corporações.</li>
-                    <li>✅ Acessar **relatórios detalhados** e históricos de gravações com facilidade.</li>
+                <h1>Sua segurança começa pela **prevenção**!</h1>
+                <p class="intro-text">Com o **Sentinela CFTV**, tenha controle total e a tranquilidade que sua empresa merece com nossa solução de vigilância por vídeo como serviço (SaaS).</p>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Recursos Essenciais do Sentinela CFTV</h2>
+                <ul class="features-list">
+                    <li>BACKUP REMOTO DE VÍDEO E SEGURANÇA</li>
+                    <li>MONITORAMENTO DEDICADO PARA INCIDENTES</li>
+                    <li>CONEXÃO PROTEGIDA POR VPN</li>
+                    <li>RESPOSTA RÁPIDA PARA ALERTAS DE VIOLAÇÃO</li>
+                    <li>VÍDEO-MONITORADO COM INTELIGÊNCIA ARTIFICIAL 24/7</li>
                 </ul>
-                <p>O Sentinela CFTV é a escolha inteligente para quem busca **eficiência, segurança e praticidade** no monitoramento. Reduza custos, otimize a gestão da sua segurança e tenha tranquilidade com nossa solução SaaS.</p>
-                <p>Para mais informações ou para solicitar uma demonstração, entre em contato com nossa equipe de consultores.</p>
+            </div>
+        </section>
+
+        <section id="plans">
+            <div class="container">
+                <h2>Planos e Serviços</h2>
+                <div class="plans-grid">
+                    <article class="plan-card">
+                        <h3>Plano Básico</h3>
+                        <ul>
+                            <li>Gerenciamento de Servidor de Vídeo</li>
+                            <li>Monitoramento de Incidentes</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan-card">
+                        <h3>Plano Padrão</h3>
+                        <ul>
+                            <li>Conexão Cliente VPN Segura</li>
+                            <li>Backup de Vídeo Segurança</li>
+                            <li>Cloud-Backup Externo de Segurança</li>
+                            <li>Gerenciamento de Servidor de Vídeo</li>
+                            <li>Monitoramento de Incidentes</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan-card">
+                        <h3>Plano Enterprise</h3>
+                        <ul>
+                            <li>Backup de Vídeo Segurança</li>
+                            <li>Conexão Cliente VPN Segura</li>
+                            <li>Cloud-Backup Externo de Segurança</li>
+                            <li>Gerenciamento de Servidor de Vídeo</li>
+                            <li>Monitoramento de Incidentes</li>
+                            <li>Resposta para Alertas de Violação</li>
+                            <li>Vídeo Monitorado com I.A 24/7</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="contact-info">
+                    <h2>Pronto para proteger seu negócio?</h2>
+                    <p>Entre em contato com um consultor especialista e solicite um orçamento personalizado para o seu plano Sentinela CFTV!</p>
+                    <p>
+                        📞 <a href="tel:+5514997135218">(14) 9 9713 5218</a> <br>
+                        📧 <a href="mailto:messias.consultoria@yahoo.com">messias.consultoria@yahoo.com</a>
+                    </p>
+                </div>
             </div>
         </section>
     </main>
