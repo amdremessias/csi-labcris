@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="./css/styles.css">
     <title>MC infra TI</title>
     <style>
+        /* Estilos para a imagem de background do corpo da página */
+        body {
+            background-image: url('https://github.com/amdremessias/csi-labcris/blob/main/images/bg-contact.jpg'); /* Substitua pelo caminho da sua imagem */
+            background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
+            background-position: center center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            background-attachment: fixed; /* Fixa a imagem no lugar enquanto a página rola */
+            min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da tela */
+            display: flex; /* Usado para posicionar o footer no final, se o conteúdo for curto */
+            flex-direction: column; /* Coloca os elementos em coluna */
+        }
+
         /* Seus estilos existentes para qrcode-container */
         .qrcode-container {
             text-align: center;
@@ -68,6 +80,10 @@
             border: none;   /* Remove a borda padrão do iframe */
         }
 
+        /* Ajuste para o main ocupar o espaço restante e empurrar o footer */
+        main {
+            flex-grow: 1; /* Permite que o main cresça e ocupe o espaço disponível */
+        }
     </style>
 </head>
 <body>
