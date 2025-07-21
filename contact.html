@@ -44,24 +44,28 @@
             background-color: #1DA851;
         }
 
-        /* Novo estilo para o bloco do Google Forms (se for um link/botão) */
-        .google-form-link-container {
+        /* Novo estilo para o bloco do Google Forms (agora com iframe) */
+        .google-form-iframe-container { /* Renomeei para maior clareza */
             text-align: center;
             margin-top: 30px;
             padding: 20px;
             background: var(--container-bg);
             border-radius: 10px;
             box-shadow: 0 4px 8px var(--shadow-color);
-            max-width: 600px;
+            max-width: 700px; /* Aumentei um pouco para o iframe de 640px */
             margin-left: auto;
             margin-right: auto;
         }
-        .google-form-link-container h2 {
+        .google-form-iframe-container h2 {
             color: var(--highlight-color);
             margin-bottom: 20px;
         }
-        .google-form-link-container .button {
-            margin-top: 15px;
+        /* Estilos para o iframe ser responsivo */
+        .google-form-iframe-container iframe {
+            max-width: 100%; /* Garante que o iframe se ajuste a telas menores */
+            width: 100%;    /* Faz o iframe ocupar a largura total do container */
+            height: 1590px; /* Mantém a altura original, ajuste conforme necessário */
+            border: none;   /* Remove a borda padrão do iframe */
         }
 
     </style>
@@ -78,24 +82,17 @@
         </nav>
     </header>
 
-
     <main>
         <section id="contact">
             <div class="container">
                 <h1>Fale Conosco</h1>
-                <p>Estamos prontos para ajudá-lo. Clique no botão a baixo e Preencha o Formulario, ou se preferir envie uma mensagem para o WhatsApp logo a baixo.</p>
+                <p>Estamos prontos para ajudá-lo. Preencha o formulário abaixo ou, se preferir, envie uma mensagem para o WhatsApp.</p>
             </div>
 
-            <div class="contact-form">
+            <div class="google-form-iframe-container">
                 <h2>Envie sua Mensagem</h2>
-                    <a href="https://forms.gle/DJwCuTBrr1ZZc2E79" target="_blank" class="button">Abrir Formulário</a>
-                </form>
-            </div>
-
-            <div class="google-form-link-container">
-                <h2>Prefere um Formulário Mais Completo?</h2>
-                <p>Clique no botão abaixo para preencher nosso formulário detalhado e nos ajudar a entender melhor suas necessidades. As informações serão armazenadas de forma segura no Google Drive.</p>
-                <a href="https://forms.gle/DJwCuTBrr1ZZc2E79" target="_blank" class="button">Abrir Formulário Detalhado</a>
+                <p>Por favor, preencha o formulário detalhado abaixo para nos ajudar a entender melhor suas necessidades.</p>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOIIut6LhrSCLThXnxBr7p5lV6OUw277cyij9ZsbHxM6qryg/viewform?embedded=true" width="640" height="1590" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
             </div>
 
             <div class="qrcode-container">
@@ -107,35 +104,6 @@
         </section>
     </main>
 
-    <script>
-        document.getElementById("contact-form").addEventListener("submit", async (event) => {
-            event.preventDefault();
-
-            const formData = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                phone: document.getElementById("phone").value,
-                city: document.getElementById("city").value,
-            };
-
-            try {
-                const response = await fetch("/.netlify/functions/submit-to-airtable", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(formData),
-                });
-
-                if (response.ok) {
-                    alert("Cadastro enviado com sucesso!");
-                    document.getElementById("contact-form").reset();
-                } else {
-                    throw new Error("Erro ao enviar cadastro.");
-                }
-            } catch (error) {
-                alert(error.message);
-            }
-        });
-    </script>
     <footer>
         <p style="text-align: center; padding: 20px; background: #111; color: #0af; margin-top: 20px;">
             &copy; 2025 | MC infra TI | Todos os direitos reservados.
