@@ -190,3 +190,8 @@ footer {
   padding: 1rem 0;
   color: var(--text-color);
 }
+.google-form-link-container iframe {
+    max-width: 100%; /* Garante que o iframe não exceda a largura do seu container */
+    width: 100%; /* Tenta ocupar 100% da largura disponível */
+    height: 1590px; /* Mantém a altura definida, mas você pode ajustá-la */
+}
