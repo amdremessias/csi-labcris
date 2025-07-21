@@ -1,240 +1,173 @@
 <!DOCTYPE html>
+
 <html lang="pt">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Softwares e Serviços">
-    <link rel="stylesheet" href="./css/styles.css">
-    <title>MC infra TI</title>
-    <style>
-        /* Estilos específicos para o fundo da página index.html */
-        body {
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg'); /* SUBSTITUA este link pela URL REAL da sua imagem de fundo */
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: var(--text-color); /* Mantém a cor do texto do seu styles.css */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
 
-        /* O overlay já existe no seu HTML, vamos apenas ajustar os estilos para ele */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Overlay escuro para legibilidade, ajuste a opacidade (0.7) se desejar */
-            z-index: -1; /* Garante que fique atrás do conteúdo */
-        }
+  <meta charset="UTF-8">
 
-        header {
-            background: rgba(17, 17, 17, 0.9); /* Fundo do cabeçalho com opacidade */
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1; /* Garante que fique acima do overlay */
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #0af;
-            text-decoration: none;
-        }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Ajustes para o container e outros blocos de conteúdo */
-        .container, .hero-content {
-            background: rgba(17, 17, 17, 0.85); /* Fundo dos containers com opacidade */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 255, 255, 0.2); /* Sombra sutil */
-            position: relative;
-            z-index: 1; /* Garante que fique acima do overlay */
-            padding: 20px;
-            margin: auto; /* Para centralizar os containers */
-        }
+  <meta name="description" content="Softwares e Serviços">
 
-        #hero {
-            padding: 100px 20px; /* Mais padding para a seção hero */
-            text-align: center;
-            color: #fff; /* Garante que o texto seja branco */
-            display: flex; /* Para centralizar o hero-content */
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh; /* Ocupa uma boa parte da tela */
-            position: relative;
-            z-index: 0; /* Para que o hero-content fique acima do overlay */
-        }
-        .hero-content {
-            max-width: 700px;
-            padding: 40px;
-            border-radius: 10px;
-        }
-        .hero-content h2 {
-            font-size: 2.8em;
-            color: #0af;
-            margin-bottom: 20px;
-        }
-        .hero-content p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-        .button {
-            display: inline-block;
-            background-color: #0af;
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-        .button:hover {
-            background-color: #078;
-        }
+  <link rel="stylesheet" href="./css/styles.css">
 
-        #about .container,
-        #services .container,
-        #contact-preview .container {
-            max-width: 900px;
-            margin-top: 50px; /* Espaço entre as seções */
-        }
+  <title>MC infra TI</title>
 
-        #services .service-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        #services .service-list article {
-            background: rgba(26, 26, 26, 0.85); /* Fundo dos artigos com opacidade */
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-            transition: transform 0.3s ease;
-        }
-        #services .service-list article:hover {
-            transform: translateY(-5px);
-        }
-        #services .service-list article h3 {
-            color: #0af;
-            margin-bottom: 10px;
-        }
-        #services .service-list article p {
-            color: #e0e0e0;
-        }
-
-        footer {
-            background: rgba(17, 17, 17, 0.9); /* Fundo do rodapé com opacidade */
-            text-align: center;
-            padding: 20px;
-            color: #0af;
-            margin-top: 50px;
-            position: relative;
-            z-index: 1;
-        }
-        footer .container {
-            background: none; /* Remove background extra no container do footer */
-            box-shadow: none; /* Remove sombra extra */
-        }
-        footer ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 10px;
-        }
-        footer ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        footer ul li a {
-            color: #0af;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-    </style>
 </head>
+
 <body>
 
-    <div class="overlay"></div>
 
-    <header>
-        <nav>
-            <div class="logo">MC infra TI</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Serviços</a></li>
-                <li><a href="contact.html">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h2>Atendimento Turbinado no WhatsApp</h2>
-                <p>Cansado de perder tempo e clientes com um atendimento confuso no WhatsApp? Chega de filas de espera, mensagens perdidas e clientes insatisfeitos! Com o Novo Chat, você transforma o atendimento no WhatsApp da sua empresa em uma experiência incrível, para você e seus clientes.</p>
-                <a href="services.html" class="button">Conheça nossos Serviços</a>
-            </div>
-        </section>
+  <!-- Camada de escurecimento para melhorar a leitura sobre o fundo animado -->
 
-        <section id="about">
-            <div class="container">
-                <h2>Novo Chat</h2>
-                <p>Melhore a experiência do cliente Ofereça um suporte rápido, eficiente e personalizado Aumente a satisfação dos clientes Resolva problemas com rapidez e eficiência, fidelizando seus clientes Obtenha dados valiosos Analise as conversas e identifique oportunidades para aprimorar seus produtos e serviços Pronto para transformar seu atendimento no WhatsApp?</p>
-                <p>Comece a usar o Novo Chat hoje mesmo e desfrute de todos os benefícios!.</p>
-            </div>
-        </section>
+  <div class="overlay"></div>
 
-        <section id="services">
-            <div class="container">
-                <h2>Alguns de nossos Serviços</h2>
-                <p>Gestão de atendimento corporativo e centralizado para seu negócio.</p>
-                <div class="service-list">
-                    <article>
-                        <h3>🔍 Novo Chat Com WhatsApp</h3>
-                        <p>Centralize os seus atendimentos WhatsApp com Rapidez e Eficiência.</p>
-                    </article>
-                    <article>
-                        <h3>🔐 Cofre de senha Corporativo</h3>
-                        <p>Aumente a proteção das suas senhas de acesso guardando elas em um cofre seguro.</p>
-                    </article>
-                    <article>
-                        <h3>🔄 <a href="sentinela_cftv.html">Sentinela CFTV.</a></h3>
-                        <p>Solução de Vigilância por Vídeo, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
 
-        <section id="contact-preview">
-            <div class="container">
-                <h2>Entre em Contato</h2>
-                <p>Converse com nossos especialistas para fortalecer a segurança e gestão da sua empresa.</p>
-                <a href="contact.html" class="button">Fale Conosco</a>
-            </div>
-        </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
-            <ul>
-                <li><a href="services.html">Serviços</a></li>
-                <li><a href="contact.html">Contato</a></li>
-                <li><a href="#">Política de Privacidade</a></li>
-            </ul>
-        </div>
-    </footer>
+  <header>
+
+    <nav>
+
+      <div class="logo">MC infra TI</div>
+
+      <ul>
+
+        <li><a href="index.html">Home</a></li>
+
+        <li><a href="services.html">Serviços</a></li>
+
+        <li><a href="contact.html">Contato</a></li>
+
+      </ul>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <section id="hero">
+
+      <div class="hero-content">
+
+        <h2>Atendimento Turbinado no WhatsApp</h2>
+
+        <p>Cansado de perder tempo e clientes com um atendimento confuso no
+
+WhatsApp?  Chega de filas de espera, mensagens perdidas e clientes insatisfeitos! Com o Novo Chat, você transforma o atendimento no WhatsApp da sua empresa em uma experiência incrível, para você e seus clientes.</p>
+
+        <a href="services.html" class="button">Conheça nossos Serviços</a>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="about">
+
+      <div class="container">
+
+        <h2>Novo Chat</h2>
+
+        <p>Melhore a experiência do cliente Ofereça um suporte rápido, eficiente e personalizado Aumente a satisfação dos clientes Resolva problemas com rapidez e eficiência, fidelizando seus clientes Obtenha dados valiosos Analise as conversas e identifique oportunidades para aprimorar seus produtos e serviços Pronto para transformar seu atendimento no WhatsApp?
+
+
+
+Comece a usar o Novo Chat hoje mesmo e desfrute de todos os benefícios! .</p>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="services">
+
+      <div class="container">
+
+        <h2>Alguns de nossos Serviços</h2>
+
+        <p>Gestão de atedimento corporativo e centralizado para seu negocio.</p>
+
+        <div class="service-list">
+
+          <article>
+
+            <h3>🔍 Novo Chat Com WhatsApp</h3>
+
+            <p>Centralize os seus atendimentos WhatsApp com Rapidez e Eficiencia.</p>
+
+          </article>
+
+          <article>
+
+            <h3>🔐 Cofre de senha Corporativo</h3>
+
+            <p>Aumente a proteção das suas senhas de acesso guardando elas em um cofre seguro.</p>
+
+          </article>
+
+          <article>
+
+            <h3>🔄 <a href="sentinela_cftv.html">Sentinela CFTV.</a></h3>
+
+            <p>Solução de Vigilância por Vídeo, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real.</p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="contact-preview">
+
+      <div class="container">
+
+        <h2>Entre em Contato</h2>
+
+        <p>Converse com nossos especialistas para fortalecer a segurança e gestão da sua empresa.</p>
+
+        <a href="contact.html" class="button">Fale Conosco</a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer>
+
+    <div class="container">
+
+      <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
+
+      <ul>
+
+        <li><a href="services.html">Serviços</a></li>
+
+        <li><a href="contact.html">Contato</a></li>
+
+        <li><a href="#">Política de Privacidade</a></li>
+
+      </ul>
+
+    </div>
+
+  </footer>
+
+
 
 </body>
+
 </html>
