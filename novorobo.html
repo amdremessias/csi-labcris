@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Robo - Chatbot WhatsApp com IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis de cores */
+        :root {
+            --matrix-green: #0AFF0A; /* Verde vibrante da Matrix */
+            --dark-green: rgba(0, 30, 0, 0.9); /* Verde escuro para fundo de elementos */
+            --darker-green: rgba(0, 20, 0, 0.95); /* Verde ainda mais escuro */
+            --text-glow: 0 0 5px rgba(0, 255, 0, 0.5); /* Sombra para efeito de brilho */
+            --box-glow: 0 0 15px rgba(0, 255, 0, 0.6); /* Sombra para efeito de brilho em caixas */
+        }
+
+        /* Estilos gerais do corpo da página */
+        body {
+            background: #000; /* Fundo preto sólido */
+            /* Efeito de linhas de código/scanlines */
+            background-image: linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+            background-size: 100% 2px;
+            background-position: 0 0;
+            background-attachment: fixed;
+            font-family: 'VT323', monospace; /* Fonte estilo Matrix */
+            color: var(--matrix-green); /* Cor do texto padrão */
+            text-shadow: var(--text-glow); /* Efeito de brilho no texto */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Overlay para escurecer o fundo e permitir o efeito de scanlines */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75); /* Overlay escuro */
+            z-index: -1;
+        }
+        
+        /* Estilos para containers e cards de conteúdo */
+        .container, .plan-card, .contact-info {
+            background: var(--dark-green); /* Fundo verde escuro semi-transparente */
+            border: 1px solid var(--matrix-green); /* Borda verde */
+            box-shadow: var(--box-glow); /* Brilho verde nas caixas */
+            margin-bottom: 30px; /* Espaçamento entre as seções */
+        }
+
+        /* Cabeçalho */
+        header {
+            background: rgba(0, 10, 0, 0.9); /* Fundo do cabeçalho mais escuro */
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--matrix-green); /* Borda inferior verde */
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+        }
+        header .logo {
+            font-size: 2.5em;
+            color: var(--matrix-green);
+            text-shadow: var(--text-glow);
+            letter-spacing: 3px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--matrix-green);
+            text-decoration: none;
+            font-size: 1.2em;
+            text-shadow: var(--text-glow);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #FFF; /* Branco no hover para destaque */
+            text-shadow: 0 0 10px #FFF, 0 0 20px #FFF;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: var(--matrix-green);
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.5);
+            letter-spacing: 2px;
+        }
+        h2 {
+            font-size: 2.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--matrix-green);
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.7), 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+        h3 {
+            font-size: 2.2em;
+            margin-top: 30px;
+            color: var(--matrix-green);
+            text-shadow: 0 0 6px rgba(0, 255, 0, 0.6);
+        }
+
+        /* Texto introdutório */
+        .intro-text {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #AFA; /* Verde claro para leitura */
+        }
+
+        /* Lista de recursos */
+        .features-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            font-size: 1.3em;
+        }
+        .features-list li {
+            background: rgba(0, 40, 0, 0.8); /* Fundo dos itens de recurso */
+            padding: 18px 28px;
+            border-radius: 5px;
+            border-left: 4px solid var(--matrix-green); /* Borda lateral verde */
+            text-align: left;
+            flex-basis: calc(50% - 20px);
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .features-list li:hover {
+            transform: scale(1.03);
+            background: rgba(0, 50, 0, 0.9);
+        }
+        @media (max-width: 768px) {
+            .features-list li {
+                flex-basis: 100%;
+            }
+        }
+
+        /* Grid de planos */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .plan-card {
+            background: var(--dark-green);
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: var(--box-glow);
+            text-align: left;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .plan-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
+        }
+        .plan-card h3 {
+            color: var(--matrix-green);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 2em;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        }
+        .plan-card .plan-description {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            color: #AFA;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .plan-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            flex-grow: 1; /* Permite que a lista cresça e o botão vá para baixo */
+        }
+        .plan-card ul li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.15em;
+        }
+        .plan-card ul li::before {
+            content: '>>'; /* Símbolo estilo Matrix */
+            color: var(--matrix-green);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.9em;
+            line-height: inherit;
+        }
+        .plan-card .cta-button {
+            display: inline-block;
+            background: var(--matrix-green);
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            text-shadow: none; /* Remove text-shadow for button text */
+        }
+        .plan-card .cta-button:hover {
+            background: #FFF;
+            color: var(--darker-green);
+            box-shadow: 0 0 20px var(--matrix-green);
+        }
+
+
+        /* Informações de contato */
+        .contact-info {
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+            background: var(--darker-green);
+        }
+        .contact-info p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #AFA;
+        }
+        .contact-info a {
+            color: var(--matrix-green);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5em;
+            text-shadow: var(--text-glow);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            display: inline-block; /* Para aplicar margin-bottom */
+            margin-bottom: 10px;
+        }
+        .contact-info a:hover {
+            color: #FFF;
+            text-shadow: 0 0 10px #FFF, 0 0 20px #FFF;
+        }
+
+        /* Rodapé */
+        footer {
+            background: rgba(0, 10, 0, 0.9);
+            text-align: center;
+            padding: 25px;
+            color: var(--matrix-green);
+            margin-top: 50px;
+            border-top: 1px solid var(--matrix-green);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+            font-size: 1.1em;
+            text-shadow: var(--text-glow);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">NOVO ROBO</div>
+            <ul>
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#features">Recursos</a></li>
+                <li><a href="#plans">Planos</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Desvende o Futuro do Atendimento com o NOVO ROBO!</h1>
+                <p class="intro-text">Seu bot de atendimento para WhatsApp com Inteligência Artificial, meticulosamente treinada e adaptada para o seu segmento de mercado.</p>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Recursos Avançados do NOVO ROBO</h2>
+                <ul class="features-list">
+                    <li>Atendimento Inteligente 24/7</li>
+                    <li>Respostas Instantâneas e Precisas</li>
+                    <li>Integração Perfeita com WhatsApp</li>
+                    <li>IA Personalizada por Segmento de Mercado</li>
+                    <li>Redução Significativa de Custos Operacionais</li>
+                    <li>Geração Automática de Leads Qualificados</li>
+                    <li>Análise de Dados e Relatórios de Desempenho</li>
+                    <li>Otimização Contínua Baseada em Interações</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="plans">
+            <div class="container">
+                <h2>Planos de Acesso ao NOVO ROBO</h2>
+                <div class="plans-grid">
+                    <article class="plan-card">
+                        <h3>Plano Essencial</h3>
+                        <p class="plan-description">Ideal para quem busca automatizar o atendimento básico, fornecendo respostas rápidas e informações fundamentais aos seus clientes.</p>
+                        <ul>
+                            <li>>> Bot com Respostas Programadas</li>
+                            <li>>> FAQ (Perguntas Frequentes) Básico</li>
+                            <li>>> Suporte ao Cliente via Chat</li>
+                            <li>>> Relatórios de Uso Simples</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Saiba Mais</a>
+                    </article>
+
+                    <article class="plan-card">
+                        <h3>Plano Inteligência Conectada</h3>
+                        <p class="plan-description">Um passo além, este plano incorpora IA para um atendimento mais dinâmico, aprendendo com as interações e oferecendo personalização.</p>
+                        <ul>
+                            <li>>> Inteligência Artificial Integrada</li>
+                            <li>>> Aprendizado Contínuo (Machine Learning)</li>
+                            <li>>> Personalização Limitada por Segmento</li>
+                            <li>>> Geração de Leads Básica</li>
+                            <li>>> Suporte Prioritário por E-mail</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Conheça</a>
+                    </article>
+
+                    <article class="plan-card">
+                        <h3>Plano Domínio da IA</h3>
+                        <p class="plan-description">A solução completa para quem busca o máximo da IA, com treinamento profundo, integração avançada e análises estratégicas para seu negócio.</p>
+                        <ul>
+                            <li>>> IA Avançada e Treinamento Profundo</li>
+                            <li>>> Personalização Completa por Segmento</li>
+                            <li>>> Integração com CRM e Sistemas Externos</li>
+                            <li>>> Relatórios Detalhados e Análises Estratégicas</li>
+                            <li>>> Geração de Leads Qualificados e Gerenciamento</li>
+                            <li>>> Suporte Premium 24/7</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Solicitar Proposta</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="contact-info">
+                    <h2>Decifre o Código do Sucesso!</h2>
+                    <p>Pronto para transformar seu atendimento e impulsionar seu negócio com o **NOVO ROBO**?</p>
+                    <p>
+                        <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">📞 Abrir WhatsApp</a> <br>
+                        <a href="mailto:messias.consultoria@yahoo.com">📧 messias.consultoria@yahoo.com</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 | NOVO ROBO by MC Infra TI | Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
