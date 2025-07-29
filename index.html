@@ -1,192 +1,152 @@
 <!DOCTYPE html>
-
 <html lang="pt">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Softwares e Serviços">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>MC infra TI</title>
+    <style>
+        body {
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg');
+            background-size: cover; /* Garante que a imagem cubra toda a área */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            background-attachment: fixed; /* Mantém a imagem fixa ao rolar a página */
+            margin: 0;
+            padding: 0;
+        }
 
-  <meta charset="UTF-8">
+        /* Opcional: ajustar a opacidade do overlay se a imagem estiver muito escura ou clara */
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5); /* Exemplo: preto com 50% de opacidade */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Coloca o overlay atrás do conteúdo, mas à frente do background */
+        }
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        /* Estilo para alinhar os botões lado a lado */
+        .button-group {
+            display: flex; /* Usa flexbox para alinhar */
+            justify-content: center; /* Centraliza os botões no grupo */
+            gap: 20px; /* Espaço entre os botões */
+            margin-top: 30px; /* Espaço acima do grupo de botões */
+        }
 
-  <meta name="description" content="Softwares e Serviços">
+        /* Estilo para o novo botão de Cookies, se precisar de um visual diferente */
+        .button.cookies-button {
+            background-color: #e0b26b; /* Cor que remete a cookies (dourado/marrom claro) */
+            color: #333; /* Cor do texto para contraste */
+            border: 2px solid #a87e5b; /* Borda mais escura */
+            padding: 12px 25px;
+            font-size: 1.1em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
 
-  <link rel="stylesheet" href="./css/styles.css">
+        .button.cookies-button:hover {
+            background-color: #a87e5b; /* Cor mais escura no hover */
+            color: #fff;
+            transform: translateY(-3px);
+        }
 
-  <title>MC infra TI</title>
+        /* Ajuste para o botão existente para que ele se beneficie do .button-group */
+        .button {
+            display: inline-block; /* Garante que 'button' se comporte bem com flexbox */
+        }
 
-  <style>
-    body {
-      background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg');
-      background-size: cover; /* Garante que a imagem cubra toda a área */
-      background-position: center; /* Centraliza a imagem */
-      background-repeat: no-repeat; /* Evita que a imagem se repita */
-      background-attachment: fixed; /* Mantém a imagem fixa ao rolar a página */
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Opcional: ajustar a opacidade do overlay se a imagem estiver muito escura ou clara */
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.5); /* Exemplo: preto com 50% de opacidade */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1; /* Coloca o overlay atrás do conteúdo, mas à frente do background */
-    }
-  </style>
-
+        /* Se for necessário, adicione aqui os estilos para as variáveis de cor
+           se o seu styles.css principal não as definir e você quiser usá-las */
+        /*
+        :root {
+            --text-color: #f0f0f0;
+            --primary-color: #0af;
+            --secondary-color: #008fcc;
+            --background-dark: rgba(26, 26, 26, 0.85);
+            --background-medium: rgba(17, 17, 17, 0.85);
+        }
+        */
+    </style>
 </head>
-
 <body>
 
+    <div class="overlay"></div>
 
+    <header>
+        <nav>
+            <div class="logo">MC infra TI</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="cookies.html">Cookies</a></li> <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <div class="overlay"></div>
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h2>Atendimento Turbinado no WhatsApp</h2>
+                <p>Cansado de perder tempo e clientes com um atendimento confuso no WhatsApp? Chega de filas de espera, mensagens perdidas e clientes insatisfeitos! Com o Novo Chat, você transforma o atendimento no WhatsApp da sua empresa em uma experiência incrível, para você e seus clientes.</p>
+                <a href="services.html" class="button">Conheça nossos Serviços</a>
+            </div>
+        </section>
 
+        <section id="about">
+            <div class="container">
+                <h2>Novo Chat</h2>
+                <p>Melhore a experiência do cliente Ofereça um suporte rápido, eficiente e personalizado Aumente a satisfação dos clientes Resolva problemas com rapidez e eficiência, fidelizando seus clientes Obtenha dados valiosos Analise as conversas e identifique oportunidades para aprimorar seus produtos e serviços Pronto para transformar seu atendimento no WhatsApp? Comece a usar o Novo Chat hoje mesmo e desfrute de todos os benefícios!</p>
+            </div>
+        </section>
 
+        <section id="services">
+            <div class="container">
+                <h2>Alguns de nossos Serviços</h2>
+                <p>Gestão de atendimento corporativo e centralizado para seu negócio.</p>
+                <div class="service-list">
+                    <article>
+                        <div class="logo">💭 Chat Bussines</div>
+                        <h3> Novo Chat Com WhatsApp</h3>
+                        <p>Centralize os seus atendimentos WhatsApp com Rapidez e Eficiencia.</p>
+                    </article>
+                    <article>
+                        <div class="logo">🤖 Novo Robo</div>
+                        <h3><a href="novorobo.html">ChatBot com I A.</a></h3>
+                        <p>Robo de Atendimento com Inteligencia Artificial para o WhatsApp .</p>
+                    </article>
+                    <article>
+                        <div class="logo">👁️ Sentinela</div>
+                        <h3> <a href="sentinela_cftv.html">Sentinela CFTV.</a></h3>
+                        <p>Solução de Vigilância por Vídeo, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-  <header>
+        <section id="contact-preview">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <p>Converse com nossos especialistas para fortalecer a segurança e gestão da sua empresa.</p>
+                <div class="button-group"> <a href="contact.html" class="button">Fale Conosco</a>
+                    <a href="cookies.html" class="button cookies-button">Ver Cookies</a> </div>
+            </div>
+        </section>
+    </main>
 
-    <nav>
-
-      <div class="logo">MC infra TI</div>
-
-      <ul>
-
-        <li><a href="index.html">Home</a></li>
-
-        <li><a href="services.html">Serviços</a></li>
-
-        <li><a href="contact.html">Contato</a></li>
-
-      </ul>
-
-    </nav>
-
-  </header>
-
-
-
-  <main>
-
-    <section id="hero">
-
-      <div class="hero-content">
-
-        <h2>Atendimento Turbinado no WhatsApp</h2>
-
-        <p>Cansado de perder tempo e clientes com um atendimento confuso no
-
-WhatsApp?  Chega de filas de espera, mensagens perdidas e clientes insatisfeitos! Com o Novo Chat, você transforma o atendimento no WhatsApp da sua empresa em uma experiência incrível, para você e seus clientes.</p>
-
-        <a href="services.html" class="button">Conheça nossos Serviços</a>
-
-      </div>
-
-    </section>
-
-
-
-    <section id="about">
-
-      <div class="container">
-
-        <h2>Novo Chat</h2>
-
-        <p>Melhore a experiência do cliente Ofereça um suporte rápido, eficiente e personalizado Aumente a satisfação dos clientes Resolva problemas com rapidez e eficiência, fidelizando seus clientes Obtenha dados valiosos Analise as conversas e identifique oportunidades para aprimorar seus produtos e serviços Pronto para transformar seu atendimento no WhatsApp?
-
-
-
-Comece a usar o Novo Chat hoje mesmo e desfrute de todos os benefícios! .</p>
-
-      </div>
-
-    </section>
-
-
-    <section id="services">
-
-      <div class="container">
-
-        <h2>Alguns de nossos Serviços</h2>
-
-        <p>Gestão de atedimento corporativo e centralizado para seu negocio.</p>
-
-        <div class="service-list">
-
-          <article>
-            <div class="logo">💭 Chat Bussines</div>
-            <h3> Novo Chat Com WhatsApp</h3>
-
-            <p>Centralize os seus atendimentos WhatsApp com Rapidez e Eficiencia.</p>
-
-          </article>
-
-          </article>
-          
-          <article>
-            <div class="logo">🤖 Novo Robo</div>
-            <h3><a href="novorobo.html">ChatBot com I A.</a></h3>
-            <p>Robo de Atendimento com Inteligencia Artificial para o WhatsApp .</p>
-
-          </article>
-          
-          <article>
-            <div class="logo">👁️ Sentinela</div>
-            <h3> <a href="sentinela_cftv.html">Sentinela CFTV.</a></h3>
-            <p>Solução de Vigilância por Vídeo, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real.</p>
-
-          </article>
-
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
+            <ul>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="cookies.html">Cookies</a></li> <li><a href="contact.html">Contato</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+            </ul>
         </div>
-
-      </div>
-
-    </section>
-
-    
-    <section id="contact-preview">
-
-      <div class="container">
-
-        <h2>Entre em Contato</h2>
-
-        <p>Converse com nossos especialistas para fortalecer a segurança e gestão da sua empresa.</p>
-
-        <a href="contact.html" class="button">Fale Conosco</a>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-
-  <footer>
-
-    <div class="container">
-
-      <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
-
-      <ul>
-
-        <li><a href="services.html">Serviços</a></li>
-
-        <li><a href="contact.html">Contato</a></li>
-
-        <li><a href="#">Política de Privacidade</a></li>
-
-      </ul>
-
-    </div>
-
-  </footer>
-
-
+    </footer>
 
 </body>
-
 </html>
