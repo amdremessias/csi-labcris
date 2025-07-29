@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deliciosos Cookies Artesanais</title>
+    <style>
+        /* Variáveis de cor (se você tiver um styles.css com elas, pode remover daqui) */
+        :root {
+            --text-color: #f0f0f0;
+            --primary-color: #e0b26b; /* Um tom de marrom claro/dourado para combinar com cookies */
+            --secondary-color: #a87e5b; /* Um tom de marrom mais escuro */
+            --background-dark: rgba(26, 26, 26, 0.85);
+            --background-medium: rgba(17, 17, 17, 0.85);
+        }
+
+        /* Estilos gerais para o corpo da página */
+        body {
+            background-image: url('https://images.pexels.com/photos/20455823/pexels-photo-20455823/free-photo-of-cafe-com-leite-em-caneca-branca-e-biscoitos-de-chocolate.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Imagem de fundo de cookies */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais suave */
+            margin: 0;
+            padding: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Escurece o fundo para melhor leitura */
+            z-index: -1;
+        }
+
+        /* Estilos de layout e componentes principais */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: var(--background-medium);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-block; /* Para alinhar com o logo */
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-color);
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+
+        .intro-text {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Estilos dos cards de packs de cookies */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .plan-card {
+            background: var(--background-dark);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(224, 178, 107, 0.6); /* Sombra que combina com cookies */
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(224, 178, 107, 0.8);
+        }
+
+        .plan-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        .price {
+            font-size: 2.5em;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block; /* Para garantir que o preço ocupe a linha inteira */
+        }
+
+        .price small {
+            font-size: 0.6em;
+            color: #ccc;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .plan-card ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.1em;
+            color: #e0e0e0;
+        }
+
+        .plan-card ul li::before {
+            content: '🍪'; /* Emoji de cookie como marcador */
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Seção "Nossa História de Cookies" */
+        .history-section {
+            background: var(--background-dark);
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 50px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            text-align: left;
+        }
+
+        .history-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .history-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #d0d0d0;
+        }
+
+        /* Seção de Contato e QR Code */
+        .contact-info {
+            background: var(--background-dark);
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(224, 178, 107, 0.5);
+            display: flex; /* Para alinhar QR Code e texto */
+            flex-direction: column; /* Em colunas por padrão */
+            align-items: center; /* Centraliza itens */
+        }
+
+        .contact-info h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .qr-code-container {
+            margin-bottom: 20px;
+        }
+
+        .qr-code-container img {
+            max-width: 180px;
+            height: auto;
+            border: 5px solid var(--primary-color);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(224, 178, 107, 0.7);
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            background-color: #25D366; /* Cor do WhatsApp */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1DA851;
+            transform: translateY(-3px);
+        }
+
+        .whatsapp-button:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 20px;
+            color: var(--primary-color);
+            margin-top: 50px;
+            font-size: 0.9em;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Media Queries para responsividade */
+        @media (min-width: 768px) {
+            .contact-info {
+                flex-direction: row; /* Em linha em telas maiores */
+                justify-content: space-around; /* Espaço entre os itens */
+                align-items: center;
+            }
+
+            .contact-info > div {
+                flex: 1; /* Distribui o espaço igualmente */
+                text-align: center;
+            }
+
+            .contact-text {
+                margin-left: 20px; /* Adiciona espaçamento entre o QR e o texto */
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .intro-text {
+                font-size: 1em;
+            }
+            .plan-card {
+                padding: 20px;
+            }
+            .plan-card h3 {
+                font-size: 1.5em;
+            }
+            .price {
+                font-size: 2em;
+            }
+            .whatsapp-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .qr-code-container img {
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sabor Artesanal</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cookies.html">Cookies</a></li> <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Os Melhores Cookies Artesanais Estão Aqui!</h1>
+                <p class="intro-text">Descubra o sabor irresistível dos nossos cookies feitos com carinho e ingredientes selecionados. Crocantes por fora, macios por dentro, cada mordida é uma experiência única!</p>
+            </div>
+        </section>
+
+        <section id="packs">
+            <div class="container">
+                <h2>Nossos Packs de Cookies</h2>
+                <div class="plans-grid">
+                    <article class="plan-card">
+                        <h3>Pack Essencial</h3>
+                        <p class="price">R$ 10<small>,00</small></p>
+                        <ul>
+                            <li>3 Deliciosos Cookies</li>
+                            <li>Escolha seus sabores favoritos</li>
+                            <li>Perfeito para um agrado</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan-card">
+                        <h3>Pack Familiar</h3>
+                        <p class="price">R$ 15<small>,00</small></p>
+                        <ul>
+                            <li>5 Cookies Variados</li>
+                            <li>Ideal para compartilhar</li>
+                            <li>Sabor e alegria garantidos</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan-card">
+                        <h3>Pack Festa</h3>
+                        <p class="price">R$ 20<small>,00</small></p>
+                        <ul>
+                            <li>7 Cookies Especiais</li>
+                            <li>Mais variedade e quantidade</li>
+                            <li>Adoce seu evento</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="history">
+            <div class="container history-section">
+                <h2>A Doce História dos Nossos Cookies</h2>
+                <p>Nossos cookies nascem de uma paixão por criar momentos de felicidade. Tudo começou na cozinha de casa, com a busca pela receita perfeita que combinasse a crocância ideal com um interior macio e recheado de sabor. Cada ingrediente é escolhido a dedo, desde o chocolate belga de alta qualidade até a manteiga fresquinha, garantindo que cada cookie seja uma obra de arte comestível.</p>
+                <p>Com o tempo, a demanda cresceu, mas o compromisso com a qualidade e o toque artesanal permaneceu. Hoje, continuamos a assar nossos cookies com o mesmo carinho e dedicação, levando um pedacinho de afeto e doçura para a sua mesa. Experimente e descubra a diferença de um cookie feito com amor!</p>
+            </div>
+        </section>
+
+        <section id="cta-contact">
+            <div class="container">
+                <div class="contact-info">
+                    <div class="qr-code-container">
+                        <h2>Peça Agora!</h2>
+                        <p>Escaneie o QR Code para fazer seu pedido ou tirar dúvidas!</p>
+                        <img src="URL_DO_SEU_QR_CODE.png" alt="QR Code para WhatsApp">
+                    </div>
+                    <div class="contact-text">
+                        <p>Prefere falar com a gente?</p>
+                        <a href="https://wa.me/14997135218" target="_blank" class="whatsapp-button">
+                            Chamar no WhatsApp!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 | Sabor Artesanal | Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
