@@ -9,18 +9,72 @@
     <style>
         /* Estilos para a imagem de background do corpo da página */
         body {
-            /* ATENÇÃO: Para imagens do GitHub, você precisa usar a URL "raw" para que o navegador consiga acessá-la como uma imagem. */
-            /* A URL fornecida: https://github.com/amdremessias/csi-labcris/blob/main/images/bg-contact.jpg */
-            /* A URL RAW (correta para uso no CSS) é: */
             background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-contact.jpg');
-            background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
-            background-position: center center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita que a imagem se repita */
-            background-attachment: fixed; /* Fixa a imagem no lugar enquanto a página rola */
-            min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da tela */
-            display: flex; /* Usado para posicionar o footer no final, se o conteúdo for curto */
-            flex-direction: column; /* Coloca os elementos em coluna */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin-top: 80px; /* Adicionado para evitar que o conteúdo fique atrás do cabeçalho fixo */
         }
+
+        /* Estilos para o cabeçalho fixo */
+        header {
+            position: fixed; /* Fixa o cabeçalho na tela */
+            top: 0; /* Alinha o cabeçalho ao topo */
+            width: 100%; /* Ocupa a largura total */
+            background-color: rgba(0, 0, 0, 0.9); /* Fundo semi-transparente para o cabeçalho */
+            padding: 1rem 0;
+            text-align: center;
+            z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #4CAF50;
+            margin-bottom: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        header nav ul li a:hover {
+            color: #4CAF50;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
         /* Seus estilos existentes para qrcode-container */
         .qrcode-container {
@@ -87,6 +141,23 @@
         main {
             flex-grow: 1; /* Permite que o main cresça e ocupe o espaço disponível */
         }
+
+        /* Estilos para o rodapé */
+        footer {
+            background: #111; /* Cor de fundo escura */
+            color: #0af; /* Cor do texto do footer */
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .footer-logo {
+            display: block; /* Garante que a imagem seja um bloco para centralização */
+            margin: 0 auto 15px auto; /* Centraliza a imagem e adiciona margem inferior */
+            max-width: 150px; /* Define um tamanho máximo para a logo */
+            height: auto; /* Mantém a proporção */
+        }
+
     </style>
 </head>
 <body>
@@ -124,7 +195,8 @@
     </main>
 
     <footer>
-        <p style="text-align: center; padding: 20px; background: #111; color: #0af; margin-top: 20px;">
+            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
+        <p>
             &copy; 2025 | MC infra TI | Todos os direitos reservados.
         </p>
     </footer>
