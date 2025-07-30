@@ -4,36 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Entre em Contato - MC infra TI">
-    <link rel="stylesheet" href="./css/styles.css">
     <title>MC infra TI</title>
     <style>
-        /* Estilos para a imagem de background do corpo da página */
+        /* Estilos gerais - Importado do index.html para consistência */
         body {
-            /* ATENÇÃO: Para imagens do GitHub, você precisa usar a URL "raw" para que o navegador consiga acessá-la como uma imagem. */
-            /* A URL fornecida: https://github.com/amdremessias/csi-labcris/blob/main/images/bg-contact.jpg */
-            /* A URL RAW (correta para uso no CSS) é: */
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-contact.jpg');
-            background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
-            background-position: center center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita que a imagem se repita */
-            background-attachment: fixed; /* Fixa a imagem no lugar enquanto a página rola */
-            min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da tela */
-            display: flex; /* Usado para posicionar o footer no final, se o conteúdo for curto */
-            flex-direction: column; /* Coloca os elementos em coluna */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333; /* Cor padrão para texto */
+            background-color: #f4f4f4;
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-contact.jpg'); /* Imagem de fundo específica para contact.html */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Seus estilos existentes para qrcode-container */
-        .qrcode-container {
+        .overlay { /* Adicionado para consistência de fundo escuro */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Overlay escuro para a imagem de fundo */
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header - Estilos padronizados */
+        header {
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente como index.html e sentinela_cftv.html */
+            padding: 1rem 0;
+            text-align: center;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #4CAF50; /* Cor verde para destaque */
+            margin-bottom: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        header nav ul li a:hover {
+            color: #4CAF50; /* Verde no hover */
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilos para a seção de contato */
+        #contact {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para o conteúdo principal */
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #contact h1 {
+            font-size: 2.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #contact p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            color: #555;
+        }
+
+        /* Seus estilos existentes para qrcode-container e google-form-iframe-container */
+        .qrcode-container, .google-form-iframe-container {
             text-align: center;
             margin-top: 40px;
             padding: 20px;
-            background: var(--container-bg);
+            background: rgba(255, 255, 255, 0.95); /* Fundo um pouco mais opaco para os blocos internos */
             border-radius: 10px;
-            box-shadow: 0 4px 8px var(--shadow-color);
-            max-width: 350px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
             margin-left: auto;
             margin-right: auto;
         }
+
+        .qrcode-container {
+            max-width: 350px;
+        }
+
         .qrcode-container img {
             max-width: 100%;
             height: auto;
@@ -42,7 +141,7 @@
         }
         .qrcode-container p {
             font-size: 1.1em;
-            color: var(--text-color);
+            color: #333; /* Ajustado para a cor do texto do body */
         }
         .qrcode-container a.whatsapp-link {
             display: inline-block;
@@ -59,38 +158,123 @@
             background-color: #1DA851;
         }
 
-        /* Novo estilo para o bloco do Google Forms (agora com iframe) */
-        .google-form-iframe-container { /* Renomeei para maior clareza */
-            text-align: center;
+        .google-form-iframe-container {
             margin-top: 30px;
-            padding: 20px;
-            background: var(--container-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px var(--shadow-color);
-            max-width: 700px; /* Aumentei um pouco para o iframe de 640px */
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 700px;
         }
         .google-form-iframe-container h2 {
-            color: var(--highlight-color);
+            color: #4CAF50; /* Cor de destaque */
             margin-bottom: 20px;
         }
-        /* Estilos para o iframe ser responsivo */
         .google-form-iframe-container iframe {
-            max-width: 100%; /* Garante que o iframe se ajuste a telas menores */
-            width: 100%;    /* Faz o iframe ocupar a largura total do container */
-            height: 1590px; /* Mantém a altura original, ajuste conforme necessário */
-            border: none;   /* Remove a borda padrão do iframe */
+            max-width: 100%;
+            width: 100%;
+            height: 1590px;
+            border: none;
         }
 
         /* Ajuste para o main ocupar o espaço restante e empurrar o footer */
         main {
-            flex-grow: 1; /* Permite que o main cresça e ocupe o espaço disponível */
+            flex-grow: 1;
+        }
+
+        /* Footer - Estilos padronizados */
+        footer {
+            background: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente como index.html e sentinela_cftv.html */
+            text-align: center;
+            padding: 20px;
+            color: #0af; /* Cor do texto do footer, como sentinela_cftv.html */
+            margin-top: 50px; /* Garante espaçamento acima do footer */
+        }
+
+        footer p {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            color: #ccc; /* Cor do texto do parágrafo */
+        }
+
+        .footer-logo { /* Estilo para a logo no rodapé */
+            display: block;
+            margin: 0 auto 15px auto;
+            max-width: 150px;
+            height: auto;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer ul li {
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            header nav ul li {
+                margin: 5px 0;
+            }
+
+            header .logo {
+                margin-bottom: 10px;
+            }
+
+            #contact {
+                padding: 40px 15px;
+            }
+
+            #contact h1 {
+                font-size: 2.2em;
+            }
+
+            #contact p {
+                font-size: 1em;
+            }
+
+            .qrcode-container, .google-form-iframe-container {
+                padding: 15px;
+                margin-top: 20px;
+            }
+
+            .google-form-iframe-container iframe {
+                height: 1200px; /* Ajuste a altura para telas menores, se necessário */
+            }
+
+            footer ul {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
+    <div class="overlay"></div> <header>
         <nav>
             <div class="logo">MC infra TI</div>
             <ul>
@@ -108,14 +292,12 @@
                 <p>Estamos prontos para ajudá-lo. Preencha o formulário abaixo ou, se preferir, envie uma mensagem para o WhatsApp.</p>
             </div>
 
-            <div class="google-form-iframe-container">
-                <h2>Envie sua Mensagem</h2>
+            <div class="google-form-iframe-container container"> <h2>Envie sua Mensagem</h2>
                 <p>Por favor, preencha o formulário detalhado abaixo para nos ajudar a entender melhor suas necessidades.</p>
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOIIut6LhrSCLThXnxBr7p5lV6OUw277cyij9ZsbHxM6qryg/viewform?embedded=true" width="640" height="1590" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
             </div>
 
-            <div class="qrcode-container">
-                <h2>Ou Fale Conosco Pelo WhatsApp!</h2>
+            <div class="qrcode-container container"> <h2>Ou Fale Conosco Pelo WhatsApp!</h2>
                 <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/whatsapp_qrcode.png" alt="QR Code WhatsApp" aria-label="Escaneie para iniciar uma conversa no WhatsApp">
                 <p>Escaneie este QR Code com seu celular para iniciar uma conversa rápida em nosso WhatsApp.</p>
                 <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">Abrir WhatsApp</a>
@@ -124,9 +306,14 @@
     </main>
 
     <footer>
-        <p style="text-align: center; padding: 20px; background: #111; color: #0af; margin-top: 20px;">
-            &copy; 2025 | MC infra TI | Todos os direitos reservados.
-        </p>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
+        <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
+        <ul>
+            <li><a href="services.html">Serviços</a></li>
+            <li><a href="cookies.html">Cookies</a></li>
+            <li><a href="contact.html">Contato</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+        </ul>
     </footer>
 </body>
 </html>
