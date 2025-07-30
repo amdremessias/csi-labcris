@@ -24,14 +24,32 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-gray);
+            /* ADICIONADO: ESTILOS PARA IMAGEM DE FUNDO */
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/refs/heads/main/images/OIP-1579729654.jpg'); /* <-- SUBSTITUA PELA SUA URL DA IMAGEM */
+            background-size: cover; /* Garante que a imagem cubra toda a área */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            background-attachment: fixed; /* Mantém a imagem fixa ao rolar a página */
             color: var(--dark-gray);
             line-height: 1.6;
+            position: relative; /* Necessário para o overlay */
+        }
+
+        /* ADICIONADO: OVERLAY PARA ESCURECER A IMAGEM DE FUNDO E MANTER LEGIBILIDADE */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Preto com 60% de opacidade */
+            z-index: -1; /* Coloca o overlay atrás do conteúdo */
         }
 
         /* Estilos para containers e cards de conteúdo */
         .container, .service-card, .plan-detail-card, .contact-info, .payment-info, .observations {
-            background-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para ver o background */
             border: 1px solid var(--gold); /* Borda dourada */
             box-shadow: var(--gold-shadow); /* Sombra dourada */
             margin-bottom: 30px;
@@ -42,12 +60,14 @@
 
         /* Cabeçalho */
         header {
-            background-color: var(--whatsapp-dark-green);
+            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
             padding: 1.2rem 0;
             text-align: center;
             border-bottom: 3px solid var(--whatsapp-green);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             color: var(--white);
+            position: relative;
+            z-index: 1; /* Garante que o header esteja acima do overlay */
         }
         header .logo {
             font-size: 2.8em;
@@ -168,7 +188,7 @@
         }
 
         .plan-detail-card {
-            background-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
             padding: 30px;
             border-radius: 10px;
             box-shadow: var(--gold-shadow);
@@ -229,7 +249,7 @@
 
         /* Informações de contato */
         .contact-info {
-            background-color: var(--whatsapp-dark-green);
+            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
             color: var(--white);
             padding: 40px;
             margin-top: 60px;
@@ -264,7 +284,7 @@
 
         /* Informações de pagamento */
         .payment-info {
-            background-color: var(--whatsapp-dark-green);
+            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
             color: var(--white);
             padding: 30px;
             margin-top: 40px;
@@ -295,7 +315,7 @@
 
         /* Observações */
         .observations {
-            background-color: var(--whatsapp-dark-green);
+            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
             border: 1px dashed var(--whatsapp-green);
             padding: 20px;
             margin-top: 40px;
@@ -308,7 +328,7 @@
 
         /* Rodapé */
         footer {
-            background-color: var(--whatsapp-dark-green);
+            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
             text-align: center;
             padding: 25px;
             color: var(--white);
@@ -316,6 +336,8 @@
             border-top: 3px solid var(--whatsapp-green);
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
             font-size: 0.9em;
+            position: relative;
+            z-index: 1; /* Garante que o footer esteja acima do overlay */
         }
 
         /* Media Queries para Responsividade */
@@ -354,7 +376,7 @@
         <section id="orcamento">
             <div class="container">
                 <h1>Orçamento Detalhado para seu Novo Chat!</h1>
-                <p class="intro-text">Confira o investimento necessário para implementar seu Chatbot WhatsApp, pensado para impulsionar seu negócio.</p>
+                <p class="intro-text">Confira o investimento necessário para implementar seu Chatbot WhatsApp com Inteligência Artificial, pensado para impulsionar seu negócio.</p>
             </div>
         </section>
 
@@ -383,9 +405,14 @@
 
         <section id="infraestrutura">
             <div class="container service-card">
-                <h2>Infraestrutura e Hospedagem do Servidor VPS com IP Publico Firewall e Dominio</h2>
+                <h2>Infraestrutura e Hospedagem do Servidor VPS</h2>
                 <ul class="service-list">
-                    <li>Instalação Linux Server <span class="service-item-price">R$ 250,00</span></li>
+                    <li>Instalação Linux Server Ubuntu 20.04 LTS <span class="service-item-price">R$ 684,00</span></li>
+                    <li>Construção ecossistema para gerenciamento de containers virtualizados <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Instalação sistema Core Chat Business <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Integração com WhatsApp e integração com Chat Business <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Montagem de disco externo para backup do banco de dados <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Treinamento operacional e suporte On-Demand <span class="service-item-price">R$ 00,00</span></li>
                     <li>Locação de hospedagem para Servidor VPS (Cloud) - Hostinger 12 meses <span class="service-item-price">R$ 684,00</span></li>
                 </ul>
                 <p class="total-price">Total Infraestrutura: <span>R$ 1.368,00</span></p>
@@ -411,7 +438,7 @@
 
                     <article class="plan-detail-card">
                         <h3>Plano Padrão</h3>
-                        <p class="price">R$ 233,90</p>
+                        <p class="price">R$ 195,90</p>
                         <ul class="plan-details-list">
                             <li>✓ Suporte ilimitado</li>
                             <li>✓ Backup externo periódico</li>
@@ -423,7 +450,7 @@
 
                     <article class="plan-detail-card">
                         <h3>Plano Enterprise</h3>
-                        <p class="price">Consultar Valores</p>
+                        <p class="price">R$ 233,90</p>
                         <ul class="plan-details-list">
                             <li>✓ Suporte ilimitado</li>
                             <li>✓ Backup externo periódico</li>
@@ -466,7 +493,7 @@
                 <div class="contact-info">
                     <h2>Pronto para Revolucionar seu Atendimento?</h2>
                     <p>Entre em contato conosco para iniciar a transformação do seu negócio!</p>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link"> 📞 Chamar no WhatsApp</a> <br>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">📞 (14) 9 9713 5218</a> <br>
                     <a href="mailto:andre.messias@myyahoo.com">📧 andre.messias@myyahoo.com</a>
                     <p>Rua Lídio Cassiolato, 570 C3 - Ourinhos SP</p>
                 </div>
