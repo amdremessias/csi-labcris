@@ -40,10 +40,9 @@
 
         /* Header */
         header {
-            background-color: rgba(34, 34, 34, 0.9); /* Fundo semi-transparente para o header */
-            color: #fff;
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente para o header, como sentinela_cftv.html */
             padding: 1rem 0;
-            /* REMOVIDO: position: sticky; */
+            text-align: center; /* Centraliza o conteúdo do header */
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -53,15 +52,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px; /* Aumenta a largura do nav */
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            flex-wrap: wrap; /* Permite que os itens quebrem a linha */
         }
 
         header .logo {
             font-size: 1.8em;
             font-weight: 700;
             color: #4CAF50; /* Cor verde para destaque */
+            margin-bottom: 0; /* Ajuste para alinhamento */
         }
 
         header nav ul {
@@ -69,10 +70,12 @@
             margin: 0;
             padding: 0;
             display: flex;
+            justify-content: center; /* Centraliza os itens do menu */
+            flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
         }
 
         header nav ul li {
-            margin-left: 20px;
+            margin: 0 15px; /* Ajusta a margem entre os itens */
         }
 
         header nav ul li a {
@@ -250,23 +253,24 @@
 
         /* Footer */
         footer {
-            background-color: rgba(34, 34, 34, 0.9); /* Fundo semi-transparente para o footer */
-            color: #fff;
-            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente para o footer, como sentinela_cftv.html */
             text-align: center;
+            padding: 20px;
+            color: #0af; /* Cor do texto do footer */
+            margin-top: 50px;
         }
 
         footer p {
             font-size: 0.9em;
-            margin-bottom: 10px; /* Ajustei a margem para alinhar com a logo */
+            margin-bottom: 10px;
             color: #ccc;
         }
 
         .footer-logo { /* Estilo para a logo no rodapé */
-            height: 30px; /* Ajuste o tamanho conforme necessário */
-            width: auto;
-            vertical-align: middle; /* Alinha verticalmente com o texto */
-            margin-left: 10px; /* Espaçamento da logo */
+            display: block; /* Para que a margin auto funcione para centralizar */
+            margin: 0 auto 15px auto; /* Centraliza horizontalmente e adiciona margem inferior */
+            max-width: 150px; /* Definindo um tamanho máximo para melhor responsividade */
+            height: auto; /* Mantém a proporção da imagem */
         }
 
         footer ul {
@@ -297,7 +301,7 @@
         @media (max-width: 768px) {
             header nav {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center; /* Centraliza os itens empilhados */
             }
 
             header nav ul {
@@ -308,6 +312,10 @@
 
             header nav ul li {
                 margin: 5px 0;
+            }
+
+            header .logo {
+                margin-bottom: 10px; /* Adiciona espaço abaixo da logo em mobile */
             }
 
             #hero {
@@ -356,7 +364,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Serviços</a></li>
-                <li><a href="cookies.html">Cookies</a></li> 
+                <li><a href="cookies.html">Cookies</a></li>
                 <li><a href="contact.html">Contato</a></li>
             </ul>
         </nav>
@@ -407,24 +415,23 @@
             <div class="container">
                 <h2>Entre em Contato</h2>
                 <p>Converse com nossos especialistas para fortalecer a segurança e a gestão da sua empresa.</p>
-                <div class="button-group"> 
+                <div class="button-group">
                     <a href="contact.html" class="button">Fale Conosco</a>
-                    <a href="cookies.html" class="button cookies-button">Ver Cookies</a> 
+                    <a href="cookies.html" class="button cookies-button">Ver Cookies</a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 | MC infra TI | Todos os direitos reservados. <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo"></p>
-            <ul>
-                <li><a href="services.html">Serviços</a></li>
-                <li><a href="cookies.html">Cookies</a></li> 
-                <li><a href="contact.html">Contato</a></li>
-                <li><a href="#">Política de Privacidade</a></li>
-            </ul>
-        </div>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
+        <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
+        <ul>
+            <li><a href="services.html">Serviços</a></li>
+            <li><a href="cookies.html">Cookies</a></li>
+            <li><a href="contact.html">Contato</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+        </ul>
     </footer>
 
 </body>
