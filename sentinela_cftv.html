@@ -1,320 +1,567 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentinela Vigilancia CFTV</title>
-    <style>
-        /* Estilos específicos para esta página */
-        body {
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-sentinela.jpg'); /* Caminho direto para a imagem raw */
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #f0f0f0; /* Definindo uma cor de texto mais clara para contraste com o fundo escuro */
-            font-family: Arial, sans-serif;
-        }
+<!DOCTYPE html> 
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
-        }
-          
-        .container, .plan-card, .contact-info {
-            background: rgba(17, 17, 17, 0.85);
-            color: #f0f0f0; /* Garante que o texto dentro desses blocos seja claro */
-        }
+<html lang="pt-br"> 
 
-        header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem 0;
-            text-align: center;
-            /* REMOVIDO: position: fixed; */
-            width: 100%; /* Garante que o header ocupe toda a largura */
-            top: 0; /* Mantenha para consistência, mas sem fixed não fará diferença na rolagem */
-            z-index: 1000; /* Mantenha para garantir que esteja acima de outros elementos */
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0; /* Remove margem padrão */
-            display: flex; /* Para centralizar e organizar os itens */
-            justify-content: center; /* Centraliza os itens do menu */
-            flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #0af;
-            text-decoration: none;
-            padding: 5px 10px; /* Adiciona padding para área de clique */
-            transition: color 0.3s ease; /* Transição suave na cor */
-        }
-        nav ul li a:hover {
-            color: #fff; /* Muda para branco no hover */
-        }
+<head> 
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        h1 {
-            color: #0af;
-            font-size: 2.8em;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: #0af;
-            font-size: 2.2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        h3 {
-            color: #0af;
-            font-size: 1.8em;
-            margin-top: 30px;
-        }
-        .intro-text {
-            font-size: 1.3em;
-            margin-bottom: 30px;
-        }
-        .features-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-        .features-list li {
-            background: rgba(26, 26, 26, 0.85);
-            padding: 15px 25px;
-            border-radius: 5px;
-            border-left: 3px solid #0af;
-            font-size: 1.1em;
-            text-align: left;
-            flex-basis: calc(50% - 15px);
-            box-sizing: border-box;
-            color: #f0f0f0; /* Cor do texto das features */
-        }
-        @media (max-width: 768px) {
-            .features-list li {
-                flex-basis: 100%;
-            }
-        }
+    <meta charset="UTF-8"> 
 
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .plan-card {
-            background: rgba(26, 26, 26, 0.85);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-            text-align: left;
-            transition: transform 0.3s ease-in-out;
-        }
-        .plan-card:hover {
-            transform: translateY(-10px);
-        }
-        .plan-card h3 {
-            color: #0af;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.6em;
-            text-align: center;
-        }
-        .plan-card .plan-description { /* Novo estilo para a descrição */
-            font-size: 0.95em;
-            margin-bottom: 20px;
-            color: #ccc;
-            text-align: center;
-        }
-        .plan-card ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-        .plan-card ul li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-            color: #f0f0f0; /* Cor do texto da lista de planos */
-        }
-        .plan-card ul li::before {
-            content: '✔️';
-            color: #0af;
-            position: absolute;
-            left: 0;
-        }
-        .contact-info {
-            background: rgba(17, 17, 17, 0.85);
-            padding: 30px;
-            margin-top: 50px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            color: #f0f0f0; /* Cor do texto das informações de contato */
-        }
-        .contact-info p {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-        }
-        .contact-info a {
-            color: #0af;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        .contact-info a:hover {
-            color: #fff;
-        }
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            text-align: center;  
-            padding: 20px;  
-            color: #0af;  
-            margin-top: 50px;
-        }
-        /* Novo estilo para a logo no rodapé */
-        .footer-logo {
-            display: block; /* Para que a margin auto funcione para centralizar */
-            margin: 0 auto 15px auto; /* Centraliza horizontalmente e adiciona margem inferior */
-            /* As medidas em cm são incomuns para web. Vou usar valores mais amigáveis e responsivos. */
-            max-width: 150px; /* Definindo um tamanho máximo para melhor responsividade */
-            height: auto; /* Mantém a proporção da imagem */
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
-        /* Responsividade para o header */
-        @media (max-width: 768px) {
-            header nav {
-                flex-direction: column; /* Empilha os itens do nav em telas pequenas */
-                align-items: center; /* Centraliza os itens empilhados */
-            }
+    <title>Sentinela Vigilancia CFTV</title> 
 
-            header nav ul {
-                margin-top: 15px;
-            }
+    <link rel="stylesheet" href="css/styles.css"> 
 
-            header nav ul li {
-                margin: 5px 0; /* Ajusta a margem para itens empilhados */
-            }
+    <style> 
 
-            .logo {
-                margin-bottom: 10px; /* Adiciona um espaço abaixo da logo no mobile */
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">Sentinela CFTV</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Serviços</a></li>
-                <li><a href="contact.html">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+        /* Estilos específicos para esta página */ 
 
-    <main>
-        <section id="hero">
-            <div class="container">
-                <h1>Sua segurança começa pela Prevenção!</h1>
-                <p class="intro-text">Com a Sentinela Vigilancia CFTV, tenha a tranquilidade que sua empresa e residencia merece com nossa solução de vigilância por vídeo.</p>
-            </div>
-        </section>
+        body { 
 
-        <section id="features">
-            <div class="container">
-                <h2>Recursos Essenciais da Sentinela CFTV</h2>
-                <ul class="features-list">
-                    <li>Backup Remoto de Vídeo Segurança</li>
-                    <li>Monitoramento dedicado para Incidentes</li>
-                    <li>Conexão protegida com VPN</li>
-                    <li>Resposta rápida para Alertas de Violação</li>
-                    <li>Vídeo-Monitorado com Inteligencia Artificial 24/7</li>
-                </ul>
-            </div>
-        </section>
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-sentinela.jpg'); /* Caminho direto para a imagem raw */ 
 
-        <section id="plans">
-            <div class="container">
-                <h2>Planos e Serviços</h2>
-                <div class="plans-grid">
-                    <article class="plan-card">
-                        <h3>Plano Básico </h3>
-                        <p class="plan-description">Este plano é ideal para quem busca uma solução essencial de segurança e monitoramento, cobrindo os pilares fundamentais para a proteção dos seus dados de vídeo.</p>
-                        <ul>
-                            <li>Gerenciamento de Servidor de Vídeo</li>
-                            <li>Monitoramento de Incidentes</li>
-                            <li>Conexão Cliente VPN Segura</li>
-                        </ul>
-                    </article>
+            background-size: cover; 
 
-                    <article class="plan-card">
-                        <h3>Plano Padrão </h3>
-                        <p class="plan-description">O Plano Padrão oferece uma gestão mais robusta, incluindo todos os benefícios do Plano Básico com um adicional importante para otimizar a segurança do seu sistema.</p>
-                        <ul>
-                            <li>Backup de Vídeo Segurança</li>
-                            <li>Conexão Cliente VPN Segura</li>
-                            <li>Cloud-Backup Externo de Segurança</li>
-                            <li>Gerenciamento de Servidor de Vídeo</li>
-                            <li>Monitoramento de Incidentes</li>
-                        </ul>
-                    </article>
+            background-position: center center; 
 
-                    <article class="plan-card">
-                        <h3>Plano Enterprise </h3>
-                        <p class="plan-description">Para clientes que exigem o nível máximo de segurança e vigilância, o Plano Enterprise proporciona uma cobertura completa com tecnologia avançada e resposta proativa.</p>
-                        <ul>
-                            <li>Backup de Vídeo Segurança</li>
-                            <li>Conexão Cliente VPN Segura</li>
-                            <li>Cloud-Backup Externo de Segurança</li>
-                            <li>Gerenciamento de Servidor de Vídeo</li>
-                            <li>Monitoramento de Incidentes</li>
-                            <li>Resposta para Alertas de Violação</li>
-                            <li>Vídeo Monitorado com I.A 24/7</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
+            background-repeat: no-repeat; 
 
-        <section id="contact">
-            <div class="container">
-                <div class="contact-info">
-                    <h2>Pronto para proteger seu negócio?</h2>
-                    <p>Entre em contato com um consultor especialista e solicite um orçamento personalizado</p>
-                    <p>
-                        📞 <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">Abrir WhatsApp</a> <br>
-                        📧 <a href="mailto:messias.consultoria@yahoo.com">messias.consultoria@yahoo.com</a>
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
+            background-attachment: fixed; 
 
-    <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo Sentinela CFTV" class="footer-logo">
-        <p> &copy; 2025 | Sentinela CFTV | Todos os direitos reservados. </p>
-    </footer>
-</body>
+            color: var(--text-color); 
+
+            font-family: Arial, sans-serif; 
+
+        } 
+
+
+
+        body::before { 
+
+            content: ''; 
+
+            position: fixed; 
+
+            top: 0; 
+
+            left: 0; 
+
+            width: 100%; 
+
+            height: 100%; 
+
+            background: rgba(0, 0, 0, 0.6); 
+
+            z-index: -1; 
+
+        } 
+
+         
+
+        .container, .plan-card, .contact-info { 
+
+            background: rgba(17, 17, 17, 0.85); 
+
+        } 
+
+
+
+        header { 
+
+            background: rgba(0, 0, 0, 0.8); 
+
+            padding: 1rem 0; 
+
+            text-align: center; 
+
+        } 
+
+        nav ul { 
+
+            list-style: none; 
+
+            padding: 0; 
+
+        } 
+
+        nav ul li { 
+
+            display: inline; 
+
+            margin: 0 15px; 
+
+        } 
+
+        nav ul li a { 
+
+            color: #0af; 
+
+            text-decoration: none; 
+
+        } 
+
+        .container { 
+
+            max-width: 900px; 
+
+            margin: auto; 
+
+            padding: 20px; 
+
+            text-align: center; 
+
+            position: relative; 
+
+            z-index: 1; 
+
+        } 
+
+        h1 { 
+
+            color: #0af; 
+
+            font-size: 2.8em; 
+
+            margin-bottom: 10px; 
+
+        } 
+
+        h2 { 
+
+            color: #0af; 
+
+            font-size: 2.2em; 
+
+            margin-top: 40px; 
+
+            margin-bottom: 20px; 
+
+        } 
+
+        h3 { 
+
+            color: #0af; 
+
+            font-size: 1.8em; 
+
+            margin-top: 30px; 
+
+        } 
+
+        .intro-text { 
+
+            font-size: 1.3em; 
+
+            margin-bottom: 30px; 
+
+        } 
+
+        .features-list { 
+
+            list-style: none; 
+
+            padding: 0; 
+
+            display: flex; 
+
+            flex-wrap: wrap; 
+
+            justify-content: center; 
+
+            gap: 15px; 
+
+            margin-bottom: 40px; 
+
+        } 
+
+        .features-list li { 
+
+            background: rgba(26, 26, 26, 0.85); 
+
+            padding: 15px 25px; 
+
+            border-radius: 5px; 
+
+            border-left: 3px solid #0af; 
+
+            font-size: 1.1em; 
+
+            text-align: left; 
+
+            flex-basis: calc(50% - 15px); 
+
+            box-sizing: border-box; 
+
+        } 
+
+        @media (max-width: 768px) { 
+
+            .features-list li { 
+
+                flex-basis: 100%; 
+
+            } 
+
+        } 
+
+
+
+        .plans-grid { 
+
+            display: grid; 
+
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+
+            gap: 25px; 
+
+            margin-top: 30px; 
+
+        } 
+
+        .plan-card { 
+
+            background: rgba(26, 26, 26, 0.85); 
+
+            padding: 30px; 
+
+            border-radius: 8px; 
+
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); 
+
+            text-align: left; 
+
+            transition: transform 0.3s ease-in-out; 
+
+        } 
+
+        .plan-card:hover { 
+
+            transform: translateY(-10px); 
+
+        } 
+
+        .plan-card h3 { 
+
+            color: #0af; 
+
+            margin-top: 0; 
+
+            margin-bottom: 15px; 
+
+            font-size: 1.6em; 
+
+            text-align: center; 
+
+        } 
+
+        .plan-card .plan-description { /* Novo estilo para a descrição */ 
+
+            font-size: 0.95em; 
+
+            margin-bottom: 20px; 
+
+            color: #ccc; 
+
+            text-align: center; 
+
+        } 
+
+        .plan-card ul { 
+
+            list-style: none; 
+
+            padding: 0; 
+
+            margin-top: 20px; 
+
+        } 
+
+        .plan-card ul li { 
+
+            margin-bottom: 10px; 
+
+            padding-left: 25px; 
+
+            position: relative; 
+
+        } 
+
+        .plan-card ul li::before { 
+
+            content: '✔️'; 
+
+            color: #0af; 
+
+            position: absolute; 
+
+            left: 0; 
+
+        } 
+
+        .contact-info { 
+
+            background: rgba(17, 17, 17, 0.85); 
+
+            padding: 30px; 
+
+            margin-top: 50px; 
+
+            border-radius: 8px; 
+
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); 
+
+        } 
+
+        .contact-info p { 
+
+            font-size: 1.2em; 
+
+            margin-bottom: 15px; 
+
+        } 
+
+        .contact-info a { 
+
+            color: #0af; 
+
+            text-decoration: none; 
+
+            font-weight: bold; 
+
+            transition: color 0.3s ease; 
+
+        } 
+
+        .contact-info a:hover { 
+
+            color: #fff; 
+
+        } 
+
+        footer { 
+
+            background: rgba(0, 0, 0, 0.8); 
+
+            text-align: center;  
+
+            padding: 20px;  
+
+            color: #0af;  
+
+            margin-top: 50px; 
+
+        }
+
+        /* Novo estilo para a logo no rodapé */
+
+        .footer-logo {
+
+            display: block; /* Para que a margin auto funcione para centralizar */
+
+            margin: 0 auto 15px auto; /* Centraliza horizontalmente e adiciona margem inferior */
+
+            width: 17.374cm; /* Largura da logo */
+
+            height: 19.787cm; /* Altura da logo */
+
+            max-width: 150px; /* Definindo um tamanho máximo para melhor responsividade */
+
+            height: auto; /* Mantém a proporção da imagem */
+
+        }
+
+    </style> 
+
+</head> 
+
+<body> 
+
+    <header> 
+
+        <nav> 
+
+            <div class="logo">Sentinela CFTV</div> 
+
+            <ul> 
+
+                <li><a href="index.html">Home</a></li> 
+
+                <li><a href="services.html">Serviços</a></li> 
+
+                <li><a href="contact.html">Contato</a></li> 
+
+            </ul> 
+
+        </nav> 
+
+    </header> 
+
+
+
+    <main> 
+
+        <section id="hero"> 
+
+            <div class="container"> 
+
+                <h1>Sua segurança começa pela Prevenção!</h1> 
+
+                <p class="intro-text">Com a Sentinela Vigilancia CFTV, tenha a tranquilidade que sua empresa e residencia merece com nossa solução de vigilância por vídeo.</p> 
+
+            </div> 
+
+        </section> 
+
+
+
+        <section id="features"> 
+
+            <div class="container"> 
+
+                <h2>Recursos Essenciais da Sentinela CFTV</h2> 
+
+                <ul class="features-list"> 
+
+                    <li>Backup Remoto de Vídeo Segurança</li> 
+
+                    <li>Monitoramento dedicado para Incidentes</li> 
+
+                    <li>Conexão protegida com VPN</li> 
+
+                    <li>Resposta rápida para Alertas de Violação</li> 
+
+                    <li>Vídeo-Monitorado com Inteligencia Artificial 24/7</li> 
+
+                </ul> 
+
+            </div> 
+
+        </section> 
+
+
+
+        <section id="plans"> 
+
+            <div class="container"> 
+
+                <h2>Planos e Serviços</h2> 
+
+                <div class="plans-grid"> 
+
+                    <article class="plan-card"> 
+
+                        <h3>Plano Básico </h3> 
+
+                        <p class="plan-description">Este plano é ideal para quem busca uma solução essencial de segurança e monitoramento, cobrindo os pilares fundamentais para a proteção dos seus dados de vídeo.</p> 
+
+                        <ul> 
+
+                            <li>Gerenciamento de Servidor de Vídeo</li> 
+
+                            <li>Monitoramento de Incidentes</li> 
+
+                            <li>Conexão Cliente VPN Segura</li> 
+
+                        </ul> 
+
+                    </article> 
+
+
+
+                    <article class="plan-card"> 
+
+                        <h3>Plano Padrão </h3> 
+
+                        <p class="plan-description">O Plano Padrão oferece uma gestão mais robusta, incluindo todos os benefícios do Plano Básico com um adicional importante para otimizar a segurança do seu sistema.</p> 
+
+                        <ul> 
+
+                            <li>Backup de Vídeo Segurança</li> 
+
+                            <li>Conexão Cliente VPN Segura</li> 
+
+                            <li>Cloud-Backup Externo de Segurança</li> 
+
+                            <li>Gerenciamento de Servidor de Vídeo</li> 
+
+                            <li>Monitoramento de Incidentes</li> 
+
+                        </ul> 
+
+                    </article> 
+
+
+
+                    <article class="plan-card"> 
+
+                        <h3>Plano Enterprise </h3> 
+
+                        <p class="plan-description">Para clientes que exigem o nível máximo de segurança e vigilância, o Plano Enterprise proporciona uma cobertura completa com tecnologia avançada e resposta proativa.</p> 
+
+                        <ul> 
+
+                            <li>Backup de Vídeo Segurança</li> 
+
+                            <li>Conexão Cliente VPN Segura</li> 
+
+                            <li>Cloud-Backup Externo de Segurança</li> 
+
+                            <li>Gerenciamento de Servidor de Vídeo</li> 
+
+                            <li>Monitoramento de Incidentes</li> 
+
+                            <li>Resposta para Alertas de Violação</li> 
+
+                            <li>Vídeo Monitorado com I.A 24/7</li> 
+
+                        </ul> 
+
+                    </article> 
+
+                </div> 
+
+            </div> 
+
+        </section> 
+
+
+
+        <section id="contact"> 
+
+            <div class="container"> 
+
+                <div class="contact-info"> 
+
+                    <h2>Pronto para proteger seu negócio?</h2> 
+
+                    <p>Entre em contato com um consultor especialista e solicite um orçamento personalizado</p> 
+
+                    <p> 
+
+                        📞 <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">Abrir WhatsApp</a> <br> 
+
+                        📧 <a href="mailto:messias.consultoria@yahoo.com">messias.consultoria@yahoo.com</a> 
+
+                    </p> 
+
+                </div> 
+
+            </div> 
+
+        </section> 
+
+    </main> 
+
+
+
+    <footer> 
+
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo Sentinela CFTV" class="footer-logo">
+
+        <p> &copy; 2025 | Sentinela CFTV | Todos os direitos reservados. </p> 
+
+    </footer> 
+
+</body> 
+
 </html>
