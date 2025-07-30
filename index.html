@@ -42,4 +42,523 @@
         .overlay {
             position: fixed;
             top: 0;
-            left
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Aumentei um pouco a opacidade para melhor contraste */
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            background: var(--footer-bg); /* Usando a variável para consistência */
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra mais pronunciada */
+            position: sticky; /* Fixa o cabeçalho no topo ao rolar */
+            top: 0;
+            z-index: 1000; /* Garante que fique acima de outros elementos */
+        }
+
+        /* Navegação */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px; /* Aumentei a largura máxima para layouts maiores */
+            margin: 0 auto; /* Centraliza a navegação */
+            padding: 0 2rem;
+        }
+
+        .logo-container { /* Novo contêiner para a logo e texto */
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espaço entre a imagem e o texto */
+        }
+
+        .header-logo { /* Estilos para a imagem da logo */
+            height: 40px; /* Ajuste a altura conforme necessário */
+            width: auto;
+            border-radius: 50%; /* Se quiser a logo circular */
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Brilho na logo */
+        }
+
+        .logo {
+            font-size: 1.8rem; /* Aumentei o tamanho da logo */
+            font-weight: bold;
+            color: var(--highlight-color);
+            text-transform: uppercase; /* Deixa o texto da logo em maiúsculas */
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0; /* Remove margem padrão */
+        }
+
+        nav ul li {
+            margin: 0 18px; /* Aumentei um pouco o espaçamento entre itens */
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 8px 15px; /* Aumentei o padding para melhor área de clique */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+            font-weight: 500; /* Deixa o texto do link um pouco mais grosso */
+        }
+
+        nav ul li a:hover {
+            background-color: var(--hover-color);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.4); /* Adiciona uma sombra sutil no hover */
+        }
+
+        /* Estilos para Botões */
+        .button {
+            display: inline-block;
+            padding: 14px 25px; /* Aumentei o padding */
+            background-color: var(--highlight-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            border: none; /* Remove borda padrão de botões */
+            cursor: pointer;
+            font-size: 1.1em; /* Tamanho da fonte do botão */
+        }
+
+        .button:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px); /* Efeito de leve levantamento */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Sombra no hover */
+        }
+
+        /* Conteúdo Principal */
+        main {
+            flex-grow: 1; /* Permite que o main ocupe o espaço restante */
+            padding: 2rem 0; /* Ajustei o padding vertical */
+            text-align: center;
+        }
+
+        /* Container de Seção */
+        .container {
+            max-width: 1100px;
+            margin: 30px auto; /* Adicionei margem vertical para separar as seções */
+            padding: 30px; /* Aumentei o padding interno */
+            background: var(--container-bg);
+            border-radius: 12px; /* Borda mais arredondada */
+            box-shadow: 0 8px 20px var(--shadow-color); /* Sombra mais proeminente */
+            opacity: 0.98; /* Aumentei a opacidade do container */
+            border: 1px solid var(--border-color); /* Borda sutil */
+        }
+
+        /* Conteúdo Hero (destaque) */
+        .hero-content {
+            padding: 6rem 0; /* Mais padding para o hero */
+            color: #fff; /* Texto branco para contraste */
+            text-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Sombra de texto para destaque */
+        }
+
+        /* Estilos de Títulos */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--highlight-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+        }
+
+        h1 {
+            font-size: 3.2em;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            color: var(--text-color);
+        }
+
+        /* Lista de Serviços (Grid) */
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Min-width um pouco menor para mais flexibilidade */
+            gap: 25px; /* Espaçamento entre os cards */
+            padding: 20px 0; /* Padding vertical */
+        }
+
+        .service-list article {
+            background: var(--container-bg);
+            padding: 25px; /* Aumentei o padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-color); /* Sombra aprimorada */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left; /* Alinha o texto à esquerda dentro do card */
+            border: 1px solid var(--border-color); /* Borda sutil */
+        }
+
+        .service-list article:hover {
+            transform: translateY(-5px); /* Movimento para cima no hover */
+            box-shadow: 0 8px 25px var(--shadow-color); /* Sombra mais intensa no hover */
+        }
+
+        .service-list h2 { /* Se houver h2 dentro do article de serviço */
+            color: var(--highlight-color);
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .service-list h3 {
+            color: var(--text-color); /* Cor do título do serviço */
+            margin-bottom: 10px;
+            font-size: 1.6em;
+        }
+
+        .service-list h3 a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .service-list h3 a:hover {
+            color: var(--highlight-color);
+        }
+
+        .service-list p {
+            font-size: 0.95em;
+            color: #ccc;
+        }
+
+        /* Formulário de Contato */
+        .contact-form {
+            max-width: 650px; /* Ligeiramente mais largo */
+            margin: 20px auto;
+            background: var(--container-bg);
+            padding: 30px; /* Mais padding */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            text-align: left; /* Alinha labels e inputs à esquerda */
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px; /* Mais espaçamento */
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        form input,
+        form textarea {
+            width: calc(100% - 20px); /* Ajusta para padding */
+            padding: 12px; /* Mais padding */
+            margin-bottom: 15px; /* Mais espaçamento */
+            border-radius: 5px;
+            border: 1px solid var(--border-color); /* Borda mais discreta */
+            background: #2a2a2a; /* Fundo mais escuro para inputs */
+            color: var(--text-color);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4); /* Sombra interna para profundidade */
+        }
+
+        form input:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: var(--highlight-color); /* Borda de destaque no foco */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3); /* Brilho no foco */
+        }
+
+        form button {
+            padding: 12px 25px; /* Padding aprimorado */
+            background-color: var(--highlight-color);
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Container do Mapa */
+        .map-container {
+            width: 100%;
+            text-align: center;
+            margin-top: 40px; /* Mais margem superior */
+        }
+
+        .map-container iframe {
+            width: 90%; /* Aumenta a largura do mapa */
+            max-width: 800px; /* Adiciona um max-width para não ficar muito grande em telas vastas */
+            height: 450px; /* Aumenta a altura */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            border: 1px solid var(--border-color); /* Borda sutil */
+        }
+
+        /* Rodapé */
+        footer {
+            background: var(--footer-bg);
+            text-align: center;
+            padding: 1.5rem 0; /* Mais padding */
+            color: var(--text-color);
+            margin-top: 40px; /* Espaço do conteúdo */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* Sombra superior */
+        }
+
+        footer .container {
+            max-width: 1200px; /* Aumenta a largura do container do rodapé */
+            padding: 0 20px; /* Remove padding vertical extra se o container já tiver */
+            background: transparent; /* Remove o background do container dentro do footer */
+            box-shadow: none; /* Remove a sombra do container dentro do footer */
+            border: none; /* Remove a borda do container dentro do footer */
+            margin: 0 auto; /* Centraliza */
+        }
+
+        footer p {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Permite que os links quebrem a linha em telas pequenas */
+        }
+
+        footer ul li {
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: var(--highlight-color);
+        }
+
+        /* Estilo específico para o iframe do Google Form */
+        .google-form-link-container iframe {
+            max-width: 100%; /* Garante que o iframe não exceda a largura do seu container */
+            width: 100%; /* Tenta ocupar 100% da largura disponível */
+            height: 1590px; /* Mantém a altura definida, mas você pode ajustá-la se o formulário for menor */
+            border: 1px solid var(--border-color); /* Adiciona uma borda sutil ao iframe */
+            border-radius: 8px; /* Borda arredondada */
+            box-shadow: 0 4px 15px var(--shadow-color); /* Sombra para o iframe */
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column; /* Empilha os itens do nav */
+                padding: 0 1rem;
+            }
+
+            .logo-container {
+                flex-direction: column; /* Empilha a imagem e o texto da logo */
+                gap: 5px;
+            }
+
+            .header-logo {
+                height: 30px; /* Reduz o tamanho da logo em telas pequenas */
+            }
+
+            .logo {
+                margin-bottom: 10px; /* Espaçamento abaixo da logo */
+            }
+
+            nav ul {
+                flex-direction: column; /* Empilha os links do menu */
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin: 8px 0; /* Espaçamento vertical entre os links */
+            }
+
+            nav ul li a {
+                display: block; /* Ocupa a largura total para melhor clique */
+                text-align: center;
+            }
+
+            main {
+                padding: 1rem 0; /* Menos padding em telas pequenas */
+            }
+
+            .container {
+                padding: 20px; /* Menos padding interno */
+                margin: 20px auto; /* Reduz margem vertical */
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            h3 {
+                font-size: 1.5em;
+            }
+
+            .hero-content {
+                padding: 3rem 1rem; /* Menos padding no hero */
+            }
+
+            .service-list {
+                grid-template-columns: 1fr; /* Uma coluna em telas menores */
+                padding: 10px;
+            }
+
+            .service-list article {
+                padding: 20px; /* Ajusta padding do card de serviço */
+            }
+
+            form input,
+            form textarea {
+                width: calc(100% - 16px); /* Ajusta para padding */
+                padding: 10px;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+
+            .map-container iframe {
+                width: 95%; /* Ocupa mais largura em telas pequenas */
+                height: 300px; /* Altura reduzida para o mapa */
+            }
+
+            footer ul li {
+                margin: 5px 10px; /* Ajusta espaçamento dos links do rodapé */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Sentinela Logo" class="header-logo">
+                <div class="logo">MC infra TI</div>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="cookies.html">Cookies</a></li> 
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h2>Atendimento Turbinado no WhatsApp</h2>
+                <p>Cansado de perder tempo e clientes com um atendimento confuso no WhatsApp? Chega de filas de espera, mensagens perdidas e clientes insatisfeitos! Com o <strong>Novo Chat</strong>, você transforma o atendimento no WhatsApp da sua empresa em uma experiência incrível, para você e seus clientes.</p>
+                <a href="services.html" class="button">Conheça nossos Serviços</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>O Que é o Novo Chat?</h2>
+                <p>O <strong>Novo Chat</strong> é a solução definitiva para aprimorar a experiência do cliente, oferecendo suporte rápido, eficiente e personalizado. Aumente a satisfação, resolva problemas com agilidade e fidelize seus clientes. Além disso, obtenha <strong>dados valiosos</strong> através das conversas para identificar oportunidades de aprimoramento em seus produtos e serviços.</p>
+                <p>Pronto para transformar seu atendimento no WhatsApp? Comece a usar o <strong>Novo Chat</strong> hoje mesmo e desfrute de todos os benefícios!</p>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2>Alguns de Nossos Serviços</h2>
+                <p>Gestão de atendimento corporativo e centralizado para seu negócio.</p>
+                <div class="service-list">
+                    <article>
+                        <div class="logo">💬</div>
+                        <h3><a href="novo_chat_orcamento.html">Novo Chat</a></h3>
+                        <p>Centralize e otimize seu atendimento via WhatsApp com nossa solução completa.</p>
+                    </article>
+                    <article>
+                        <div class="logo">🤖</div>
+                        <h3><a href="novorobo.html">Novo Robô - Chatbot com IA</a></h3>
+                        <p>Robô de atendimento inteligente com Inteligência Artificial para o WhatsApp, operando 24/7.</p>
+                    </article>
+                    <article>
+                        <div class="logo">👁️</div>
+                        <h3> <a href="sentinela_cftv.html">Sentinela CFTV</a></h3>
+                        <p>Solução de vigilância por vídeo com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-preview">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <p>Converse com nossos especialistas para fortalecer a segurança e a gestão da sua empresa.</p>
+                <div class="button-group"> 
+                    <a href="contact.html" class="button">Fale Conosco</a>
+                    <a href="cookies.html" class="button cookies-button">Ver Cookies</a> 
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
+            <ul>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="cookies.html">Cookies</a></li> 
+                <li><a href="contact.html">Contato</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
