@@ -3,23 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Softwares e Serviços">
+    <meta name="description" content="Softwares e Serviços de TI da MC Infra TI">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/styles.css"> 
     <title>MC infra TI</title>
     <style>
-        /* Estilos específicos para o body e overlay da página index (background de imagem) */
+        /* Estilos gerais */
         body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
             background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Overlay escuro para a imagem de fundo */
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(34, 34, 34, 0.9); /* Fundo semi-transparente para o header */
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px; /* Aumenta a largura do nav */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #4CAF50; /* Cor verde para destaque */
+        }
+
+        header nav ul {
+            list-style: none;
             margin: 0;
             padding: 0;
+            display: flex;
         }
-        /* O overlay agora é global e definido em styles.css, mas a opacidade pode ser ajustada aqui se preferir um controle mais fino por página */
-        /* .overlay { background-color: rgba(0, 0, 0, 0.5); } */
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        header nav ul li a:hover {
+            color: #4CAF50; /* Verde no hover */
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay mais escuro para o conteúdo do hero */
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 500px; /* Garante uma altura mínima */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(0,255,0,0.3); /* Efeito de brilho */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease-out; /* Animação de fade-in */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #hero h2 {
+            font-size: 3.2em;
+            margin-bottom: 20px;
+            color: #0AFF0A; /* Verde Matrix */
+            text-shadow: 0 0 15px rgba(0,255,0,0.7);
+        }
+
+        #hero p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #E0FFE0; /* Verde claro para leitura */
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 2px solid #4CAF50;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .button.cookies-button {
+            background-color: #607D8B; /* Cor diferente para o botão de cookies */
+            border-color: #607D8B;
+        }
+
+        .button.cookies-button:hover {
+            background-color: #546E7A;
+        }
+
+        /* Seções de conteúdo */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff; /* Fundo branco para as seções internas */
+            margin: 30px auto; /* Margem entre as seções */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #333;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #4CAF50;
+            border-radius: 2px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+
+        /* Service List */
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-list article {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-list article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-list .logo {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+
+        .service-list h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .service-list h3 a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .service-list h3 a:hover {
+            color: #4CAF50;
+        }
+
+        .service-list p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* Contact Preview */
+        #contact-preview .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas pequenas */
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(34, 34, 34, 0.9); /* Fundo semi-transparente para o footer */
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Permite que os links quebrem a linha */
+        }
+
+        footer ul li {
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            header nav ul li {
+                margin: 5px 0;
+            }
+
+            #hero {
+                padding: 80px 15px;
+            }
+
+            #hero h2 {
+                font-size: 2.5em;
+            }
+
+            #hero p {
+                font-size: 1.1em;
+            }
+
+            section {
+                padding: 40px 15px;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            .service-list {
+                grid-template-columns: 1fr; /* Coluna única em telas menores */
+            }
+
+            #contact-preview .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            footer ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -42,22 +359,18 @@
         <section id="hero">
             <div class="hero-content">
                 <h2>Atendimento Turbinado no WhatsApp</h2>
-                <p>Cansado de perder tempo e clientes com um atendimento confuso no WhatsApp? Chega de filas de espera, mensagens perdidas e clientes insatisfeitos! Com o **Novo Chat**, você transforma o atendimento no WhatsApp da sua empresa em uma experiência incrível, para você e seus clientes.</p>
+                <p>Cansado de perder tempo e clientes com um atendimento confuso no WhatsApp? Chega de filas de espera, mensagens perdidas e clientes insatisfeitos! Com o <strong>Novo Chat</strong>, você transforma o atendimento no WhatsApp da sua empresa em uma experiência incrível, para você e seus clientes.</p>
                 <a href="services.html" class="button">Conheça nossos Serviços</a>
             </div>
         </section>
 
-        ---
-
         <section id="about">
             <div class="container">
                 <h2>O Que é o Novo Chat?</h2>
-                <p>O **Novo Chat** é a solução definitiva para aprimorar a experiência do cliente, oferecendo suporte rápido, eficiente e personalizado. Aumente a satisfação, resolva problemas com agilidade e fidelize seus clientes. Além disso, obtenha **dados valiosos** através das conversas para identificar oportunidades de aprimoramento em seus produtos e serviços.</p>
-                <p>Pronto para transformar seu atendimento no WhatsApp? Comece a usar o **Novo Chat** hoje mesmo e desfrute de todos os benefícios!</p>
+                <p>O <strong>Novo Chat</strong> é a solução definitiva para aprimorar a experiência do cliente, oferecendo suporte rápido, eficiente e personalizado. Aumente a satisfação, resolva problemas com agilidade e fidelize seus clientes. Além disso, obtenha <strong>dados valiosos</strong> através das conversas para identificar oportunidades de aprimoramento em seus produtos e serviços.</p>
+                <p>Pronto para transformar seu atendimento no WhatsApp? Comece a usar o <strong>Novo Chat</strong> hoje mesmo e desfrute de todos os benefícios!</p>
             </div>
         </section>
-
-        ---
 
         <section id="services">
             <div class="container">
@@ -82,8 +395,6 @@
                 </div>
             </div>
         </section>
-
-        ---
 
         <section id="contact-preview">
             <div class="container">
