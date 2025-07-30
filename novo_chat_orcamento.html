@@ -47,7 +47,6 @@
         }
 
         /* Estilos para containers e cards de conteúdo */
-        /* ALTERADO: Opacidade para 0.7 para maior transparência */
         .container, .service-card, .plan-detail-card {
             background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente para ver o background */
             border: 1px solid var(--gold); /* Borda dourada */
@@ -58,7 +57,7 @@
             box-sizing: border-box;
         }
         /* Os elementos abaixo (contact-info, payment-info, observations) têm suas próprias regras de fundo
-           e já estão semi-transparentes em tons de verde escuro. */
+            e já estão semi-transparentes em tons de verde escuro. */
         .contact-info, .payment-info, .observations {
             background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
             color: var(--white);
@@ -352,6 +351,14 @@
             z-index: 1;
         }
 
+        /* Estilo para a logo no rodapé */
+        .footer-logo {
+            display: block; /* Para que a margin auto funcione para centralizar */
+            margin: 0 auto 15px auto; /* Centraliza horizontalmente e adiciona margem inferior */
+            max-width: 150px; /* Limita o tamanho máximo para melhor responsividade */
+            height: auto; /* Mantém a proporção da imagem */
+        }
+
         /* Media Queries para Responsividade */
         @media (max-width: 768px) {
             h1 { font-size: 2.2em; }
@@ -495,6 +502,7 @@
     </main>
 
     <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo MC infra TI" class="footer-logo">
         <p>&copy; 2025 | NOVO CHAT by MC Infra TI | Todos os direitos reservados.</p>
     </footer>
 </body>
