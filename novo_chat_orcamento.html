@@ -24,18 +24,17 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            /* ADICIONADO: ESTILOS PARA IMAGEM DE FUNDO */
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/refs/heads/main/images/OIP-1579729654.jpg'); /* <-- SUBSTITUA PELA SUA URL DA IMAGEM */
-            background-size: cover; /* Garante que a imagem cubra toda a área */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita que a imagem se repita */
-            background-attachment: fixed; /* Mantém a imagem fixa ao rolar a página */
+            background-image: url('URL_DA_SUA_IMAGEM_AQUI'); /* <-- SUBSTITUA PELA SUA URL DA IMAGEM */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: var(--dark-gray);
             line-height: 1.6;
-            position: relative; /* Necessário para o overlay */
+            position: relative;
         }
 
-        /* ADICIONADO: OVERLAY PARA ESCURECER A IMAGEM DE FUNDO E MANTER LEGIBILIDADE */
+        /* Overlay para escurecer a imagem de fundo e manter legibilidade */
         body::before {
             content: '';
             position: fixed;
@@ -44,7 +43,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6); /* Preto com 60% de opacidade */
-            z-index: -1; /* Coloca o overlay atrás do conteúdo */
+            z-index: -1;
         }
 
         /* Estilos para containers e cards de conteúdo */
@@ -55,19 +54,19 @@
             margin-bottom: 30px;
             padding: 25px;
             border-radius: 10px;
-            box-sizing: border-box; /* Garante que padding e border sejam incluídos no width/height */
+            box-sizing: border-box;
         }
 
         /* Cabeçalho */
         header {
-            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
+            background-color: rgba(7, 94, 84, 0.9);
             padding: 1.2rem 0;
             text-align: center;
             border-bottom: 3px solid var(--whatsapp-green);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             color: var(--white);
             position: relative;
-            z-index: 1; /* Garante que o header esteja acima do overlay */
+            z-index: 1;
         }
         header .logo {
             font-size: 2.8em;
@@ -188,7 +187,7 @@
         }
 
         .plan-detail-card {
-            background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 10px;
             box-shadow: var(--gold-shadow);
@@ -249,7 +248,7 @@
 
         /* Informações de contato */
         .contact-info {
-            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
+            background-color: rgba(7, 94, 84, 0.9);
             color: var(--white);
             padding: 40px;
             margin-top: 60px;
@@ -281,10 +280,18 @@
             color: var(--white);
             text-shadow: 0 0 15px var(--white);
         }
+        .contact-info .web-link {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .contact-info .email-link {
+            font-size: 1.3em;
+        }
+
 
         /* Informações de pagamento */
         .payment-info {
-            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
+            background-color: rgba(7, 94, 84, 0.9);
             color: var(--white);
             padding: 30px;
             margin-top: 40px;
@@ -312,10 +319,16 @@
             color: var(--whatsapp-green);
             text-shadow: var(--text-shadow-white);
         }
+        .payment-info .final-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: 15px;
+        }
 
         /* Observações */
         .observations {
-            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
+            background-color: rgba(7, 94, 84, 0.9);
             border: 1px dashed var(--whatsapp-green);
             padding: 20px;
             margin-top: 40px;
@@ -325,10 +338,13 @@
             color: var(--white);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+        .observations p {
+            color: var(--white); /* Garante que o texto seja branco */
+        }
 
         /* Rodapé */
         footer {
-            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
+            background-color: rgba(7, 94, 84, 0.9);
             text-align: center;
             padding: 25px;
             color: var(--white);
@@ -337,7 +353,7 @@
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
             font-size: 0.9em;
             position: relative;
-            z-index: 1; /* Garante que o footer esteja acima do overlay */
+            z-index: 1;
         }
 
         /* Media Queries para Responsividade */
@@ -364,7 +380,6 @@
             <ul>
                 <li><a href="#orcamento">Orçamento</a></li>
                 <li><a href="#servicos">Serviços Atribuídos</a></li>
-                <li><a href="#infraestrutura">Infraestrutura e Hospedagem</a></li>
                 <li><a href="#planos">Planos de Gestão</a></li>
                 <li><a href="#pagamento">Pagamento</a></li>
                 <li><a href="#contato">Contato</a></li>
@@ -384,78 +399,55 @@
 
         <section id="servicos">
             <div class="container service-card">
-                <h2>Serviços de Implantação do Sistema</h2>
+                <h2>Serviços Atribuídos</h2>
+                <p class="intro-text">Escopo dos Serviços e Valores</p>
                 <ul class="service-list">
-                    <li>Construção do ambiente <span class="service-item-price">R$ 150,00</span></li>
-                    <li>Setup Gerenciador de Container <span class="service-item-price">R$ 200,00</span></li>
-                    <li>Instalação do Banco de Dados <span class="service-item-price">R$ 800,00</span></li>
-                    <li>API de integração WhatsApp <span class="service-item-price">R$ 300,00</span></li>
-                    <li>Instalação sistema CORE Chat Business <span class="service-item-price">R$ 250,00</span></li>
-                    <li>Configuração das equipes de atendimento <span class="service-item-price">R$ 200,00</span></li>
-                    <li>Integração API == WhatsApp <span class="service-item-price">R$ 00,00</span></li>
-                    <li>Integração API == Chat Business <span class="service-item-price">R$ 00,00</span></li>
-                    <li>Backup do banco de dados <span class="service-item-price">R$ 00,00</span></li>
-                    <li>Treinamento e Suporte On-Demand <span class="service-item-price">R$ 00,00</span></li>
-                </ul>
-                <p class="total-price">Total Serviços: <span>R$ 1.900,00</span></p>
-            </div>
-        </section>
-
-        ---
-
-        <section id="infraestrutura">
-            <div class="container service-card">
-                <h2>Infraestrutura e Hospedagem do Servidor VPS</h2>
-                <ul class="service-list">
+                    <li>1. Construção do ambiente Virtualizado</li>
+                    <li>2. Setup Gerenciador de Container</li>
+                    <li>3. Instalação do Banco de Dados</li>
+                    <li>4. API de integração WhatsApp</li>
+                    <li>5. Instalação sistema CORE novo Chat</li>
+                    <li>Deploy do Proxy Reverso com Nginx ou Traefik para gerenciar o trafego SSL/TLS <span class="service-item-price">R$ 300,00</span></li>
+                    <li>Configuração de Autoridade Certificadora e criação de Certificado Auto Assinado para TLS/SSL <span class="service-item-price">R$ 300,00</span> *se houver acesso ao domínio e servidor DNS, devera ser feito apontamento*</li>
+                    <li>Deploy do "Novo Chat": Implantação completa do sistema core Novo Chat e integrações com API do WhatsApp. <span class="service-item-price">R$ 1.000,00</span></li>
+                    <li>Configurações adicionais via script para HostEntry.ps1 no arquivo ‘host’ nos sistemas cliente, Windows e Linux. <span class="service-item-price">R$ 50,00</span></li>
+                    <li>6. Configuração das equipes de atendimento <span class="service-item-price">R$ 00,00</span></li>
+                    <li>7. Rollback bkp <span class="service-item-price">R$ 00,00</span></li>
+                    <li>8. Integraçoes API <span class="service-item-price">R$ 00,00</span></li>
+                    <li>9. Backup do banco de dados <span class="service-item-price">R$ 00,00</span></li>
+                    <li>10. Treinamento e Suporte On-Demand <span class="service-item-price">R$ 00,00</span></li>
                     <li>Locação de hospedagem para Servidor VPS (Cloud) - Hostinger 12 meses <span class="service-item-price">R$ 684,00</span></li>
                 </ul>
-                <p class="total-price">Total Infraestrutura: <span>R$ 684,00</span></p>
-                <p class="intro-text"><strong>Observação:</strong> Processador com 2 Núcleos - 8GB de memória RAM - 500GB HDD ou SSD - rede eth 100/1000. Hardware sob cotação.</p>
+                <p class="total-price">Total Base: <span>R$ 1.650,00</span></p>
             </div>
         </section>
 
         ---
-
+        
         <section id="planos">
             <div class="container">
                 <h2>Planos de Gestão Dedicada para o Servidor e Infraestrutura</h2>
+                <p class="intro-text">Otimize a Performance e a Segurança do seu SaaS.</p>
+                <p class="intro-text">Oferecemos Planos de Gestão Dedicada para Servidores, Bancos de Dados, Infraestrutura e Todos os Serviços Essenciais.</p>
+                <p class="intro-text">Garanta a Estabilidade e o Crescimento Contínuo da sua Aplicação.</p>
+                
                 <div class="grid-section">
                     <article class="plan-detail-card">
                         <h3>Plano Básico</h3>
                         <p class="price">R$ 145,90</p>
-                        <ul class="plan-details-list">
-                            <li>✓ 24 horas/mês de suporte on demand</li>
-                            <li>✓ Backup semanal do banco de dados</li>
-                            <li>✓ Treinamento básico</li>
-                        </ul>
+                        <p class="plan-description">Ideal para quem busca suporte pontual (24h/mês), backups essenciais (semanal + externo) e monitoramento proativo. Inclui acesso ao Quadro de Tarefas e Treinamento Básico para começar bem.</p>
                     </article>
 
                     <article class="plan-detail-card">
                         <h3>Plano Padrão</h3>
                         <p class="price">R$ 233,90</p>
-                        <ul class="plan-details-list">
-                            <li>✓ Suporte ilimitado</li>
-                            <li>✓ Backup externo periódico</li>
-                            <li>✓ Monitoramento proativo do servidor</li>
-                            <li>✓ Acesso ao serviço adicional: Quadro de Tarefas</li>
-                            <li>✓ Gerenciamento de atualizações</li>
-                        </ul>
+                        <p class="plan-description">Um passo à frente, oferece Suporte Ilimitado, backup externo periódico e monitoramento proativo. Com o Quadro de Tarefas Corporativo, é perfeito para equipes que precisam de mais organização e acompanhamento.</p>
                     </article>
 
                     <article class="plan-detail-card">
                         <h3>Plano Enterprise</h3>
-                        <p class="price">R$ Consulte</p>
-                        <ul class="plan-details-list">
-                            <li>✓ Suporte ilimitado</li>
-                            <li>✓ Backup externo periódico</li>
-                            <li>✓ Monitoramento proativo do servidor</li>
-                            <li>✓ Acesso ao serviço adicional: Quadro de Tarefas corporativo</li>
-                            <li>✓ Gerenciamento de atualizações</li>
-                            <li>✓ Acesso ao serviço adicional de filtro de DNS para rede</li>
-                            <li>✓ Acesso ao Cofre de Senhas Corporativo</li>
-                            <li>✓ Acesso ao serviço adicional: Drive Corporativo</li>
-                            <li>✓ Administração de domínio DNS</li>
-                        </ul>
+                        <p class="price">Consultar Valores</p>
+                        <p class="plan-description">O plano mais completo para empresas que exigem segurança máxima e gestão robusta. Inclui todos os benefícios dos planos anteriores mais Filtro de DNS, Cofre de Senhas Corporativo, Drive Corporativo e Administração de Domínio DNS.</p>
                     </article>
                 </div>
             </div>
@@ -465,16 +457,13 @@
 
         <section id="pagamento">
             <div class="container payment-info">
-                <h2>Informações de Pagamento</h2>
-                <p>O pagamento para adesão do plano de SUPORTE DEDICADO para Servidores é feito em uma cobrança única dividida em 12x no seu cartão de crédito ou pode ser pago à vista por PIX com 5% de desconto**.</p>
-                <p>                                                                                      </p>
-                <p class="total-price">Total Geral Serviços: <span>R$ 1.900,00</span></p>
-                <p class="intro-text">À vista ou 1ª + 30/60 de **R$ 633,35**</p>
-                <p>                                                                                      </p>
-                <p class="total-price">Total Geral (Serviços + Infraestrutura): <span>R$ 2.584,00</span></p>
-                <p class="intro-text">À vista ou 1ª + 30/60 de **R$ 861,35**</p>
-                <p>                                                                                      </p>
-                <p>Em caso de self-host (auto hospedar o servidor) na sua infra-estrutura desconsidere os valores de Locação de VPS proposto á cima, e considere apenas os valores de Serviços.</p>
+                <h2>Pagamento</h2>
+                <p>O pagamento é feito em uma **cobrança única dividida em 12x no seu cartão de crédito** ou pode ser pago à vista por **PIX com 5% de desconto**.</p>
+                <p class="total-price">Valor Total (Serviços Atribuídos)</p>
+                <p class="final-value">R$ 1.650,00</p>
+                <p class="intro-text">-10%</p>
+                <p class="final-value">R$ 1.485,00</p>
+                <p class="intro-text">à vista ou 1ª + 30/60 de **R$ 550,00**</p>
             </div>
         </section>
 
@@ -482,7 +471,9 @@
 
         <section id="observations">
             <div class="container observations">
-                <p><strong>Observações de Acordo:</strong> Este documento não tem validade de registro e é apenas uma forma objetiva e prática de apresentar o orçamento.</p>
+                <h2>Observações de Acordo</h2>
+                <p>Este documento não tem validade de registro e é apenas uma forma objetiva e prática de apresentar o orçamento.</p>
+                <p>Esta página se refere a **Proposta Adicional de Suporte Dedicado para Gerenciamento de Infraestrutura de Servidores** - Proposta mensal para suporte dedicado, monitoramento de eventos críticos e resolução de problemas em ambiente de produção.</p>
             </div>
         </section>
 
@@ -493,9 +484,10 @@
                 <div class="contact-info">
                     <h2>Pronto para Revolucionar seu Atendimento?</h2>
                     <p>Entre em contato conosco para iniciar a transformação do seu negócio!</p>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">📞 Chame no Whatsapp</a> <br>
-                    <a href="mailto:andre.messias@myyahoo.com">📧 andre.messias@myyahoo.com</a>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">📞 (14) 9 9713 5218</a> <br>
+                    <a href="mailto:messias.consultoria@yahoo.com" class="email-link">📧 messias.consultoria@yahoo.com</a>
                     <p>Rua Lídio Cassiolato, 570 C3 - Ourinhos SP</p>
+                    <a href="http://chatbussines.netlify.app" target="_blank" class="whatsapp-link web-link">🌐 chatbussines.netlify.app</a>
                 </div>
             </div>
         </section>
