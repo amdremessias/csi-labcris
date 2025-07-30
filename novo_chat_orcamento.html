@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Chat - Orçamento Detalhado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis de cores */
+        :root {
+            --whatsapp-green: #25D366; /* Verde do WhatsApp */
+            --whatsapp-dark-green: #075E54; /* Verde escuro do WhatsApp */
+            --white: #FFFFFF; /* Branco */
+            --light-gray: #F0F2F5; /* Cinza claro para fundo */
+            --dark-gray: #333333; /* Cinza escuro para texto */
+            --gold: #FFD700; /* Dourado */
+            --gold-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Sombra para dourado */
+            --text-shadow-green: 0 0 8px rgba(37, 211, 102, 0.6); /* Sombra para texto verde */
+            --text-shadow-white: 0 0 5px rgba(255, 255, 255, 0.4); /* Sombra para texto branco */
+        }
+
+        /* Estilos gerais do corpo da página */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Estilos para containers e cards de conteúdo */
+        .container, .service-card, .plan-detail-card, .contact-info, .payment-info, .observations {
+            background-color: var(--white);
+            border: 1px solid var(--gold); /* Borda dourada */
+            box-shadow: var(--gold-shadow); /* Sombra dourada */
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            box-sizing: border-box; /* Garante que padding e border sejam incluídos no width/height */
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--whatsapp-dark-green);
+            padding: 1.2rem 0;
+            text-align: center;
+            border-bottom: 3px solid var(--whatsapp-green);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: var(--white);
+        }
+        header .logo {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--whatsapp-green);
+            text-shadow: var(--text-shadow-white);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 18px;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 400;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--whatsapp-green);
+            text-shadow: 0 0 10px var(--whatsapp-green);
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: 3em;
+            color: var(--whatsapp-dark-green);
+            margin-bottom: 15px;
+            text-shadow: var(--text-shadow-green);
+        }
+        h2 {
+            font-size: 2.2em;
+            color: var(--whatsapp-dark-green);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-shadow: var(--text-shadow-green);
+        }
+        h3 {
+            font-size: 1.8em;
+            color: var(--gold);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Texto introdutório */
+        .intro-text {
+            font-size: 1.2em;
+            color: var(--dark-gray);
+            margin-bottom: 30px;
+        }
+
+        /* Listas de serviços e planos */
+        .service-list, .plan-details-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .service-list li, .plan-details-list li {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            color: var(--dark-gray);
+        }
+        .service-list li::before, .plan-details-list li::before {
+            content: '✓'; /* Checkmark */
+            color: var(--whatsapp-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+        }
+
+        .service-item-price {
+            float: right;
+            font-weight: 700;
+            color: var(--whatsapp-dark-green);
+            text-shadow: var(--text-shadow-green);
+        }
+
+        .total-price {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-top: 30px;
+            color: var(--gold);
+            text-shadow: var(--gold-shadow);
+            border-top: 2px dashed var(--whatsapp-green);
+            padding-top: 15px;
+            text-align: right;
+        }
+        .total-price span {
+            color: var(--whatsapp-dark-green);
+            text-shadow: var(--text-shadow-green);
+        }
+
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .plan-detail-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--gold-shadow);
+            text-align: left;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .plan-detail-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+        .plan-detail-card h3 {
+            color: var(--whatsapp-dark-green);
+            text-align: center;
+            font-size: 1.9em;
+            margin-bottom: 20px;
+        }
+        .plan-detail-card .price {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--whatsapp-green);
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            text-shadow: var(--text-shadow-green);
+        }
+        .plan-detail-card .price .discount {
+            font-size: 0.8em;
+            color: var(--dark-gray);
+            display: block;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+        .plan-detail-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+            flex-grow: 1;
+        }
+        .plan-detail-card ul li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1em;
+            color: var(--dark-gray);
+        }
+        .plan-detail-card ul li::before {
+            content: '✓';
+            color: var(--whatsapp-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.1em;
+        }
+
+        /* Informações de contato */
+        .contact-info {
+            background-color: var(--whatsapp-dark-green);
+            color: var(--white);
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--whatsapp-green);
+        }
+        .contact-info h2 {
+            color: var(--whatsapp-green);
+            text-shadow: var(--text-shadow-white);
+            margin-bottom: 25px;
+        }
+        .contact-info p {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        .contact-info a {
+            color: var(--whatsapp-green);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.6em;
+            text-shadow: var(--text-shadow-white);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .contact-info a:hover {
+            color: var(--white);
+            text-shadow: 0 0 15px var(--white);
+        }
+
+        /* Informações de pagamento */
+        .payment-info {
+            background-color: var(--whatsapp-dark-green);
+            color: var(--white);
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--whatsapp-green);
+        }
+        .payment-info h2 {
+            color: var(--whatsapp-green);
+            text-shadow: var(--text-shadow-white);
+            margin-bottom: 20px;
+        }
+        .payment-info p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: var(--white);
+        }
+        .payment-info .total-price {
+            border-top: 2px dashed var(--white);
+            color: var(--gold);
+            text-shadow: var(--gold-shadow);
+        }
+        .payment-info .total-price span {
+            color: var(--whatsapp-green);
+            text-shadow: var(--text-shadow-white);
+        }
+
+        /* Observações */
+        .observations {
+            background-color: var(--whatsapp-dark-green);
+            border: 1px dashed var(--whatsapp-green);
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1em;
+            color: var(--white);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--whatsapp-dark-green);
+            text-align: center;
+            padding: 25px;
+            color: var(--white);
+            margin-top: 50px;
+            border-top: 3px solid var(--whatsapp-green);
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.5em; }
+            .intro-text, .contact-info p, .payment-info p { font-size: 1em; }
+            .service-list li, .plan-details-list li { font-size: 0.95em; }
+            .plan-detail-card .price { font-size: 1.7em; }
+            .grid-section { grid-template-columns: 1fr; }
+            nav ul li { margin: 0 10px; }
+            nav ul li a { font-size: 0.9em; }
+            .container, .service-card, .plan-detail-card, .contact-info, .payment-info, .observations {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">NOVO CHAT</div>
+            <ul>
+                <li><a href="#orcamento">Orçamento</a></li>
+                <li><a href="#servicos">Serviços Atribuídos</a></li>
+                <li><a href="#infraestrutura">Infraestrutura e Hospedagem</a></li>
+                <li><a href="#planos">Planos de Gestão</a></li>
+                <li><a href="#pagamento">Pagamento</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="orcamento">
+            <div class="container">
+                <h1>Orçamento Detalhado para seu Novo Chat!</h1>
+                <p class="intro-text">Confira o investimento necessário para implementar seu Chatbot WhatsApp com Inteligência Artificial, pensado para impulsionar seu negócio.</p>
+            </div>
+        </section>
+
+        ---
+
+        <section id="servicos">
+            <div class="container service-card">
+                <h2>Serviços de Implantação do Sistema</h2>
+                <ul class="service-list">
+                    <li>Construção do ambiente <span class="service-item-price">R$ 150,00</span></li>
+                    <li>Setup Gerenciador de Container <span class="service-item-price">R$ 200,00</span></li>
+                    <li>Instalação do Banco de Dados <span class="service-item-price">R$ 800,00</span></li>
+                    <li>API de integração WhatsApp <span class="service-item-price">R$ 300,00</span></li>
+                    <li>Instalação sistema CORE Chat Business <span class="service-item-price">R$ 250,00</span></li>
+                    <li>Configuração das equipes de atendimento <span class="service-item-price">R$ 200,00</span></li>
+                    <li>Integração API == WhatsApp <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Integração API == Chat Business <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Backup do banco de dados <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Treinamento e Suporte On-Demand <span class="service-item-price">R$ 00,00</span></li>
+                </ul>
+                <p class="total-price">Total Serviços: <span>R$ 1.900,00</span></p>
+            </div>
+        </section>
+
+        ---
+
+        <section id="infraestrutura">
+            <div class="container service-card">
+                <h2>Infraestrutura e Hospedagem do Servidor VPS</h2>
+                <ul class="service-list">
+                    <li>Instalação Linux Server Ubuntu 20.04 LTS <span class="service-item-price">R$ 684,00</span></li>
+                    <li>Construção ecossistema para gerenciamento de containers virtualizados <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Instalação sistema Core Chat Business <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Integração com WhatsApp e integração com Chat Business <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Montagem de disco externo para backup do banco de dados <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Treinamento operacional e suporte On-Demand <span class="service-item-price">R$ 00,00</span></li>
+                    <li>Locação de hospedagem para Servidor VPS (Cloud) - Hostinger 12 meses <span class="service-item-price">R$ 684,00</span></li>
+                </ul>
+                <p class="total-price">Total Infraestrutura: <span>R$ 1.368,00</span></p>
+                <p class="intro-text"><strong>Observação:</strong> Processador com 2 Núcleos - 8GB de memória RAM - 500GB HDD ou SSD - rede eth 100/1000. Hardware sob cotação.</p>
+            </div>
+        </section>
+
+        ---
+
+        <section id="planos">
+            <div class="container">
+                <h2>Planos de Gestão Dedicada para o Servidor e Infraestrutura</h2>
+                <div class="grid-section">
+                    <article class="plan-detail-card">
+                        <h3>Plano Básico</h3>
+                        <p class="price">R$ 145,90</p>
+                        <ul class="plan-details-list">
+                            <li>✓ 24 horas/mês de suporte on demand</li>
+                            <li>✓ Backup semanal do banco de dados</li>
+                            <li>✓ Treinamento básico</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan-detail-card">
+                        <h3>Plano Padrão</h3>
+                        <p class="price">R$ 195,90</p>
+                        <ul class="plan-details-list">
+                            <li>✓ Suporte ilimitado</li>
+                            <li>✓ Backup externo periódico</li>
+                            <li>✓ Monitoramento proativo do servidor</li>
+                            <li>✓ Acesso ao serviço adicional: Quadro de Tarefas</li>
+                            <li>✓ Gerenciamento de atualizações</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan-detail-card">
+                        <h3>Plano Enterprise</h3>
+                        <p class="price">R$ 233,90</p>
+                        <ul class="plan-details-list">
+                            <li>✓ Suporte ilimitado</li>
+                            <li>✓ Backup externo periódico</li>
+                            <li>✓ Monitoramento proativo do servidor</li>
+                            <li>✓ Acesso ao serviço adicional: Quadro de Tarefas corporativo</li>
+                            <li>✓ Gerenciamento de atualizações</li>
+                            <li>✓ Acesso ao serviço adicional de filtro de DNS para rede</li>
+                            <li>✓ Acesso ao Cofre de Senhas Corporativo</li>
+                            <li>✓ Acesso ao serviço adicional: Drive Corporativo</li>
+                            <li>✓ Administração de domínio DNS</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        ---
+
+        <section id="pagamento">
+            <div class="container payment-info">
+                <h2>Informações de Pagamento</h2>
+                <p>O pagamento é feito em uma **cobrança única dividida em 12x no seu cartão de crédito** ou pode ser pago à vista por **PIX com 5% de desconto**.</p>
+                <p class="total-price">Total Geral (Serviços + Infraestrutura): <span>R$ 2.325,60</span></p>
+                <p class="intro-text">À vista ou 1ª + 30/60 de **R$ 861,00**</p>
+            </div>
+        </section>
+
+        ---
+
+        <section id="observations">
+            <div class="container observations">
+                <p><strong>Observações de Acordo:</strong> Este documento não tem validade de registro e é apenas uma forma objetiva e prática de apresentar o orçamento.</p>
+            </div>
+        </section>
+
+        ---
+
+        <section id="contato">
+            <div class="container">
+                <div class="contact-info">
+                    <h2>Pronto para Revolucionar seu Atendimento?</h2>
+                    <p>Entre em contato conosco para iniciar a transformação do seu negócio!</p>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">📞 (14) 9 9713 5218</a> <br>
+                    <a href="mailto:andre.messias@myyahoo.com">📧 andre.messias@myyahoo.com</a>
+                    <p>Rua Lídio Cassiolato, 570 C3 - Ourinhos SP</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 | NOVO CHAT by MC Infra TI | Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
