@@ -24,18 +24,17 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            /* ADICIONADO: ESTILOS PARA IMAGEM DE FUNDO */
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/refs/heads/main/images/OIP-2886435485.jpg'); /* <-- SUBSTITUA PELA SUA URL DA IMAGEM */
-            background-size: cover; /* Garante que a imagem cubra toda a área */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita que a imagem se repita */
-            background-attachment: fixed; /* Mantém a imagem fixa ao rolar a página */
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/refs/heads/main/images/OIP-2886435485.jpg'); /* Sua URL da imagem de fundo */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: var(--dark-gray);
             line-height: 1.6;
-            position: relative; /* Necessário para o overlay */
+            position: relative;
         }
 
-        /* ADICIONADO: OVERLAY PARA ESCURECER A IMAGEM DE FUNDO E MANTER LEGIBILIDADE */
+        /* Overlay para escurecer a imagem de fundo e manter legibilidade */
         body::before {
             content: '';
             position: fixed;
@@ -44,18 +43,30 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6); /* Preto com 60% de opacidade */
-            z-index: -1; /* Coloca o overlay atrás do conteúdo */
+            z-index: -1;
         }
 
         /* Estilos para containers e cards de conteúdo */
-        .container, .service-card, .plan-detail-card, .contact-info, .payment-info, .observations {
-            background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para ver o background */
+        /* ALTERADO: Opacidade para 0.7 para maior transparência */
+        .container, .service-card, .plan-detail-card {
+            background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente para ver o background */
             border: 1px solid var(--gold); /* Borda dourada */
             box-shadow: var(--gold-shadow); /* Sombra dourada */
             margin-bottom: 30px;
             padding: 25px;
             border-radius: 10px;
-            box-sizing: border-box; /* Garante que padding e border sejam incluídos no width/height */
+            box-sizing: border-box;
+        }
+        /* Os elementos abaixo (contact-info, payment-info, observations) têm suas próprias regras de fundo
+           e já estão semi-transparentes em tons de verde escuro. */
+        .contact-info, .payment-info, .observations {
+            background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
+            color: var(--white);
+            padding: 40px; /* Reduzido de 40px para consistência */
+            margin-top: 60px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--whatsapp-green);
         }
 
         /* Cabeçalho */
@@ -67,7 +78,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             color: var(--white);
             position: relative;
-            z-index: 1; /* Garante que o header esteja acima do overlay */
+            z-index: 1;
         }
         header .logo {
             font-size: 2.8em;
@@ -188,7 +199,7 @@
         }
 
         .plan-detail-card {
-            background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+            background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente para ver o background */
             padding: 30px;
             border-radius: 10px;
             box-shadow: var(--gold-shadow);
@@ -217,41 +228,24 @@
             margin-bottom: 25px;
             text-shadow: var(--text-shadow-green);
         }
-        .plan-detail-card .price .discount {
-            font-size: 0.8em;
-            color: var(--dark-gray);
-            display: block;
-            margin-top: 5px;
-            font-weight: 400;
-        }
-        .plan-detail-card ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 15px;
-            flex-grow: 1;
-        }
-        .plan-detail-card ul li {
-            margin-bottom: 10px;
-            padding-left: 30px;
-            position: relative;
+        /* Removido ul e li extras dentro de <p> para as descrições dos planos */
+        .plan-detail-card .plan-description {
             font-size: 1em;
             color: var(--dark-gray);
+            margin-top: 15px;
+            flex-grow: 1; /* Permite que o texto ocupe o espaço disponível */
         }
-        .plan-detail-card ul li::before {
-            content: '✓';
-            color: var(--whatsapp-green);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 1.1em;
+        /* Ajuste para o Plano Enterprise sem preço numérico */
+        .plan-detail-card .price.consult {
+            font-size: 1.5em; /* Ajuste o tamanho da fonte para "Consulte" */
+            color: var(--gold); /* Cor dourada para "Consulte" */
         }
 
         /* Informações de contato */
         .contact-info {
             background-color: rgba(7, 94, 84, 0.9); /* Verde escuro do WhatsApp com transparência */
             color: var(--white);
-            padding: 40px;
+            padding: 30px; /* Consistência com outras seções */
             margin-top: 60px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
@@ -281,6 +275,14 @@
             color: var(--white);
             text-shadow: 0 0 15px var(--white);
         }
+        .contact-info .web-link {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .contact-info .email-link {
+            font-size: 1.3em;
+        }
+
 
         /* Informações de pagamento */
         .payment-info {
@@ -307,10 +309,17 @@
             border-top: 2px dashed var(--white);
             color: var(--gold);
             text-shadow: var(--gold-shadow);
+            padding-top: 15px; /* Adicionado para espaçamento */
         }
         .payment-info .total-price span {
             color: var(--whatsapp-green);
             text-shadow: var(--text-shadow-white);
+        }
+        .payment-info .final-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: 15px;
         }
 
         /* Observações */
@@ -325,6 +334,9 @@
             color: var(--white);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+        .observations p {
+            color: var(--white);
+        }
 
         /* Rodapé */
         footer {
@@ -337,7 +349,7 @@
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
             font-size: 0.9em;
             position: relative;
-            z-index: 1; /* Garante que o footer esteja acima do overlay */
+            z-index: 1;
         }
 
         /* Media Queries para Responsividade */
@@ -345,7 +357,7 @@
             h1 { font-size: 2.2em; }
             h2 { font-size: 1.8em; }
             h3 { font-size: 1.5em; }
-            .intro-text, .contact-info p, .payment-info p { font-size: 1em; }
+            .intro-text, .contact-info p, .payment-info p, .plan-detail-card .plan-description { font-size: 1em; }
             .service-list li, .plan-details-list li { font-size: 0.95em; }
             .plan-detail-card .price { font-size: 1.7em; }
             .grid-section { grid-template-columns: 1fr; }
@@ -417,51 +429,27 @@
         <section id="planos">
             <div class="container">
                 <h2>Planos de Gestão Dedicada para o Servidor e Infraestrutura</h2>
-                <p>Otimize a Performance e a Segurança do seu SaaS.
-Oferecemos Planos de Gestão Dedicada para Servidores, Bancos de Dados, Infraestrutura e Todos os Serviços Essenciais.
-Garanta a Estabilidade e o Crescimento Contínuo da sua Aplicação.</p>
-                <p>                                                </p>
-                <p>                                                </p>    
+                <p class="intro-text">Otimize a Performance e a Segurança do seu SaaS.
+                Oferecemos Planos de Gestão Dedicada para Servidores, Bancos de Dados, Infraestrutura e Todos os Serviços Essenciais.
+                Garanta a Estabilidade e o Crescimento Contínuo da sua Aplicação.</p>
+                
                 <div class="grid-section">
                     <article class="plan-detail-card">
                         <h3>Plano Básico</h3>
                         <p class="price">R$ 145,90</p>
-                        <ul class="plan-details-list">
-                            <li>✓ 24 horas/mês de suporte on demand</li>
-                            <li>✓ Backup semanal do banco de dados</li>
-                            <li>✓ Treinamento básico</li>
-                            <p>Ideal para quem busca suporte pontual, backups essenciais (semanal + externo) e monitoramento proativo. Inclui acesso ao Quadro de Tarefas e Treinamento Básico para começar bem. </p>
-                        </ul>
+                        <p class="plan-description">Ideal para quem busca suporte pontual (24h/mês), backups essenciais (semanal + externo) e monitoramento proativo. Inclui acesso ao Quadro de Tarefas e Treinamento Básico para começar bem.</p>
                     </article>
 
                     <article class="plan-detail-card">
                         <h3>Plano Padrão</h3>
                         <p class="price">R$ 233,90</p>
-                        <ul class="plan-details-list">
-                            <li>✓ Suporte ilimitado</li>
-                            <li>✓ Backup externo periódico</li>
-                            <li>✓ Monitoramento proativo do servidor</li>
-                            <li>✓ Acesso ao serviço adicional: Quadro de Tarefas</li>
-                            <li>✓ Gerenciamento de atualizações</li>
-                            <p>Um passo à frente, oferece Suporte Ilimitado, backup externo periódico e monitoramento proativo. Com o Quadro de Tarefas Corporativo, é perfeito para equipes que precisam de mais organização e acompanhamento.</p>
-                        </ul>
+                        <p class="plan-description">Um passo à frente, oferece Suporte Ilimitado, backup externo periódico e monitoramento proativo. Com o Quadro de Tarefas Corporativo, é perfeito para equipes que precisam de mais organização e acompanhamento.</p>
                     </article>
 
                     <article class="plan-detail-card">
                         <h3>Plano Enterprise</h3>
-                        <p class="price">R$ Consulte</p>
-                        <ul class="plan-details-list">
-                            <li>✓ Suporte ilimitado</li>
-                            <li>✓ Backup externo periódico</li>
-                            <li>✓ Monitoramento proativo do servidor</li>
-                            <li>✓ Acesso ao serviço adicional: Quadro de Tarefas corporativo</li>
-                            <li>✓ Gerenciamento de atualizações</li>
-                            <li>✓ Acesso ao serviço adicional de filtro de DNS para rede</li>
-                            <li>✓ Acesso ao Cofre de Senhas Corporativo</li>
-                            <li>✓ Acesso ao serviço adicional: Drive Corporativo</li>
-                            <li>✓ Administração de domínio DNS</li>
-                            <p>O plano mais completo para empresas que exigem segurança máxima e gestão robusta. Inclui todos os benefícios dos planos anteriores mais Filtro de DNS, Cofre de Senhas Corporativo, Drive Corporativo e Administração de Domínio DNS.</p>
-                        </ul>
+                        <p class="price consult">Consulte Valores</p>
+                        <p class="plan-description">O plano mais completo para empresas que exigem segurança máxima e gestão robusta. Inclui todos os benefícios dos planos anteriores mais Filtro de DNS, Cofre de Senhas Corporativo, Drive Corporativo e Administração de Domínio DNS.</p>
                     </article>
                 </div>
             </div>
@@ -473,15 +461,13 @@ Garanta a Estabilidade e o Crescimento Contínuo da sua Aplicação.</p>
             <div class="container payment-info">
                 <h2>Informações de Pagamento</h2>
                 <p>O pagamento para adesão do plano de *Gestão Dedicada para Servidor* é feito em uma cobrança única dividida em 12x no seu cartão de crédito ou pode ser pago à vista por PIX com 5% de desconto.</p>
-                <p>                                                                        </p>
-
+                
                 <p class="total-price">Total Geral Serviços: <span>R$ 1.900,00</span></p>
                 <p class="intro-text">À vista ou 1ª + 30/60 de **R$ 633,35**</p>
-                <p>                                                                        </p>
+                
                 <p class="total-price">Total Geral (Serviços + Infraestrutura): <span>R$ 2.325,60</span></p>
                 <p class="intro-text">À vista ou 1ª + 30/60 de **R$ 861,00**</p>
-                <p>Caso o servidor esteja alocado localmente (self-hosted) DESCONSIDERE o valor da Locação de VPS para Infraestrutura</p>
-                <p>                                                                        </p>
+                <p class="intro-text">Caso o servidor esteja alocado localmente (self-hosted) DESCONSIDERE o valor da Locação de VPS para Infraestrutura</p>
             </div>
         </section>
 
@@ -501,7 +487,7 @@ Garanta a Estabilidade e o Crescimento Contínuo da sua Aplicação.</p>
                     <h2>Pronto para Revolucionar seu Atendimento?</h2>
                     <p>Entre em contato conosco para iniciar a transformação do seu negócio!</p>
                     <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">📞Chame no WhatsApp</a> <br>
-                    <a href="mailto:andre.messias@myyahoo.com">📧 andre.messias@myyahoo.com</a>
+                    <a href="mailto:andre.messias@myyahoo.com" class="email-link">📧 andre.messias@myyahoo.com</a>
                     <p>Rua Lídio Cassiolato, 570 C3 - Ourinhos SP</p>
                 </div>
             </div>
