@@ -1,132 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Entre em Contato - MC infra TI">
-    <link rel="stylesheet" href="./css/styles.css">
-    <title>MC infra TI</title>
-    <style>
-        /* Estilos para a imagem de background do corpo da página */
-        body {
-            /* ATENÇÃO: Para imagens do GitHub, você precisa usar a URL "raw" para que o navegador consiga acessá-la como uma imagem. */
-            /* A URL fornecida: https://github.com/amdremessias/csi-labcris/blob/main/images/bg-contact.jpg */
-            /* A URL RAW (correta para uso no CSS) é: */
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-contact.jpg');
-            background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
-            background-position: center center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Evita que a imagem se repita */
-            background-attachment: fixed; /* Fixa a imagem no lugar enquanto a página rola */
-            min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da tela */
-            display: flex; /* Usado para posicionar o footer no final, se o conteúdo for curto */
-            flex-direction: column; /* Coloca os elementos em coluna */
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em Contato - MC infra TI">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>MC infra TI</title>
+    <style>
+        /* Estilos para a imagem de background do corpo da página */
+        body {
+            /* ATENÇÃO: Para imagens do GitHub, você precisa usar a URL "raw" para que o navegador consiga acessá-la como uma imagem. */
+            /* A URL fornecida: https://github.com/amdremessias/csi-labcris/blob/main/images/bg-contact.jpg */
+            /* A URL RAW (correta para uso no CSS) é: */
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-contact.jpg');
+            background-size: cover; /* Faz a imagem cobrir toda a área, cortando se necessário */
+            background-position: center center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            background-attachment: fixed; /* Fixa a imagem no lugar enquanto a página rola */
+            min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da tela */
+            display: flex; /* Usado para posicionar o footer no final, se o conteúdo for curto */
+            flex-direction: column; /* Coloca os elementos em coluna */
+        }
 
-        /* Seus estilos existentes para qrcode-container */
-        .qrcode-container {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: var(--container-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px var(--shadow-color);
-            max-width: 350px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .qrcode-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .qrcode-container p {
-            font-size: 1.1em;
-            color: var(--text-color);
-        }
-        .qrcode-container a.whatsapp-link {
-            display: inline-block;
-            background-color: #25D366;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
-        .qrcode-container a.whatsapp-link:hover {
-            background-color: #1DA851;
-        }
+        /* Seus estilos existentes para qrcode-container */
+        .qrcode-container {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--container-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .qrcode-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .qrcode-container p {
+            font-size: 1.1em;
+            color: var(--text-color);
+        }
+        .qrcode-container a.whatsapp-link {
+            display: inline-block;
+            background-color: #25D366;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .qrcode-container a.whatsapp-link:hover {
+            background-color: #1DA851;
+        }
 
-        /* Novo estilo para o bloco do Google Forms (agora com iframe) */
-        .google-form-iframe-container { /* Renomeei para maior clareza */
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            background: var(--container-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px var(--shadow-color);
-            max-width: 700px; /* Aumentei um pouco para o iframe de 640px */
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .google-form-iframe-container h2 {
-            color: var(--highlight-color);
-            margin-bottom: 20px;
-        }
-        /* Estilos para o iframe ser responsivo */
-        .google-form-iframe-container iframe {
-            max-width: 100%; /* Garante que o iframe se ajuste a telas menores */
-            width: 100%;    /* Faz o iframe ocupar a largura total do container */
-            height: 1590px; /* Mantém a altura original, ajuste conforme necessário */
-            border: none;   /* Remove a borda padrão do iframe */
-        }
+        /* Novo estilo para o bloco do Google Forms (agora com iframe) */
+        .google-form-iframe-container { /* Renomeei para maior clareza */
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--container-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            max-width: 700px; /* Aumentei um pouco para o iframe de 640px */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .google-form-iframe-container h2 {
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+        }
+        /* Estilos para o iframe ser responsivo */
+        .google-form-iframe-container iframe {
+            max-width: 100%; /* Garante que o iframe se ajuste a telas menores */
+            width: 100%;    /* Faz o iframe ocupar a largura total do container */
+            height: 1590px; /* Mantém a altura original, ajuste conforme necessário */
+            border: none;   /* Remove a borda padrão do iframe */
+        }
 
-        /* Ajuste para o main ocupar o espaço restante e empurrar o footer */
-        main {
-            flex-grow: 1; /* Permite que o main cresça e ocupe o espaço disponível */
-        }
-    </style>
+        /* Ajuste para o main ocupar o espaço restante e empurrar o footer */
+        main {
+            flex-grow: 1; /* Permite que o main cresça e ocupe o espaço disponível */
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">MC infra TI</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Serviços</a></li>
-                <li><a href="contact.html">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header>
+        <nav>
+            <div class="logo">MC infra TI</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main>
-        <section id="contact">
-            <div class="container">
-                <h1>Fale Conosco</h1>
-                <p>Estamos prontos para ajudá-lo. Preencha o formulário abaixo ou, se preferir, envie uma mensagem para o WhatsApp.</p>
-            </div>
+    <main>
+        <section id="contact">
+            <div class="container">
+                <h1>Fale Conosco</h1>
+                <p>Estamos prontos para ajudá-lo. Preencha o formulário abaixo ou, se preferir, envie uma mensagem para o WhatsApp.</p>
+            </div>
 
-            <div class="google-form-iframe-container">
-                <h2>Envie sua Mensagem</h2>
-                <p>Por favor, preencha o formulário detalhado abaixo para nos ajudar a entender melhor suas necessidades.</p>
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOIIut6LhrSCLThXnxBr7p5lV6OUw277cyij9ZsbHxM6qryg/viewform?embedded=true" width="640" height="1590" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
-            </div>
+            <div class="google-form-iframe-container">
+                <h2>Envie sua Mensagem</h2>
+                <p>Por favor, preencha o formulário detalhado abaixo para nos ajudar a entender melhor suas necessidades.</p>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOIIut6LhrSCLThXnxBr7p5lV6OUw277cyij9ZsbHxM6qryg/viewform?embedded=true" width="640" height="1590" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+            </div>
 
-            <div class="qrcode-container">
-                <h2>Ou Fale Conosco Pelo WhatsApp!</h2>
-                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/whatsapp_qrcode.png" alt="QR Code WhatsApp" aria-label="Escaneie para iniciar uma conversa no WhatsApp">
-                <p>Escaneie este QR Code com seu celular para iniciar uma conversa rápida em nosso WhatsApp.</p>
-                <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">Abrir WhatsApp</a>
-            </div>
-        </section>
-    </main>
+            <div class="qrcode-container">
+                <h2>Ou Fale Conosco Pelo WhatsApp!</h2>
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/whatsapp_qrcode.png" alt="QR Code WhatsApp" aria-label="Escaneie para iniciar uma conversa no WhatsApp">
+                <p>Escaneie este QR Code com seu celular para iniciar uma conversa rápida em nosso WhatsApp.</p>
+                <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">Abrir WhatsApp</a>
+            </div>
+        </section>
+    </main>
 
-    <footer>
-        <p style="text-align: center; padding: 20px; background: #111; color: #0af; margin-top: 20px;">
-            &copy; 2025 | MC infra TI | Todos os direitos reservados.
-        </p>
-    </footer>
+    <footer>
+        <p style="text-align: center; padding: 20px; background: #111; color: #0af; margin-top: 20px;">
+            &copy; 2025 | MC infra TI | Todos os direitos reservados.
+        </p>
+    </footer>
 </body>
 </html>
