@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="./css/styles.css">
     <title>MC infra TI</title>
     <style>
+        /* Estilos para o cabeçalho desta página - SOBRESCRITA */
+        header {
+            position: static !important; /* Faz o cabeçalho rolar com o conteúdo */
+            /* As propriedades 'top', 'left', 'z-index' são automaticamente desconsideradas com 'position: static'
+               mas podemos sobrescrevê-las explicitamente para garantir. */
+            top: auto !important;
+            left: auto !important;
+            z-index: auto !important;
+        }
+
         /* Estilos para a imagem de background do corpo da página */
         body {
             /* ATENÇÃO: Para imagens do GitHub, você precisa usar a URL "raw" para que o navegador consiga acessá-la como uma imagem. */
