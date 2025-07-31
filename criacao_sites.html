@@ -20,7 +20,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.6); /* Ajustei a opacidade do overlay */
+        background-color: rgba(0, 0, 0, 0.6); /* Overlay escuro para a imagem de fundo */
         z-index: -1;
     }
 
@@ -32,13 +32,12 @@
 
     /* Header */
     header {
-        background-color: rgba(0, 0, 0, 0.7); /* Header um pouco transparente */
+        background-color: rgba(0, 0, 0, 0.8);
         padding: 1rem 0;
         text-align: center;
         top: 0;
         z-index: 1000;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Adicionei uma borda sutil */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Suavizei a sombra */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     header nav {
@@ -87,23 +86,21 @@
 
     /* Hero Section */
     #hero {
-        background-color: rgba(0, 0, 0, 0.4); /* Hero mais transparente */
+        background-color: rgba(0, 0, 0, 0.6);
         color: #fff;
         text-align: center;
         padding: 100px 20px;
-        min-height: 400px; /* Reduzi um pouco a altura mínima */
+        min-height: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: inset 0 0 15px rgba(220, 20, 60, 0.2); /* Suavizei a sombra interna */
-        border-radius: 10px; /* Adicionei bordas arredondadas */
+        box-shadow: inset 0 0 20px rgba(220, 20, 60, 0.3); /* Efeito de brilho carmesim */
     }
 
     .hero-content {
         max-width: 800px;
         margin: 0 auto;
         animation: fadeIn 1.5s ease-out;
-        padding: 20px; /* Adicionei um pouco de padding interno */
     }
 
     @keyframes fadeIn {
@@ -112,41 +109,41 @@
     }
 
     #hero h2 {
-        font-size: 2.8em; /* Reduzi um pouco a fonte */
-        margin-bottom: 15px;
+        font-size: 3.2em;
+        margin-bottom: 20px;
         color: #FF6347; /* Vermelho mais claro para destaque */
-        text-shadow: 0 0 10px rgba(220, 20, 60, 0.6); /* Suavizei a sombra do texto */
+        text-shadow: 0 0 15px rgba(220, 20, 60, 0.7);
     }
 
     #hero p {
-        font-size: 1.2em; /* Reduzi um pouco a fonte */
-        line-height: 1.7;
-        margin-bottom: 30px;
+        font-size: 1.3em;
+        line-height: 1.8;
+        margin-bottom: 40px;
         color: #FFC0CB; /* Rosa claro para leitura */
     }
 
     .button {
         display: inline-block;
-        background-color: rgba(220, 20, 60, 0.8); /* Botão um pouco transparente */
+        background-color: #DC143C; /* Carmesim */
         color: white;
-        padding: 12px 25px; /* Reduzi um pouco o padding */
+        padding: 15px 30px;
         text-decoration: none;
         border-radius: 5px;
-        font-size: 1em; /* Reduzi um pouco a fonte */
+        font-size: 1.1em;
         font-weight: 700;
         transition: background-color 0.3s ease, transform 0.3s ease;
-        border: 1px solid rgba(220, 20, 60, 0.5); /* Borda mais suave */
+        border: 2px solid #DC143C; /* Carmesim */
     }
 
     .button:hover {
         background-color: #B22222; /* Vermelho Fogo mais escuro */
-        transform: translateY(-2px); /* Reduzi o efeito de levantar */
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* Suavizei a sombra */
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     .button.cookies-button {
-        background-color: rgba(80, 99, 112, 0.7);
-        border-color: rgba(80, 99, 112, 0.5);
+        background-color: #607D8B;
+        border-color: #607D8B;
     }
 
     .button.cookies-button:hover {
@@ -155,18 +152,17 @@
 
     /* Seções de conteúdo */
     section {
-        padding: 50px 20px;
+        padding: 60px 20px;
         text-align: center;
-        background-color: rgba(255, 255, 255, 0.7); /* Seções mais transparentes */
-        margin: 20px auto; /* Reduzi um pouco a margem */
-        border-radius: 10px; /* Adicionei bordas arredondadas */
-        box-shadow: 0 3px 10px rgba(0,0,0,0.08); /* Suavizei a sombra */
-        border: 1px solid rgba(255, 255, 255, 0.3); /* Adicionei uma borda sutil */
+        background-color: rgba(255, 255, 255, 0.8); /* Fundo branco com 80% de opacidade */
+        margin: 30px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     section h2 {
-        font-size: 2.2em; /* Reduzi um pouco a fonte */
-        margin-bottom: 20px;
+        font-size: 2.5em;
+        margin-bottom: 25px;
         color: #333;
         position: relative;
     }
@@ -175,45 +171,43 @@
         content: '';
         position: absolute;
         left: 50%;
-        bottom: -8px; /* Ajustei a posição da linha */
+        bottom: -10px;
         transform: translateX(-50%);
-        width: 60px; /* Reduzi o tamanho da linha */
-        height: 3px; /* Reduzi a altura da linha */
+        width: 80px;
+        height: 4px;
         background-color: #DC143C; /* Carmesim */
         border-radius: 2px;
     }
 
     section p {
-        font-size: 1em; /* Reduzi um pouco a fonte */
-        max-width: 700px; /* Reduzi a largura máxima */
-        margin: 0 auto 15px auto; /* Reduzi um pouco a margem inferior */
+        font-size: 1.1em;
+        max-width: 800px;
+        margin: 0 auto 20px auto;
     }
 
     /* Estilos específicos para a página de Criação de Sites */
 
     #problem-solution {
-        padding: 30px 20px;
-        background-color: rgba(249, 249, 249, 0.6); /* Mais transparente */
-        border-radius: 10px; /* Adicionei bordas arredondadas */
-        margin-bottom: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.2); /* Adicionei uma borda sutil */
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Suavizei a sombra */
+        padding: 40px 20px;
+        background-color: rgba(249, 249, 249, 0.7); /* Fundo cinza claro com 70% de opacidade */
+        border-radius: 8px;
+        margin-bottom: 30px;
     }
 
     #problem-solution ul {
         list-style: none;
         padding: 0;
-        max-width: 550px; /* Reduzi a largura máxima */
-        margin: 15px auto; /* Reduzi a margem */
+        max-width: 600px;
+        margin: 20px auto;
         text-align: left;
     }
 
     #problem-solution ul li {
-        font-size: 0.95em; /* Reduzi a fonte */
-        margin-bottom: 8px;
+        font-size: 1.1em;
+        margin-bottom: 10px;
         color: #555;
         position: relative;
-        padding-left: 22px; /* Ajustei o padding */
+        padding-left: 25px;
     }
 
     #problem-solution ul li::before {
@@ -221,106 +215,101 @@
         position: absolute;
         left: 0;
         color: #FF6347; /* Vermelho tomate */
-        font-size: 0.8em; /* Reduzi a fonte */
-        top: 1px;
+        font-size: 0.9em;
+        top: 2px;
     }
 
     #problem-solution .solution-text {
-        font-size: 1.1em; /* Reduzi a fonte */
+        font-size: 1.2em;
         font-weight: 700;
         color: #DC143C; /* Carmesim */
-        margin-top: 20px; /* Reduzi a margem */
+        margin-top: 30px;
     }
 
     #how-it-works .steps {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        gap: 20px; /* Reduzi o gap */
-        margin-top: 30px; /* Reduzi a margem */
+        gap: 30px;
+        margin-top: 40px;
     }
 
     #how-it-works .step-item {
-        background-color: rgba(249, 249, 249, 0.6); /* Mais transparente */
-        padding: 20px; /* Reduzi o padding */
-        border-radius: 10px; /* Adicionei bordas arredondadas */
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Suavizei a sombra */
-        width: calc(33% - 20px); /* Ajustei a largura com o novo gap */
-        min-width: 250px; /* Reduzi a largura mínima */
+        background-color: rgba(249, 249, 249, 0.7); /* Fundo cinza claro com 70% de opacidade */
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        width: 30%;
+        min-width: 280px;
         text-align: left;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.2); /* Adicionei uma borda sutil */
     }
 
     #how-it-works .step-item:hover {
-        transform: translateY(-3px); /* Reduzi o efeito */
-        box-shadow: 0 5px 12px rgba(0,0,0,0.1); /* Suavizei a sombra */
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     #how-it-works .step-item .step-number {
-        font-size: 2em; /* Reduzi a fonte */
+        font-size: 2.5em;
         color: #DC143C; /* Carmesim */
         font-weight: 700;
-        margin-bottom: 10px; /* Reduzi a margem */
+        margin-bottom: 15px;
         display: block;
     }
 
     #how-it-works .step-item h3 {
-        font-size: 1.2em; /* Reduzi a fonte */
-        margin-bottom: 8px;
+        font-size: 1.4em;
+        margin-bottom: 10px;
         color: #333;
     }
 
     #how-it-works .step-item p {
-        font-size: 0.9em; /* Reduzi a fonte */
+        font-size: 1em;
         color: #666;
         margin-bottom: 0;
         text-align: left;
     }
 
     #plans {
-        background-color: rgba(254, 232, 232, 0.5); /* Rosa bem claro e transparente */
-        padding: 50px 20px; /* Adicionei padding */
-        border-radius: 10px; /* Adicionei bordas arredondadas */
-        margin: 20px auto; /* Ajustei a margem */
+        background-color: #FEE8E8; /* Um rosa bem claro para a seção de planos - Manter */
     }
 
     .plan-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajustei a largura mínima */
-        gap: 20px; /* Reduzi o gap */
-        margin-top: 30px; /* Reduzi a margem */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
     }
 
     .plan-card {
-        background-color: rgba(255, 255, 255, 0.6); /* Mais transparente */
-        padding: 20px; /* Reduzi o padding */
-        border-radius: 10px; /* Adicionei bordas arredondadas */
-        box-shadow: 0 3px 10px rgba(0,0,0,0.08); /* Suavizei a sombra */
+        background-color: rgba(255, 255, 255, 0.7); /* Fundo branco com 70% de opacidade */
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border: 1px solid rgba(255, 255, 255, 0.3); /* Adicionei uma borda sutil */
     }
 
     .plan-card:hover {
-        transform: translateY(-3px); /* Reduzi o efeito */
-        box-shadow: 0 5px 12px rgba(0,0,0,0.15); /* Suavizei a sombra */
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
 
     .plan-card h3 {
-        font-size: 1.8em; /* Reduzi a fonte */
-        margin-bottom: 10px;
+        font-size: 2em;
+        margin-bottom: 15px;
         color: #DC143C; /* Carmesim */
     }
 
     .plan-card .price {
-        font-size: 2.2em; /* Reduzi a fonte */
+        font-size: 2.5em;
         font-weight: 700;
         color: #333;
-        margin-bottom: 15px; /* Reduzi a margem */
+        margin-bottom: 20px;
     }
 
     .plan-card .price span {
@@ -331,17 +320,16 @@
     .plan-card ul {
         list-style: none;
         padding: 0;
-        margin-bottom: 20px; /* Reduzi a margem */
+        margin-bottom: 30px;
         text-align: left;
         flex-grow: 1; /* Faz a lista ocupar o espaço restante */
     }
 
     .plan-card ul li {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         color: #555;
         position: relative;
-        padding-left: 22px; /* Ajustei o padding */
-        font-size: 0.9em; /* Reduzi a fonte */
+        padding-left: 25px;
     }
 
     .plan-card ul li::before {
@@ -349,70 +337,44 @@
         position: absolute;
         left: 0;
         color: #DC143C; /* Carmesim */
-        font-size: 0.8em; /* Reduzi a fonte */
-        top: 1px;
+        font-size: 0.9em;
+        top: 2px;
     }
 
     .plan-card .button {
         width: 100%;
         margin-top: auto; /* Empurra o botão para o final do card */
         box-sizing: border-box; /* Garante que o padding não aumente a largura */
-        font-size: 0.9em; /* Reduzi a fonte */
-        padding: 10px 20px; /* Reduzi o padding */
     }
 
     /* Contact Preview - Mantido do index.html */
-    #contact-preview {
-        padding: 50px 20px;
-    }
-
-    #contact-preview .container {
-        background-color: rgba(255, 255, 255, 0.6); /* Mais transparente */
-        border-radius: 10px; /* Adicionei bordas arredondadas */
-        padding: 30px; /* Adicionei padding */
-        box-shadow: 0 3px 10px rgba(0,0,0,0.08); /* Suavizei a sombra */
-        border: 1px solid rgba(255, 255, 255, 0.3); /* Adicionei uma borda sutil */
-        text-align: center;
-    }
-
-    #contact-preview h2 {
-        font-size: 2em; /* Reduzi a fonte */
-    }
-
-    #contact-preview p {
-        font-size: 1em; /* Reduzi a fonte */
-        max-width: 600px; /* Reduzi a largura máxima */
-        margin: 10px auto 20px auto; /* Ajustei as margens */
-    }
-
     #contact-preview .button-group {
         display: flex;
         justify-content: center;
-        gap: 15px; /* Reduzi o gap */
-        margin-top: 20px; /* Reduzi a margem */
+        gap: 20px;
+        margin-top: 30px;
         flex-wrap: wrap;
     }
 
     /* Footer - Mantido do index.html */
     footer {
-        background: rgba(0, 0, 0, 0.7); /* Footer um pouco transparente */
+        background: rgba(0, 0, 0, 0.8);
         text-align: center;
-        padding: 15px; /* Reduzi o padding */
+        padding: 20px;
         color: #DC143C; /* Carmesim */
-        margin-top: 30px; /* Reduzi a margem */
-        border-top: 1px solid rgba(255, 255, 255, 0.1); /* Adicionei uma borda sutil */
+        margin-top: 50px;
     }
 
     footer p {
-        font-size: 0.8em; /* Reduzi a fonte */
-        margin-bottom: 8px;
+        font-size: 0.9em;
+        margin-bottom: 10px;
         color: #ccc;
     }
 
     .footer-logo {
         display: block;
-        margin: 0 auto 10px auto; /* Reduzi a margem */
-        max-width: 120px; /* Reduzi o tamanho do logo */
+        margin: 0 auto 15px auto;
+        max-width: 150px;
         height: auto;
     }
 
@@ -423,28 +385,24 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 10px; /* Adicionei um gap */
     }
 
     footer ul li {
-        margin: 0; /* Removi a margem */
+        margin: 0 15px;
     }
 
     footer ul li a {
         color: #fff;
         text-decoration: none;
-        font-size: 0.85em; /* Reduzi a fonte */
+        font-size: 0.95em;
         transition: color 0.3s ease;
-        padding: 5px; /* Adicionei padding */
-        border-radius: 3px; /* Adicionei bordas arredondadas */
     }
 
     footer ul li a:hover {
         color: #DC143C; /* Carmesim */
-        background-color: rgba(255, 255, 255, 0.05); /* Adicionei um leve hover */
     }
 
-    /* Responsividade */
+    /* Responsividade - Manter como está */
     @media (max-width: 768px) {
         header nav {
             flex-direction: column;
@@ -454,81 +412,59 @@
         header nav ul {
             flex-direction: column;
             width: 100%;
-            margin-top: 10px; /* Reduzi a margem */
+            margin-top: 15px;
         }
 
         header nav ul li {
-            margin: 3px 0; /* Reduzi a margem */
+            margin: 5px 0;
         }
 
         header .logo {
-            margin-bottom: 8px; /* Reduzi a margem */
+            margin-bottom: 10px;
         }
 
         #hero {
-            padding: 60px 15px; /* Reduzi o padding */
-            min-height: auto; /* Auto altura em telas menores */
+            padding: 80px 15px;
         }
 
         #hero h2 {
-            font-size: 2em; /* Reduzi a fonte */
+            font-size: 2.5em;
         }
 
         #hero p {
-            font-size: 1em; /* Reduzi a fonte */
-            margin-bottom: 20px; /* Reduzi a margem */
+            font-size: 1.1em;
         }
 
         section {
-            padding: 30px 15px; /* Reduzi o padding */
-            margin: 15px auto; /* Reduzi a margem */
+            padding: 40px 15px;
         }
 
         section h2 {
-            font-size: 1.8em; /* Reduzi a fonte */
-            margin-bottom: 15px; /* Reduzi a margem */
+            font-size: 2em;
         }
 
         #how-it-works .steps {
             flex-direction: column;
             align-items: center;
-            gap: 15px; /* Reduzi o gap */
-            margin-top: 20px; /* Reduzi a margem */
         }
 
         #how-it-works .step-item {
-            width: 90%; /* Ocupa mais largura em telas menores */
+            width: 100%; /* Ocupa toda a largura em telas menores */
             min-width: unset;
-            padding: 15px; /* Reduzi o padding */
         }
 
         .plan-list {
             grid-template-columns: 1fr; /* Coluna única em telas menores */
-            gap: 15px; /* Reduzi o gap */
-            margin-top: 20px; /* Reduzi a margem */
-        }
-
-        #contact-preview {
-            padding: 30px 15px; /* Reduzi o padding */
-        }
-
-        #contact-preview .container {
-            padding: 20px; /* Reduzi o padding */
         }
 
         #contact-preview .button-group {
             flex-direction: column;
-            gap: 10px; /* Reduzi o gap */
-            margin-top: 15px; /* Reduzi a margem */
-        }
-
-        footer {
-            padding: 10px; /* Reduzi o padding */
-            margin-top: 20px; /* Reduzi a margem */
+            gap: 15px;
         }
 
         footer ul {
-            gap: 5px; /* Reduzi o gap */
+            flex-direction: column;
+            gap: 10px;
         }
     }
 </style>
