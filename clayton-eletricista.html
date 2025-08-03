@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Clayton Eletricista: Instalações elétricas, manutenção, e instalação de ar condicionado. Atendimento em Ourinhos e região.">
+    <title>Clayton Eletricista | Instalações e Manutenção</title>
+    <style>
+        body {
+            /* Estilos de fundo para a página de serviços */
+            background-color: #0d1a26; /* Cor de fundo escura */
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-services.jpg'); /* Você pode substituir este link por uma imagem de fundo mais apropriada */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Adicione um overlay escuro para melhorar a leitura do texto sobre a imagem */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Cor preta com 70% de opacidade */
+            z-index: -1;
+        }
+
+        header {
+            background: rgba(17, 17, 17, 0.9);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header h1 {
+            color: #ffcc00; /* Cor amarela para o título */
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            background: rgba(17, 17, 17, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-list article {
+            background: rgba(17, 17, 17, 0.85);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .service-list article:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.7);
+        }
+
+        .service-list article h2 {
+            color: #ffcc00; /* Cor amarela para os títulos de serviço */
+            margin-top: 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #ffcc00;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .service-list article p {
+            color: #e0e0e0;
+            font-size: 1.1em;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #e0e0e0;
+        }
+
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 50px; /* Botão arredondado */
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-size: 1.2em;
+        }
+        
+        .whatsapp-link:hover {
+            background-color: #1DA851;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(17, 17, 17, 0.9);
+            color: #ffcc00;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Clayton Eletricista</h1>
+    </header>
+
+    <main>
+        <section id="services">
+            <div class="container">
+                <h2>Serviços Elétricos e Instalação de Ar Condicionado</h2>
+                <p>O Clayton Eletricista oferece soluções completas e seguras para sua casa ou empresa. Com anos de experiência, garantimos um serviço de qualidade, com foco em segurança e eficiência energética.</p>
+            </div>
+
+            <div class="service-list">
+                <article>
+                    <h2>Instalações Elétricas Residenciais e Comerciais</h2>
+                    <p>Realizamos a instalação completa da parte elétrica de imóveis novos, além de reformas, troca de fiação e quadros de distribuição. Nossos serviços seguem todas as normas de segurança para garantir a proteção de sua família e seu patrimônio.</p>
+                </article>
+                
+                <article>
+                    <h2>Manutenção e Reparos Elétricos</h2>
+                    <p>Problemas com tomadas, disjuntores, curtos-circuitos ou falta de energia? Resolvemos de forma rápida e eficaz. Nossa manutenção preventiva e corretiva garante o bom funcionamento de todo o seu sistema elétrico.</p>
+                </article>
+
+                <article>
+                    <h2>Instalação de Ar Condicionado</h2>
+                    <p>Instalamos e fazemos a manutenção de aparelhos de ar condicionado de todas as marcas e modelos. Oferecemos um serviço profissional para garantir o máximo desempenho e a economia de energia do seu equipamento.</p>
+                </article>
+                
+                <article>
+                    <h2>Troca de Disjuntores e Quadro de Luz</h2>
+                    <p>Substituímos disjuntores antigos ou com problemas, garantindo a proteção do circuito elétrico. Organizamos e modernizamos quadros de luz para maior segurança e facilidade na gestão da energia.</p>
+                </article>
+                
+                <article>
+                    <h2>Instalação de Chuveiros e Tomadas</h2>
+                    <p>Serviços rápidos e seguros para a instalação de chuveiros elétricos, tomadas, interruptores e pontos de luz. Garantimos um acabamento perfeito e o funcionamento correto de cada item.</p>
+                </article>
+            </div>
+            
+            <div class="container contact-info">
+                <h2>Precisa de um orçamento ou serviço?</h2>
+                <p>Fale diretamente com o Clayton para agendar uma visita e obter uma avaliação completa do seu projeto.</p>
+                <a href="https://wa.me/5514996243023" target="_blank" class="whatsapp-link">
+                    Chamar no WhatsApp (14) 99624-3023
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 | Clayton Eletricista | Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
