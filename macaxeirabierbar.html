@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Macaxeira Beer Bar - Cerveja gelada, salgados artesanais e pratos tradicionais em Ourinhos, SP.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>Macaxeira Beer Bar</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/beer-icon.png" type="image/x-icon">
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            /* COMENTÁRIO: Substitua o URL abaixo pela imagem de fundo do bar */
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bar-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            text-align: center;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        header .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #FFD700; /* Dourado */
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        header nav ul li a:hover {
+            color: #FFD700;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(255,215,0,0.3);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #hero h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255,215,0,0.7);
+        }
+
+        #hero p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        /* Botões */
+        .button {
+            display: inline-block;
+            background-color: #FFD700;
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 2px solid #FFD700;
+        }
+
+        .button:hover {
+            background-color: #e6c200;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Seções de conteúdo */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #fff;
+        }
+
+        section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #FFD700;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #FFD700;
+            border-radius: 2px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            color: #ddd;
+        }
+
+        /* Seção do Menu */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .menu-item {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .menu-item h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8em;
+            color: #FFD700;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .menu-item p {
+            font-size: 1em;
+            color: #ccc;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        
+        .menu-item .price {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #FF4500; /* Laranja avermelhado para o preço */
+            float: right;
+        }
+
+        .menu-category {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2em;
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+        }
+        
+        /* Contato e Horários */
+        .contact-info {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: left;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .contact-info p strong {
+            color: #FFD700;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .footer-logo {
+            display: block;
+            margin: 0 auto 15px auto;
+            /* COMENTÁRIO: Substitua o URL da logo do bar aqui */
+            max-width: 150px;
+            height: auto;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header .logo {
+                margin-bottom: 10px;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            header nav ul li {
+                margin: 5px 0;
+            }
+
+            #hero h2 {
+                font-size: 2.5em;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <header>
+        <nav>
+            <div class="logo">Macaxeira Beer Bar</div>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#menu">Cardápio</a></li>
+                <li><a href="#happy-hour">Happy Hour</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="hero">
+            <div class="hero-content">
+                <h2>Macaxeira Beer Bar</h2>
+                <p>O ponto de encontro em Ourinhos para quem ama uma cerveja gelada e o melhor da culinária tradicional. Venha viver essa experiência!</p>
+                <a href="#menu" class="button">Ver Cardápio</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>Nossa História</h2>
+                <p>O Macaxeira Beer Bar nasceu da paixão por boa comida e cerveja de qualidade. Com um ambiente acolhedor e familiar, somos o lugar perfeito para relaxar, encontrar os amigos e saborear pratos que remetem à tradição e ao sabor caseiro, sempre com a cerveja mais gelada da cidade.</p>
+            </div>
+        </section>
+        
+        <section id="menu">
+            <div class="container">
+                <h2>Cardápio</h2>
+                <p>Conheça nossas especialidades e os salgados artesanais que são a nossa marca registrada!</p>
+                
+                <h3 class="menu-category">Pratos Tradicionais</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/dobradinha.jpg" alt="Dobradinha">
+                        <h3>Dobradinha</h3>
+                        <p>O clássico prato da culinária portuguesa, popularizado no Brasil, com um sabor que conforta a alma.
+                        <span class="price">R$ 25,00</span></p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/caldo-mocoto.jpg" alt="Caldo de Mocotó">
+                        <h3>Caldo de Mocotó</h3>
+                        <p>Delicioso e nutritivo caldo de mocotó, perfeito para aquecer em qualquer ocasião.
+                        <span class="price">R$ 25,00</span></p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/torresmo.jpg" alt="Torresmo">
+                        <h3>Tradicional Torresmo Frito</h3>
+                        <p>Crocanter por fora, macio por dentro. Uma porção irresistível.
+                        <span class="price">R$ 10,00</span></p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/tilapia.jpg" alt="Filé de Tilápia">
+                        <h3>Filé de Tilápia</h3>
+                        <p>Porção de filé de tilápia empanada, crocante e saborosa.
+                        <span class="price">R$ 30,00</span></p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/calabresa-acebolada.jpg" alt="Calabresa Acebolada">
+                        <h3>Calabresa Acebolada Clássica</h3>
+                        <p>Nossa porção generosa e tradicional de calabresa acebolada.
+                        <span class="price">R$ 30,00</span></p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/fritas.jpg" alt="Fritas">
+                        <h3>Fritas</h3>
+                        <p>Porção de batata frita sequinha e crocante, perfeita para acompanhar a cerveja.
+                        <span class="price">R$ 25,00</span></p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/frango-frito.jpg" alt="Frango Frito">
+                        <h3>Coxa & Sobrecoxa de Frango Frito</h3>
+                        <p>Suculento frango frito, temperado com a receita especial da casa.
+                        <span class="price">R$ 10,00</span></p>
+                    </div>
+                </div>
+                
+                <h3 class="menu-category">Salgados Artesanais</h3>
+                <div class="menu-grid">
+                     <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/salgados-5.jpg" alt="Salgados de 5 reais">
+                        <h3>Salgados Diversos</h3>
+                        <p>Enroladinho de Salsicha, Bolinho de Carne, Kibe.
+                        <span class="price">R$ 5,00</span></p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/salgados-7.jpg" alt="Salgados de 7 reais">
+                        <h3>Salgados Especiais</h3>
+                        <p>Coxinha, Bolinho de Carne com Ovo, Bolinho de Carne Seca.
+                        <span class="price">R$ 7,00</span></p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="happy-hour">
+            <div class="container">
+                <h2>Happy Hour do Macaxeira</h2>
+                <p>Toda **sexta-feira** e **sábado**, a partir das 18h, o Macaxeira Beer Bar se transforma! Junte-se a nós para curtir **karaokê** e, claro, a **cerveja mais gelada** da cidade.</p>
+                <a href="#contact" class="button">Venha Nos Visitar!</a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Visite-nos</h2>
+                <p>Estamos esperando por você com o que há de melhor em nossa casa.</p>
+                <div class="contact-info">
+                    <p><strong>Endereço:</strong> R. Henrique Pontara, 601 - Jardim Santa Fe, Ourinhos - SP, 19910-075</p>
+                    <p><strong>Telefone:</strong> (14) 99654-2308</p>
+                    <p><strong>Horário de funcionamento:</strong></p>
+                    <p>Fechado ⋅ Abre seg. às 08:00</p>
+                    <p><strong>Links Úteis:</strong></p>
+                    <div class="button-group">
+                        <a href="https://api.whatsapp.com/send?phone=5514996542308" target="_blank" class="button">WhatsApp</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Macaxeira+Beer+Bar,R.+Henrique+Pontara,+601+-+Jardim+Santa+Fe,+Ourinhos+-+SP" target="_blank" class="button">Como Chegar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 | Macaxeira Beer Bar | Todos os direitos reservados.</p>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#menu">Cardápio</a></li>
+            <li><a href="#happy-hour">Happy Hour</a></li>
+            <li><a href="#contact">Contato</a></li>
+        </ul>
+    </footer>
+
+</body>
+</html>
