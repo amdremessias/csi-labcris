@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -17,7 +16,6 @@
             line-height: 1.6;
             color: #333;
             background-color: #f4f4f4;
-            /* COMENTÁRIO: Substitua o URL abaixo pela imagem de fundo do bar */
             background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/macaxeira/backbar.jpg');
             background-size: cover;
             background-position: center;
@@ -255,6 +253,35 @@
             text-shadow: 1px 1px 3px #000;
         }
         
+        /* Lista de bebidas sem imagem */
+        .drink-list ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .drink-list li {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drink-list li span:first-child {
+            font-weight: bold;
+            color: #FFD700;
+            font-size: 1.2em;
+        }
+
+        .drink-list li span:last-child {
+            color: #FF4500;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
         /* Contato e Horários */
         .contact-info {
             background-color: rgba(0, 0, 0, 0.8);
@@ -291,7 +318,6 @@
         .footer-logo {
             display: block;
             margin: 0 auto 15px auto;
-            /* COMENTÁRIO: Substitua o URL da logo do bar aqui */
             max-width: 150px;
             height: auto;
         }
@@ -337,6 +363,7 @@
             <ul>
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#menu">Cardápio</a></li>
+                <li><a href="#drinks">Bebidas</a></li>
                 <li><a href="#happy-hour">Happy Hour</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
@@ -436,6 +463,41 @@
             </div>
         </section>
 
+        <section id="drinks">
+            <div class="container">
+                <h2>Bar & Coquetelaria</h2>
+                <p>Nossa seleção de bebidas geladas e drinks preparados com carinho para você.</p>
+
+                <h3 class="menu-category">Cervejas, Destilados e Refrigerantes</h3>
+                <div class="drink-list">
+                    <ul>
+                        <li><span>Refrigerante (Lata)</span><span>R$ 5,00</span></li>
+                        <li><span>Refrigerante (Litro)</span><span>R$ 8,00</span></li>
+                        <li><span>Refrigerante (2 Litros)</span><span>R$ 12,00</span></li>
+                        <li><span>Cerveja (Lata)</span><span>R$ 6,00</span></li>
+                        <li><span>Cerveja (600ml)</span><span>R$ 12,00</span></li>
+                        <li><span>Cerveja (1 Litro)</span><span>R$ 18,00</span></li>
+                        <li><span>Cachaça, Conhaque e Vodka</span><span>Preços variados</span></li>
+                    </ul>
+                </div>
+                
+                <h3 class="menu-category">Drinks Espirituosos</h3>
+                <div class="drink-list">
+                    <ul>
+                        <li><span>Caipirinha</span><span>R$ 15,00</span></li>
+                        <li><span>Caipirosca</span><span>R$ 18,00</span></li>
+                        <li><span>Alexander</span><span>R$ 20,00</span></li>
+                        <li><span>Mojito</span><span>R$ 17,00</span></li>
+                        <li><span>Gin Tônica</span><span>R$ 15,00</span></li>
+                        <li><span>Marguerita</span><span>R$ 22,00</span></li>
+                        <li><span>Cuba Libre</span><span>R$ 15,00</span></li>
+                        <li><span>Batida Morango</span><span>R$ 18,00</span></li>
+                        <li><span>Batida de Maracujá</span><span>R$ 18,00</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section id="happy-hour">
             <div class="container">
                 <h2>Happy Hour do Macaxeira</h2>
@@ -464,10 +526,11 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 | Macaxeira Beer Bar | Todos os direitos reservados.</p>
+        <p>© 2025 | Macaxeira Beer Bar | Todos os direitos reservados.</p>
         <ul>
             <li><a href="#hero">Home</a></li>
             <li><a href="#menu">Cardápio</a></li>
+            <li><a href="#drinks">Bebidas</a></li>
             <li><a href="#happy-hour">Happy Hour</a></li>
             <li><a href="#contact">Contato</a></li>
         </ul>
