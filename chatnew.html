@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Chat - Planos e Preços</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #075E54;
+            --dark-blue: #0A1C2E;
+            --white: #FFFFFF;
+            --light-gray: #F4F6F9;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: var(--white);
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--primary-green);
+        }
+
+        /* --- Main Content --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        /* --- Headlines --- */
+        h1 {
+            font-size: 3em;
+            color: var(--dark-green);
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 2.2em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+        }
+
+        /* --- Pricing Grid --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .price-card.highlight {
+            border: 3px solid var(--primary-green);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.3);
+        }
+        .price-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .plan-tag {
+            font-size: 1em;
+            color: var(--primary-green);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .price-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-green);
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .price-value span {
+            font-size: 0.5em;
+            font-weight: 400;
+            color: var(--text-dark);
+        }
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        .price-list li {
+            font-size: 1em;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-dark);
+        }
+        .price-list li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+        }
+
+        /* --- Call to Action Button --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: auto;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-blue);
+            text-align: center;
+            padding: 25px;
+            color: var(--white);
+            margin-top: 50px;
+        }
+        .footer-logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .contact-info-footer {
+            margin-bottom: 10px;
+        }
+        .contact-info-footer a {
+            color: var(--primary-green);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .contact-info-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            .subtitle { font-size: 1em; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .price-card { padding: 30px; }
+            .price-value { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">NOVO CHAT</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="planos" class="container">
+            <h1>Encontre o plano ideal para sua equipe!</h1>
+            <p class="subtitle">
+                O Novo Chat oferece uma solução de chatbot completa e flexível para seu negócio. <br>
+                Escolha o plano que se encaixa no tamanho da sua equipe e comece a transformar seu atendimento.
+            </p>
+
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <div>
+                        <h3>Plano Básico</h3>
+                        <p class="plan-tag">Ideal para pequenos negócios</p>
+                        <p class="price-value">R$ 1.900,00 <span>(pagamento único)</span></p>
+                        <p>+ R$ 145,90/mês</p>
+                        <ul class="price-list">
+                            <li>Até 5 usuários</li>
+                            <li>Implantação completa inclusa</li>
+                            <li>Servidor local (self-hosted) ou na nuvem</li>
+                            <li>Suporte via chat (24h/mês)</li>
+                            <li>Backup semanal</li>
+                            <li>Acesso ao Quadro de Tarefas Básico</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Fale Conosco</a>
+                </article>
+
+                <article class="price-card highlight">
+                    <div>
+                        <h3>Plano Pro</h3>
+                        <p class="plan-tag">Solução completa para seu negócio</p>
+                        <p class="price-value">R$ 2.300,00 <span>(pagamento único)</span></p>
+                        <p>+ R$ 233,90/mês</p>
+                        <ul class="price-list">
+                            <li>Até 15 usuários</li>
+                            <li>Implantação e servidor inclusos</li>
+                            <li>Suporte via chat ilimitado</li>
+                            <li>Backups periódicos (diário e externo)</li>
+                            <li>Quadro de Tarefas Corporativo</li>
+                            <li>Monitoramento proativo 24/7</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Fale Conosco</a>
+                </article>
+
+                <article class="price-card">
+                    <div>
+                        <h3>Plano Enterprise</h3>
+                        <p class="plan-tag">Para grandes equipes e empresas</p>
+                        <p class="price-value consult">Consulte Valores</p>
+                        <p>+ Gestão personalizada</p>
+                        <ul class="price-list">
+                            <li>Usuários ilimitados</li>
+                            <li>Implantação e servidor dedicados</li>
+                            <li>Gestão completa de domínio e segurança</li>
+                            <li>Filtro de DNS e Cofre de Senhas Corporativo</li>
+                            <li>Treinamento avançado para equipes</li>
+                            <li>Suporte prioritário e consultoria estratégica</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Fale Conosco</a>
+                </article>
+            </div>
+        </section>
+
+        ---
+
+        <section id="observacoes" class="container">
+            <h2>Observações Importantes</h2>
+            <div class="contact-info">
+                <p>
+                    <small>
+                        Os valores de implantação e hospedagem (se aplicável) são cobrados em uma única vez. A partir do segundo mês, cobra-se apenas o valor da gestão mensal. <br><br>
+                        Este documento é apenas uma forma objetiva e prática de apresentar os planos e não tem validade de contrato.
+                    </small>
+                </p>
+            </div>
+        </section>
+
+        ---
+
+        <section id="contato" class="container">
+            <h2>Pronto para Começar?</h2>
+            <p class="subtitle">Entre em contato para tirar suas dúvidas e iniciar a transformação digital do seu negócio.</p>
+            <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">
+                Chame no WhatsApp 📞
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo MC infra TI" class="footer-logo">
+        <div class="contact-info-footer">
+            <a href="mailto:andre.messias@myyahoo.com">📧 andre.messias@myyahoo.com</a> |
+            <a href="tel:+5514997135218">📞 (14) 99713-5218</a>
+        </div>
+        <p>&copy; 2025 NOVO CHAT by MC Infra TI | Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
