@@ -25,6 +25,21 @@
             scroll-behavior: smooth;
         }
 
+        /* --- Global Sections --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
         /* --- Header --- */
         header {
             background-color: var(--dark-blue);
@@ -58,32 +73,81 @@
             color: var(--primary-green);
         }
 
-        /* --- Main Content --- */
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 80px 20px;
+            background: linear-gradient(rgba(10, 28, 46, 0.8), rgba(10, 28, 46, 0.8)), url('https://images.unsplash.com/photo-1542435503-912f612803b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* --- Info Sections --- */
+        .info-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+        .info-card h3 {
+            font-size: 1.5em;
+            color: var(--dark-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 span {
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: var(--primary-green);
+        }
+        
+        .result-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
             text-align: center;
         }
 
-        /* --- Headlines --- */
-        h1 {
-            font-size: 3em;
-            color: var(--dark-green);
-            margin-bottom: 10px;
+        .result-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
         }
-        h2 {
-            font-size: 2.2em;
-            color: var(--dark-blue);
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        .subtitle {
-            font-size: 1.2em;
-            color: var(--text-dark);
-            margin-bottom: 50px;
+        .result-card:hover {
+            transform: translateY(-5px);
         }
 
+        .result-card h3 {
+            font-size: 1.5em;
+            color: var(--dark-blue);
+            margin-top: 0;
+        }
+        
         /* --- Pricing Grid --- */
         .pricing-grid {
             display: grid;
@@ -159,6 +223,9 @@
             top: 0;
             font-size: 1.2em;
         }
+        .price-value.consult {
+            font-size: 1.8em;
+        }
 
         /* --- Call to Action Button --- */
         .cta-button {
@@ -206,11 +273,15 @@
         /* --- Responsive Styles --- */
         @media (max-width: 768px) {
             h1 { font-size: 2.2em; }
-            h2 { font-size: 1.8em; }
+            h2, .section-title { font-size: 1.8em; }
             .subtitle { font-size: 1em; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .price-card { padding: 30px; }
+            .info-card-grid, .result-card-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .price-card, .info-card { padding: 30px; }
             .price-value { font-size: 2em; }
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
@@ -218,9 +289,10 @@
 
     <header>
         <nav>
-            <div class="logo">NOVO CHAT com WhatsApp</div>
+            <div class="logo">NOVO CHAT</div>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#recursos">Recursos</a></li>
                 <li><a href="#planos">Planos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
@@ -228,8 +300,70 @@
     </header>
 
     <main>
+        <section class="hero-section">
+            <h1 style="color: var(--primary-green);">Transforme seu Atendimento no WhatsApp!</h1>
+            <p class="subtitle">O Novo Chat é a solução completa para centralizar e otimizar a comunicação da sua equipe.</p>
+        </section>
+
+        <section id="beneficios" class="container">
+            <h2 class="section-title">Mais que um Chat: Uma Plataforma Completa</h2>
+            <p>O **Novo Chat** vai além da simplicidade e oferece uma plataforma robusta, pensada para organizar e otimizar o atendimento da sua empresa, garantindo uma experiência de alta qualidade para seus clientes.</p>
+        </section>
+
+        <section id="recursos" class="container">
+            <h2 class="section-title">Recursos que Transformam seu Atendimento</h2>
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>👥</span> Organize por Departamentos</h3>
+                    <p>Distribua as conversas para os times certos, como Vendas, Suporte ou Financeiro, de forma automática e sem complicação.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🔄</span> Centralize Múltiplos WhatsApps</h3>
+                    <p>Atenda 2 ou mais números em um único lugar, facilitando a gestão e o controle de todas as suas linhas de atendimento.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🚀</span> Atenda Vários Clientes ao Mesmo Tempo</h3>
+                    <p>Aumente a produtividade da sua equipe e a satisfação dos seus clientes, respondendo a diversas conversas simultaneamente.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🔍</span> Tenha um Histórico Completo</h3>
+                    <p>Revise todas as conversas a qualquer momento para um atendimento impecável, garantindo que nenhuma informação seja perdida.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>⚡</span> Reduza o Tempo de Resposta (TMA)</h3>
+                    <p>Com recursos de otimização, sua equipe responde mais rápido e resolve problemas em menos tempo, melhorando a eficiência.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🤝</span> Transfira Chats com Facilidade</h3>
+                    <p>Acabe com a confusão. Transfira conversas entre agentes com apenas um clique, sem perder o histórico do atendimento.</p>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section class="container">
+            <h2 class="section-title">Resultados que você vai Conquistar</h2>
+            <div class="result-card-grid">
+                <div class="result-card">
+                    <h3>Melhor Experiência do Cliente</h3>
+                    <p>Ofereça um suporte rápido, eficiente e personalizado, superando as expectativas do seu cliente.</p>
+                </div>
+                <div class="result-card">
+                    <h3>Aumento da Satisfação e Fidelidade</h3>
+                    <p>Resolva problemas com agilidade e eficiência, construindo um relacionamento duradouro e fiel com seu público.</p>
+                </div>
+                <div class="result-card">
+                    <h3>Dados Valiosos para o seu Negócio</h3>
+                    <p>Analise as conversas e identifique oportunidades para aprimorar seus produtos e serviços com base em dados reais.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
         <section id="planos" class="container">
-            <h1>Encontre o plano ideal para sua equipe!</h1>
+            <h2 class="section-title">Encontre o plano ideal para sua equipe!</h2>
             <p class="subtitle">
                 O Novo Chat oferece uma solução de chatbot completa e flexível para seu negócio. <br>
                 Escolha o plano que se encaixa no tamanho da sua equipe e comece a transformar seu atendimento.
@@ -292,7 +426,7 @@
             </div>
         </section>
 
-        ---
+        <hr>
 
         <section id="observacoes" class="container">
             <h2>Observações Importantes</h2>
@@ -306,7 +440,7 @@
             </div>
         </section>
 
-        ---
+        <hr>
 
         <section id="contato" class="container">
             <h2>Pronto para Começar?</h2>
@@ -320,8 +454,8 @@
     <footer>
         <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo MC infra TI" class="footer-logo">
         <div class="contact-info-footer">
-            <a href="mailto:andre.messias@myyahoo.com">📧 andre.messias@myyahoo.com</a> |
-            <a href="tel:+5514997135218">📞 (14) 99713-5218</a>
+            <a href="mailto:contato@mcinfrati.com.br">📧 Fale conosco</a> |
+            <a href="https://wa.me/5514997135218" target="_blank">📞 WhatsApp </a>
         </div>
         <p>&copy; 2025 NOVO CHAT by MC Infra TI | Todos os direitos reservados.</p>
     </footer>
