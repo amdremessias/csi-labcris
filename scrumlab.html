@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planka - Quadro Scrum e Gestão de Projetos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #075E54;
+            --dark-blue: #0A1C2E;
+            --white: #FFFFFF;
+            --light-gray: #F4F6F9;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Global Sections --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: var(--white);
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--primary-green);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 80px 20px;
+            background: linear-gradient(rgba(10, 28, 46, 0.8), rgba(10, 28, 46, 0.8)), url('https://images.unsplash.com/photo-1542435503-912f612803b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* --- Info Sections --- */
+        .info-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+        .info-card h3 {
+            font-size: 1.5em;
+            color: var(--dark-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 span {
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: var(--primary-green);
+        }
+        
+        .result-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .result-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .result-card h3 {
+            font-size: 1.5em;
+            color: var(--dark-blue);
+            margin-top: 0;
+        }
+        
+        /* --- Pricing Grid --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .price-card.highlight {
+            border: 3px solid var(--primary-green);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.3);
+        }
+        .price-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .plan-tag {
+            font-size: 1em;
+            color: var(--primary-green);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .price-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-green);
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .price-value span {
+            font-size: 0.5em;
+            font-weight: 400;
+            color: var(--text-dark);
+        }
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        .price-list li {
+            font-size: 1em;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-dark);
+        }
+        .price-list li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+        }
+        .price-value.consult {
+            font-size: 1.8em;
+        }
+
+        /* --- Call to Action Button --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: auto;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-blue);
+            text-align: center;
+            padding: 25px;
+            color: var(--white);
+            margin-top: 50px;
+        }
+        .footer-logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .contact-info-footer {
+            margin-bottom: 10px;
+        }
+        .contact-info-footer a {
+            color: var(--primary-green);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .contact-info-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            h2, .section-title { font-size: 1.8em; }
+            .subtitle { font-size: 1em; }
+            .info-card-grid, .result-card-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .price-card, .info-card { padding: 30px; }
+            .price-value { font-size: 2em; }
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">SCRUM COM PLANKA</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1 style="color: var(--primary-green);">Transforme a Gestão de Seus Projetos com o Quadro Scrum do Planka!</h1>
+            <p class="subtitle">Uma solução completa para organizar tarefas, otimizar fluxos de trabalho e impulsionar a colaboração da sua equipe.</p>
+        </section>
+
+        <section id="beneficios" class="container">
+            <h2 class="section-title">Quadro Scrum com Planka: Sua Gestão Ágil e Eficiente</h2>
+            <p>O **Planka** vai além da simplicidade e oferece uma plataforma robusta, pensada para organizar e otimizar a gestão de projetos da sua empresa, garantindo uma experiência de alta qualidade para sua equipe.</p>
+        </section>
+
+        <section id="recursos" class="container">
+            <h2 class="section-title">Recursos Essenciais para a Produtividade da sua Equipe</h2>
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>👁️</span> Visão Clara do Projeto</h3>
+                    <p>Mapeie o progresso do seu projeto visualmente, do início ao fim, usando quadros, listas e cartões que representam cada etapa do trabalho.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>⚙️</span> Fluxo de Trabalho Personalizável</h3>
+                    <p>Adapte o fluxo de trabalho para as necessidades específicas da sua equipe, criando colunas e listas que se encaixam perfeitamente nos seus processos.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>💬</span> Colaboração em Tempo Real</h3>
+                    <p>Comunique-se em tempo real, discuta tarefas, compartilhe ideias e mantenha todos os membros da equipe na mesma página, de forma síncrona.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📋</span> Quadros e Listas Ilimitadas</h3>
+                    <p>Crie e gerencie quantos quadros e listas precisar para organizar todos os projetos da sua empresa, sem limitações.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>✅</span> Gestão de Tarefas Eficiente</h3>
+                    <p>Atribua tarefas, defina prazos, adicione checklists e monitore o status de cada atividade para garantir a entrega no prazo.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📎</span> Integração de Anexos e Checklists</h3>
+                    <p>Adicione documentos, imagens e arquivos diretamente aos cartões e crie checklists para acompanhar o progresso de subtarefas.</p>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section class="container">
+            <h2 class="section-title">Resultados que a sua Equipe vai Alcançar</h2>
+            <div class="result-card-grid">
+                <div class="result-card">
+                    <h3>Aumento da Produtividade</h3>
+                    <p>Com um fluxo de trabalho claro e organizado, sua equipe se torna mais eficiente, focando no que realmente importa.</p>
+                </div>
+                <div class="result-card">
+                    <h3>Clareza e Organização Total</h3>
+                    <p>Acabe com o caos. Todos sabem o que fazer, quando fazer e qual o status de cada projeto, garantindo transparência.</p>
+                </div>
+                <div class="result-card">
+                    <h3>Foco e Priorização Otimizados</h3>
+                    <p>Priorize tarefas com agilidade e garanta que sua equipe esteja sempre trabalhando nas atividades mais importantes e urgentes.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="planos" class="container">
+            <h2 class="section-title">Encontre o plano ideal para sua equipe!</h2>
+            <p class="subtitle">
+                O Quadro Scrum com Planka oferece uma solução de gestão de projetos completa e flexível para seu negócio. <br>
+                Escolha o plano que se encaixa no tamanho da sua equipe e comece a otimizar sua produtividade.
+            </p>
+
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <div>
+                        <h3>Plano Básico</h3>
+                        <p class="plan-tag">Ideal para equipes pequenas</p>
+                        <p class="price-value">R$ 1.900,00 <span>(pagamento único)</span></p>
+                        <p>+ R$ 145,90/mês</p>
+                        <ul class="price-list">
+                            <li>Até 5 usuários</li>
+                            <li>Implantação completa inclusa</li>
+                            <li>Servidor local (self-hosted) ou na nuvem</li>
+                            <li>Suporte via chat (24h/mês)</li>
+                            <li>Backup semanal</li>
+                            <li>Quadro de Tarefas Básico</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Fale Conosco</a>
+                </article>
+
+                <article class="price-card highlight">
+                    <div>
+                        <h3>Plano Pro</h3>
+                        <p class="plan-tag">Solução completa para seu negócio</p>
+                        <p class="price-value">R$ 2.300,00 <span>(pagamento único)</span></p>
+                        <p>+ R$ 233,90/mês</p>
+                        <ul class="price-list">
+                            <li>Até 15 usuários</li>
+                            <li>Implantação e servidor inclusos</li>
+                            <li>Suporte via chat ilimitado</li>
+                            <li>Backups periódicos (diário e externo)</li>
+                            <li>Quadro de Tarefas Corporativo</li>
+                            <li>Monitoramento proativo 24/7</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Fale Conosco</a>
+                </article>
+
+                <article class="price-card">
+                    <div>
+                        <h3>Plano Enterprise</h3>
+                        <p class="plan-tag">Para grandes equipes e empresas</p>
+                        <p class="price-value consult">Consulte Valores</p>
+                        <p>+ Gestão personalizada</p>
+                        <ul class="price-list">
+                            <li>Usuários ilimitados</li>
+                            <li>Implantação e servidor dedicados</li>
+                            <li>Gestão completa de domínio e segurança</li>
+                            <li>Filtro de DNS e Cofre de Senhas Corporativo</li>
+                            <li>Treinamento avançado para equipes</li>
+                            <li>Suporte prioritário e consultoria estratégica</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Fale Conosco</a>
+                </article>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="observacoes" class="container">
+            <h2>Observações Importantes</h2>
+            <div class="contact-info">
+                <p>
+                    <small>
+                        Os valores de implantação e hospedagem (se aplicável) são cobrados em uma única vez. A partir do segundo mês, cobra-se apenas o valor da gestão mensal. <br><br>
+                        Este documento é apenas uma forma objetiva e prática de apresentar os planos e não tem validade de contrato.
+                    </small>
+                </p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="contato" class="container">
+            <h2>Pronto para Começar?</h2>
+            <p class="subtitle">Entre em contato para tirar suas dúvidas e iniciar a transformação digital da sua gestão de projetos.</p>
+            <a href="contact.html" target="_blank" class="cta-button">
+                Fale Conosco
+            </a>
+            <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">
+                Chame no WhatsApp 📞
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo MC infra TI" class="footer-logo">
+        <div class="contact-info-footer">
+               <a href="contact.html" class="button">Fale Conosco</a>
+        </div>
+        <p>&copy; 2025 Planka by MC Infra TI | Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
