@@ -24,7 +24,7 @@
             background-size: cover;
             background-attachment: fixed;
             background-position: center center;
-            color: var(--text-dark);
+            color: var(--text-dark); /* Padrão, mas será sobrescrito em containers e cards */
             line-height: 1.6;
             scroll-behavior: smooth;
         }
@@ -35,19 +35,18 @@
             margin: 40px auto;
             padding: 20px;
             text-align: center;
-            /* Fundo escuro semi-transparente para o container */
-            background-color: rgba(10, 28, 46, 0.85); /* Fundo quase sólido */
+            background-color: rgba(10, 28, 46, 0.85); /* Fundo escuro semi-transparente */
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            color: var(--white); /* Texto branco para alto contraste */
+            color: var(--white); /* Texto branco para alto contraste no container */
         }
         
         .section-title {
             font-size: 2.2em;
-            color: var(--primary-blue); /* Título em azul para destaque */
+            color: var(--primary-blue);
             margin-top: 40px;
             margin-bottom: 20px;
-            text-shadow: none; /* Não precisa mais de sombra */
+            text-shadow: none;
         }
 
         /* --- Header --- */
@@ -115,6 +114,7 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
             text-align: left;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: var(--text-dark); /* Texto escuro para os cards de informação */
         }
         .info-card:hover {
             transform: translateY(-5px);
@@ -146,6 +146,7 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
+            color: var(--text-dark); /* Texto escuro para os cards de resultado */
         }
         .result-card:hover {
             transform: translateY(-5px);
@@ -174,6 +175,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            color: var(--text-dark); /* Texto escuro para os cards de preço */
         }
         .price-card:hover {
             transform: translateY(-10px);
@@ -207,7 +209,7 @@
         .price-value span {
             font-size: 0.5em;
             font-weight: 400;
-            color: var(--text-dark);
+            color: var(--text-dark); /* Manter o "mês" escuro */
         }
         .price-list {
             list-style: none;
@@ -220,7 +222,7 @@
             margin-bottom: 15px;
             position: relative;
             padding-left: 25px;
-            color: var(--text-dark);
+            color: var(--text-dark); /* Texto escuro para os itens da lista */
         }
         .price-list li::before {
             content: '✓';
@@ -253,9 +255,10 @@
             transform: translateY(-3px);
         }
         
-        /* Ajuste da cor do texto dentro do container */
-        .container p, .container small {
-            color: var(--white);
+        /* O container já tem color: var(--white); */
+        /* Ajuste para que o texto dentro do contact-info continue legível */
+        .contact-info small {
+            color: var(--white); /* Manter o small branco */
         }
 
         /* --- Footer --- */
@@ -349,7 +352,7 @@
                 </div>
                 <div class="info-card">
                     <h3><span>📱</span> Acesso Multiplataforma</h3>
-                    <p>Assista em qualquer lugar. Seu servidor pode ser acessado em TVs, smartphones, tablets e computadores, permitindo que você leve seu entretenimento com você, onde quer que esteja.</p>
+                    <p>Assista em qualquer lugar. Seu servidor pode ser acessado em TVs, smartphones, tablets e computadores, permitindo que você leve seu entretenimento com você, onde quer que esteja em Ourinhos, Estado de São Paulo, Brasil.</p>
                 </div>
             </div>
         </section>
