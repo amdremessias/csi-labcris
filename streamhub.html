@@ -20,7 +20,11 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-gray);
+            /* Imagem de fundo para a página inteira */
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/pluto-1024x576-2047305235.jpg');
+            background-size: cover; /* Ajusta a imagem para cobrir toda a área */
+            background-attachment: fixed; /* Mantém a imagem fixa ao rolar */
+            background-position: center center; /* Centraliza a imagem */
             color: var(--text-dark);
             line-height: 1.6;
             scroll-behavior: smooth;
@@ -100,7 +104,7 @@
             margin-top: 30px;
         }
         .info-card {
-            background-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.85); /* Transparência adicionada */
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
@@ -132,7 +136,7 @@
             text-align: center;
         }
         .result-card {
-            background-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.85); /* Transparência adicionada */
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
@@ -155,7 +159,7 @@
             margin-top: 30px;
         }
         .price-card {
-            background-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.85); /* Transparência adicionada */
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -288,7 +292,7 @@
 
     <header>
         <nav>
-            <div class="logo">StreamHub</div>
+            <div class="logo">🎬 StreamHub</div>
             <ul>
                 <li><a href="#hero">Início</a></li>
                 <li><a href="#beneficios">Benefícios</a></li>
