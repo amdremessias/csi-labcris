@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamHub - Seu Servidor de Streaming Pessoal</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --dark-blue: #0A1C2E;
+            --white: #FFFFFF;
+            --light-gray: #F4F6F9;
+            --text-dark: #333333;
+            --secondary-color: #6c757d;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Global Sections --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: var(--white);
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 80px 20px;
+            background: linear-gradient(rgba(10, 28, 46, 0.8), rgba(10, 28, 46, 0.8)), url('https://images.unsplash.com/photo-1579225725209-6fe33857d425?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* --- Info Sections --- */
+        .info-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+        .info-card h3 {
+            font-size: 1.5em;
+            color: var(--dark-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 span {
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+
+        .result-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .result-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+        .result-card h3 {
+            font-size: 1.5em;
+            color: var(--dark-blue);
+            margin-top: 0;
+        }
+
+        /* --- Pricing Grid --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .price-card.highlight {
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 15px 35px rgba(0, 123, 255, 0.3);
+        }
+        .price-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .plan-tag {
+            font-size: 1em;
+            color: var(--primary-blue);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .price-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .price-value span {
+            font-size: 0.5em;
+            font-weight: 400;
+            color: var(--text-dark);
+        }
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        .price-list li {
+            font-size: 1em;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-dark);
+        }
+        .price-list li::before {
+            content: '✓';
+            color: var(--primary-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+        }
+        .price-value.consult {
+            font-size: 1.8em;
+        }
+
+        /* --- Call to Action Button --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: auto;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-blue);
+            text-align: center;
+            padding: 25px;
+            color: var(--white);
+            margin-top: 50px;
+        }
+        .footer-logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .contact-info-footer {
+            margin-bottom: 10px;
+        }
+        .contact-info-footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .contact-info-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            h2, .section-title { font-size: 1.8em; }
+            .subtitle { font-size: 1em; }
+            .info-card-grid, .result-card-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .price-card, .info-card { padding: 30px; }
+            .price-value { font-size: 2em; }
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">StreamHub</div>
+            <ul>
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#conteudo">Conteúdo</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <h1 style="color: var(--primary-blue);">Seu Universo de Entretenimento, do Seu Jeito.</h1>
+            <p class="subtitle">Descubra um servidor de streaming personalizado com um catálogo infinito de filmes, séries e animes.</p>
+        </section>
+
+        <section id="beneficios" class="container">
+            <h2 class="section-title">A liberdade de assistir o que quiser, quando quiser.</h2>
+            <p>StreamHub é a sua solução completa para um streaming sob medida. Esqueça as plataformas genéricas e mergulhe em uma experiência de vídeo sob demanda, onde você controla o que assiste e a qualidade que deseja.</p>
+        </section>
+
+        <section id="conteudo" class="container">
+            <h2 class="section-title">Conteúdo ilimitado, personalizado para você.</h2>
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>🎬</span> Filmes e Séries Clássicas</h3>
+                    <p>Reviva a nostalgia com uma biblioteca robusta de clássicos do cinema e da TV, sempre disponíveis para uma maratona. Você nunca mais vai ter que procurar por aquele filme antigo que ama.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🚀</span> Lançamentos Exclusivos</h3>
+                    <p>Mantenha-se atualizado com os filmes e séries mais recentes, adicionados à sua biblioteca assim que você solicita. Acompanhe os lançamentos mais esperados em alta definição.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>✨</span> Animes e Culturas</h3>
+                    <p>Explore o mundo da animação japonesa com um acervo que inclui desde os animes mais aclamados até as novidades mais quentes da temporada, tudo com legendas e dublagem de alta qualidade.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📦</span> Vídeo Sob Demanda</h3>
+                    <p>Não há necessidade de ter todo o conteúdo baixado. Nós otimizamos o armazenamento para você: o vídeo é baixado apenas no momento da sua solicitação, garantindo velocidade e eficiência.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📺</span> Qualidade de Imagem Superior</h3>
+                    <p>Desfrute de uma experiência visual incrível. Todos os vídeos são otimizados para a melhor qualidade de imagem possível, com opções de 4K, HDR e mais, para você ver cada detalhe.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📱</span> Acesso Multiplataforma</h3>
+                    <p>Assista em qualquer lugar. Seu servidor pode ser acessado em TVs, smartphones, tablets e computadores, permitindo que você leve seu entretenimento com você, onde quer que esteja.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="planos" class="container">
+            <h2 class="section-title">Encontre o seu plano ideal!</h2>
+            <p class="subtitle">
+                Escolha o plano que mais combina com suas necessidades e comece a construir seu universo de entretenimento pessoal.<br>
+                Todos os planos incluem a configuração completa do seu servidor e suporte técnico especializado.
+            </p>
+
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <div>
+                        <h3>Plano Família</h3>
+                        <p class="plan-tag">Ideal para uso pessoal</p>
+                        <p class="price-value">R$ 55,00<span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Até 4 usuários</li>
+                            <li>Catálogo sob demanda</li>
+                            <li>Suporte básico via chat</li>
+                            <li>Até 250 GB de armazenamento</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Começar</a>
+                </article>
+
+                <article class="price-card highlight">
+                    <div>
+                        <h3>Plano Premium</h3>
+                        <p class="plan-tag">Para entusiastas e grandes famílias</p>
+                        <p class="price-value">R$ 89,00<span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Até 8 usuários</li>
+                            <li>Catálogo sob demanda ilimitado</li>
+                            <li>Suporte prioritário via chat</li>
+                            <li>Até 500 GB de armazenamento</li>
+                            <li>Backup de dados semanal</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Quero este!</a>
+                </article>
+
+                <article class="price-card">
+                    <div>
+                        <h3>Plano Exclusivo</h3>
+                        <p class="plan-tag">Solução personalizada para você</p>
+                        <p class="price-value consult">Consulte Valores</p>
+                        <ul class="price-list">
+                            <li>Usuários e armazenamento ilimitados</li>
+                            <li>Conteúdo e recursos sob medida</li>
+                            <li>Servidor e IP dedicados</li>
+                            <li>Suporte técnico 24/7</li>
+                            <li>Consultoria de acervo</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Fale Conosco</a>
+                </article>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="observacoes" class="container">
+            <h2>Observações Importantes</h2>
+            <div class="contact-info">
+                <p>
+                    <small>
+                        A configuração inicial e o serviço de streaming são cobrados mensalmente. A capacidade de armazenamento é referente ao espaço disponível para os vídeos baixados.
+                        <br><br>
+                        Este documento é apenas uma forma objetiva e prática de apresentar os planos e não tem validade de contrato.
+                    </small>
+                </p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="contato" class="container">
+            <h2>Pronto para Começar?</h2>
+            <p class="subtitle">Entre em contato para tirar suas dúvidas e criar seu universo de streaming pessoal hoje mesmo!</p>
+            <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">
+                Chame no WhatsApp 📞
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contact-info-footer">
+            <a href="https://wa.me/5514997135218" target="_blank">Fale Conosco</a>
+        </div>
+        <p>&copy; 2025 StreamHub. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
