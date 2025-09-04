@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskZ - Plataforma CRM e Automação de Atendimento</title>
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-        <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Estilo para garantir a proporção do vídeo */
+        /* Estilo para garantir a proporção de 16:9 para o vídeo */
         .video-container {
             position: relative;
             width: 100%;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
+            overflow: hidden; /* Garante que as bordas arredondadas funcionem */
         }
         .video-container iframe {
             position: absolute;
@@ -29,13 +30,14 @@
 </head>
 <body class="bg-gray-950 text-gray-300">
 
-        <header class="bg-gray-900 shadow-lg py-4">
+    <header class="bg-gray-900 shadow-lg py-4">
         <div class="container mx-auto flex justify-between items-center px-4">
             <div class="text-3xl font-extrabold text-indigo-500">TaskZ</div>
             <nav>
                 <ul class="flex space-x-6 text-lg">
                     <li><a href="index.html" class="hover:text-indigo-400 transition-colors">Home</a></li>
                     <li><a href="#solucoes" class="hover:text-indigo-400 transition-colors">Soluções</a></li>
+                    <li><a href="#video" class="hover:text-indigo-400 transition-colors">Vídeo</a></li>
                     <li><a href="#planos" class="hover:text-indigo-400 transition-colors">Planos</a></li>
                     <li><a href="#contato" class="hover:text-indigo-400 transition-colors">Contato</a></li>
                 </ul>
@@ -44,7 +46,7 @@
     </header>
 
     <main>
-                <section class="relative h-[600px] flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542435503-912f612803b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <section class="relative h-[600px] flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542435503-912f612803b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
             <div class="absolute inset-0 bg-black opacity-70"></div>
             <div class="relative z-10 px-4">
                 <h1 class="text-6xl font-black text-white leading-tight mb-4">Centralize. Otimize. Atenda.</h1>
@@ -57,13 +59,13 @@
             </div>
         </section>
 
-                <section id="solucoes" class="py-20 bg-gray-950">
+        <section id="solucoes" class="py-20 bg-gray-950">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Soluções para Atendimento de Alta Performance</h2>
                 <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-12">
                     Nossa plataforma foi projetada para revolucionar o seu relacionamento com o cliente, oferecendo ferramentas de centralização e automação.
                 </p>
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-3 gap-8 justify-center">
                     <div class="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800 transform transition-transform hover:scale-105 duration-300">
                         <span class="text-4xl text-indigo-400 mb-4 inline-block">📋</span>
                         <h3 class="text-2xl font-bold text-white mb-2">Gestão Centralizada de Atendimentos</h3>
@@ -83,24 +85,24 @@
             </div>
         </section>
 
-                <section id="video" class="py-20 bg-gray-900">
+        <section id="video" class="py-20 bg-gray-900">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-5xl font-extrabold text-indigo-400 mb-8">Demonstração da Plataforma</h2>
-                <div class="max-w-4xl mx-auto video-container rounded-lg shadow-xl overflow-hidden">
+                <div class="max-w-6xl mx-auto video-container rounded-lg shadow-xl">
                     <iframe src="https://www.youtube.com/embed/7n93AoSME9s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
         
-                <section id="planos" class="py-20 bg-gray-900">
+        <section id="planos" class="py-20 bg-gray-900">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Planos para o Seu Crescimento</h2>
                 <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-12">
                     Encontre a solução perfeita para o volume de atendimentos e o tamanho da sua equipe.
                 </p>
-                <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <div class="grid md:grid-cols-3 gap-8 items-stretch justify-center">
 
-                                        <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
+                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
                         <div>
                             <h3 class="text-3xl font-bold text-white mb-2">Plano Essencial</h3>
                             <p class="text-sm text-gray-400 mb-4">Perfeito para pequenas equipes que buscam centralização.</p>
@@ -120,7 +122,7 @@
                         </a>
                     </article>
 
-                                        <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
+                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
                         <div>
                             <h3 class="text-3xl font-bold text-white mb-2">Plano Pro</h3>
                             <p class="text-sm text-indigo-400 mb-4">Solução completa para seu negócio.</p>
@@ -140,7 +142,7 @@
                         </a>
                     </article>
 
-                                        <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
+                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
                         <div>
                             <h3 class="text-3xl font-bold text-white mb-2">Plano Enterprise</h3>
                             <p class="text-sm text-gray-400 mb-4">Para grandes equipes e empresas.</p>
@@ -150,6 +152,7 @@
                                 <li>✅ Usuários ilimitados</li>
                                 <li>✅ Implantação e servidor dedicados</li>
                                 <li>✅ Gestão completa de domínio e segurança</li>
+                                <li>✅ Filtro de DNS e Cofre de Senhas Corporativo</li>
                                 <li>✅ Treinamento avançado para equipes</li>
                                 <li>✅ Suporte prioritário e consultoria estratégica</li>
                             </ul>
@@ -162,7 +165,7 @@
             </div>
         </section>
 
-                <section id="contato" class="py-20 bg-gray-950">
+        <section id="contato" class="py-20 bg-gray-950">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Pronto para Transformar seu Atendimento?</h2>
                 <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
@@ -177,7 +180,7 @@
         </section>
     </main>
 
-        <footer class="bg-gray-900 py-8 text-center text-gray-500 text-sm">
+    <footer class="bg-gray-900 py-8 text-center text-gray-500 text-sm">
         <p>&copy; 2025 TaskZ - CRM e Automação de Atendimento | Todos os direitos reservados.</p>
     </footer>
 
