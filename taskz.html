@@ -11,6 +11,20 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        /* Estilo para garantir a proporção do vídeo */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body class="bg-gray-950 text-gray-300">
@@ -72,8 +86,8 @@
                 <section id="video" class="py-20 bg-gray-900">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-5xl font-extrabold text-indigo-400 mb-8">Demonstração da Plataforma</h2>
-                <div class="aspect-w-16 aspect-h-9 max-w-4xl mx-auto">
-                    <iframe class="w-full h-full rounded-lg shadow-xl" src="https://www.youtube.com/embed/7n93AoSME9s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="max-w-4xl mx-auto video-container rounded-lg shadow-xl overflow-hidden">
+                    <iframe src="https://www.youtube.com/embed/7n93AoSME9s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
@@ -136,7 +150,6 @@
                                 <li>✅ Usuários ilimitados</li>
                                 <li>✅ Implantação e servidor dedicados</li>
                                 <li>✅ Gestão completa de domínio e segurança</li>
-                                <li>✅ Filtro de DNS e Cofre de Senhas Corporativo</li>
                                 <li>✅ Treinamento avançado para equipes</li>
                                 <li>✅ Suporte prioritário e consultoria estratégica</li>
                             </ul>
