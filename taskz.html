@@ -1,188 +1,172 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskZ - Plataforma CRM e Automação de Atendimento</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Estilo para garantir a proporção de 16:9 para o vídeo */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden; /* Garante que as bordas arredondadas funcionem */
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskZ - Plataforma CRM e Automação de Atendimento</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 <body class="bg-gray-950 text-gray-300">
 
-    <header class="bg-gray-900 shadow-lg py-4">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <div class="text-3xl font-extrabold text-indigo-500">TaskZ</div>
-            <nav>
-                <ul class="flex space-x-6 text-lg">
-                    <li><a href="index.html" class="hover:text-indigo-400 transition-colors">Home</a></li>
-                    <li><a href="#solucoes" class="hover:text-indigo-400 transition-colors">Soluções</a></li>
-                    <li><a href="#video" class="hover:text-indigo-400 transition-colors">Vídeo</a></li>
-                    <li><a href="#planos" class="hover:text-indigo-400 transition-colors">Planos</a></li>
-                    <li><a href="#contato" class="hover:text-indigo-400 transition-colors">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Header -->
+    <header class="bg-gray-900 shadow-lg py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="text-3xl font-extrabold text-indigo-500">TaskZ</div>
+            <nav>
+                <ul class="flex space-x-6 text-lg">
+                    <li><a href="index.html" class="hover:text-indigo-400 transition-colors">Home</a></li>
+                    <li><a href="#solucoes" class="hover:text-indigo-400 transition-colors">Soluções</a></li>
+                    <li><a href="#planos" class="hover:text-indigo-400 transition-colors">Planos</a></li>
+                    <li><a href="#contato" class="hover:text-indigo-400 transition-colors">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <main>
-        <section class="relative h-[600px] flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542435503-912f612803b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-            <div class="absolute inset-0 bg-black opacity-70"></div>
-            <div class="relative z-10 px-4">
-                <h1 class="text-6xl font-black text-white leading-tight mb-4">Centralize. Otimize. Atenda.</h1>
-                <p class="text-2xl font-light text-gray-300 max-w-2xl mx-auto mb-8">
-                    Gerencie todas as interações com seus clientes em uma única plataforma, integrando o poder do WhatsApp e inteligência artificial para um atendimento excepcional.
-                </p>
-                <a href="#planos" class="bg-indigo-600 hover:bg-indigo-700 transition-colors text-white text-xl font-semibold py-4 px-10 rounded-full shadow-lg transform hover:scale-105 duration-300">
-                    Comece Agora
-                </a>
-            </div>
-        </section>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-[600px] flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542435503-912f612803b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+            <div class="absolute inset-0 bg-black opacity-70"></div>
+            <div class="relative z-10 px-4">
+                <h1 class="text-6xl font-black text-white leading-tight mb-4">Centralize. Otimize. Atenda.</h1>
+                <p class="text-2xl font-light text-gray-300 max-w-2xl mx-auto mb-8">
+                    Gerencie todas as interações com seus clientes em uma única plataforma, integrando o poder do WhatsApp e inteligência artificial para um atendimento excepcional.
+                </p>
+                <a href="#planos" class="bg-indigo-600 hover:bg-indigo-700 transition-colors text-white text-xl font-semibold py-4 px-10 rounded-full shadow-lg transform hover:scale-105 duration-300">
+                    Comece Agora
+                </a>
+            </div>
+        </section>
 
-        <section id="solucoes" class="py-20 bg-gray-950">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Soluções para Atendimento de Alta Performance</h2>
-                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-12">
-                    Nossa plataforma foi projetada para revolucionar o seu relacionamento com o cliente, oferecendo ferramentas de centralização e automação.
-                </p>
-                <div class="grid md:grid-cols-3 gap-8 justify-center">
-                    <div class="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800 transform transition-transform hover:scale-105 duration-300">
-                        <span class="text-4xl text-indigo-400 mb-4 inline-block">📋</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Gestão Centralizada de Atendimentos</h3>
-                        <p class="text-gray-400">Receba e gerencie todas as conversas do WhatsApp em um único painel, distribuindo e acompanhando atendimentos com total controle.</p>
-                    </div>
-                    <div class="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800 transform transition-transform hover:scale-105 duration-300">
-                        <span class="text-4xl text-indigo-400 mb-4 inline-block">🚀</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Relatórios Avançados</h3>
-                        <p class="text-gray-400">Analise o desempenho da sua equipe com relatórios detalhados, identifique gargalos e otimize o fluxo de atendimento.</p>
-                    </div>
-                    <div class="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800 transform transition-transform hover:scale-105 duration-300">
-                        <span class="text-4xl text-indigo-400 mb-4 inline-block">🤖</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Integração com IA e Chatbots</h3>
-                        <p class="text-gray-400">Automatize o primeiro contato e as perguntas frequentes com a ajuda de robôs de atendimento inteligentes, liberando sua equipe para focar em casos mais complexos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Solutions Section -->
+        <section id="solucoes" class="py-20 bg-gray-950">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Soluções para Atendimento de Alta Performance</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-12">
+                    Nossa plataforma foi projetada para revolucionar o seu relacionamento com o cliente, oferecendo ferramentas de centralização e automação.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800 transform transition-transform hover:scale-105 duration-300">
+                        <span class="text-4xl text-indigo-400 mb-4 inline-block">📋</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Gestão Centralizada de Atendimentos</h3>
+                        <p class="text-gray-400">Receba e gerencie todas as conversas do WhatsApp em um único painel, distribuindo e acompanhando atendimentos com total controle.</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800 transform transition-transform hover:scale-105 duration-300">
+                        <span class="text-4xl text-indigo-400 mb-4 inline-block">🚀</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Relatórios Avançados</h3>
+                        <p class="text-gray-400">Analise o desempenho da sua equipe com relatórios detalhados, identifique gargalos e otimize o fluxo de atendimento.</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800 transform transition-transform hover:scale-105 duration-300">
+                        <span class="text-4xl text-indigo-400 mb-4 inline-block">🤖</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Integração com IA e Chatbots</h3>
+                        <p class="text-gray-400">Automatize o primeiro contato e as perguntas frequentes com a ajuda de robôs de atendimento inteligentes, liberando sua equipe para focar em casos mais complexos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="video" class="py-20 bg-gray-900">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-5xl font-extrabold text-indigo-400 mb-8">Demonstração da Plataforma</h2>
-                <div class="max-w-6xl mx-auto video-container rounded-lg shadow-xl">
-                    <iframe src="https://www.youtube.com/embed/7n93AoSME9s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-        
-        <section id="planos" class="py-20 bg-gray-900">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Planos para o Seu Crescimento</h2>
-                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-12">
-                    Encontre a solução perfeita para o volume de atendimentos e o tamanho da sua equipe.
-                </p>
-                <div class="grid md:grid-cols-3 gap-8 items-stretch justify-center">
+        <!-- Pricing Section -->
+        <section id="planos" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Planos para o Seu Crescimento</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-12">
+                    Encontre a solução perfeita para o volume de atendimentos e o tamanho da sua equipe.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 items-stretch">
 
-                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-3xl font-bold text-white mb-2">Plano Essencial</h3>
-                            <p class="text-sm text-gray-400 mb-4">Perfeito para pequenas equipes que buscam centralização.</p>
-                            <p class="text-5xl font-extrabold text-white">R$ 1.900,00<span class="text-xl font-normal text-gray-500 ml-2"> (pagamento único)</span></p>
-                            <p class="text-lg text-gray-400 mt-2">+ R$ 145,90/mês</p>
-                            <ul class="text-left list-none mt-6 space-y-3 text-gray-400">
-                                <li>✅ 5 usuários</li>
-                                <li>✅ 1 projeto</li>
-                                <li>✅ Acompanhamento de tarefas</li>
-                                <li>❌ Relatórios avançados</li>
-                                <li>❌ Suporte via chat</li>
-                                <li>❌ Backup</li>
-                            </ul>
-                        </div>
-                        <a href="https://wa.me/5514997135218" target="_blank" class="block w-full text-center bg-gray-800 hover:bg-gray-700 transition-colors text-white py-3 rounded-lg mt-8 font-semibold">
-                            Fale Conosco
-                        </a>
-                    </article>
+                    <!-- Free Plan Card -->
+                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-3xl font-bold text-white mb-2">Plano Essencial</h3>
+                            <p class="text-sm text-gray-400 mb-4">Perfeito para pequenas equipes que buscam centralização.</p>
+                            <p class="text-5xl font-extrabold text-white">R$ 1.900,00<span class="text-xl font-normal text-gray-500 ml-2"> (pagamento único)</span></p>
+                            <p class="text-lg text-gray-400 mt-2">+ R$ 145,90/mês</p>
+                            <ul class="text-left list-none mt-6 space-y-3 text-gray-400">
+                                <li>✅ 5 usuários</li>
+                                <li>✅ 1 projeto</li>
+                                <li>✅ Acompanhamento de tarefas</li>
+                                <li>❌ Relatórios avançados</li>
+                                <li>❌ Suporte via chat</li>
+                                <li>❌ Backup</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/5514997135218" target="_blank" class="block w-full text-center bg-gray-800 hover:bg-gray-700 transition-colors text-white py-3 rounded-lg mt-8 font-semibold">
+                            Fale Conosco
+                        </a>
+                    </article>
 
-                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-3xl font-bold text-white mb-2">Plano Pro</h3>
-                            <p class="text-sm text-indigo-400 mb-4">Solução completa para seu negócio.</p>
-                            <p class="text-5xl font-extrabold text-white">R$ 2.300,00<span class="text-xl font-normal text-gray-500 ml-2"> (pagamento único)</span></p>
-                            <p class="text-lg text-gray-400 mt-2">+ R$ 233,90/mês</p>
-                            <ul class="text-left list-none mt-6 space-y-3 text-gray-400">
-                                <li>✅ Até 15 usuários</li>
-                                <li>✅ Implantação e servidor inclusos</li>
-                                <li>✅ Suporte via chat ilimitado</li>
-                                <li>✅ Backups periódicos (diário e externo)</li>
-                                <li>✅ Quadro de Tarefas Corporativo</li>
-                                <li>✅ Monitoramento proativo 24/7</li>
-                            </ul>
-                        </div>
-                        <a href="https://wa.me/5514997135218" target="_blank" class="block w-full text-center bg-indigo-600 hover:bg-indigo-700 transition-colors text-white py-3 rounded-lg mt-8 font-semibold">
-                            Fale Conosco
-                        </a>
-                    </article>
+                    <!-- Pro Plan Card -->
+                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-3xl font-bold text-white mb-2">Plano Pro</h3>
+                            <p class="text-sm text-indigo-400 mb-4">Solução completa para seu negócio.</p>
+                            <p class="text-5xl font-extrabold text-white">R$ 2.300,00<span class="text-xl font-normal text-gray-500 ml-2"> (pagamento único)</span></p>
+                            <p class="text-lg text-gray-400 mt-2">+ R$ 233,90/mês</p>
+                            <ul class="text-left list-none mt-6 space-y-3 text-gray-400">
+                                <li>✅ Até 15 usuários</li>
+                                <li>✅ Implantação e servidor inclusos</li>
+                                <li>✅ Suporte via chat ilimitado</li>
+                                <li>✅ Backups periódicos (diário e externo)</li>
+                                <li>✅ Quadro de Tarefas Corporativo</li>
+                                <li>✅ Monitoramento proativo 24/7</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/5514997135218" target="_blank" class="block w-full text-center bg-indigo-600 hover:bg-indigo-700 transition-colors text-white py-3 rounded-lg mt-8 font-semibold">
+                            Fale Conosco
+                        </a>
+                    </article>
 
-                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-3xl font-bold text-white mb-2">Plano Enterprise</h3>
-                            <p class="text-sm text-gray-400 mb-4">Para grandes equipes e empresas.</p>
-                            <p class="text-5xl font-extrabold text-white">Consulte Valores</p>
-                            <p class="text-lg text-gray-400 mt-2">+ Gestão personalizada</p>
-                            <ul class="text-left list-none mt-6 space-y-3 text-gray-400">
-                                <li>✅ Usuários ilimitados</li>
-                                <li>✅ Implantação e servidor dedicados</li>
-                                <li>✅ Gestão completa de domínio e segurança</li>
-                                <li>✅ Filtro de DNS e Cofre de Senhas Corporativo</li>
-                                <li>✅ Treinamento avançado para equipes</li>
-                                <li>✅ Suporte prioritário e consultoria estratégica</li>
-                            </ul>
-                        </div>
-                        <a href="https://wa.me/5514997135218" target="_blank" class="block w-full text-center bg-gray-800 hover:bg-gray-700 transition-colors text-white py-3 rounded-lg mt-8 font-semibold">
-                            Fale Conosco
-                        </a>
-                    </article>
-                </div>
-            </div>
-        </section>
+                    <!-- Enterprise Plan Card -->
+                    <article class="bg-gray-950 p-8 rounded-3xl shadow-2xl border-2 border-transparent hover:border-indigo-600 transition-colors duration-300 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-3xl font-bold text-white mb-2">Plano Enterprise</h3>
+                            <p class="text-sm text-gray-400 mb-4">Para grandes equipes e empresas.</p>
+                            <p class="text-5xl font-extrabold text-white">Consulte Valores</p>
+                            <p class="text-lg text-gray-400 mt-2">+ Gestão personalizada</p>
+                            <ul class="text-left list-none mt-6 space-y-3 text-gray-400">
+                                <li>✅ Usuários ilimitados</li>
+                                <li>✅ Implantação e servidor dedicados</li>
+                                <li>✅ Gestão completa de domínio e segurança</li>
+                                <li>✅ Treinamento avançado para equipes</li>
+                                <li>✅ Suporte prioritário e consultoria estratégica</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/5514997135218" target="_blank" class="block w-full text-center bg-gray-800 hover:bg-gray-700 transition-colors text-white py-3 rounded-lg mt-8 font-semibold">
+                            Fale Conosco
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-        <section id="contato" class="py-20 bg-gray-950">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Pronto para Transformar seu Atendimento?</h2>
-                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
-                    Fale com um de nossos especialistas e descubra como o TaskZ pode revolucionar a forma como você se conecta com seus clientes.
-                </p>
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
-                    <a href="contact.html" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 transition-colors text-white font-semibold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 duration-300">
-                        Entre em Contato 🚀
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+        <!-- Call to Action & Contact Section -->
+        <section id="contato" class="py-20 bg-gray-950">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-5xl font-extrabold text-indigo-400 mb-4">Pronto para Transformar seu Atendimento?</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
+                    Fale com um de nossos especialistas e descubra como o TaskZ pode revolucionar a forma como você se conecta com seus clientes.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <a href="contact.html" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 transition-colors text-white font-semibold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 duration-300">
+                        Entre em Contato 🚀
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <footer class="bg-gray-900 py-8 text-center text-gray-500 text-sm">
-        <p>&copy; 2025 TaskZ - CRM e Automação de Atendimento | Todos os direitos reservados.</p>
-    </footer>
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2025 TaskZ - CRM e Automação de Atendimento | Todos os direitos reservados.</p>
+    </footer>
 
 </body>
 </html>
