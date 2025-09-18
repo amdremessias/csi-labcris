@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proteja sua navegação com o NetFilter. Bloqueie links maliciosos, anúncios, rastreadores, vírus e malwares de forma inteligente.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <title>NetFilter - Proteção Inteligente MC Infra TI</title>
+    <style>
+        /* Estilos gerais - Adaptados do seu index.html */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/netfilter-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            text-align: center;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #FF6347; /* Laranja para o logo */
+            margin-bottom: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        header nav ul li a:hover {
+            color: #FF6347;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(255, 99, 71, 0.3);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #hero h2 {
+            font-size: 3.2em;
+            margin-bottom: 20px;
+            color: #FF6347;
+            text-shadow: 0 0 15px rgba(255, 99, 71, 0.7);
+        }
+
+        #hero p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #FFE4B5; /* Cor mais clara para o texto */
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #DC143C;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 2px solid #DC143C;
+        }
+
+        .button:hover {
+            background-color: #B22222;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .button.secondary-button {
+            background-color: #4682B4; /* Azul mais neutro */
+            border-color: #4682B4;
+        }
+
+        .button.secondary-button:hover {
+            background-color: #4169E1;
+        }
+        
+        /* Seções de conteúdo */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #fff;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #FF6347;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #DC143C;
+            border-radius: 2px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            color: #FFE4B5;
+        }
+
+        /* Estilos específicos para a página do NetFilter */
+
+        #problem-solution ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        #problem-solution ul li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #FFE4B5;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        #problem-solution ul li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+            color: #FF6347;
+            font-size: 0.9em;
+            top: 2px;
+        }
+
+        #problem-solution .solution-text {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #DC143C;
+            margin-top: 30px;
+        }
+
+        #features .feature-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        #features .feature-item {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            width: 30%;
+            min-width: 280px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #FFE4B5;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        #features .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        #features .feature-item:nth-child(2) { animation-delay: 0.2s; }
+        #features .feature-item:nth-child(3) { animation-delay: 0.3s; }
+        #features .feature-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #features .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        #features .feature-item .feature-icon {
+            font-size: 2.5em;
+            color: #FF6347;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #features .feature-item h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #DC143C;
+        }
+
+        #features .feature-item p {
+            font-size: 1em;
+            color: #FFE4B5;
+            margin-bottom: 0;
+            text-align: left;
+        }
+
+        #plans {
+            background-color: rgba(255, 232, 232, 0.15);
+        }
+
+        .plan-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .plan-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #FFE4B5;
+            animation: zoomIn 0.6s ease-out forwards;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .plan-card:nth-child(1) { animation-delay: 0.1s; }
+        .plan-card:nth-child(2) { animation-delay: 0.2s; }
+        .plan-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .plan-card h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #DC143C;
+        }
+
+        .plan-card .price {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #FF6347;
+            margin-bottom: 20px;
+        }
+
+        .plan-card .price span {
+            font-size: 0.6em;
+            vertical-align: super;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .plan-card ul li {
+            margin-bottom: 10px;
+            color: #FFE4B5;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .plan-card ul li::before {
+            content: '🛡️';
+            position: absolute;
+            left: 0;
+            color: #FF6347;
+            font-size: 0.9em;
+            top: 2px;
+        }
+
+        .plan-card .button {
+            width: 100%;
+            margin-top: auto;
+            box-sizing: border-box;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 20px;
+            color: #FF6347;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .footer-logo {
+            display: block;
+            margin: 0 auto 15px auto;
+            max-width: 150px;
+            height: auto;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer ul li {
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #FF6347;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            header nav ul li {
+                margin: 5px 0;
+            }
+
+            header .logo {
+                margin-bottom: 10px;
+            }
+
+            #hero {
+                padding: 80px 15px;
+            }
+
+            #hero h2 {
+                font-size: 2.5em;
+            }
+
+            #hero p {
+                font-size: 1.1em;
+            }
+
+            section {
+                padding: 40px 15px;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            #features .feature-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #features .feature-item {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .plan-list {
+                grid-template-columns: 1fr;
+            }
+
+            #contact-preview .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            footer ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <header>
+        <nav>
+            <div class="logo">MC infra TI</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="#">NetFilter</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="hero">
+            <div class="hero-content">
+                <h2>Navegue Sem Medo. Proteção Completa com NetFilter.</h2>
+                <p>Chega de anúncios irritantes, links perigosos e rastreadores. O NetFilter, baseado em tecnologias como Pi-Hole e Adguard, protege sua rede inteira contra ameaças, mantendo sua navegação limpa, segura e rápida.</p>
+                <a href="#plans" class="button">Quero Proteger Minha Rede Agora</a>
+            </div>
+        </section>
+
+        <section id="problem-solution" class="container">
+            <h2>Cansado de uma internet cheia de perigos?</h2>
+            <ul>
+                <li>⚠️ Anúncios que invadem sua tela e consomem sua banda.</li>
+                <li>⚠️ Rastreamento invasivo de seus dados e hábitos de navegação.</li>
+                <li>⚠️ Sites falsos e links maliciosos que roubam suas informações.</li>
+                <li>⚠️ Vírus e malwares que se instalam sem sua permissão.</li>
+                <li>⚠️ Carregamento lento de páginas devido a scripts indesejados.</li>
+            </ul>
+            <p class="solution-text">NetFilter é a sua resposta. Uma solução inteligente que age na raiz, bloqueando o tráfego indesejado antes que ele chegue aos seus dispositivos.</p>
+        </section>
+        
+        <section id="features" class="container">
+            <h2>Benefícios do NetFilter</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">🚫</span>
+                    <h3>Bloqueio de Anúncios</h3>
+                    <p>Elimine anúncios em todos os seus dispositivos. Deixe sua navegação mais limpa e concentre-se no que realmente importa.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🕵️‍♂️</span>
+                    <h3>Antirrastreador</h3>
+                    <p>Impeça que empresas de publicidade e redes sociais rastreiem seus passos online. Mantenha sua privacidade protegida.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⚔️</span>
+                    <h3>Proteção Contra Malwares</h3>
+                    <p>Bloqueie domínios conhecidos por hospedar vírus, phishing e outras ameaças. Uma barreira de segurança para toda sua rede.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🚀</span>
+                    <h3>Navegação Mais Rápida</h3>
+                    <p>Sem anúncios e scripts pesados, as páginas carregam muito mais rápido. Economize dados e tempo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="plans" class="container">
+            <h2>Planos NetFilter</h2>
+            <p>Escolha o plano que melhor atende às suas necessidades. Proteção e velocidade para sua casa ou empresa.</p>
+            <div class="plan-list">
+                <div class="plan-card">
+                    <h3>Residencial</h3>
+                    <p class="price"><span>R$</span> 15,00<span style="font-size: 0.6em; vertical-align: super; font-weight: normal;">/mês</span></p>
+                    <p>Perfeito para famílias que querem navegar com segurança.</p>
+                    <ul>
+                        <li>🛡️ Proteção para até 5 dispositivos</li>
+                        <li>🛡️ Bloqueio de anúncios e rastreadores</li>
+                        <li>🛡️ Proteção contra sites maliciosos</li>
+                        <li>🛡️ Suporte por e-mail</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218" class="button" target="_blank">ASSINAR AGORA</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3>Empresarial</h3>
+                    <p class="price"><span>R$</span> 50,00<span style="font-size: 0.6em; vertical-align: super; font-weight: normal;">/mês</span></p>
+                    <p>Segurança robusta para a rede da sua empresa.</p>
+                    <ul>
+                        <li>🛡️ Proteção para até 20 dispositivos</li>
+                        <li>🛡️ Todos os recursos do plano Residencial</li>
+                        <li>🛡️ Relatórios de tráfego e bloqueios</li>
+                        <li>🛡️ Lista de bloqueio personalizada</li>
+                        <li>🛡️ Suporte prioritário via WhatsApp</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218" class="button" target="_blank">QUERO PROTEGER MINHA EMPRESA</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3>Enterprise</h3>
+                    <p class="price">Consulte Valores<span style="font-size: 0.6em; vertical-align: super; font-weight: normal;"></span></p>
+                    <p>Solução customizada para grandes organizações.</p>
+                    <ul>
+                        <li>🛡️ Número ilimitado de dispositivos</li>
+                        <li>🛡️ Todos os recursos do plano Empresarial</li>
+                        <li>🛡️ Múltiplas listas de bloqueio</li>
+                        <li>🛡️ Dashboard de monitoramento em tempo real</li>
+                        <li>🛡️ Suporte dedicado 24/7</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218" class="button" target="_blank">FALE COM UM CONSULTOR</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-preview">
+            <div class="container">
+                <h2>Pronto para uma internet mais segura?</h2>
+                <p>Nossa equipe está pronta para te ajudar a escolher a melhor solução de segurança para sua necessidade. Instalação e configuração fáceis para você começar a navegar sem preocupações.</p>
+                <div class="button-group">
+                    <a href="https://wa.me/5514997135218" target="_blank" class="button secondary-button">Conversar no WhatsApp</a>
+                    <a href="contact.html" class="button secondary-button">Preencher Formulário</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
+        <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
+        <ul>
+            <li><a href="services.html">Serviços</a></li>
+            <li><a href="#">NetFilter</a></li>
+            <li><a href="contact.html">Contato</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+    </footer>
+
+</body>
+</html>
