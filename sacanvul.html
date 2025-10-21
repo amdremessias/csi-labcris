@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scanner e Saneamento de Vulnerabilidades de Segurança em Servidores Linux e Windows - MC Infra TI">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Scanner de Vulnerabilidades - MC Infra TI</title>
+    <link rel="icon" href="http://googleusercontent.com/image_generation_content/0" type="image/x-icon">
+    <style>
+        /* Estilos gerais - Adaptados do seu index.html */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/OIP-2934084681.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Overlay escuro para a imagem de fundo - MENOS TRANSPARENTE */
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            text-align: center;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #DC143C; /* Carmesim */
+            margin-bottom: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        header nav ul li a:hover {
+            color: #DC143C; /* Carmesim no hover */
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(220, 20, 60, 0.3); /* Efeito de brilho carmesim */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #hero h2 {
+            font-size: 3.2em;
+            margin-bottom: 20px;
+            color: #FF6347; /* Vermelho mais claro para destaque */
+            text-shadow: 0 0 15px rgba(220, 20, 60, 0.7);
+        }
+
+        #hero p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #FFC0CB; /* Rosa claro para leitura */
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #DC143C; /* Carmesim */
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 2px solid #DC143C; /* Carmesim */
+        }
+
+        .button:hover {
+            background-color: #B22222; /* Vermelho Fogo mais escuro */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .button.cookies-button {
+            background-color: #607D8B;
+            border-color: #607D8B;
+        }
+
+        .button.cookies-button:hover {
+            background-color: #546E7A;
+        }
+
+        /* Seções de conteúdo */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.15); /* Um pouco menos transparente */
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #fff; /* Altera a cor do texto para branco para contraste */
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #FF6347; /* Vermelho mais claro para destaque */
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #DC143C; /* Carmesim */
+            border-radius: 2px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            color: #FFC0CB; /* Rosa claro para leitura */
+        }
+
+        /* Estilos específicos para a página de Scanner de Vulnerabilidades */
+
+        #problem-solution {
+            padding: 40px 20px;
+            background-color: rgba(255, 255, 255, 0.15); /* Um pouco menos transparente */
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        #problem-solution ul {
+            list-style: none;
+            padding: 0;
+            max-width: 700px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        #problem-solution ul li {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #FFC0CB; /* Rosa claro para leitura */
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.4;
+        }
+
+        #problem-solution ul li::before {
+            content: '🚨'; /* Icone de alerta */
+            position: absolute;
+            left: 0;
+            color: #FF6347; /* Vermelho tomate */
+            font-size: 1.2em;
+            top: 0px;
+        }
+        
+        #problem-solution h3 {
+            font-size: 1.5em;
+            color: #FF6347;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        #problem-solution .solution-text {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #DC143C; /* Carmesim */
+            margin-top: 30px;
+        }
+        
+        .cve-explanation {
+            font-style: italic;
+            font-size: 0.9em;
+            color: #FFC0CB;
+            margin-top: 10px;
+        }
+
+        #how-it-works .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        #how-it-works .step-item {
+            background-color: rgba(255, 255, 255, 0.15); /* Um pouco menos transparente */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            width: 30%;
+            min-width: 280px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #FFC0CB; /* Rosa claro para leitura */
+            animation: fadeInUp 0.8s ease-out forwards; /* Animação de entrada */
+            opacity: 0; /* Começa invisível */
+        }
+
+        #how-it-works .step-item:nth-child(1) { animation-delay: 0.1s; }
+        #how-it-works .step-item:nth-child(2) { animation-delay: 0.2s; }
+        #how-it-works .step-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #how-it-works .step-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        #how-it-works .step-item .step-number {
+            font-size: 2.5em;
+            color: #DC143C; /* Carmesim */
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #how-it-works .step-item h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #FF6347; /* Vermelho mais claro para destaque */
+        }
+
+        #how-it-works .step-item p {
+            font-size: 1em;
+            color: #FFC0CB; /* Rosa claro para leitura */
+            margin-bottom: 0;
+            text-align: left;
+        }
+
+        #plans {
+            background-color: rgba(255, 232, 232, 0.15); /* Um rosa bem claro e um pouco menos transparente para a seção de planos */
+        }
+
+        .plan-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .plan-card {
+            background-color: rgba(255, 255, 255, 0.15); /* Um pouco menos transparente */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #FFC0CB; /* Rosa claro para leitura */
+            animation: zoomIn 0.6s ease-out forwards; /* Animação de entrada */
+            opacity: 0; /* Começa invisível */
+            transform: scale(0.9); /* Começa um pouco menor */
+        }
+
+        .plan-card:nth-child(1) { animation-delay: 0.1s; }
+        .plan-card:nth-child(2) { animation-delay: 0.2s; }
+        .plan-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .plan-card h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #DC143C; /* Carmesim */
+        }
+
+        .plan-card .price {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #FF6347; /* Vermelho mais claro para destaque */
+            margin-bottom: 20px;
+        }
+
+        .plan-card .price span {
+            font-size: 0.6em;
+            vertical-align: super;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+            flex-grow: 1; /* Faz a lista ocupar o espaço restante */
+        }
+
+        .plan-card ul li {
+            margin-bottom: 10px;
+            color: #FFC0CB; /* Rosa claro para leitura */
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .plan-card ul li::before {
+            content: '✔️'; /* Ícone de check para o plano */
+            position: absolute;
+            left: 0;
+            color: #DC143C; /* Carmesim */
+            font-size: 0.9em;
+            top: 2px;
+        }
+        
+        .plan-card:last-child .price {
+            font-size: 1.8em;
+            color: #FFC0CB;
+        }
+
+        .plan-card .button {
+            width: 100%;
+            margin-top: auto; /* Empurra o botão para o final do card */
+            box-sizing: border-box; /* Garante que o padding não aumente a largura */
+        }
+
+        /* Contact Preview - Mantido do index.html */
+        #contact-preview .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Footer - Mantido do index.html */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 20px;
+            color: #DC143C; /* Carmesim */
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .footer-logo {
+            display: block;
+            margin: 0 auto 15px auto;
+            max-width: 150px;
+            height: auto;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer ul li {
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #DC143C; /* Carmesim */
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            header nav ul li {
+                margin: 5px 0;
+            }
+
+            header .logo {
+                margin-bottom: 10px;
+            }
+
+            #hero {
+                padding: 80px 15px;
+            }
+
+            #hero h2 {
+                font-size: 2.5em;
+            }
+
+            #hero p {
+                font-size: 1.1em;
+            }
+
+            section {
+                padding: 40px 15px;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            #how-it-works .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #how-it-works .step-item {
+                width: 100%; /* Ocupa toda a largura em telas menores */
+                min-width: unset;
+            }
+
+            .plan-list {
+                grid-template-columns: 1fr; /* Coluna única em telas menores */
+            }
+
+            #contact-preview .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            footer ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <header>
+        <nav>
+            <div class="logo">MC infra TI</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="scanner-vulnerabilidades.html">Scanner de Vulnerabilidades</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="hero">
+            <div class="hero-content">
+            <h2>Proteja Seu Ambiente: Scanner de Vulnerabilidades em Servidores</h2>
+            <p>Seus servidores Linux e Windows são o coração do seu negócio. Identifique e **sanee falhas de segurança** antes que se tornem uma porta aberta para ataques. Oferecemos uma solução rápida, completa e focada em resultados reais.</p>
+            <a href="#plans" class="button">Ver Planos de Saneamento</a>
+            </div>
+        </section>
+
+        <section id="problem-solution" class="container">
+            <h2>Análise de Segurança Detalhada e Dinâmica</h2>
+            <p>Seja proativo! Não espere ser vítima de um ataque para descobrir falhas. Nosso scanner oferece um diagnóstico preciso:</p>
+            
+            <h3>Como Funciona a Análise:</h3>
+            <ul>
+                <li><strong>Varredura Completa de Hosts:</strong> Realizamos um scan detalhado no seu ambiente, cobrindo tanto sistemas **Linux** quanto **Windows**, identificando configurações inadequadas, softwares desatualizados e falhas de segurança conhecidas.</li>
+                <li><strong>Comparação com Bases de CVES:</strong> O host escaneado é **comparado dinamicamente** com as bases de dados mais atuais de **Common Vulnerabilities and Exposures (CVES)**. Isso garante que identificamos vulnerabilidades publicamente conhecidas e ativas.</li>
+                <li><strong>Relatório Detalhado de Vulnerabilidades:</strong> Você recebe uma **análise completa**, com a descrição da vulnerabilidade (CVE), o nível de risco (Crítico, Alto, Médio, Baixo) e a localização exata no seu servidor.</li>
+                <li><strong>Foco em Saneamento:</strong> Mais do que apenas identificar, nós oferecemos o pacote de **saneamento** (correção) para fechar as brechas de segurança encontradas, restaurando a integridade e segurança dos seus sistemas.</li>
+            </ul>
+            <p class="cve-explanation"><em>*CVES são identificadores padronizados para vulnerabilidades de segurança da informação. Estar atualizado é crucial.</em></p>
+            <p class="solution-text">Sua segurança é nossa prioridade. Oferecemos a visibilidade que você precisa e a ação de correção que seus servidores exigem.</p>
+        </section>
+
+        <section id="how-it-works" class="container">
+            <h2>Seu Caminho para a Segurança em 3 Passos</h2>
+            <div class="steps">
+                <div class="step-item">
+                    <span class="step-number">1.</span>
+                    <h3>Contratação e Agendamento</h3>
+                    <p>Escolha o plano de saneamento ideal para o número de hosts do seu ambiente. Agendamos a data e hora do scan para impactar minimamente sua operação.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">2.</span>
+                    <h3>Execução do Scanner e Análise</h3>
+                    <p>Realizamos o scan de vulnerabilidades de forma não invasiva. O scanner analisa o host e o compara com bases de CVES, gerando o relatório de falhas.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">3.</span>
+                    <h3>Saneamento e Relatório Final</h3>
+                    <p>Aplicamos o saneamento das vulnerabilidades encontradas conforme o plano contratado. Entregamos um relatório final atestando a correção e o nível de segurança alcançado.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="plans" class="container">
+            <h2>Nossos Pacotes de Scanner e Saneamento</h2>
+            <p>Escolha o pacote ideal para garantir a segurança dos seus servidores Linux e Windows.</p>
+            <div class="plan-list">
+                <div class="plan-card">
+                    <h3>Básico</h3>
+                    <p class="price"><span>R$</span> 690,00</p>
+                    <p>Ideal para ambientes com poucos servidores críticos.</p>
+                    <ul>
+                        <li><strong style="color: #FF6347;">Até 5 hosts</strong> (Linux e/ou Windows)</li>
+                        <li>Execução do Scanner de Vulnerabilidades</li>
+                        <li>Análise e comparação com bases de CVES</li>
+                        <li>Relatório de Vulnerabilidades Detalhado</li>
+                        <li>Pacote de Saneamento de todas as falhas encontradas</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20B%C3%A1sico%20de%20Scanner%20de%20Vulnerabilidades%20(at%C3%A9%205%20hosts)." class="button" target="_blank">CONTRATAR AGORA</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3>Otimizado</h3>
+                    <p class="price"><span>R$</span> 1.350,00</p>
+                    <p>Melhor custo-benefício para pequenas e médias empresas.</p>
+                    <ul>
+                        <li><strong style="color: #FF6347;">Até 8 hosts</strong> (Linux e/ou Windows)</li>
+                        <li>Execução do Scanner de Vulnerabilidades</li>
+                        <li>Análise e comparação com bases de CVES</li>
+                        <li>Relatório de Vulnerabilidades Detalhado</li>
+                        <li>Pacote de Saneamento de todas as falhas encontradas</li>
+                        <li>Sessão de Alinhamento de Segurança Pós-Saneamento</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Otimizado%20de%20Scanner%20de%20Vulnerabilidades%20(at%C3%A9%208%20hosts)." class="button" target="_blank">CONTRATAR AGORA</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3>Enterprise</h3>
+                    <p class="price">Mais Recursos a Consultar</p>
+                    <p>Solução robusta e personalizada para ambientes complexos e grandes volumes de servidores.</p>
+                    <ul>
+                        <li><strong style="color: #FF6347;">Acima de 8 hosts</strong></li>
+                        <li>Escopo de Serviços Personalizado (Ex: Scans recorrentes, Monitoramento)</li>
+                        <li>Cobertura de servidores com alto volume de tráfego</li>
+                        <li>Time de resposta a incidentes sob demanda</li>
+                        <li>Relatórios de conformidade e auditoria</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Enterprise%20de%20Scanner%20de%20Vulnerabilidades." class="button" target="_blank">CONSULTAR O ESCOPO</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-preview">
+            <div class="container">
+                <h2>Pronto para Blindar Seus Servidores?</h2>
+                <p>Fale com um especialista em segurança agora mesmo e agende seu scan de vulnerabilidades.</p>
+                <div class="button-group">
+                    <a href="https://wa.me/5514997135218" target="_blank" class="button cookies-button">Conversar no WhatsApp</a>
+                    <a href="contact.html" class="button cookies-button">Preencher Formulário</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
+        <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
+        <ul>
+            <li><a href="services.html">Serviços</a></li>
+            <li><a href="cookies.html">Cookies</a></li>
+            <li><a href="scanner-vulnerabilidades.html">Scanner de Vulnerabilidades</a></li>
+            <li><a href="contact.html">Contato</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+    </footer>
+
+</body>
+</html>
