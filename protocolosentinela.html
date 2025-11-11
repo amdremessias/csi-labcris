@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <title>Sentinela Vigilancia CFTV</title>
+    <style>
+        /* Estilos específicos para esta página */
+        body {
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-sentinela.jpg'); /* Caminho direto para a imagem raw */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #f0f0f0; /* Definindo uma cor de texto mais clara para contraste com o fundo escuro */
+            font-family: Arial, sans-serif;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+            
+        .container, .plan-card, .contact-info, .detail-card { /* Adicionado .detail-card aqui */
+            background: rgba(17, 17, 17, 0.85);
+            color: #f0f0f0; /* Garante que o texto dentro desses blocos seja claro */
+            border-radius: 8px; /* Adicionado para consistência visual */
+            padding: 20px; /* Adicionado para consistência visual */
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            text-align: center;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #0af;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #0af;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #0af;
+            font-size: 2.2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #0af;
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+        .intro-text {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .features-list li {
+            background: rgba(26, 26, 26, 0.85);
+            padding: 15px 25px;
+            border-radius: 5px;
+            border-left: 3px solid #0af;
+            font-size: 1.1em;
+            text-align: left;
+            flex-basis: calc(50% - 15px);
+            box-sizing: border-box;
+            color: #f0f0f0;
+        }
+        @media (max-width: 768px) {
+            .features-list li {
+                flex-basis: 100%;
+            }
+        }
+        
+        /* Estilos específicos para a nova seção Caixa Sentinela */
+        .detail-card {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 30px;
+            margin-top: 30px;
+            border-left: 5px solid #0af;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        .detail-card p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .detail-card strong {
+            color: #fff;
+            background-color: #0af;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .key-features-list {
+            list-style: none;
+            padding: 0;
+        }
+        .key-features-list li {
+            background: rgba(34, 34, 34, 0.8);
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #fff;
+            border-radius: 4px;
+        }
+        /* Fim dos estilos específicos para Caixa Sentinela */
+
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .plan-card {
+            background: rgba(26, 26, 26, 0.85);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            text-align: left;
+            transition: transform 0.3s ease-in-out;
+        }
+        .plan-card:hover {
+            transform: translateY(-10px);
+        }
+        .plan-card h3 {
+            color: #0af;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            text-align: center;
+        }
+        .plan-card .plan-description {
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            color: #ccc;
+            text-align: center;
+        }
+        .plan-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .plan-card ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: #f0f0f0;
+        }
+        .plan-card ul li::before {
+            content: '✔️';
+            color: #0af;
+            position: absolute;
+            left: 0;
+        }
+        .contact-info {
+            background: rgba(17, 17, 17, 0.85);
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            color: #f0f0f0;
+        }
+        .contact-info p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .contact-info a {
+            color: #0af;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: #fff;
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center; 
+            padding: 20px; 
+            color: #0af; 
+            margin-top: 50px;
+        }
+        .footer-logo {
+            display: block;
+            margin: 0 auto 15px auto;
+            max-width: 150px;
+            height: auto;
+        }
+
+        /* Responsividade para o header */
+        @media (max-width: 768px) {
+            header nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header nav ul {
+                margin-top: 15px;
+            }
+
+            header nav ul li {
+                margin: 5px 0;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><h3>Sentinela CFTV</h3></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Sua segurança começa pela Prevenção!</h1>
+                <p class="intro-text">Com a Sentinela Vigilancia CFTV, tenha a tranquilidade que sua empresa e residencia merece com nossa solução de vigilância por vídeo.</p>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Recursos Essenciais da Sentinela CFTV</h2>
+                <ul class="features-list">
+                    <li>Backup Remoto de Vídeo Segurança</li>
+                    <li>Monitoramento dedicado para Incidentes</li>
+                    <li>Conexão protegida com VPN</li>
+                    <li>Resposta rápida para Alertas de Violação</li>
+                    <li>Vídeo-Monitorado com Inteligencia Artificial 24/7</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="caixa-sentinela">
+            <div class="container">
+                <h2>Tecnologia Central: A Caixa Sentinela 👁️‍🗨️</h2>
+                <div class="detail-card">
+                    <p>A **Caixa Sentinela** é o *core* físico e lógico da nossa solução. Trata-se de um dispositivo ou sistema dedicado que atua como ponto de **monitoramento de vídeo de segurança avançado**, integrando suas câmeras diretamente à Central de Monitoramento.</p>
+                    
+                    <h3>Comunicação Segura e Instantânea</h3>
+                    <p>Sua função primordial é garantir a segurança da informação através de uma **VPN (Rede Virtual Privada)**. Isso cria um **túnel criptografado** entre o seu local e a Central, impedindo interceptações e garantindo que o vídeo transmitido seja:</p>
+                    <ul class="key-features-list">
+                        <li>**Criptografado:** Máxima proteção contra acesso não autorizado.</li>
+                        <li>**Dedicado:** Largura de banda otimizada para vigilância contínua.</li>
+                        <li>**Resiliente:** Conexão estável para monitoramento ininterrupto.</li>
+                    </ul>
+
+                    <h3>Inteligência e Evidência por Demanda</h3>
+                    <p>Com a Caixa Sentinela, a Central ganha poder de **ação sob demanda** para otimizar a resposta a incidentes:</p>
+                    <ul class="key-features-list">
+                        <li>
+                            **Cópia de Imagens de Incidentes por Demanda:** Não dependa apenas do armazenamento local. Em caso de alerta, a Central solicita e salva imediatamente uma cópia das imagens relevantes em servidores externos, garantindo a **preservação de evidências**.
+                        </li>
+                        <li>
+                            **Análise de Vídeo por Demanda (I.A.):** Permite a execução de análises avançadas de Inteligência Artificial em trechos específicos (ex: busca por um veículo, análise de comportamento incomum), agilizando a investigação sem sobrecarregar o sistema 24/7 com análises desnecessárias.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="plans">
+            <div class="container">
+                <h2>Planos e Serviços</h2>
+                <div class="plans-grid">
+                    <article class="plan-card">
+                        <h3>Plano Básico </h3>
+                        <p class="plan-description">Este plano é ideal para quem busca uma solução essencial de segurança e monitoramento, cobrindo os pilares fundamentais para a proteção dos seus dados de vídeo.</p>
+                        <ul>
+                            <li>Gerenciamento de Servidor de Vídeo</li>
+                            <li>Monitoramento de Incidentes</li>
+                            <li>Conexão Cliente VPN Segura</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan-card">
+                        <h3>Plano Padrão </h3>
+                        <p class="plan-description">O Plano Padrão oferece uma gestão mais robusta, incluindo todos os benefícios do Plano Básico com um adicional importante para otimizar a segurança do seu sistema.</p>
+                        <ul>
+                            <li>Backup de Vídeo Segurança</li>
+                            <li>Conexão Cliente VPN Segura</li>
+                            <li>Cloud-Backup Externo de Segurança</li>
+                            <li>Gerenciamento de Servidor de Vídeo</li>
+                            <li>Monitoramento de Incidentes</li>
+                        </ul>
+                    </article>
+
+                    <article class="plan-card">
+                        <h3>Plano Enterprise </h3>
+                        <p class="plan-description">Para clientes que exigem o nível máximo de segurança e vigilância, o Plano Enterprise proporciona uma cobertura completa com tecnologia avançada e resposta proativa.</p>
+                        <ul>
+                            <li>Backup de Vídeo Segurança</li>
+                            <li>Conexão Cliente VPN Segura</li>
+                            <li>Cloud-Backup Externo de Segurança</li>
+                            <li>Gerenciamento de Servidor de Vídeo</li>
+                            <li>Monitoramento de Incidentes</li>
+                            <li>Resposta para Alertas de Violação</li>
+                            <li>Vídeo Monitorado com I.A 24/7</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="contact-info">
+                    <h2>Pronto para proteger seu negócio?</h2>
+                    <p>Entre em contato com um consultor especialista e solicite um orçamento personalizado</p>
+                    <p>
+                        📞 <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">Abrir WhatsApp</a> <br>
+                        📧 <a href="mailto:messias.consultoria@yahoo.com">messias.consultoria@yahoo.com</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo Sentinela CFTV" class="footer-logo">
+        <p> &copy; 2025 | Sentinela CFTV | Todos os direitos reservados. </p>
+    </footer>
+</body>
+</html>
