@@ -3,307 +3,861 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Sentinela: Arquitetura Técnica e Dimensionamento</title>
+    <meta name="description" content="Projeto Sentinela - Solução de Videomonitoramento Centralizado e Escalável">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Projeto Sentinela - Arquitetura Técnica e Dimensionamento</title>
     <style>
+        /* Estilos gerais */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f9;
+            padding: 0;
+            line-height: 1.6;
             color: #333;
+            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%, #1d4ed8 100%);
+            background-attachment: fixed;
         }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
         .container {
-            max-width: 1000px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        h1, h2, h3 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
-            margin-top: 25px;
-        }
-        h1 {
-            border-bottom: 4px solid #3498db;
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 1rem 0;
             text-align: center;
-            font-size: 2.2em;
-            margin-bottom: 30px;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
         }
-        h2 {
-            font-size: 1.6em;
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
         }
-        h3 {
-            font-size: 1.3em;
-            border-bottom: 1px solid #ccc;
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #0ea5e9;
+            margin-bottom: 0;
+            letter-spacing: 1px;
         }
-        p, ul, table {
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        header nav ul li a:hover {
+            color: #0ea5e9;
+            background-color: rgba(14, 165, 233, 0.1);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.9) 0%, rgba(30, 64, 175, 0.9) 50%, rgba(29, 78, 216, 0.9) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 120px 20px;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 30px rgba(14, 165, 233, 0.2);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #hero h2 {
+            font-size: 3.5em;
             margin-bottom: 20px;
+            color: #0AFF0A;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            font-weight: 700;
         }
+
+        #hero .subtitle {
+            font-size: 1.8em;
+            color: #dbeafe;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        #hero p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #e0ffe0;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 15px 25px;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        .badge-title {
+            font-weight: 700;
+            color: #0ea5e9;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .badge-subtitle {
+            color: #dbeafe;
+            font-size: 0.9em;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #0ea5e9;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 2px solid #0ea5e9;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0284c7;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Seções de conteúdo */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #fff;
+            margin: 40px auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            max-width: 1200px;
+        }
+
+        section h2 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: #1e3a5f;
+            position: relative;
+            font-weight: 700;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #0ea5e9, #06b6d4);
+            border-radius: 2px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Specs Grid */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .spec-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #0ea5e9;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.2);
+        }
+
+        .spec-card h3 {
+            font-size: 0.9em;
+            color: #0284c7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .spec-card .value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin: 15px 0;
+        }
+
+        .spec-card p {
+            font-size: 0.95em;
+            color: #555;
+            margin: 0;
+        }
+
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 40px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
         }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #3498db;
+
+        table thead {
+            background: linear-gradient(90deg, #1e3a5f 0%, #0284c7 100%);
             color: white;
-            font-weight: bold;
         }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .note {
-            background-color: #ecf0f1;
+
+        table th {
             padding: 15px;
-            border-left: 5px solid #e67e22;
-            margin: 20px 0;
-            border-radius: 4px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
         }
-        .architecture-list li {
-            margin-bottom: 10px;
-            padding-left: 15px;
-            position: relative;
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e5e7eb;
         }
-        .architecture-list li::before {
-            content: '•';
-            color: #3498db;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+
+        table tbody tr:hover {
+            background-color: #f9fafb;
         }
-        .recommendation {
-            font-weight: bold;
-            color: #c0392b;
+
+        table tbody tr:nth-child(even) {
+            background-color: #f3f4f6;
+        }
+
+        /* Service List */
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-list article {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #0ea5e9;
+        }
+
+        .service-list article:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.15);
+        }
+
+        .service-list .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #0ea5e9;
+        }
+
+        .service-list h3 {
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            color: #1e3a5f;
+            font-weight: 700;
+        }
+
+        .service-list p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 0;
+            text-align: left;
+        }
+
+        /* Architecture Diagram */
+        .architecture-diagram {
+            background: #f9fafb;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .architecture-diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Contact Preview */
+        #contact-preview .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 40px 20px;
+            color: #0af;
+            margin-top: 60px;
+            border-top: 2px solid #0ea5e9;
+        }
+
+        footer p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        footer .logo {
+            font-size: 1.5em;
+            color: #0ea5e9;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #0ea5e9;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            header nav ul li {
+                margin: 8px 0;
+            }
+
+            header .logo {
+                margin-bottom: 10px;
+                font-size: 1.5em;
+            }
+
+            #hero {
+                padding: 80px 15px;
+                min-height: 400px;
+            }
+
+            #hero h2 {
+                font-size: 2.2em;
+            }
+
+            #hero .subtitle {
+                font-size: 1.3em;
+            }
+
+            #hero p {
+                font-size: 1em;
+            }
+
+            .hero-badges {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            section {
+                padding: 50px 15px;
+                margin: 30px auto;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-list {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            table th, table td {
+                padding: 10px;
+            }
+
+            #contact-preview .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+
+            footer ul {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+    <div class="overlay"></div>
 
-    <h1>🎥 Projeto Sentinela: Arquitetura Técnica e Dimensionamento</h1>
+    <header>
+        <nav>
+            <div class="logo">🎯 Sentinela</div>
+            <ul>
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#overview">Visão Geral</a></li>
+                <li><a href="#specs">Especificações</a></li>
+                <li><a href="#architecture">Arquitetura</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <section id="introducao">
-        <h2>1. Introdução</h2>
-        <p>O **Projeto Sentinela** visa estabelecer um serviço de monitoramento de videosegurança centralizado e escalável, utilizando uma **infraestrutura híbrida** que combina hardware local de baixo custo ("Caixa Sentinela") com um **Datacenter (DC) robusto** para gravação e análise.</p>
-        <p>A solução proposta baseia-se em software de código aberto (<strong>Shinobi Video</strong> ou <strong>ZoneMinder</strong>) em um ambiente de cluster virtualizado, garantindo flexibilidade, segurança e custo reduzido.</p>
-    </section>
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="hero-content">
+                <h2>Projeto Sentinela</h2>
+                <div class="subtitle">Monitoramento e Resposta para Incidentes</div>
+                <p>Solução de videomonitoramento centralizado e escalável, combinando dispositivos locais de baixo custo com infraestrutura robusta em Datacenter. Segurança, confiabilidade e escalabilidade integradas.</p>
+                <div class="hero-badges">
+                    <div class="badge">
+                        <div class="badge-title">200 Câmeras</div>
+                        <div class="badge-subtitle">Distribuídas em 25 locais</div>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-title">Arquitetura 3 Camadas</div>
+                        <div class="badge-subtitle">Cliente | VPN | Datacenter</div>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-title">Escalável</div>
+                        <div class="badge-subtitle">Até 1.000 câmeras</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <hr>
+        <!-- OVERVIEW SECTION -->
+        <section id="overview">
+            <div class="container">
+                <h2>Visão Geral do Projeto</h2>
+                <p>O Projeto Sentinela visa estabelecer um serviço de monitoramento de videosegurança centralizado e escalável, utilizando uma infraestrutura híbrida que combina hardware local de baixo custo com um Datacenter robusto para gravação e análise. A solução propõe-se em software open source em um ambiente de cluster virtualizado.</p>
+                
+                <div class="specs-grid">
+                    <div class="spec-card">
+                        <h3>Objetivo</h3>
+                        <p>Estabelecer monitoramento centralizado com dispositivos locais de baixo custo e Datacenter robusto.</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Benefícios</h3>
+                        <p>Modular, seguro, escalável e econômico com código aberto e hardware acessível.</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Arquitetura</h3>
+                        <p>Híbrida com Caixas Sentinela locais conectadas via VPN ao Datacenter centralizado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="dimensionamento">
-        <h2>2. Dimensionamento e Especificações Técnicas</h2>
-        <p>O dimensionamento foi realizado com base em <strong>200 câmeras IP</strong> distribuídas em <strong>25 instalações</strong>, resultando em 8 câmeras por Caixa Sentinela.</p>
+        <!-- DIMENSIONING SECTION -->
+        <section id="specs">
+            <div class="container">
+                <h2>Dimensionamento e Especificações</h2>
+                <p>Configuração técnica para 200 câmeras distribuídas em 25 instalações com 8 câmeras por Caixa Sentinela.</p>
+                
+                <div class="specs-grid">
+                    <div class="spec-card">
+                        <h3>Total de Câmeras</h3>
+                        <div class="value">200</div>
+                        <p>Distribuídas em 25 locais</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Câmeras por Local</h3>
+                        <div class="value">8</div>
+                        <p>Média por Caixa Sentinela</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Período de Retenção</h3>
+                        <div class="value">30</div>
+                        <p>Dias no Datacenter</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Codec de Vídeo</h3>
+                        <div class="value">H.265</div>
+                        <p>Compressão eficiente</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Bitrate (1080p)</h3>
+                        <div class="value">1.5</div>
+                        <p>Mbps por câmera</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Largura de Banda Total</h3>
+                        <div class="value">300</div>
+                        <p>Mbps ingress DC</p>
+                    </div>
+                </div>
 
-        <h3>2.1. Premissas de Vídeo e Largura de Banda</h3>
+                <h3 style="margin-top: 60px; color: #1e3a5f; font-size: 1.5em;">Especificações Técnicas Detalhadas</h3>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parâmetro</th>
+                                <th>Valor</th>
+                                <th>Notas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Total de Câmeras</strong></td>
+                                <td>200</td>
+                                <td>Distribuídas em 25 locais</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Câmeras por Caixa</strong></td>
+                                <td>8</td>
+                                <td>Média por instalação</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Codec de Vídeo</strong></td>
+                                <td>H.265</td>
+                                <td>Compressão eficiente</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bitrate (1080p)</strong></td>
+                                <td>1.5 Mbps</td>
+                                <td>Estimativa conservadora</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Taxa de Atividade</strong></td>
+                                <td>80%</td>
+                                <td>Gravação contínua ou por movimento</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Período de Retenção</strong></td>
+                                <td>30 dias</td>
+                                <td>Armazenamento no Datacenter</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Uplink por Local</strong></td>
+                                <td>12 Mbps</td>
+                                <td>Recomendação mínima: 15 Mbps</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Largura de Banda Total</strong></td>
+                                <td>300 Mbps</td>
+                                <td>Ingress total no Datacenter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Parâmetro</th>
-                    <th>Valor</th>
-                    <th>Notas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Total de Câmeras</td>
-                    <td>200</td>
-                    <td>Distribuídas em 25 locais.</td>
-                </tr>
-                <tr>
-                    <td>Câmeras por Caixa Sentinela</td>
-                    <td>8</td>
-                    <td>Média por instalação.</td>
-                </tr>
-                <tr>
-                    <td>Codec de Vídeo</td>
-                    <td>H.265</td>
-                    <td>Compressão eficiente para menor consumo de banda.</td>
-                </tr>
-                <tr>
-                    <td>Bitrate Estimado (1080p)</td>
-                    <td>1.5 Mbps</td>
-                    <td>Estimativa conservadora para H.265 @ 1080p.</td>
-                </tr>
-                <tr>
-                    <td>Taxa de Atividade</td>
-                    <td>80%</td>
-                    <td>Considera gravação contínua ou por movimento.</td>
-                </tr>
-                <tr>
-                    <td>Período de Retenção</td>
-                    <td>30 dias</td>
-                    <td>Período de armazenamento no Datacenter.</td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- HARDWARE SECTION -->
+        <section>
+            <div class="container">
+                <h2>Hardware e Infraestrutura</h2>
+                <p>Especificação de componentes para Caixa Sentinela e Datacenter.</p>
+                
+                <h3 style="margin-top: 40px; color: #1e3a5f; font-size: 1.5em; text-align: left;">Caixa Sentinela (Local)</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Componente</th>
+                                <th>Especificação</th>
+                                <th>Justificativa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CPU</strong></td>
+                                <td>Intel N100 (ou equivalente)</td>
+                                <td>Baixo consumo (TDP 6W), bom desempenho single-thread para criptografia VPN</td>
+                            </tr>
+                            <tr>
+                                <td><strong>RAM</strong></td>
+                                <td>4 GB DDR4</td>
+                                <td>Suficiente para SO, cliente VPN e software de proxy de vídeo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Armazenamento</strong></td>
+                                <td>128 GB SSD (M.2 ou SATA)</td>
+                                <td>Para SO, logs e pequeno buffer de VPN/cache</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rede</strong></td>
+                                <td>2x Portas Gigabit Ethernet</td>
+                                <td>Uma para rede local (câmeras) e outra para WAN (internet/VPN)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sistema Operacional</strong></td>
+                                <td>Linux (Ubuntu Server LTS)</td>
+                                <td>Estabilidade, segurança e compatibilidade com software open-source</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-        <h4>Largura de Banda (WAN)</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>Métrica</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Uplink Necessário por Caixa Sentinela</td>
-                    <td>12.00 Mbps</td>
-                </tr>
-                <tr>
-                    <td>Largura de Banda Total (Ingress DC)</td>
-                    <td>300.00 Mbps</td>
-                </tr>
-            </tbody>
-        </table>
+                <h3 style="margin-top: 40px; color: #1e3a5f; font-size: 1.5em; text-align: left;">Datacenter (Núcleo)</h3>
+                <div class="specs-grid">
+                    <div class="spec-card">
+                        <h3>CPU (cores lógicos)</h3>
+                        <div class="value">67</div>
+                        <p>Mínimo necessário</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Memória RAM</h3>
+                        <div class="value">24</div>
+                        <p>GB mínimo</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Armazenamento (30 dias)</h3>
+                        <div class="value">74.16</div>
+                        <p>TB bruto</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="note">
-            <span class="recommendation">Recomendação:</span> A conexão de internet em cada local do cliente deve garantir um **uplink estável e dedicado de, no mínimo, 15 Mbps** para acomodar o tráfego de vídeo e a sobrecarga da VPN.
-        </div>
+        <!-- ARCHITECTURE SECTION -->
+        <section id="architecture">
+            <div class="container">
+                <h2>Arquitetura do Sistema</h2>
+                <p>Estrutura em três camadas: Cliente, Conectividade e Datacenter.</p>
+                
+                <div class="service-list">
+                    <article>
+                        <div class="icon">📍</div>
+                        <h3>Camada Cliente (Caixa Sentinela)</h3>
+                        <p><strong>Captura de Vídeo:</strong> Conexão direta às câmeras IP locais (RTSP/ONVIF).</p>
+                        <p><strong>Centralização:</strong> Agregação dos streams das 8 câmeras.</p>
+                        <p><strong>Criptografia VPN:</strong> Estabelecimento de túnel seguro (WireGuard preferencialmente).</p>
+                        <p><strong>Encaminhamento:</strong> Transmissão contínua dos streams para o Datacenter.</p>
+                    </article>
 
-        <h3>2.2. Especificação da Caixa Sentinela (Local)</h3>
-        <p>A Caixa Sentinela atua como um **gateway de vídeo**, centralizando os streams locais e estabelecendo um túnel VPN seguro para o Datacenter. Ela foca na estabilidade e no baixo consumo de energia, sem realizar gravação ou análise intensiva de vídeo.</p>
+                    <article>
+                        <div class="icon">🔐</div>
+                        <h3>Camada de Conectividade (VPN)</h3>
+                        <p><strong>Protocolo:</strong> WireGuard (recomendado pela eficiência e baixo overhead).</p>
+                        <p><strong>Concentrador VPN:</strong> Servidor dedicado ou VM que recebe as conexões das 25 Caixas Sentinela.</p>
+                        <p><strong>Autenticação:</strong> Chaves públicas/privadas gerenciadas centralmente.</p>
+                        <p><strong>Monitoramento:</strong> Scripts de watchdog e alertas SNMP para detecção de falhas de túnel.</p>
+                    </article>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Componente</th>
-                    <th>Especificação</th>
-                    <th>Justificativa</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>CPU</td>
-                    <td>Intel N100 (ou equivalente)</td>
-                    <td>Baixo consumo (TDP 6W), bom desempenho single-thread para criptografia VPN (WireGuard/OpenVPN).</td>
-                </tr>
-                <tr>
-                    <td>RAM</td>
-                    <td>4 GB DDR4</td>
-                    <td>Suficiente para S.O. (Linux), cliente VPN e software de proxy de vídeo.</td>
-                </tr>
-                <tr>
-                    <td>Armazenamento</td>
-                    <td>128 GB SSD (M.2 ou SATA)</td>
-                    <td>Para Sistema Operacional, logs e um pequeno buffer/cache.</td>
-                </tr>
-                <tr>
-                    <td>Rede</td>
-                    <td>2x Portas Gigabit Ethernet</td>
-                    <td>Uma para a rede local (câmeras) e outra para a WAN (internet/VPN).</td>
-                </tr>
-                <tr>
-                    <td>Sistema Operacional</td>
-                    <td>Linux (Ex: Ubuntu Server LTS)</td>
-                    <td>Estabilidade, segurança e compatibilidade com software open-source.</td>
-                </tr>
-            </tbody>
-        </table>
+                    <article>
+                        <div class="icon">🏢</div>
+                        <h3>Camada Datacenter (Cluster)</h3>
+                        <p><strong>Cluster Virtualizado:</strong> Hospeda múltiplas VMs para gravação, análise e interface web.</p>
+                        <p><strong>Balanceamento de Carga:</strong> Distribuição dos streams entre nós do cluster.</p>
+                        <p><strong>Armazenamento:</strong> Sistema distribuído (Ceph, ZFS ou NFS redundante).</p>
+                        <p><strong>Backup:</strong> Replicação incremental diária para storage secundário.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-        <h3>2.3. Especificação do Datacenter (DC)</h3>
-        <p>O Datacenter é o núcleo do sistema, responsável pela gravação, armazenamento e análise dos 200 streams de vídeo.</p>
+        <!-- SECURITY SECTION -->
+        <section>
+            <div class="container">
+                <h2>Segurança e Resiliência</h2>
+                <p>Estratégias de proteção e recuperação do sistema.</p>
+                
+                <div class="service-list">
+                    <article>
+                        <div class="icon">🔒</div>
+                        <h3>Segurança</h3>
+                        <p>✓ <strong>Criptografia Ponta a Ponta:</strong> VPN + HTTPS em todas as camadas</p>
+                        <p>✓ <strong>Autenticação Multifator:</strong> Para acesso administrativo ao Datacenter</p>
+                        <p>✓ <strong>Logs Centralizados:</strong> Auditoria contínua de todas as ações</p>
+                        <p>✓ <strong>Isolamento de Rede:</strong> Segmentação de VLANs e firewalls</p>
+                    </article>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Métrica</th>
-                    <th>Valor Dimensionado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Cores de CPU (Lógicos) Mínimos</td>
-                    <td>67</td>
-                </tr>
-                <tr>
-                    <td>Memória RAM Mínima</td>
-                    <td>24 GB</td>
-                </tr>
-                <tr>
-                    <td>Armazenamento Bruto (30 dias)</td>
-                    <td>74.16 TB</td>
-                </tr>
-            </tbody>
-        </table>
+                    <article>
+                        <div class="icon">⚡</div>
+                        <h3>Resiliência</h3>
+                        <p>✓ <strong>Failover Automático:</strong> Entre nós do cluster em caso de falha</p>
+                        <p>✓ <strong>Redundância de Hardware:</strong> Múltiplos servidores e storage</p>
+                        <p>✓ <strong>Reconexão Automática:</strong> Caixas Sentinela reconectam em caso de queda</p>
+                        <p>✓ <strong>Buffer Local:</strong> Gravação temporária em caso de desconexão</p>
+                    </article>
 
-        <div class="note">
-            <span class="recommendation">Recomendação de Hardware DC:</span> Servidor físico de alta densidade (ex: Dell PowerEdge, HP ProLiant) com processadores Intel Xeon Silver/Gold ou AMD EPYC, configurado com **virtualização** (Proxmox, VMware, Hyper-V) para hospedar o cluster.
-        </div>
-    </section>
+                    <article>
+                        <div class="icon">📊</div>
+                        <h3>Estratégia de Recuperação</h3>
+                        <p><strong>RTO:</strong> &lt; 5 minutos (Tempo de Recuperação Objetivo)</p>
+                        <p><strong>RPO:</strong> &lt; 1 minuto (Ponto de Recuperação Objetivo)</p>
+                        <p><strong>Disponibilidade:</strong> 99.9% uptime esperado</p>
+                        <p><strong>Monitoramento:</strong> Prometheus e Grafana para métricas em tempo real</p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <hr>
+        <!-- SCALABILITY SECTION -->
+        <section>
+            <div class="container">
+                <h2>Escalabilidade e Futuro</h2>
+                <p>A arquitetura permite expansão linear sem reconfiguração global.</p>
+                
+                <div class="specs-grid">
+                    <div class="spec-card">
+                        <h3>Cenário Atual</h3>
+                        <p>✓ 200 câmeras<br>✓ 25 locais<br>✓ 300 Mbps ingress<br>✓ 74.16 TB armazenamento</p>
+                    </div>
+                    <div class="spec-card">
+                        <h3>Potencial Futuro</h3>
+                        <p>→ 1.000 câmeras<br>→ 125 locais<br>→ 1.500 Mbps ingress<br>→ 370.8 TB armazenamento</p>
+                    </div>
+                </div>
 
-    <section id="arquitetura">
-        <h2>3. Arquitetura do Sistema</h2>
-        <p>A arquitetura é dividida em três camadas principais, garantindo modularidade e segurança:</p>
-        <ul class="architecture-list">
-            <li><strong>Camada Cliente</strong> (Caixa Sentinela)</li>
-            <li><strong>Camada de Conectividade</strong> (VPN)</li>
-            <li><strong>Camada Datacenter</strong> (Cluster de Gravação/Análise)</li>
+                <div style="background: linear-gradient(135deg, #1e3a5f 0%, #0284c7 100%); color: white; padding: 40px; border-radius: 10px; margin-top: 40px; text-align: left;">
+                    <h3 style="color: white; margin-top: 0;">Conclusão</h3>
+                    <p style="color: #e0ffe0;">O Projeto Sentinela propõe uma solução <strong>modular, segura e escalável</strong> para videomonitoramento distribuído. Através da integração eficiente entre dispositivos locais de baixo custo (Caixas Sentinela) e infraestrutura centralizada robusta (Datacenter), o sistema equilibra perfeitamente custo, desempenho e confiabilidade.</p>
+                    <p style="color: #e0ffe0;">A arquitetura em três camadas (Cliente, VPN, Datacenter) garante segurança ponta a ponta, enquanto o uso de software open-source reduz custos de licenciamento. A capacidade de escalar de 200 para 1.000 câmeras sem reconfiguração fundamental torna a solução ideal para organizações em crescimento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <p>Converse com nossos especialistas para fortalecer a segurança e a gestão da sua empresa.</p>
+                <div class="button-group">
+                    <a href="mailto:contato@sentinela.com" class="button">Enviar Email</a>
+                    <a href="https://wa.me/5511999999999" class="button">WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="logo">🎯 Projeto Sentinela</div>
+        <p>&copy; 2025 | Projeto Sentinela | Todos os direitos reservados.</p>
+        <p>Solução de Videomonitoramento Centralizado e Escalável</p>
+        <ul>
+            <li><a href="#overview">Visão Geral</a></li>
+            <li><a href="#specs">Especificações</a></li>
+            <li><a href="#architecture">Arquitetura</a></li>
+            <li><a href="#contact">Contato</a></li>
         </ul>
-
-        <h3>3.1. Camada Cliente (Caixa Sentinela)</h3>
-        <ul class="architecture-list">
-            <li><strong>Captura de Vídeo:</strong> A Caixa Sentinela se conecta diretamente às câmeras IP, DVRs ou NVRs locais (RTSP/ONVIF).</li>
-            <li><strong>Centralização:</strong> Coleta e agrega os streams de vídeo dos 8 dispositivos locais.</li>
-            <li><strong>Criptografia VPN:</strong> Configura um cliente **WireGuard** para estabelecer um túnel persistente e seguro com o Concentrador VPN no Datacenter.</li>
-            <li><strong>Encaminhamento:</strong> Os streams de vídeo são encapsulados e enviados através do túnel VPN para o Datacenter.</li>
-        </ul>
-
-        <h3>3.2. Camada de Conectividade (VPN)</h3>
-        <p>A VPN é o ponto crítico de segurança e estabilidade da transmissão.</p>
-        <ul class="architecture-list">
-            <li><strong>Protocolo:</strong> **WireGuard** é a escolha recomendada por ser mais rápido e leve que o OpenVPN, ideal para tráfego de vídeo de alta vazão.</li>
-            <li><strong>Concentrador VPN (DC):</strong> Um servidor dedicado (físico ou VM) no Datacenter atua como o ponto final das 25 conexões das Caixas Sentinela.</li>
-            <li><strong>Monitoramento:</strong> Implementação de scripts de watchdog e alertas SNMP para detecção de falhas de túnel.</li>
-        </ul>
-
-        <h3>3.3. Camada Datacenter (Cluster de Gravação e Análise)</h3>
-        <ul class="architecture-list">
-            <li><strong>Cluster Virtualizado:</strong> Utiliza Proxmox ou VMWare para hospedar múltiplas VMs de gravação, análise e interface web.</li>
-            <li><strong>Balanceamento de Carga:</strong> Distribuição dos 200 streams de vídeo entre os nós do cluster.</li>
-            <li><strong>Armazenamento:</strong> Sistema distribuído e redundante (ex: Ceph, ZFS ou NFS).</li>
-            <li><strong>Monitoramento:</strong> Ferramentas como Prometheus e Grafana para métricas de desempenho e disponibilidade.</li>
-        </ul>
-
-        <h3>3.4. Segurança e Resiliência</h3>
-        <ul class="architecture-list">
-            <li>Criptografia ponta a ponta (**VPN** + **HTTPS**).</li>
-            <li>Autenticação multifator para acesso administrativo.</li>
-            <li>Logs centralizados e auditoria contínua.</li>
-            <li>Failover automático entre nós do cluster no DC.</li>
-        </ul>
-
-        <h3>3.5. Escalabilidade</h3>
-        <p>A arquitetura foi projetada para permitir expansão linear, suportando até 1.000 câmeras com ajustes proporcionais de recursos no DC.</p>
-        <ul class="architecture-list">
-            <li>Adição de novas **Caixas Sentinela** sem reconfiguração global.</li>
-            <li>Escalabilidade horizontal no Datacenter (adição de novos nós de gravação).</li>
-        </ul>
-    </section>
-
-    <hr>
-
-    <section id="conclusao">
-        <h2>✅ Conclusão</h2>
-        <p>O Projeto Sentinela propõe uma solução **modular, segura e escalável** para videomonitoramento distribuído. Ele equilibra custo, desempenho e confiabilidade por meio de uma integração eficiente entre dispositivos locais de baixo custo (Caixas Sentinela) e uma infraestrutura centralizada e clusterizada no Datacenter.</p>
-    </section>
-
-</div>
+    </footer>
 
 </body>
 </html>
