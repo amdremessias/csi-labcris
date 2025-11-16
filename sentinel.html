@@ -187,6 +187,18 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             border-color: #0ea5e9;
         }
+        
+        /* Botão Primário (Cor Sólida) */
+        .button.primary {
+            background-color: #0ea5e9; 
+            border: 2px solid #0ea5e9;
+        }
+
+        .button.primary:hover {
+            background-color: #06b6d4; /* Um azul um pouco mais claro no hover */
+            border-color: #06b6d4;
+        }
+
 
         /* Seções de conteúdo */
         section {
@@ -650,29 +662,24 @@
                             <tr>
                                 <th>Componente</th>
                                 <th>Especificação</th>
-                                <th>Justificativa</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><strong>CPU</strong></td>
                                 <td>Intel N100 (ou equivalente)</td>
-                                <td>Baixo consumo (TDP 6W), bom desempenho single-thread para criptografia VPN (WireGuard/OpenVPN).</td>
                             </tr>
                             <tr>
                                 <td><strong>RAM</strong></td>
                                 <td>4 GB DDR4</td>
-                                <td>Suficiente para SO, cliente VPN e proxy de vídeo.</td>
                             </tr>
                             <tr>
                                 <td><strong>Armazenamento</strong></td>
                                 <td>128 GB SSD (M.2 ou SATA)</td>
-                                <td>Para SO, logs e pequeno buffer de VPN/cache.</td>
                             </tr>
                             <tr>
                                 <td><strong>Rede</strong></td>
                                 <td>2x Portas Gigabit Ethernet</td>
-                                <td>Uma para LAN (câmeras) e outra para WAN (internet/VPN).</td>
                             </tr>
                         </tbody>
                     </table>
@@ -761,5 +768,34 @@
                         <p>✓ Capacidade de gestão centralizada de grande frota de Caixas Sentinela.</p>
                     </article>
                 </div>
+            </div>
+        </section>
+    </main>
+    
+    <section id="contact">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <p>Interessado em implementar o Projeto Sentinela na sua infraestrutura? Nossa equipe de especialistas está pronta para dimensionar e implantar a solução de videomonitoramento ideal para sua necessidade.</p>
+            <div class="button-group">
+                <a href="mailto:contato@projetosentinela.com" class="button primary">Fale Conosco por Email</a>
+                <a href="tel:+5511999999999" class="button">Ligue Agora (11) 99999-9999</a>
+            </div>
+        </div>
+    </section>
 
-                <div style="background: linear-gradient(135deg, #1e3a5f 0%, #
+    <footer>
+        <div class="container">
+            <div class="logo">🎯 Sentinela</div>
+            <p>&copy; 2025 Projeto Sentinela | Arquitetura de Videomonitoramento. Todos os direitos reservados.</p>
+            <ul>
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#overview">Serviços</a></li>
+                <li><a href="#architecture">Sobre</a></li>
+                <li><a href="mailto:contato@projetosentinela.com">Suporte</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
