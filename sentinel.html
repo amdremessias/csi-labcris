@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Projeto Sentinela - Solução de Videomonitoramento Centralizado e Escalável">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <title>Projeto Sentinela - Arquitetura Técnica e Dimensionamento</title>
     <style>
         /* Estilos gerais */
@@ -15,6 +16,7 @@
             line-height: 1.6;
             color: #333;
             background-color: #f4f4f4;
+            /* Usando o gradiente de fundo do código original, mas mantendo a estrutura da MC Infra TI */
             background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%, #1d4ed8 100%);
             background-attachment: fixed;
         }
@@ -283,6 +285,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             border-radius: 8px;
             overflow: hidden;
+            text-align: left; /* Adicionado para tabelas dentro de section (center) */
         }
 
         table thead {
@@ -300,6 +303,7 @@
         table td {
             padding: 12px 15px;
             border-bottom: 1px solid #e5e7eb;
+            text-align: left;
         }
 
         table tbody tr:hover {
@@ -352,23 +356,16 @@
             margin-bottom: 0;
             text-align: left;
         }
-
-        /* Architecture Diagram */
-        .architecture-diagram {
-            background: #f9fafb;
-            padding: 40px;
-            border-radius: 10px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .architecture-diagram svg {
-            max-width: 100%;
-            height: auto;
+        
+        /* Ajuste para listas de parágrafos */
+        .service-list article p {
+            margin: 5px 0 5px 0;
+            max-width: none;
+            text-align: left;
         }
 
         /* Contact Preview */
-        #contact-preview .button-group {
+        #contact .button-group {
             display: flex;
             justify-content: center;
             gap: 20px;
@@ -490,7 +487,7 @@
                 padding: 10px;
             }
 
-            #contact-preview .button-group {
+            #contact .button-group {
                 flex-direction: column;
                 gap: 15px;
             }
@@ -517,7 +514,7 @@
             <ul>
                 <li><a href="#hero">Início</a></li>
                 <li><a href="#overview">Visão Geral</a></li>
-                <li><a href="#specs">Especificações</a></li>
+                <li><a href="#specs">Dimensionamento</a></li>
                 <li><a href="#architecture">Arquitetura</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
@@ -525,11 +522,10 @@
     </header>
 
     <main>
-        <!-- HERO SECTION -->
         <section id="hero">
             <div class="hero-content">
                 <h2>Projeto Sentinela</h2>
-                <div class="subtitle">Monitoramento e Resposta para Incidentes</div>
+                <div class="subtitle">Arquitetura Técnica e Dimensionamento</div>
                 <p>Solução de videomonitoramento centralizado e escalável, combinando dispositivos locais de baixo custo com infraestrutura robusta em Datacenter. Segurança, confiabilidade e escalabilidade integradas.</p>
                 <div class="hero-badges">
                     <div class="badge">
@@ -541,76 +537,41 @@
                         <div class="badge-subtitle">Cliente | VPN | Datacenter</div>
                     </div>
                     <div class="badge">
-                        <div class="badge-title">Escalável</div>
-                        <div class="badge-subtitle">Até 1.000 câmeras</div>
+                        <div class="badge-title">Retenção de 30 Dias</div>
+                        <div class="badge-subtitle">74.16 TB Armazenamento Bruto</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- OVERVIEW SECTION -->
         <section id="overview">
             <div class="container">
-                <h2>Visão Geral do Projeto</h2>
-                <p>O Projeto Sentinela visa estabelecer um serviço de monitoramento de videosegurança centralizado e escalável, utilizando uma infraestrutura híbrida que combina hardware local de baixo custo com um Datacenter robusto para gravação e análise. A solução propõe-se em software open source em um ambiente de cluster virtualizado.</p>
+                <h2>1. Introdução e Visão Geral</h2>
+                <p>O Projeto Sentinela visa estabelecer um serviço de monitoramento de videosegurança centralizado e escalável, utilizando uma **infraestrutura híbrida** que combina hardware local de baixo custo ("Caixa Sentinela") com um **Datacenter (DC) robusto** para gravação e análise. A solução proposta baseia-se em software de código aberto (Shinobi Video ou ZoneMinder) em um ambiente de cluster virtualizado.</p>
                 
                 <div class="specs-grid">
                     <div class="spec-card">
-                        <h3>Objetivo</h3>
-                        <p>Estabelecer monitoramento centralizado com dispositivos locais de baixo custo e Datacenter robusto.</p>
+                        <h3>Objetivo Principal</h3>
+                        <p>Monitoramento centralizado, seguro e econômico, utilizando soluções open-source.</p>
                     </div>
                     <div class="spec-card">
-                        <h3>Benefícios</h3>
-                        <p>Modular, seguro, escalável e econômico com código aberto e hardware acessível.</p>
+                        <h3>Infraestrutura</h3>
+                        <p>Híbrida: Caixas Sentinela locais (Gateway) + Datacenter (Gravação/Análise).</p>
                     </div>
                     <div class="spec-card">
-                        <h3>Arquitetura</h3>
-                        <p>Híbrida com Caixas Sentinela locais conectadas via VPN ao Datacenter centralizado.</p>
+                        <h3>Tecnologia Chave</h3>
+                        <p>Cluster Virtualizado (Proxmox/VMware) e VPN WireGuard para transporte seguro.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- DIMENSIONING SECTION -->
         <section id="specs">
             <div class="container">
-                <h2>Dimensionamento e Especificações</h2>
-                <p>Configuração técnica para 200 câmeras distribuídas em 25 instalações com 8 câmeras por Caixa Sentinela.</p>
+                <h2>2. Dimensionamento e Especificações Técnicas</h2>
+                <p>O dimensionamento foi realizado considerando **200 câmeras IP** distribuídas em 25 instalações com 8 câmeras por Caixa Sentinela.</p>
                 
-                <div class="specs-grid">
-                    <div class="spec-card">
-                        <h3>Total de Câmeras</h3>
-                        <div class="value">200</div>
-                        <p>Distribuídas em 25 locais</p>
-                    </div>
-                    <div class="spec-card">
-                        <h3>Câmeras por Local</h3>
-                        <div class="value">8</div>
-                        <p>Média por Caixa Sentinela</p>
-                    </div>
-                    <div class="spec-card">
-                        <h3>Período de Retenção</h3>
-                        <div class="value">30</div>
-                        <p>Dias no Datacenter</p>
-                    </div>
-                    <div class="spec-card">
-                        <h3>Codec de Vídeo</h3>
-                        <div class="value">H.265</div>
-                        <p>Compressão eficiente</p>
-                    </div>
-                    <div class="spec-card">
-                        <h3>Bitrate (1080p)</h3>
-                        <div class="value">1.5</div>
-                        <p>Mbps por câmera</p>
-                    </div>
-                    <div class="spec-card">
-                        <h3>Largura de Banda Total</h3>
-                        <div class="value">300</div>
-                        <p>Mbps ingress DC</p>
-                    </div>
-                </div>
-
-                <h3 style="margin-top: 60px; color: #1e3a5f; font-size: 1.5em;">Especificações Técnicas Detalhadas</h3>
+                <h3 style="margin-top: 40px; color: #1e3a5f; font-size: 1.5em; text-align: left;">2.1. Premissas de Vídeo e Largura de Banda</h3>
                 
                 <div class="table-container">
                     <table>
@@ -628,53 +589,36 @@
                                 <td>Distribuídas em 25 locais</td>
                             </tr>
                             <tr>
-                                <td><strong>Câmeras por Caixa</strong></td>
-                                <td>8</td>
-                                <td>Média por instalação</td>
-                            </tr>
-                            <tr>
                                 <td><strong>Codec de Vídeo</strong></td>
                                 <td>H.265</td>
-                                <td>Compressão eficiente</td>
+                                <td>Compressão eficiente para menor consumo de banda.</td>
                             </tr>
                             <tr>
-                                <td><strong>Bitrate (1080p)</strong></td>
+                                <td><strong>Bitrate Estimado (1080p)</strong></td>
                                 <td>1.5 Mbps</td>
-                                <td>Estimativa conservadora</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Taxa de Atividade</strong></td>
-                                <td>80%</td>
-                                <td>Gravação contínua ou por movimento</td>
+                                <td>Estimativa conservadora para H.265 @ 1080p.</td>
                             </tr>
                             <tr>
                                 <td><strong>Período de Retenção</strong></td>
                                 <td>30 dias</td>
-                                <td>Armazenamento no Datacenter</td>
+                                <td>Período de armazenamento no Datacenter.</td>
                             </tr>
                             <tr>
-                                <td><strong>Uplink por Local</strong></td>
-                                <td>12 Mbps</td>
-                                <td>Recomendação mínima: 15 Mbps</td>
+                                <td><strong>Largura de Banda Total (Ingress DC)</strong></td>
+                                <td>300.00 Mbps</td>
+                                <td>Largura de banda total necessária no Datacenter.</td>
                             </tr>
                             <tr>
-                                <td><strong>Largura de Banda Total</strong></td>
-                                <td>300 Mbps</td>
-                                <td>Ingress total no Datacenter</td>
+                                <td><strong>Recomendação Uplink (Local)</strong></td>
+                                <td>15 Mbps</td>
+                                <td>Mínimo dedicado para cada Caixa Sentinela (margem de segurança).</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </section>
 
-        <!-- HARDWARE SECTION -->
-        <section>
-            <div class="container">
-                <h2>Hardware e Infraestrutura</h2>
-                <p>Especificação de componentes para Caixa Sentinela e Datacenter.</p>
-                
-                <h3 style="margin-top: 40px; color: #1e3a5f; font-size: 1.5em; text-align: left;">Caixa Sentinela (Local)</h3>
+                <h3 style="margin-top: 60px; color: #1e3a5f; font-size: 1.5em; text-align: left;">2.2. Especificação da Caixa Sentinela (Local)</h3>
+                <p style="text-align: left; max-width: none;">A Caixa Sentinela atua como um gateway de vídeo, centralizando os streams locais e estabelecendo um túnel VPN seguro para o Datacenter. Foco em baixo consumo e estabilidade.</p>
                 <div class="table-container">
                     <table>
                         <thead>
@@ -688,38 +632,35 @@
                             <tr>
                                 <td><strong>CPU</strong></td>
                                 <td>Intel N100 (ou equivalente)</td>
-                                <td>Baixo consumo (TDP 6W), bom desempenho single-thread para criptografia VPN</td>
+                                <td>Baixo consumo (TDP 6W), bom desempenho single-thread para criptografia VPN (WireGuard/OpenVPN).</td>
                             </tr>
                             <tr>
                                 <td><strong>RAM</strong></td>
                                 <td>4 GB DDR4</td>
-                                <td>Suficiente para SO, cliente VPN e software de proxy de vídeo</td>
+                                <td>Suficiente para SO, cliente VPN e proxy de vídeo.</td>
                             </tr>
                             <tr>
                                 <td><strong>Armazenamento</strong></td>
                                 <td>128 GB SSD (M.2 ou SATA)</td>
-                                <td>Para SO, logs e pequeno buffer de VPN/cache</td>
+                                <td>Para SO, logs e pequeno buffer de VPN/cache.</td>
                             </tr>
                             <tr>
                                 <td><strong>Rede</strong></td>
                                 <td>2x Portas Gigabit Ethernet</td>
-                                <td>Uma para rede local (câmeras) e outra para WAN (internet/VPN)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Sistema Operacional</strong></td>
-                                <td>Linux (Ubuntu Server LTS)</td>
-                                <td>Estabilidade, segurança e compatibilidade com software open-source</td>
+                                <td>Uma para LAN (câmeras) e outra para WAN (internet/VPN).</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <h3 style="margin-top: 40px; color: #1e3a5f; font-size: 1.5em; text-align: left;">Datacenter (Núcleo)</h3>
+                <h3 style="margin-top: 60px; color: #1e3a5f; font-size: 1.5em; text-align: left;">2.3. Especificação do Datacenter (DC)</h3>
+                <p style="text-align: left; max-width: none;">O Datacenter é o núcleo do sistema, responsável pela gravação, armazenamento e análise dos 200 streams simultâneos.</p>
+                
                 <div class="specs-grid">
                     <div class="spec-card">
                         <h3>CPU (cores lógicos)</h3>
                         <div class="value">67</div>
-                        <p>Mínimo necessário</p>
+                        <p>Mínimo dimensionado</p>
                     </div>
                     <div class="spec-card">
                         <h3>Memória RAM</h3>
@@ -727,114 +668,82 @@
                         <p>GB mínimo</p>
                     </div>
                     <div class="spec-card">
-                        <h3>Armazenamento (30 dias)</h3>
+                        <h3>Armazenamento Bruto (30 dias)</h3>
                         <div class="value">74.16</div>
-                        <p>TB bruto</p>
+                        <p>TB</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ARCHITECTURE SECTION -->
         <section id="architecture">
             <div class="container">
-                <h2>Arquitetura do Sistema</h2>
-                <p>Estrutura em três camadas: Cliente, Conectividade e Datacenter.</p>
+                <h2>3. Arquitetura do Sistema</h2>
+                <p>A arquitetura é dividida em três camadas principais: Cliente (Caixa Sentinela), Conectividade (VPN) e Datacenter (Cluster de Gravação/Análise).</p>
                 
                 <div class="service-list">
                     <article>
                         <div class="icon">📍</div>
-                        <h3>Camada Cliente (Caixa Sentinela)</h3>
-                        <p><strong>Captura de Vídeo:</strong> Conexão direta às câmeras IP locais (RTSP/ONVIF).</p>
-                        <p><strong>Centralização:</strong> Agregação dos streams das 8 câmeras.</p>
-                        <p><strong>Criptografia VPN:</strong> Estabelecimento de túnel seguro (WireGuard preferencialmente).</p>
-                        <p><strong>Encaminhamento:</strong> Transmissão contínua dos streams para o Datacenter.</p>
+                        <h3>3.1. Camada Cliente (Caixa Sentinela)</h3>
+                        <p><strong>Captura de Vídeo:</strong> Coleta streams (RTSP/ONVIF) das 8 câmeras locais.</p>
+                        <p><strong>Centralização:</strong> Agregação e preparação dos dados para envio.</p>
+                        <p><strong>Criptografia VPN:</strong> Cliente WireGuard estabelece túnel seguro.</p>
+                        <p><strong>Encaminhamento:</strong> Streams enviados continuamente para o DC.</p>
                     </article>
 
                     <article>
                         <div class="icon">🔐</div>
-                        <h3>Camada de Conectividade (VPN)</h3>
-                        <p><strong>Protocolo:</strong> WireGuard (recomendado pela eficiência e baixo overhead).</p>
-                        <p><strong>Concentrador VPN:</strong> Servidor dedicado ou VM que recebe as conexões das 25 Caixas Sentinela.</p>
-                        <p><strong>Autenticação:</strong> Chaves públicas/privadas gerenciadas centralmente.</p>
-                        <p><strong>Monitoramento:</strong> Scripts de watchdog e alertas SNMP para detecção de falhas de túnel.</p>
+                        <h3>3.2. Camada de Conectividade (VPN)</h3>
+                        <p><strong>Protocolo:</strong> WireGuard (rápido, leve, baixo overhead).</p>
+                        <p><strong>Concentrador VPN (DC):</strong> Servidor dedicado ou VM para 25 conexões.</p>
+                        <p><strong>Segurança:</strong> Autenticação via Chaves Públicas/Privadas.</p>
+                        <p><strong>Estabilidade:</strong> Monitoramento e reconexão automática (watchdog).</p>
                     </article>
 
                     <article>
                         <div class="icon">🏢</div>
-                        <h3>Camada Datacenter (Cluster)</h3>
-                        <p><strong>Cluster Virtualizado:</strong> Hospeda múltiplas VMs para gravação, análise e interface web.</p>
-                        <p><strong>Balanceamento de Carga:</strong> Distribuição dos streams entre nós do cluster.</p>
-                        <p><strong>Armazenamento:</strong> Sistema distribuído (Ceph, ZFS ou NFS redundante).</p>
-                        <p><strong>Backup:</strong> Replicação incremental diária para storage secundário.</p>
+                        <h3>3.3. Camada Datacenter (Cluster)</h3>
+                        <p><strong>Cluster Virtualizado:</strong> VMs para Gravação (Shinobi/ZoneMinder), Análise e Interface Web.</p>
+                        <p><strong>Armazenamento:</strong> Sistema distribuído (Ceph, ZFS ou NFS redundante) para 74.16 TB.</p>
+                        <p><strong>Resiliência:</strong> Failover e Balanceamento de Carga entre os nós.</p>
+                        <p><strong>Monitoramento:</strong> Prometheus e Grafana para métricas de desempenho e disponibilidade.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- SECURITY SECTION -->
         <section>
             <div class="container">
-                <h2>Segurança e Resiliência</h2>
-                <p>Estratégias de proteção e recuperação do sistema.</p>
+                <h2>4. Segurança, Resiliência e Escalabilidade</h2>
+                <p>Estratégia de proteção e o potencial de crescimento do Projeto Sentinela.</p>
                 
                 <div class="service-list">
                     <article>
                         <div class="icon">🔒</div>
-                        <h3>Segurança</h3>
-                        <p>✓ <strong>Criptografia Ponta a Ponta:</strong> VPN + HTTPS em todas as camadas</p>
-                        <p>✓ <strong>Autenticação Multifator:</strong> Para acesso administrativo ao Datacenter</p>
-                        <p>✓ <strong>Logs Centralizados:</strong> Auditoria contínua de todas as ações</p>
-                        <p>✓ <strong>Isolamento de Rede:</strong> Segmentação de VLANs e firewalls</p>
+                        <h3>Segurança e Resiliência</h3>
+                        <p>✓ Criptografia **Ponta a Ponta** (VPN + HTTPS).</p>
+                        <p>✓ Autenticação **Multifator** (MFA) para acesso administrativo.</p>
+                        <p>✓ Failover Automático entre nós do cluster.</p>
+                        <p>✓ RTO &lt; 5 minutos / RPO &lt; 1 minuto.</p>
                     </article>
 
                     <article>
-                        <div class="icon">⚡</div>
-                        <h3>Resiliência</h3>
-                        <p>✓ <strong>Failover Automático:</strong> Entre nós do cluster em caso de falha</p>
-                        <p>✓ <strong>Redundância de Hardware:</strong> Múltiplos servidores e storage</p>
-                        <p>✓ <strong>Reconexão Automática:</strong> Caixas Sentinela reconectam em caso de queda</p>
-                        <p>✓ <strong>Buffer Local:</strong> Gravação temporária em caso de desconexão</p>
+                        <div class="icon">📈</div>
+                        <h3>Potencial de Escalabilidade</h3>
+                        <p>✓ Expansão linear sem reconfiguração global.</p>
+                        <p>✓ Suporte a até **1.000 câmeras** (125 Caixas Sentinela).</p>
+                        <p>✓ Escalabilidade **Horizontal** no Datacenter (adição de novos nós).</p>
+                        <p>✓ Capacidade de gestão centralizada de grande frota de Caixas Sentinela.</p>
                     </article>
+                </div>
 
-                    <article>
-                        <div class="icon">📊</div>
-                        <h3>Estratégia de Recuperação</h3>
-                        <p><strong>RTO:</strong> &lt; 5 minutos (Tempo de Recuperação Objetivo)</p>
-                        <p><strong>RPO:</strong> &lt; 1 minuto (Ponto de Recuperação Objetivo)</p>
-                        <p><strong>Disponibilidade:</strong> 99.9% uptime esperado</p>
-                        <p><strong>Monitoramento:</strong> Prometheus e Grafana para métricas em tempo real</p>
-                    </article>
+                <div style="background: linear-gradient(135deg, #1e3a5f 0%, #0284c7 100%); color: white; padding: 40px; border-radius: 10px; margin-top: 60px; text-align: left;">
+                    <h3 style="color: #0AFF0A; margin-top: 0; font-size: 1.8em;">Conclusão Final</h3>
+                    <p style="color: #e0ffe0; font-size: 1.1em;">O Projeto Sentinela propõe uma solução **modular, segura e escalável** para videomonitoramento distribuído, equilibrando perfeitamente custo, desempenho e confiabilidade. É uma base técnica robusta e flexível, pronta para atender às necessidades atuais e futuras de expansão da vigilância.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SCALABILITY SECTION -->
-        <section>
-            <div class="container">
-                <h2>Escalabilidade e Futuro</h2>
-                <p>A arquitetura permite expansão linear sem reconfiguração global.</p>
-                
-                <div class="specs-grid">
-                    <div class="spec-card">
-                        <h3>Cenário Atual</h3>
-                        <p>✓ 200 câmeras<br>✓ 25 locais<br>✓ 300 Mbps ingress<br>✓ 74.16 TB armazenamento</p>
-                    </div>
-                    <div class="spec-card">
-                        <h3>Potencial Futuro</h3>
-                        <p>→ 1.000 câmeras<br>→ 125 locais<br>→ 1.500 Mbps ingress<br>→ 370.8 TB armazenamento</p>
-                    </div>
-                </div>
-
-                <div style="background: linear-gradient(135deg, #1e3a5f 0%, #0284c7 100%); color: white; padding: 40px; border-radius: 10px; margin-top: 40px; text-align: left;">
-                    <h3 style="color: white; margin-top: 0;">Conclusão</h3>
-                    <p style="color: #e0ffe0;">O Projeto Sentinela propõe uma solução <strong>modular, segura e escalável</strong> para videomonitoramento distribuído. Através da integração eficiente entre dispositivos locais de baixo custo (Caixas Sentinela) e infraestrutura centralizada robusta (Datacenter), o sistema equilibra perfeitamente custo, desempenho e confiabilidade.</p>
-                    <p style="color: #e0ffe0;">A arquitetura em três camadas (Cliente, VPN, Datacenter) garante segurança ponta a ponta, enquanto o uso de software open-source reduz custos de licenciamento. A capacidade de escalar de 200 para 1.000 câmeras sem reconfiguração fundamental torna a solução ideal para organizações em crescimento.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
         <section id="contact">
             <div class="container">
                 <h2>Entre em Contato</h2>
@@ -853,7 +762,7 @@
         <p>Solução de Videomonitoramento Centralizado e Escalável</p>
         <ul>
             <li><a href="#overview">Visão Geral</a></li>
-            <li><a href="#specs">Especificações</a></li>
+            <li><a href="#specs">Dimensionamento</a></li>
             <li><a href="#architecture">Arquitetura</a></li>
             <li><a href="#contact">Contato</a></li>
         </ul>
