@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Aceite Digital - Assinatura Eletrônica e Gestão de Documentos</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #075E54;
+            --dark-blue: #0A1C2E;
+            --white: #FFFFFF;
+            --light-gray: #F4F6F9;
+            --text-dark: #333333;
+            --accent-blue: #007bff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Global Sections --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        hr { border: 0; height: 1px; background: #ddd; margin: 40px 0; }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: var(--white);
+        }
+        .logo {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--primary-green);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 80px 20px;
+            background: linear-gradient(rgba(10, 28, 46, 0.85), rgba(10, 28, 46, 0.85)), url('https://images.unsplash.com/photo-1562564055-71e051d33c19?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* --- Info Sections --- */
+        .info-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card h3 {
+            font-size: 1.4em;
+            color: var(--dark-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 span {
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: var(--primary-green);
+        }
+        
+        /* --- Pricing Grid --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        .price-card.highlight {
+            border: 3px solid var(--primary-green);
+            transform: scale(1.03);
+        }
+        .price-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        .plan-tag {
+            font-size: 0.9em;
+            color: var(--primary-green);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .price-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-green);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .price-value span { font-size: 0.4em; color: var(--text-dark); font-weight: 400; }
+        .setup-fee { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--dark-blue); }
+
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        .price-list li {
+            font-size: 1em;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .price-list li::before {
+            content: 'L';
+            transform: scaleX(-1) rotate(-35deg);
+            display: inline-block;
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- Buttons --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background-color: var(--dark-blue);
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--white);
+            margin-top: 50px;
+        }
+        .footer-logo { max-width: 150px; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2.2em; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            nav ul li { display: block; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">NOVO ACEITE DIGITAL</div>
+            <ul>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#planos">Planos e Preços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1 style="color: var(--primary-green);">Assine Documentos com Validade Jurídica em Segundos</h1>
+            <p class="subtitle">A plataforma definitiva para envio, gestão e assinatura digital de documentos. Simples, seguro e onde você estiver.</p>
+            <a href="#planos" class="cta-button">Ver Planos de Hospedagem</a>
+        </section>
+
+        <section id="beneficios" class="container">
+            <h2 class="section-title">Por que escolher o Novo Aceite Digital?</h2>
+            <p>Sua empresa ganha agilidade eliminando a burocracia do papel. Nossa plataforma permite que você envie contratos, termos e aceites para assinatura de forma totalmente digital.</p>
+            
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>🔐</span> Segurança Máxima</h3>
+                    <p>Documentos criptografados e trilha de auditoria completa para garantir a integridade de cada assinatura.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>⚡</span> Agilidade no Processo</h3>
+                    <p>Reduza o tempo de fechamento de negócios de dias para minutos. Assinaturas via e-mail ou link direto.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📱</span> Mobile Friendly</h3>
+                    <p>Seus clientes podem assinar de qualquer lugar, seja pelo smartphone, tablet ou computador.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="recursos" class="container">
+            <h2 class="section-title">Recursos da Plataforma</h2>
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>📄</span> Gestão de Documentos</h3>
+                    <p>Painel administrativo para acompanhar quem já assinou e quem ainda está pendente.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>☁️</span> Opções de Hospedagem</h3>
+                    <p>Escolha entre usar nossa infraestrutura ou manter os dados dentro do servidor da sua empresa.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🛠️</span> Suporte Especializado</h3>
+                    <p>Conte com nossa equipe para garantir que sua plataforma esteja sempre operando 24h por dia.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="planos" class="container">
+            <h2 class="section-title">Escolha o modelo ideal para seu negócio</h2>
+            <p class="subtitle">Oferecemos flexibilidade total para a instalação do serviço.</p>
+
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <div>
+                        <h3>Sua Infraestrutura</h3>
+                        <p class="plan-tag">Instalação em seu Servidor ou VPS</p>
+                        <p class="setup-fee">Taxa de Deploy: R$ 780,00 <span>(Único)</span></p>
+                        <p class="price-value">R$ 70,00 <span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Configuração completa no seu servidor</li>
+                            <li>Suporte mensal (24h inclusas)</li>
+                            <li>Privacidade total dos dados</li>
+                            <li>Atualizações de segurança</li>
+                            <li>Customização de domínio</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Contratar Deploy</a>
+                </article>
+
+                <article class="price-card highlight">
+                    <div>
+                        <h3>Nossa Infraestrutura</h3>
+                        <p class="plan-tag">Hospedagem em Nuvem Gerenciada</p>
+                        <p class="setup-fee">Taxa de Ativação: Isenta</p>
+                        <p class="price-value">R$ 100,00 <span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Hospedagem inclusa (Cloud)</li>
+                            <li>Setup rápido e imediato</li>
+                            <li>Backups automáticos</li>
+                            <li>Suporte técnico prioritário</li>
+                            <li>Alta disponibilidade (Uptime 99.9%)</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Começar Agora</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contato" class="container">
+            <hr>
+            <h2>Pronto para digitalizar seus processos?</h2>
+            <p class="subtitle">Fale com nossa equipe técnica para tirar dúvidas sobre a implantação.</p>
+            <div style="margin-top: 30px;">
+                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366;">
+                    Chamar no WhatsApp 📞
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
+        <p>&copy; 2026 Novo Aceite Digital by MC Infra TI | Todos os direitos reservados.</p>
+        <p><small>A implantação em VPS do cliente depende de requisitos mínimos de sistema.</small></p>
+    </footer>
+
+</body>
+</html>
