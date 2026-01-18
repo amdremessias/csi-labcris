@@ -3,280 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Master - Gestão de Ordens de Serviço e Clientes</title>
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <title>Sentinela Vigilancia CFTV - Planos de Segurança</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos específicos para esta página */
-        body {
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-sentinela.jpg'); 
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #f0f0f0; 
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #075E54;
+            --dark-blue: #0A1C2E;
+            --white: #FFFFFF;
+            --light-gray: #F4F6F9;
+            --text-dark: #333333;
+            --accent-blue: #007bff;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
-          
-        header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 1rem 0;
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
             text-align: center;
-            width: 100%; 
-            top: 0; 
-            z-index: 1000;
-            border-bottom: 2px solid #0af;
         }
         
+        .section-title {
+            font-size: 2.2em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        hr { border: 0; height: 1px; background: #ddd; margin: 40px 0; }
+
+        header {
+            background-color: var(--dark-blue);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: var(--white);
+        }
+        .logo {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--primary-green);
+            letter-spacing: 1px;
+        }
         nav ul {
             list-style: none;
             padding: 0;
-            margin: 0; 
-            display: flex; 
-            justify-content: center; 
-            flex-wrap: wrap; 
+            margin-top: 15px;
         }
         nav ul li {
             display: inline;
             margin: 0 15px;
         }
         nav ul li a {
-            color: #0af;
+            color: var(--white);
             text-decoration: none;
-            padding: 5px 10px; 
+            font-size: 1.1em;
+            font-weight: 400;
             transition: color 0.3s ease;
-            font-weight: bold;
         }
         nav ul li a:hover {
-            color: #fff; 
+            color: var(--primary-green);
         }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
+        .hero-section {
+            padding: 80px 20px;
+            background: linear-gradient(rgba(10, 28, 46, 0.88), rgba(10, 28, 46, 0.88)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            color: var(--white);
             text-align: center;
-            position: relative;
-            z-index: 1;
         }
-
-        h1 { color: #0af; font-size: 2.8em; margin-bottom: 10px; text-transform: uppercase; }
-        h2 { color: #0af; font-size: 2.2em; margin-top: 40px; margin-bottom: 20px; }
-        
-        .intro-text { font-size: 1.3em; margin-bottom: 30px; color: #ccc; }
-
-        .features-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+        .hero-section h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
             margin-bottom: 40px;
-        }
-        .features-list li {
-            background: rgba(26, 26, 26, 0.9);
-            padding: 15px 25px;
-            border-radius: 5px;
-            border-left: 4px solid #0af;
-            font-size: 1.1em;
-            text-align: left;
-            flex-basis: calc(33% - 20px);
-            box-sizing: border-box;
-            color: #f0f0f0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* --- Grid de Planos --- */
-        .plans-grid {
+        .info-card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
-        .plan-card {
-            background: rgba(17, 17, 17, 0.95);
-            padding: 35px 25px;
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
-            text-align: center;
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        .info-card:hover { transform: translateY(-5px); }
+        .info-card h3 {
+            font-size: 1.4em;
+            color: var(--dark-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 span { font-size: 1.5em; margin-right: 10px; color: var(--primary-green); }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: left;
             display: flex;
             flex-direction: column;
-            border: 1px solid #333;
         }
-        .plan-card:hover {
-            transform: translateY(-10px);
-            border-color: #0af;
-            box-shadow: 0 0 30px rgba(0, 170, 255, 0.4);
+        .price-card.highlight {
+            border: 3px solid var(--primary-green);
+            transform: scale(1.03);
         }
-        .plan-card h3 { color: #0af; font-size: 1.8em; margin-bottom: 15px; }
-        
-        .price-box { margin: 20px 0; padding: 10px; background: rgba(0, 170, 255, 0.1); border-radius: 8px; }
-        .price-val { font-size: 2.5em; font-weight: bold; color: #fff; }
-        .price-period { font-size: 0.9em; color: #0af; }
+        .price-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        .plan-tag {
+            font-size: 0.9em;
+            color: var(--primary-green);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .price-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-green);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .price-value span { font-size: 0.4em; color: var(--text-dark); font-weight: 400; }
+        .setup-fee { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--dark-blue); background: #e9f7ef; padding: 5px; border-radius: 5px; }
 
-        .plan-description { font-size: 0.95em; margin-bottom: 20px; color: #bbb; min-height: 60px; }
-        
-        .plan-card ul { list-style: none; padding: 0; margin: 20px 0; text-align: left; flex-grow: 1; }
-        .plan-card ul li { margin-bottom: 12px; padding-left: 30px; position: relative; font-size: 0.95em; }
-        .plan-card ul li::before { content: '🔹'; position: absolute; left: 0; }
-
-        .btn-plan {
-            display: block;
-            background: #0af;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 5px;
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        .price-list li {
+            font-size: 1em;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .price-list li::before {
+            content: '✓';
+            display: inline-block;
+            color: var(--primary-green);
             font-weight: bold;
-            margin-top: 20px;
-            transition: background 0.3s;
+            position: absolute;
+            left: 0;
         }
-        .btn-plan:hover { background: #0088cc; }
 
-        .contact-info {
-            background: rgba(17, 17, 17, 0.9);
-            padding: 40px;
-            margin-top: 50px;
-            border-radius: 8px;
-            border: 1px solid #0af;
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.9);
-            text-align: center;  
-            padding: 30px;  
-            color: #0af;  
+            background-color: var(--dark-blue);
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--white);
             margin-top: 50px;
-            border-top: 1px solid #333;
         }
-        .footer-logo { margin: 0 auto 15px auto; max-width: 150px; height: auto; display: block; }
+        .footer-logo { max-width: 150px; margin-bottom: 15px; }
 
         @media (max-width: 768px) {
-            .features-list li { flex-basis: 100%; }
-            h1 { font-size: 2em; }
+            .hero-section h1 { font-size: 2.2em; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            nav ul li { display: block; margin: 10px 0; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <nav>
-            <div class="logo"><h3>SENTINELA CFTV</h3></div>
+            <div class="logo">OS MASTER PRO</div>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#features">Recursos</a></li>
-                <li><a href="#plans">Planos</a></li>
-                <li><a href="#contact">Contato</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
-            <div class="container">
-                <h1>Sua segurança começa pela Prevenção!</h1>
-                <p class="intro-text">Tenha a tranquilidade que sua empresa e residência merecem com nossas soluções avançadas de vigilância.</p>
-            </div>
+        <section class="hero-section">
+            <h1 style="color: var(--primary-green);">Gestão Inteligente de Ordens de Serviço</h1>
+            <p class="subtitle">Automatize sua assistência técnica ou empresa de serviços com uma plataforma 100% web, segura e eficiente.</p>
+            <a href="#planos" class="cta-button">Ver Modelos de Implantação</a>
         </section>
 
-        <section id="features">
-            <div class="container">
-                <hr style="border-color: #333;">
-                <h2>Recursos de Elite</h2>
-                <ul class="features-list">
-                    <li>📑 Backup Remoto Seguro</li>
-                    <li>🚨 Monitoramento de Incidentes</li>
-                    <li>🔐 Conexão Protegida VPN</li>
-                    <li>⚠️ Resposta Rápida a Alertas</li>
-                    <li>📈 Inteligência Artificial 24/7</li>
-                    <li>📱 Acesso Mobile em Tempo Real</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="plans">
-            <div class="container">
-                <h2>Planos de Vigilância</h2>
-                <div class="plans-grid">
-                    
-                    <article class="plan-card">
-                        <h3>Plano Básico</h3>
-                        <p class="plan-description">Essencial para quem busca proteção fundamental e acesso remoto seguro.</p>
-                        <div class="price-box">
-                            <span class="price-val">R$ 149</span><span class="price-period">/mês</span>
-                        </div>
-                        <ul>
-                            <li>Gerenciamento de Servidor</li>
-                            <li>Monitoramento de Incidentes</li>
-                            <li>Conexão Cliente VPN Segura</li>
-                            <li>Suporte via Chamado</li>
-                        </ul>
-                        <a href="https://wa.me/5514997135218?text=Olá! Gostaria de contratar o Plano Básico da Sentinela." class="btn-plan">Contratar Básico</a>
-                    </article>
-
-                    <article class="plan-card" style="border-color: #0af;">
-                        <h3>Plano Padrão</h3>
-                        <p class="plan-description">Segurança robusta com backup externo para garantir que as provas nunca sejam perdidas.</p>
-                        <div class="price-box">
-                            <span class="price-val">R$ 289</span><span class="price-period">/mês</span>
-                        </div>
-                        <ul>
-                            <li><b>Tudo do Plano Básico</b></li>
-                            <li>Backup de Vídeo Segurança</li>
-                            <li>Cloud-Backup Externo</li>
-                            <li>Relatórios Mensais</li>
-                        </ul>
-                        <a href="https://wa.me/5514997135218?text=Olá! Gostaria de contratar o Plano Padrão da Sentinela." class="btn-plan">Contratar Padrão</a>
-                    </article>
-
-                    <article class="plan-card">
-                        <h3>Plano Enterprise</h3>
-                        <p class="plan-description">Vigilância máxima com tecnologia de I.A. para proteção proativa 24 horas por dia.</p>
-                        <div class="price-box">
-                            <span class="price-period">A partir de</span><br>
-                            <span class="price-val">R$ 590</span><span class="price-period">/mês</span>
-                        </div>
-                        <ul>
-                            <li><b>Tudo do Plano Padrão</b></li>
-                            <li>Resposta p/ Alertas de Violação</li>
-                            <li>Vídeo Monitorado com I.A 24/7</li>
-                            <li>Suporte Prioritário VIP</li>
-                        </ul>
-                        <a href="https://wa.me/5514997135218?text=Olá! Gostaria de saber mais sobre o Plano Enterprise da Sentinela." class="btn-plan">Consultar Enterprise</a>
-                    </article>
-
+        <section id="beneficios" class="container">
+            <h2 class="section-title">Por que automatizar sua gestão?</h2>
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>📑</span> Ordens de Serviço</h3>
+                    <p>Controle completo desde a entrada do equipamento até a finalização, com histórico detalhado e status personalizáveis.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>💰</span> Orçamentos Rápidos</h3>
+                    <p>Gere propostas profissionais e envie por WhatsApp em segundos, aumentando sua taxa de aprovação.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>👥</span> Gestão de Clientes</h3>
+                    <p>Base de dados centralizada com CRM para histórico de visitas, equipamentos vinculados e faturamento.</p>
                 </div>
             </div>
         </section>
 
-        <section id="contact">
-            <div class="container">
-                <div class="contact-info">
-                    <h2>Pronto para proteger seu patrimônio?</h2>
-                    <p>Fale com um especialista agora mesmo e receba uma consultoria gratuita.</p>
-                    <p style="font-size: 1.5em; margin-top: 20px;">
-                        📞 <a href="https://wa.me/5514997135218" target="_blank">14 99713-5218</a><br>
-                        📧 <a href="mailto:messias.consultoria@yahoo.com">messias.consultoria@yahoo.com</a>
-                    </p>
+        <hr>
+
+        <section id="recursos" class="container">
+            <h2 class="section-title">Tecnologia Aplicada ao Serviço</h2>
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>🛠️</span> Fluxo Inteligente</h3>
+                    <p>Gerencie prazos, técnicos responsáveis e peças utilizadas em cada OS de forma visual e simples.</p>
                 </div>
+                <div class="info-card">
+                    <h3><span>📱</span> Mobilidade Total</h3>
+                    <p>Sua equipe atualiza ordens de serviço diretamente do smartphone, eliminando o uso de papéis.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📈</span> Painel de Indicadores</h3>
+                    <p>Acompanhe seu faturamento, produtividade da equipe e serviços pendentes em um dashboard intuitivo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="planos" class="container">
+            <h2 class="section-title">Planos de Implantação</h2>
+            <p class="subtitle">Selecione o modelo ideal para a maturidade tecnológica do seu negócio.</p>
+
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <div>
+                        <h3>Sua Infraestrutura</h3>
+                        <p class="plan-tag">Ideal para Controle Interno</p>
+                        <p class="setup-fee">Taxa de Setup: R$ 1.200,00</p>
+                        <p class="price-value">R$ 85,00 <span>/mês de suporte</span></p>
+                        <ul class="price-list">
+                            <li>Instalação no seu Servidor/VPS</li>
+                            <li>Dados 100% sob sua custódia</li>
+                            <li>Sem limite de usuários</li>
+                            <li>Sem limite de registros de OS</li>
+                            <li>Atualizações de segurança mensais</li>
+                            <li>Suporte técnico especializado</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218?text=Olá! Desejo o deploy do OS Master Pro em minha própria infraestrutura." target="_blank" class="cta-button">Solicitar Deploy</a>
+                </article>
+
+                <article class="price-card highlight">
+                    <div>
+                        <h3>Nossa Infraestrutura</h3>
+                        <p class="plan-tag">Praticidade Máxima (SaaS)</p>
+                        <p class="setup-fee">Taxa de Ativação: R$ 450,00</p>
+                        <p class="price-value">R$ 150,00 <span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Hospedagem inclusa (Cloud Alta Performance)</li>
+                            <li>Backups Diários Automáticos</li>
+                            <li>Certificado SSL incluso</li>
+                            <li>Ativação em até 24 horas</li>
+                            <li>Suporte prioritário via WhatsApp</li>
+                            <li>Acesso global com monitoramento 24/7</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218?text=Olá! Desejo contratar o OS Master Pro no modelo Cloud (Nossa Infraestrutura)." target="_blank" class="cta-button">Começar Agora</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contato" class="container">
+            <hr>
+            <h2>Transforme sua empresa hoje</h2>
+            <p class="subtitle">Dúvidas sobre a implantação? Nossa equipe técnica está pronta para ajudar.</p>
+            <div style="margin-top: 30px;">
+                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366;">
+                    Falar com Consultor via WhatsApp 📞
+                </a>
             </div>
         </section>
     </main>
 
     <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo Sentinela CFTV" class="footer-logo">
-        <p> &copy; 2026 | Sentinela CFTV by MC Infra TI | Todos os direitos reservados. </p>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
+        <p>&copy; 2026 OS Master Pro by MC Infra TI | Todos os direitos reservados.</p>
+        <p><small>Requisitos para Infra Própria: Linux Ubuntu 22.04+, 2GB RAM, 20GB SSD.</small></p>
     </footer>
+
 </body>
 </html>
