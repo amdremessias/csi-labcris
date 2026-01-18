@@ -14,7 +14,6 @@
             --white: #FFFFFF;
             --light-gray: #F4F6F9;
             --text-dark: #333333;
-            --text-light: #f0f0f0;
         }
 
         body {
@@ -27,15 +26,15 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Header (Modelo Master) --- */
+        /* --- Header Ajustado (Rola com a página) --- */
         header {
             background-color: var(--dark-blue);
             padding: 1.5rem 0;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             color: var(--white);
-            position: sticky;
-            top: 0;
+            /* Alterado de sticky para relative para rolar com o conteúdo */
+            position: relative; 
             z-index: 1000;
         }
         .logo {
@@ -123,7 +122,7 @@
         }
         .info-card h3 span { font-size: 1.5em; margin-right: 10px; }
 
-        /* --- Pricing Grid (Lógica de Hospedagem) --- */
+        /* --- Pricing Grid --- */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -135,39 +134,22 @@
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
             text-align: left;
             display: flex;
             flex-direction: column;
             border-top: 5px solid var(--dark-blue);
         }
-        .price-card.highlight {
-            border-top: 5px solid var(--primary-green);
-            transform: scale(1.03);
-        }
-        .price-card h3 { font-size: 1.8em; color: var(--dark-blue); margin-bottom: 5px; text-align: center; }
-        .plan-tag {
-            font-size: 0.9em; color: var(--primary-green); font-weight: 700;
-            text-align: center; margin-bottom: 20px; text-transform: uppercase;
-        }
-        .setup-fee { 
-            text-align: center; font-weight: bold; margin-bottom: 20px; 
-            color: var(--dark-blue); background: #e9f7ef; padding: 5px; border-radius: 5px;
-        }
+        .price-card.highlight { border-top: 5px solid var(--primary-green); transform: scale(1.03); }
+        .price-card h3 { font-size: 1.8em; text-align: center; color: var(--dark-blue); }
+        .plan-tag { font-size: 0.9em; color: var(--primary-green); font-weight: 700; text-align: center; margin-bottom: 20px; text-transform: uppercase; }
+        .setup-fee { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--dark-blue); background: #e9f7ef; padding: 5px; border-radius: 5px; }
         .price-value { font-size: 2.5em; font-weight: 700; color: var(--dark-green); text-align: center; margin-bottom: 10px; }
         .price-value span { font-size: 0.4em; color: var(--text-dark); font-weight: 400; }
 
-        .price-list {
-            list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1;
-        }
-        .price-list li {
-            font-size: 0.95em; margin-bottom: 12px; position: relative; padding-left: 25px;
-        }
-        .price-list li::before {
-            content: '✓'; color: var(--primary-green); font-weight: bold; position: absolute; left: 0;
-        }
+        .price-list { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
+        .price-list li { font-size: 0.95em; margin-bottom: 12px; position: relative; padding-left: 25px; }
+        .price-list li::before { content: '✓'; color: var(--primary-green); font-weight: bold; position: absolute; left: 0; }
 
-        /* --- Buttons --- */
         .cta-button {
             display: inline-block;
             background-color: var(--primary-green);
@@ -179,29 +161,15 @@
             font-weight: 700;
             text-align: center;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
-        .cta-button:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+        .cta-button:hover { background-color: var(--dark-green); transform: translateY(-3px); }
 
-        /* --- Footer --- */
-        footer {
-            background-color: var(--dark-blue);
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--white);
-            margin-top: 50px;
-        }
+        footer { background-color: var(--dark-blue); text-align: center; padding: 40px 20px; color: var(--white); margin-top: 50px; }
         .footer-logo { max-width: 150px; margin-bottom: 15px; }
 
         @media (max-width: 768px) {
             .hero-section h1 { font-size: 2.2em; }
             .pricing-grid { grid-template-columns: 1fr; }
-            nav ul li { display: block; margin: 10px 0; }
         }
     </style>
 </head>
@@ -209,9 +177,10 @@
 
     <header>
         <nav>
-            <div class="logo">SENTINELA <span style="color: var(--white);">CFTV</span></div>
+            <div class="logo">SENTINELA <span style="color: var(--white);">VIGILÂNCIA</span></div>
             <ul>
-                <li><a href="#beneficios">Recursos</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#recursos">Recursos</a></li>
                 <li><a href="#planos">Planos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
@@ -220,25 +189,25 @@
 
     <main>
         <section class="hero-section">
-            <h1>Sua segurança começa pela Prevenção!</h1>
-            <p class="subtitle">Com a Sentinela Vigilância CFTV, tenha a tranquilidade que sua empresa e residência merecem com nossa solução avançada de vigilância por vídeo.</p>
-            <a href="#planos" class="cta-button">Ver Planos e Serviços</a>
+            <h1 style="color: var(--primary-green);">Sua segurança começa pela Prevenção!</h1>
+            <p class="subtitle">Proteja sua empresa e residência com tecnologia de ponta em monitoramento inteligente e backup em nuvem.</p>
+            <a href="#planos" class="cta-button">Conhecer Planos de Segurança</a>
         </section>
 
         <section id="beneficios" class="container">
-            <h2 class="section-title">Recursos Essenciais</h2>
+            <h2 class="section-title">Tecnologia que protege seu patrimônio</h2>
             <div class="info-card-grid">
                 <div class="info-card">
                     <h3><span>📑</span> Backup Remoto</h3>
-                    <p>Backup de vídeo segurança externo para garantir que as gravações estejam a salvo mesmo em caso de sinistro local.</p>
+                    <p>Imagens salvas em servidores externos seguros, protegendo as provas mesmo em caso de furto do gravador local.</p>
                 </div>
                 <div class="info-card">
                     <h3><span>📈</span> Inteligência Artificial</h3>
-                    <p>Vídeo-Monitorado com I.A 24/7 para detecção proativa de incidentes e movimentos suspeitos.</p>
+                    <p>Monitoramento proativo 24/7 com algoritmos que detectam movimentos suspeitos, humanos e veículos automaticamente.</p>
                 </div>
                 <div class="info-card">
                     <h3><span>🔐</span> Conexão VPN</h3>
-                    <p>Conexão protegida com VPN para acesso remoto seguro e criptografado às suas câmeras.</p>
+                    <p>Acesso às suas câmeras através de um túnel de segurança criptografado, impedindo invasões de hackers.</p>
                 </div>
             </div>
         </section>
@@ -246,72 +215,62 @@
         <hr>
 
         <section id="planos" class="container">
-            <h2 class="section-title">Nossos Planos</h2>
-            <p style="margin-bottom: 40px;">Escolha o nível de proteção ideal para o seu perfil.</p>
-
+            <h2 class="section-title">Planos de Vigilância</h2>
             <div class="pricing-grid">
                 <article class="price-card">
                     <h3>Plano Básico</h3>
-                    <p class="plan-tag">Proteção Essencial</p>
-                    <p class="setup-fee">Setup Inicial: R$ 750,00</p>
+                    <p class="plan-tag">Essencial</p>
+                    <p class="setup-fee">Setup: R$ 350,00</p>
                     <p class="price-value">R$ 149<span>/mês</span></p>
                     <ul class="price-list">
-                        <li>Gerenciamento de Servidor de Vídeo</li>
+                        <li>Gerenciamento de Servidor</li>
                         <li>Monitoramento de Incidentes</li>
                         <li>Conexão Cliente VPN Segura</li>
-                        <li>Suporte Técnico Especializado</li>
                     </ul>
-                    <a href="https://wa.me/5514997135218?text=Olá! Gostaria de contratar o Plano Básico da Sentinela." target="_blank" class="cta-button">Solicitar Plano</a>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Solicitar Agora</a>
                 </article>
 
                 <article class="price-card highlight">
                     <h3>Plano Padrão</h3>
-                    <p class="plan-tag">Segurança Robusta</p>
-                    <p class="setup-fee">Setup Inicial: R$ 1.050,00</p>
+                    <p class="plan-tag">Mais Vendido</p>
+                    <p class="setup-fee">Setup: R$ 450,00</p>
                     <p class="price-value">R$ 289<span>/mês</span></p>
                     <ul class="price-list">
-                        <li><b>Tudo do Plano Básico</b></li>
+                        <li><b>Tudo do Básico</b></li>
                         <li>Backup de Vídeo Segurança</li>
-                        <li>Cloud-Backup Externo de Segurança</li>
-                        <li>Monitoramento de Incidentes Prioritário</li>
-                        <li>Relatórios de Atividade Mensal</li>
+                        <li>Cloud-Backup Externo</li>
                     </ul>
-                    <a href="https://wa.me/5514997135218?text=Olá! Gostaria de contratar o Plano Padrão da Sentinela." target="_blank" class="cta-button">Contratar Agora</a>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Contratar Plano</a>
                 </article>
 
                 <article class="price-card">
                     <h3>Enterprise</h3>
-                    <p class="plan-tag">Vigilância Máxima</p>
+                    <p class="plan-tag">Vigilância Total</p>
                     <p class="setup-fee">Setup: Sob Consulta</p>
-                    <p class="price-value">R$ Sob Consulta<span>/mês</span></p>
+                    <p class="price-value">R$ 590<span>/mês</span></p>
                     <ul class="price-list">
-                        <li><b>Tudo do Plano Padrão</b></li>
-                        <li>Vídeo Monitorado com I.A 24/7</li>
-                        <li>Resposta rápida para Alertas de Violação</li>
-                        <li>Detecção Inteligente de Intrusos</li>
-                        <li>Suporte VIP 24h</li>
+                        <li><b>Tudo do Padrão</b></li>
+                        <li>Resposta a Alertas de Violação</li>
+                        <li>I.A Monitorada 24/7</li>
                     </ul>
-                    <a href="https://wa.me/5514997135218?text=Olá! Gostaria de um orçamento para o Plano Enterprise da Sentinela." target="_blank" class="cta-button">Falar com Consultor</a>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Falar com Consultor</a>
                 </article>
             </div>
         </section>
 
         <section id="contato" class="container">
             <hr>
-            <h2>Pronto para proteger seu negócio?</h2>
-            <p>Entre em contato com um consultor especialista e solicite um orçamento personalizado.</p>
-            <div style="margin-top: 30px;">
-                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366;">
-                    Chamar no WhatsApp agora 📞
-                </a>
-            </div>
+            <h2 class="section-title">Pronto para proteger seu negócio?</h2>
+            <p>Fale com um especialista e garanta a melhor solução de segurança.</p>
+            <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: var(--primary-green); margin-top: 20px;">
+                WhatsApp Consultoria 📞
+            </a>
         </section>
     </main>
 
     <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Sentinela Logo" class="footer-logo">
-        <p>&copy; 2026 Sentinela Vigilância CFTV by MC Infra TI | Todos os direitos reservados.</p>
-        <p><small>Tecnologia de Prevenção e Monitoramento Inteligente.</small></p>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
+        <p>&copy; 2026 Sentinela Vigilância by MC Infra TI</p>
     </footer>
 
 </body>
