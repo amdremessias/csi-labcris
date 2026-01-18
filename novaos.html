@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Master - Gestão de Ordens de Serviço e Clientes</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #075E54;
+            --dark-blue: #0A1C2E;
+            --white: #FFFFFF;
+            --light-gray: #F4F6F9;
+            --text-dark: #333333;
+            --accent-blue: #007bff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Global Sections --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        hr { border: 0; height: 1px; background: #ddd; margin: 40px 0; }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: var(--white);
+        }
+        .logo {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--primary-green);
+            letter-spacing: 1px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--primary-green);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 80px 20px;
+            background: linear-gradient(rgba(10, 28, 46, 0.88), rgba(10, 28, 46, 0.88)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Info Sections --- */
+        .info-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card h3 {
+            font-size: 1.4em;
+            color: var(--dark-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 span {
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: var(--primary-green);
+        }
+        
+        /* --- Pricing Grid --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        .price-card.highlight {
+            border: 3px solid var(--primary-green);
+            transform: scale(1.03);
+        }
+        .price-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        .plan-tag {
+            font-size: 0.9em;
+            color: var(--primary-green);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .price-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-green);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .price-value span { font-size: 0.4em; color: var(--text-dark); font-weight: 400; }
+        .setup-fee { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--dark-blue); }
+
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        .price-list li {
+            font-size: 1em;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .price-list li::before {
+            content: '✓';
+            display: inline-block;
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- Buttons --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background-color: var(--dark-blue);
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--white);
+            margin-top: 50px;
+        }
+        .footer-logo { max-width: 150px; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2.2em; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            nav ul li { display: block; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">OS MASTER PRO</div>
+            <ul>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1 style="color: var(--primary-green);">Gestão Inteligente de Ordens de Serviço e Clientes</h1>
+            <p class="subtitle">Controle orçamentos, acompanhe serviços em tempo real e organize sua base de clientes em uma única plataforma robusta e intuitiva.</p>
+            <a href="#planos" class="cta-button">Conhecer Planos de Implantação</a>
+        </section>
+
+        <section id="beneficios" class="container">
+            <h2 class="section-title">Por que automatizar sua gestão?</h2>
+            <p>Elimine planilhas confusas e blocos de papel. Centralize toda a operação da sua assistência técnica ou empresa de serviços com segurança e profissionalismo.</p>
+            
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>📊</span> Controle Total</h3>
+                    <p>Saiba exatamente o status de cada serviço, prazos de entrega e produtividade da sua equipe em tempo real.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>💰</span> Orçamentos Rápidos</h3>
+                    <p>Gere orçamentos profissionais em PDF e envie diretamente para o WhatsApp ou e-mail do seu cliente.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>👥</span> CRM Integrado</h3>
+                    <p>Histórico completo de cada cliente: serviços realizados, equipamentos, pagamentos e preferências.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="recursos" class="container">
+            <h2 class="section-title">Recursos Especializados</h2>
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>🛠️</span> Fluxo de Trabalho</h3>
+                    <p>Personalize os status da OS (Aguardando Peças, Em Manutenção, Finalizado) conforme sua necessidade.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📱</span> Acesso Remoto</h3>
+                    <p>Sistema 100% web. Sua equipe de campo pode atualizar ordens de serviço diretamente do celular.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>📈</span> Relatórios Prontos</h3>
+                    <p>Relatórios de faturamento, serviços mais realizados e desempenho técnico para tomadas de decisão.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="planos" class="container">
+            <h2 class="section-title">Modelos de Implantação</h2>
+            <p class="subtitle">Escolha como prefere manter seus dados e sua operação.</p>
+
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <div>
+                        <h3>Sua Infraestrutura</h3>
+                        <p class="plan-tag">Instalação em seu Servidor ou VPS</p>
+                        <p class="setup-fee">Taxa de Setup: R$ 1.200,00 <span>(Único)</span></p>
+                        <p class="price-value">R$ 85,00 <span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Instalação completa no seu servidor</li>
+                            <li>Sua base de dados sob seu controle</li>
+                            <li>Suporte mensal especializado</li>
+                            <li>Atualizações de segurança inclusas</li>
+                            <li>Treinamento remoto inicial</li>
+                            <li>Sem limite de usuários/registros</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Solicitar Deploy</a>
+                </article>
+
+                <article class="price-card highlight">
+                    <div>
+                        <h3>Nossa Infraestrutura</h3>
+                        <p class="plan-tag">Sistema em Nuvem (SaaS)</p>
+                        <p class="setup-fee">Taxa de Ativação: R$ 450,00 <span>(Único)</span></p>
+                        <p class="price-value">R$ 150,00 <span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Hospedagem Cloud de alta performance</li>
+                            <li>Backups automáticos diários</li>
+                            <li>Ativação imediata</li>
+                            <li>Suporte técnico prioritário</li>
+                            <li>Monitoramento 24/7</li>
+                            <li>Acesso de qualquer lugar do mundo</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Começar Agora</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contato" class="container">
+            <hr>
+            <h2>Precisa de uma demonstração?</h2>
+            <p class="subtitle">Veja como o OS Master Pro pode transformar a rotina da sua empresa.</p>
+            <div style="margin-top: 30px;">
+                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366;">
+                    Falar com Consultor Técnico 📞
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
+        <p>&copy; 2026 OS Master Pro by MC Infra TI | Todos os direitos reservados.</p>
+        <p><small>A implantação em infraestrutura própria requer sistema Linux Ubuntu 22.04+ ou equivalente.</small></p>
+    </footer>
+
+</body>
+</html>
