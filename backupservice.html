@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeCloud Backup - Sua Nuvem Privada de Fotos e Vídeos</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #075E54;
+            --dark-blue: #0A1C2E;
+            --white: #FFFFFF;
+            --light-gray: #F4F6F9;
+            --text-dark: #333333;
+            --accent-blue: #007bff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Global Sections --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: var(--dark-blue);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        hr { border: 0; height: 1px; background: #ddd; margin: 40px 0; }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--dark-blue);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: var(--white);
+        }
+        .logo {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--primary-green);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 80px 20px;
+            background: linear-gradient(rgba(10, 28, 46, 0.85), rgba(10, 28, 46, 0.85)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hero-section .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* --- Info Sections --- */
+        .info-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card h3 {
+            font-size: 1.4em;
+            color: var(--dark-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 span {
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: var(--primary-green);
+        }
+        
+        /* --- Pricing Grid --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        .price-card.highlight {
+            border: 3px solid var(--primary-green);
+            transform: scale(1.03);
+        }
+        .price-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-blue);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        .plan-tag {
+            font-size: 0.9em;
+            color: var(--primary-green);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .price-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-green);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .price-value span { font-size: 0.4em; color: var(--text-dark); font-weight: 400; }
+        .setup-fee { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--dark-blue); }
+
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        .price-list li {
+            font-size: 1em;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .price-list li::before {
+            content: '✓';
+            display: inline-block;
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- Buttons --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background-color: var(--dark-blue);
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--white);
+            margin-top: 50px;
+        }
+        .footer-logo { max-width: 150px; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2.2em; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            nav ul li { display: block; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">SAFECLOUD BACKUP</div>
+            <ul>
+                <li><a href="#beneficios">Vantagens</a></li>
+                <li><a href="#como-funciona">Como Funciona</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Suporte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1 style="color: var(--primary-green);">Suas Memórias e Arquivos em Segurança Total</h1>
+            <p class="subtitle">Sincronize automaticamente fotos e vídeos do seu Android ou iOS em seu próprio servidor de backup privado.</p>
+            <a href="#planos" class="cta-button">Proteger Meus Dados Agora</a>
+        </section>
+
+        <section id="beneficios" class="container">
+            <h2 class="section-title">Por que ter um Servidor de Backup Próprio?</h2>
+            <p>Diga adeus às mensalidades caras de nuvens públicas e à falta de privacidade. Tenha o controle total dos seus arquivos em uma estrutura dedicada.</p>
+            
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>📸</span> Sincronização Automática</h3>
+                    <p>Tirou uma foto ou gravou um vídeo? O backup começa instantaneamente assim que você se conecta ao Wi-Fi.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🔒</span> Privacidade de Dados</h3>
+                    <p>Seus arquivos não passam por grandes empresas. Eles ficam no seu servidor, acessíveis apenas por você.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🚀</span> Sem Limites Abusivos</h3>
+                    <p>Esqueça os avisos de "armazenamento cheio". O espaço é limitado apenas pelo tamanho do seu HD.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="como-funciona" class="container">
+            <h2 class="section-title">Recursos do Servidor</h2>
+            <div class="info-card-grid">
+                <div class="info-card">
+                    <h3><span>📱</span> App para Android e iOS</h3>
+                    <p>Interface intuitiva para visualizar e gerenciar suas mídias diretamente pelo smartphone.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🔄</span> Versão de Arquivos</h3>
+                    <p>Mantenha um histórico de alterações e recupere versões anteriores de documentos importantes.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span>🛡️</span> Segurança de Ponta</h3>
+                    <p>Criptografia de transferência e firewall ativo para proteger seu servidor contra acessos não autorizados.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="planos" class="container">
+            <h2 class="section-title">Escolha o modelo de proteção ideal</h2>
+            <p class="subtitle">Infraestrutura robusta para garantir que você nunca perca um arquivo importante.</p>
+
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <div>
+                        <h3>Backup On-Premise</h3>
+                        <p class="plan-tag">Instalação em seu Hardware/Mini PC</p>
+                        <p class="setup-fee">Taxa de Configuração: R$ 850,00 <span>(Único)</span></p>
+                        <p class="price-value">R$ 50,00 <span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Configuração no seu hardware local</li>
+                            <li>Acesso remoto seguro (VPN/DNS)</li>
+                            <li>Sincronização Android e iOS</li>
+                            <li>Suporte para recuperação de desastres</li>
+                            <li>Atualizações de sistema inclusas</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Solicitar Instalação</a>
+                </article>
+
+                <article class="price-card highlight">
+                    <div>
+                        <h3>Cloud Privada MC</h3>
+                        <p class="plan-tag">Servidor Gerenciado em Nuvem</p>
+                        <p class="setup-fee">Taxa de Ativação: 450,00 <span>(Único)</span></p>
+                        <p class="price-value">R$ 120,00 <span>/mês</span></p>
+                        <ul class="price-list">
+                            <li>Hospedagem em Datacenter inclusa</li>
+                            <li>Backup do Backup (Redundância)</li>
+                            <li>Uptime de 99.9% garantido</li>
+                            <li>Suporte técnico prioritário</li>
+                            <li>Espaço escalável conforme demanda</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Assinar Cloud</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contato" class="container">
+            <hr>
+            <h2>Não corra o risco de perder suas memórias</h2>
+            <p class="subtitle">Fale com nossos especialistas e descubra como automatizar sua segurança digital.</p>
+            <div style="margin-top: 30px;">
+                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366;">
+                    Consultar Viabilidade Técnica 📞
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
+        <p>&copy; 2026 SafeCloud Backup by MC Infra TI | Todos os direitos reservados.</p>
+        <p><small>A velocidade de sincronização depende da taxa de upload da sua conexão de internet.</small></p>
+    </footer>
+
+</body>
+</html>
