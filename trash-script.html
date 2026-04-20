@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deploy do Voicebox na GCP — Passo a passo</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    :root{
+      --ink:#111827; --muted:#4b5563; --rule:#e5e7eb; --bg:#ffffff; --code:#0b1020;
+      --codeText:#e5e7eb; --accent:#2563eb;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ background:var(--bg); color:var(--ink); }
+    body{
+      font: 12pt/1.55 ui-serif, Georgia, "Times New Roman", serif;
+      margin:0; padding:0;
+    }
+    main{ max-width: 820px; margin: 0 auto; padding: 0; }
+    header{ padding: 0 0 10mm 0; border-bottom:1px solid var(--rule); margin-bottom:8mm; }
+    h1{
+      font: 700 22pt/1.15 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      letter-spacing:-0.02em; margin:0 0 2mm 0;
+    }
+    .sub{ color:var(--muted); margin:0; font: 11.5pt/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    h2{
+      margin: 7mm 0 2.5mm 0;
+      font: 700 14pt/1.25 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      letter-spacing:-0.01em;
+    }
+    h3{
+      margin: 5mm 0 2mm 0;
+      font: 700 12.5pt/1.3 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    p{ margin: 0 0 3mm 0; }
+    ul{ margin: 0 0 3mm 5mm; padding:0; }
+    li{ margin: 0 0 1.8mm 0; }
+    .box{
+      border:1px solid var(--rule);
+      border-left:4px solid var(--accent);
+      padding: 3.5mm 4mm;
+      margin: 4mm 0;
+      background: #f8fafc;
+    }
+    .small{ color:var(--muted); font-size: 10.5pt; }
+    code, pre{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+    pre{
+      background: var(--code);
+      color: var(--codeText);
+      padding: 3.5mm 4mm;
+      border-radius: 3mm;
+      overflow: hidden;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 3mm 0 4mm 0;
+      font-size: 10.2pt;
+      line-height: 1.45;
+    }
+    .hr{ height:1px; background:var(--rule); margin: 6mm 0; }
+    .foot{
+      margin-top: 9mm;
+      padding-top: 4mm;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 10.5pt;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Deploy do Voicebox na GCP — Passo a passo</h1>
+    <p class="sub">Baseado no repositório: <strong>amdremessias/lab26-voicebox</strong> (Docker/compose). Porta típica: <strong>17493</strong>.</p>
+  </header>
+
+  <h2>Resumo e opções recomendadas</h2>
+  <ul>
+    <li><strong>Se vai rodar TTS com PyTorch/CUDA e quer desempenho:</strong> use <strong>Compute Engine com GPU</strong> (ou <strong>GKE com nodes GPU</strong>).</li>
+    <li><strong>Se é só teste/CPU:</strong> VM comum (Ubuntu) é mais barata.</li>
+    <li><strong>Mais simples:</strong> usar o <code>docker-compose.yml</code> do repo.</li>
+    <li><strong>Persistência:</strong> reserve disco e use <code>VOICEBOX_MODELS_DIR</code> para modelos.</li>
+  </ul>
+
+  <div class="box">
+    <p><strong>Recomendação prática:</strong> comece com <strong>Compute Engine + Docker</strong>. Depois, se precisar escalar, migre para <strong>GKE</strong>.</p>
+  </div>
+
+  <h2>Opção A — Compute Engine (VM com GPU) — recomendado para inferência rápida</h2>
+
+  <h3>1) Pré-requisitos no projeto GCP</h3>
+  <ul>
+    <li>Projeto com <strong>faturamento ativo</strong>.</li>
+    <li><strong>Cota de GPU</strong> aprovada na região/zone escolhida.</li>
+    <li>API do <strong>Compute Engine</strong> habilitada.</li>
+  </ul>
+
+  <h3>2) Criar a VM (hardware e disco)</h3>
+  <ul>
+    <li>Sistema: <strong>Ubuntu 22.04</strong> ou <strong>24.04</strong>.</li>
+    <li>Tipo de máquina: ex. <code>n1-standard-8</code> (ajuste ao seu uso).</li>
+    <li>GPU: <strong>T4/A10/A100</strong> conforme cota e custo.</li>
+    <li>Disco persistente: ex. <strong>200 GB+</strong> (modelos podem ocupar muito espaço).</li>
+    <li>Firewall: permitir <strong>TCP 17493</strong> se você for acessar externamente.</li>
+  </ul>
+
+  <h3>3) Preparar a VM (Docker + suporte a GPU)</h3>
+  <ul>
+    <li>Instalar <strong>drivers NVIDIA</strong>.</li>
+    <li>Instalar <strong>Docker Engine</strong> e <strong>Docker Compose</strong>.</li>
+    <li>Instalar/configurar <strong>nvidia-container-toolkit</strong> para expor a GPU aos containers.</li>
+  </ul>
+
+  <h3>4) Obter o código e subir com Docker Compose</h3>
+  <ul>
+    <li>Clonar o repositório.</li>
+    <li>Rodar <code>docker compose up -d</code> no diretório do projeto.</li>
+    <li>Se o compose não estiver configurado para GPU, ajustar para usar runtime NVIDIA ou iniciar com suporte a GPU.</li>
+    <li>Montar volume/pasta persistente e setar <code>VOICEBOX_MODELS_DIR</code>.</li>
+  </ul>
+
+  <h3>5) Exposição, SSL e produção</h3>
+  <ul>
+    <li>Para acesso público com HTTPS: usar <strong>proxy reverso (Nginx)</strong> + certificado, ou um <strong>Load Balancer HTTPS</strong> do GCP.</li>
+    <li>Evite expor a API sem proteção: restrinja por IP/VPC, adicione autenticação, ou coloque atrás de gateway.</li>
+    <li>Garanta auto-restart: configure <code>restart: unless-stopped</code> no compose e/ou systemd.</li>
+  </ul>
+
+  <h2>Opção B — GKE com nodes GPU (produção / escalável)</h2>
+  <ul>
+    <li>Criar cluster e <strong>node pool com GPU</strong>.</li>
+    <li>Deploy via <strong>Deployment</strong> com requests/limits de GPU.</li>
+    <li>Persistência via <strong>PersistentVolumeClaim</strong> para modelos.</li>
+    <li>Exposição via <strong>Service/Ingress</strong> e Load Balancer.</li>
+    <li class="small"><strong>Nota:</strong> Cloud Run normalmente não atende para GPU; para aceleração, prefira Compute Engine/GKE.</li>
+  </ul>
+
+  <h2>Opção C — Apenas CPU (teste)</h2>
+  <ul>
+    <li>Criar VM sem GPU, instalar Docker, rodar <code>docker compose up -d</code>.</li>
+    <li>Funciona, mas a inferência pode ficar significativamente mais lenta.</li>
+  </ul>
+
+  <h2>Checklist de riscos e pontos críticos</h2>
+  <ul>
+    <li><strong>Disco:</strong> modelos grandes exigem espaço; use disco persistente e pasta dedicada.</li>
+    <li><strong>Cota/região:</strong> GPU pode não estar disponível na zone escolhida.</li>
+    <li><strong>Segurança:</strong> não exponha endpoints sem controle de acesso.</li>
+    <li><strong>Compatibilidade CUDA:</strong> valide versões de CUDA/PyTorch do container/projeto.</li>
+  </ul>
+
+  <div class="hr"></div>
+
+  <h2>Próximos passos (eu posso gerar pra você)</h2>
+  <ul>
+    <li>Comandos <code>gcloud</code> completos para criar VM + GPU + regra de firewall.</li>
+    <li>Um script de bootstrap (cloud-init) que instala drivers + Docker + clona repo + sobe o compose.</li>
+    <li>Manifests Kubernetes base para GKE com GPU + PVC + Ingress.</li>
+  </ul>
+
+  <p class="foot">
+    Como gerar o PDF: abra este arquivo no Chrome → <strong>Ctrl+P</strong> (ou Cmd+P) → Destino: <strong>Salvar como PDF</strong> → Salvar.
+  </p>
+</main>
+</body>
+</html>
