@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutorial Deploy OpenClaude + Ollama (Llama)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+            background-color: #f0f4f8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2b6cb0;
+            border-bottom: 2px solid #2b6cb0;
+            padding-bottom: 10px;
+            font-size: 22pt;
+        }
+        h2 {
+            color: #2c5282;
+            margin-top: 25px;
+            font-size: 16pt;
+            border-left: 5px solid #2b6cb0;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #4a5568;
+            font-size: 13pt;
+        }
+        pre {
+            background-color: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10pt;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #edf2f7;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .note {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 9pt;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guia de Deploy: OpenClaude & Ollama (Llama)</h1>
+        <p>Este guia detalha a configuração de um ambiente isolado em containers Docker no <strong>Zorin OS 18</strong> para rodar a interface OpenClaude utilizando o modelo Llama localmente.</p>
+
+        <h2>1. Estrutura de Diretórios</h2>
+        <p>Organize o seu laboratório criando uma pasta dedicada no seu SSD:</p>
+        <pre>mkdir -p ~/Projetos/ia-local
+cd ~/Projetos/ia-local
+mkdir workdir</pre>
+
+        <h2>2. Configuração do Docker Compose</h2>
+        <p>Crie o arquivo <code>docker-compose.yml</code> com a definição dos serviços:</p>
+        <pre>version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-service
+    volumes:
+      - ./ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+
+  openclaude:
+    build: 
+      context: https://gitlawb.com/node/repos/z6MkqDnb/openclaude.git
+    container_name: openclaude-app
+    depends_on:
+      - ollama
+    stdin_open: true
+    tty: true
+    environment:
+      - CLAUDE_CODE_USE_OPENAI=1
+      - OPENAI_API_KEY=ollama
+      - OPENAI_BASE_URL=http://ollama:11434/v1
+      - OPENAI_MODEL=llama3
+    volumes:
+      - ./workdir:/app/workdir
+    restart: unless-stopped</pre>
+
+        <h2>3. Execução e Instalação do Modelo</h2>
+        <p>Suba os containers e baixe o modelo Llama 3:</p>
+        <pre># Iniciar containers
+docker compose up -d
+
+# Baixar o modelo Llama 3 (Open Source)
+docker exec -it ollama-service ollama run llama3</pre>
+
+        <div class="note">
+            <strong>Dica:</strong> Uma vez que o download terminar, digite <code>/exit</code> para fechar o prompt do Ollama sem desligar o serviço.
+        </div>
+
+        <h2>4. Acesso ao OpenClaude</h2>
+        <p>Para interagir com o OpenClaude dentro do ambiente isolado:</p>
+        <pre>docker exec -it openclaude-app sh</pre>
+
+        <h2>5. Dicas de Otimização</h2>
+        <ul>
+            <li><strong>Persistência:</strong> Os modelos ficam salvos na pasta <code>ollama_data</code>, garantindo que não se percam após reiniciar.</li>
+            <li><strong>Privacidade:</strong> Todo o processamento ocorre no seu hardware, sem envio de dados para nuvem.</li>
+            <li><strong>Monitoramento:</strong> Use <code>docker stats</code> para acompanhar o consumo de RAM no seu Zorin OS.</li>
+        </ul>
+
+        <div class="footer">
+            Gerado para André Luiz Messias - Consultoria MC Infra TI
+        </div>
+    </div>
+</body>
+</html>
