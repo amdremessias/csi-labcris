@@ -36,20 +36,20 @@
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; transition: 0.3s; }
         header ul li a:hover { color: #4CAF50; }
 
-        /* --- SEÇÃO SOBRE MIM (DESTAQUE) --- */
+        /* --- SEÇÃO SOBRE MIM --- */
         .about-section {
-            padding: 80px 0 60px;
+            padding: 60px 0;
             text-align: center;
         }
 
         .about-content {
             max-width: 850px;
             margin: 0 auto;
-            background: rgba(20, 20, 20, 0.8);
+            background: rgba(20, 20, 20, 0.85);
             padding: 40px;
             border-radius: 15px;
             border: 1px solid rgba(76, 175, 80, 0.3);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
         }
 
         .about-section h1 {
@@ -59,81 +59,94 @@
         }
 
         .about-section h2 {
-            font-size: 1.3rem; color: #4CAF50;
+            font-size: 1.2rem; color: #4CAF50;
             margin-bottom: 25px;
             font-weight: 400;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .about-section p {
-            font-size: 1.15rem; color: #e0e0e0;
+            font-size: 1.1rem; color: #e0e0e0;
             margin-bottom: 30px;
             text-align: justify;
         }
 
+        /* --- ESPECIALIDADES (TAGS) --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: #0AFF0A;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            font-weight: bold;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(76, 175, 80, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(10, 255, 10, 0.2);
+        }
+
         /* --- BOTÕES --- */
         .btn {
-            display: inline-block; padding: 14px 30px;
+            display: inline-block; padding: 12px 25px;
             border-radius: 5px; text-decoration: none;
             font-weight: bold; transition: 0.3s;
             cursor: pointer; border: none;
+            margin: 5px;
         }
 
-        .btn-primary {
-            background-color: #2563eb; color: white;
-            margin-right: 10px;
-        }
+        .btn-primary { background-color: #2563eb; color: white; }
+        .btn-success { background-color: #4CAF50; color: white; }
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        .btn-success {
-            background-color: #4CAF50; color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            filter: brightness(1.1);
-        }
-
-        /* --- CARDS DE PROJETOS --- */
+        /* --- SEÇÕES DE CARDS --- */
         .section-title {
-            font-size: 2rem; color: #4CAF50;
-            margin: 60px 0 30px; border-left: 5px solid #4CAF50;
+            font-size: 1.8rem; color: #4CAF50;
+            margin: 50px 0 25px; border-left: 5px solid #4CAF50;
             padding-left: 15px;
         }
 
         .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .project-card {
-            background: rgba(25, 25, 25, 0.95);
+            background: rgba(25, 25, 25, 0.9);
             border: 1px solid rgba(76, 175, 80, 0.2);
             border-radius: 12px; padding: 25px;
             transition: 0.3s;
         }
 
-        .project-card:hover {
-            border-color: #0AFF0A;
-            transform: scale(1.02);
-        }
-
-        .project-card h3 { color: #0AFF0A; margin-bottom: 12px; }
+        .project-card:hover { border-color: #0AFF0A; }
+        .project-card h3 { color: #0AFF0A; margin-bottom: 15px; }
 
         /* --- FOOTER --- */
         footer {
             background: rgba(0, 0, 0, 0.98); text-align: center;
             padding: 50px 0; border-top: 1px solid #4CAF50;
-            margin-top: 80px;
+            margin-top: 60px;
         }
 
-        .footer-logo { max-width: 140px; margin-bottom: 20px; }
-        footer p { font-size: 0.9em; color: #888; }
+        .footer-logo { max-width: 140px; margin-bottom: 15px; }
+        footer p { font-size: 0.85em; color: #888; }
 
         @media (max-width: 768px) {
             .about-section h1 { font-size: 2rem; }
-            .about-content { padding: 25px; }
-            .btn { width: 100%; margin: 10px 0; }
+            .about-content { padding: 20px; }
+            .skill-tag { font-size: 0.8em; }
         }
     </style>
 </head>
@@ -166,10 +179,24 @@
                 </p>
 
                 <div class="btn-group">
-                    <a href="https://www.linkedin.com/in/andré-luiz-messias/" target="_blank" class="btn btn-primary">Ver LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/andré-luiz-messias/" target="_blank" class="btn btn-primary">LinkedIn</a>
                     <a href="https://github.com/amdremessias" target="_blank" class="btn" style="background:#333; color:white;">GitHub</a>
                     <a href="contact.html" class="btn btn-success">Falar com Messias</a>
                 </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">Especialidades Técnicas</h2>
+        <section class="project-card" style="margin-bottom: 40px;">
+            <div class="skills-container">
+                <span class="skill-tag">Administração GNU/Linux</span>
+                <span class="skill-tag">Virtualização (Proxmox / ESXi)</span>
+                <span class="skill-tag">Docker & Orquestração</span>
+                <span class="skill-tag">Segurança Cibernética</span>
+                <span class="skill-tag">Redes & VPN (WireGuard/Netbird)</span>
+                <span class="skill-tag">Proxy Reverso (Nginx/Traefik)</span>
+                <span class="skill-tag">Automação de Processos (n8n)</span>
+                <span class="skill-tag">Hardware & ESP32</span>
             </div>
         </section>
 
@@ -177,15 +204,15 @@
         <div class="projects-grid">
             <div class="project-card">
                 <h3>Novo Chat (CRM WhatsApp)</h3>
-                <p>Ecossistema de comunicação via WhatsApp utilizando Waha API e n8n. Automação inteligente de fluxos de vendas e suporte corporativo.</p>
+                <p>Ecossistema de comunicação via WhatsApp utilizando Waha API e n8n. Automação inteligente de fluxos de suporte e vendas.</p>
             </div>
             <div class="project-card">
                 <h3>Projeto Sentinela</h3>
-                <p>Monitoramento avançado CFTV baseado em tecnologias abertas, com foco em segurança de perímetro e acesso remoto via VPN.</p>
+                <p>Monitoramento avançado CFTV baseado em tecnologias abertas, com foco em segurança de perímetro e acesso remoto seguro.</p>
             </div>
             <div class="project-card">
                 <h3>Infraestrutura Crítica</h3>
-                <p>Virtualização com Proxmox e VMware, gestão de containers Docker e segurança de rede (Hardening e Firewalls).</p>
+                <p>Implementação de servidores de alta disponibilidade, backups imutáveis e proteção de redes corporativas.</p>
             </div>
         </div>
 
@@ -195,7 +222,7 @@
         <div class="container">
             <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
             <p>&copy; 2026 | André Luiz Messias - MC Infra TI</p>
-            <p>Soluções em TI, Segurança e Automação com a força do Open Source.</p>
+            <p>Especialista em Soluções Open Source e Infraestrutura Crítica.</p>
         </div>
     </footer>
 
