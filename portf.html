@@ -1,287 +1,39 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio Profissional - André Luiz Messias - MC Infra TI">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <title>Portfolio | André Luiz Messias</title>
-    <style>
-        /* Integração com a Identidade Visual da Home */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #fff;
-            background-color: #000;
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* Overlay levemente mais escuro para leitura */
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
-        header {
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 1rem 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #4CAF50;
-        }
-
-        header nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header .logo {
-            font-size: 1.6em;
-            font-weight: 700;
-            color: #4CAF50;
-        }
-
-        header nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        header nav ul li { margin: 0 10px; }
-
-        header nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: color 0.3s;
-        }
-
-        header nav ul li a:hover { color: #4CAF50; }
-
-        /* Estilo dos Cards de Conteúdo */
-        section {
-            background-color: rgba(20, 20, 20, 0.9);
-            padding: 40px;
-            margin: 40px auto;
-            border-radius: 8px;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        h1, h2, h3 {
-            color: #0AFF0A;
-            text-shadow: 0 0 10px rgba(0,255,0,0.3);
-        }
-
-        .profile-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .profile-header h1 { font-size: 2.5em; margin-bottom: 5px; }
-        .profile-header p { color: #E0FFE0; font-size: 1.2em; }
-
-        /* Grid de Informações */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .card-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 6px;
-            border-left: 4px solid #4CAF50;
-        }
-
-        /* Skills Tags */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .tag {
-            background: #4CAF50;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-
-        /* Botões */
-        .btn {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: 0.3s;
-            margin: 10px 5px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(74, 175, 80, 0.5);
-        }
-
-        .btn-github { background-color: #333; border: 1px solid #555; }
-        .btn-linkedin { background-color: #0077b5; }
-
-        /* Footer padrão MC Infra TI */
-        footer {
-            background: rgba(0, 0, 0, 0.9);
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-            border-top: 1px solid #4CAF50;
-        }
-
-        .footer-logo {
-            margin: 0 auto 15px auto;
-            max-width: 150px;
-            display: block;
-        }
-
-        footer p { color: #ccc; font-size: 0.9em; }
-
-        footer ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        footer ul li a { color: #fff; text-decoration: none; transition: 0.3s; }
-        footer ul li a:hover { color: #4CAF50; }
-
-        @media (max-width: 768px) {
-            header nav { flex-direction: column; }
-            header nav ul { margin-top: 10px; font-size: 0.8em; }
-            section { padding: 20px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="overlay"></div>
-
-    <header>
-        <nav>
-            <div class="logo">MC infra TI</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Serviços</a></li>
-                <li><a href="portf.html">Sobre</a></li>
-                <li><a href="contact.html">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="container">
-        
-        <div class="profile-header">
-            <h1>André Luiz Messias</h1>
-            <p>Consultor de Infraestrutura TI & Especialista em Automação</p>
-            <div class="btn-group">
-                <a href="https://github.com/amdremessias" target="_blank" class="btn btn-github">GitHub</a>
-                <a href="https://www.linkedin.com/in/andré-luiz-messias/" target="_blank" class="btn btn-linkedin">LinkedIn</a>
-                <a href="contact.html" class="btn">Fale Comigo</a>
+<section class="section-card">
+            <h2>Serviços & Soluções Especializadas</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Automação de Atendimento (CRM + WhatsApp)</h3>
+                    <p>Integração de ecossistemas utilizando <strong>Waha API</strong> e <strong>n8n</strong>. Centralize múltiplas contas de WhatsApp num único painel, crie fluxos de respostas automáticas inteligentes e reduza o tempo de espera dos seus clientes de forma escalável.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Virtualização & Infraestrutura de Redes</h3>
+                    <p>Desenvolvimento e migração de ambientes para servidores <strong>Proxmox</strong> e <strong>VMware ESXi</strong>. Implementação de redes seguras com <strong>NetBird</strong> e <strong>WireGuard</strong>, garantindo que a sua equipa tenha acesso remoto seguro e de alta performance.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Segurança Cibernética & Monitoramento</h3>
+                    <p>Auditorias de vulnerabilidade (Power Scan), proteção de perímetro e videomonitoramento avançado com o <strong>Projeto Sentinela</strong>. Soluções focadas em manter a integridade dos dados e a vigilância constante do seu património.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Soluções de Nuvem Privada (Self-Hosting)</h3>
+                    <p>Redução de custos com assinaturas de terceiros através da implementação de serviços self-hosted (como Nextcloud, Vaultwarden e soluções de backup pessoal). Tenha controlo total sobre os seus dados sem depender de grandes fornecedores.</p>
+                </div>
             </div>
-        </div>
-
-        <section id="about">
-            <h2>Sobre Mim</h2>
-            <p>
-                Proprietário da <strong>MC Infra TI</strong>, atuo com foco em soluções de código aberto, segurança da informação e infraestrutura de redes. 
-                Minha missão é simplificar a tecnologia para empresas através de implementações robustas de virtualização, contêineres e automação de atendimento.
-            </p>
         </section>
 
-        <div class="info-grid">
-            <section>
-                <h2>Experiência & Projetos</h2>
-                <div class="card-item" style="margin-bottom: 15px;">
-                    <h3>Novo Chat / Chat Business</h3>
-                    <p>Desenvolvimento de ecossistemas de atendimento via WhatsApp integrando APIs e automação n8n.</p>
+        <section class="section-card">
+            <h2>Porquê escolher a MC Infra TI?</h2>
+            <div class="info-grid">
+                <div class="card-item" style="margin-bottom: 10px;">
+                    <h3>Foco em Open Source</h3>
+                    <p>Priorizo ferramentas de código aberto para garantir liberdade tecnológica, transparência e redução drástica de custos com licenciamento para o seu negócio.</p>
+                </div>
+                <div class="card-item" style="margin-bottom: 10px;">
+                    <h3>Consultoria Personalizada</h3>
+                    <p>Cada infraestrutura é única. Realizo um diagnóstico profundo para desenhar soluções que resolvam gargalos específicos de operação e segurança.</p>
                 </div>
                 <div class="card-item">
-                    <h3>Projeto Sentinela</h3>
-                    <p>Soluções avançadas de videomonitoramento CFTV com foco em segurança e acesso remoto inteligente.</p>
+                    <h3>Suporte Técnico Especializado</h3>
+                    <p>Apoio contínuo na gestão de servidores Linux, administração de containers Docker e resolução de incidentes de rede.</p>
                 </div>
-            </section>
-
-            <section>
-                <h2>Stack Técnica</h2>
-                <p>Tecnologias que domino e aplico diariamente:</p>
-                <div class="skills">
-                    <span class="tag">GNU/Linux</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Proxmox / ESXi</span>
-                    <span class="tag">Nginx / Reverse Proxy</span>
-                    <span class="tag">NetBird / VPN</span>
-                    <span class="tag">n8n Automation</span>
-                    <span class="tag">ESP32 / IoT</span>
-                    <span class="tag">CyberSecurity</span>
-                </div>
-            </section>
-        </div>
-
-        <section id="github">
-            <h2>Repositórios & Open Source</h2>
-            <p>Acompanhe meus códigos e projetos acadêmicos de Segurança da Informação diretamente no meu perfil oficial.</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="https://github.com/amdremessias" target="_blank" class="btn btn-github">Acessar @amdremessias no GitHub</a>
             </div>
         </section>
-
-    </main>
-
-    <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
-        <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
-        <ul>
-            <li><a href="services.html">Serviços</a></li>
-            <li><a href="cookies.html">Cookies</a></li>
-            <li><a href="contact.html">Contato</a></li>
-            <li><a href="#">Privacidade</a></li>
-        </ul>
-    </footer>
-
-</body>
-</html>
