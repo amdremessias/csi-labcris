@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>André Luiz Messias | Consultoria & Infraestrutura TI</title>
+    <style>
+        :root {
+            --primary-color: #1e293b; /* Azul escuro ardósia */
+            --accent-color: #2563eb;  /* Azul vibrante */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header / Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0f172a 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: -0.025em;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1000px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Cards */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        /* Tags de Habilidades */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: #eff6ff;
+            color: var(--accent-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #dbeafe;
+        }
+
+        /* Grade de Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-item {
+            padding: 20px;
+            border: 1px solid #f1f5f9;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .service-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        /* Botões */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding-bottom: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .section-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>André Luiz Messias</h1>
+        <p>Consultor de TI | Especialista em Open Source, Infraestrutura e Automação de Negócios</p>
+    </header>
+
+    <div class="container">
+        
+        <section class="section-card">
+            <h2>Sobre Mim</h2>
+            <p>
+                Com ampla trajetória em TI e entusiasta do movimento Open Source, foco em transformar a infraestrutura tecnológica de empresas em ativos de alta performance. Através da <strong>MC Infra TI</strong>, desenvolvo soluções personalizadas que unem segurança, escalabilidade e automação inteligente.
+            </p>
+        </section>
+
+        <section class="section-card">
+            <h2>Especialidades</h2>
+            <div class="skills-container">
+                <span class="skill-tag">Administração GNU/Linux</span>
+                <span class="skill-tag">Virtualização (Proxmox / ESXi)</span>
+                <span class="skill-tag">Docker & Orquestração</span>
+                <span class="skill-tag">Segurança Cibernética</span>
+                <span class="skill-tag">Redes & VPN (WireGuard/Netbird)</span>
+                <span class="skill-tag">Proxy Reverso (Nginx/Traefik)</span>
+                <span class="skill-tag">Automação de Processos (n8n)</span>
+                <span class="skill-tag">Hardware & ESP32</span>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Serviços & Soluções</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Automação de Atendimento</h3>
+                    <p>Implementação de ecossistemas de comunicação via WhatsApp utilizando API Waha e n8n para otimizar fluxos de vendas e suporte.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Infraestrutura de Servidores</h3>
+                    <p>Desenvolvimento e migração de ambientes para servidores locais ou em nuvem, garantindo alta disponibilidade e backup robusto.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Segurança e Monitoramento</h3>
+                    <p>Projetos de videomonitoramento inteligente e proteção de perímetro de rede para ambientes corporativos e residenciais.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card" style="text-align: center; background-color: #f1f5f9;">
+            <h2>Vamos elevar o nível da sua tecnologia?</h2>
+            <p style="margin-bottom: 25px;">Estou disponível para consultorias, parcerias e projetos sob medida.</p>
+            <div class="btn-group">
+                <a href="https://www.linkedin.com/in/andré-luiz-messias/" target="_blank" class="btn btn-primary">Ver LinkedIn</a>
+                <a href="https://chatbussines.netlify.app/services" target="_blank" class="btn btn-outline">Nossos Serviços</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2026 André Luiz Messias. Todos os direitos reservados.
+    </footer>
+
+</body>
+</html>
