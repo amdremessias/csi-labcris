@@ -6,9 +6,9 @@
     <meta name="description" content="Portfolio André Luiz Messias - Consultoria em Infraestrutura e Open Source">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <title>Portfolio | André Luiz Messias</title>
+    <title>André Luiz Messias | Portfolio Profissional</title>
     <style>
-        /* --- ESTILOS DE IDENTIDADE (Sincronizados com MC Infra TI) --- */
+        /* --- IDENTIDADE VISUAL MC INFRA TI --- */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0; padding: 0;
@@ -19,13 +19,13 @@
 
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.88); z-index: -1;
+            background-color: rgba(0, 0, 0, 0.9); z-index: -1;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         header {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             padding: 1rem 0; border-bottom: 1px solid #4CAF50;
             position: sticky; top: 0; z-index: 1000;
         }
@@ -33,26 +33,71 @@
         header nav { display: flex; justify-content: space-between; align-items: center; }
         header .logo { font-size: 1.5em; font-weight: 700; color: #4CAF50; text-decoration: none; }
         header ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
-        header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; }
+        header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; transition: 0.3s; }
+        header ul li a:hover { color: #4CAF50; }
 
-        /* --- SEÇÃO HERO PORTFÓLIO --- */
-        .portfolio-hero {
-            padding: 80px 0 40px;
+        /* --- SEÇÃO SOBRE MIM (DESTAQUE) --- */
+        .about-section {
+            padding: 80px 0 60px;
             text-align: center;
         }
 
-        .portfolio-hero h1 {
-            font-size: 3.5rem; color: #0AFF0A;
-            text-shadow: 0 0 20px rgba(10, 255, 10, 0.4);
-            margin: 0;
+        .about-content {
+            max-width: 850px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
         }
 
-        .portfolio-hero p { font-size: 1.4em; color: #E0FFE0; margin-top: 10px; }
+        .about-section h1 {
+            font-size: 2.8rem; color: #0AFF0A;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(10, 255, 10, 0.3);
+        }
 
-        /* --- CARDS DE PROJETOS EM DESTAQUE --- */
+        .about-section h2 {
+            font-size: 1.3rem; color: #4CAF50;
+            margin-bottom: 25px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .about-section p {
+            font-size: 1.15rem; color: #e0e0e0;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* --- BOTÕES --- */
+        .btn {
+            display: inline-block; padding: 14px 30px;
+            border-radius: 5px; text-decoration: none;
+            font-weight: bold; transition: 0.3s;
+            cursor: pointer; border: none;
+        }
+
+        .btn-primary {
+            background-color: #2563eb; color: white;
+            margin-right: 10px;
+        }
+
+        .btn-success {
+            background-color: #4CAF50; color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            filter: brightness(1.1);
+        }
+
+        /* --- CARDS DE PROJETOS --- */
         .section-title {
             font-size: 2rem; color: #4CAF50;
-            margin: 40px 0 20px; border-left: 5px solid #4CAF50;
+            margin: 60px 0 30px; border-left: 5px solid #4CAF50;
             padding-left: 15px;
         }
 
@@ -62,71 +107,33 @@
         }
 
         .project-card {
-            background: rgba(20, 20, 20, 0.95);
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            border-radius: 12px; overflow: hidden;
+            background: rgba(25, 25, 25, 0.95);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 12px; padding: 25px;
             transition: 0.3s;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
             border-color: #0AFF0A;
-            box-shadow: 0 10px 30px rgba(10, 255, 10, 0.15);
+            transform: scale(1.02);
         }
 
-        .project-body { padding: 25px; }
-        .project-body h3 { color: #0AFF0A; margin: 0 0 10px 0; font-size: 1.4em; }
-        .project-body p { color: #ccc; font-size: 0.95em; }
+        .project-card h3 { color: #0AFF0A; margin-bottom: 12px; }
 
-        .tech-stack {
-            display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;
-        }
-
-        .tech-tag {
-            font-size: 0.75rem; background: rgba(76, 175, 80, 0.15);
-            color: #4CAF50; padding: 3px 10px; border-radius: 4px;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-
-        /* --- EXPERIÊNCIA TÉCNICA --- */
-        .skills-section {
-            background: rgba(10, 10, 10, 0.8);
-            border-radius: 12px; padding: 40px; margin: 40px 0;
-        }
-
-        .skills-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; margin-top: 20px;
-        }
-
-        .skill-group h4 { color: #4CAF50; margin-bottom: 10px; text-transform: uppercase; }
-        .skill-group ul { list-style: none; padding: 0; color: #aaa; font-size: 0.9em; }
-        .skill-group ul li::before { content: "▹ "; color: #4CAF50; }
-
-        /* --- CTA & FOOTER --- */
-        .cta-box {
-            text-align: center; padding: 60px 0;
-            background: linear-gradient(transparent, rgba(76, 175, 80, 0.1), transparent);
-        }
-
-        .btn {
-            display: inline-block; background: #4CAF50; color: #fff;
-            padding: 15px 35px; text-decoration: none; border-radius: 5px;
-            font-weight: bold; transition: 0.3s; margin-top: 20px;
-        }
-
-        .btn:hover { background: #45a049; box-shadow: 0 0 20px rgba(76, 175, 80, 0.4); }
-
+        /* --- FOOTER --- */
         footer {
-            background: rgba(0, 0, 0, 0.95); text-align: center;
-            padding: 40px 0; border-top: 1px solid #4CAF50;
+            background: rgba(0, 0, 0, 0.98); text-align: center;
+            padding: 50px 0; border-top: 1px solid #4CAF50;
+            margin-top: 80px;
         }
 
-        .footer-logo { max-width: 130px; margin-bottom: 15px; }
-        footer p { font-size: 0.85em; color: #777; }
+        .footer-logo { max-width: 140px; margin-bottom: 20px; }
+        footer p { font-size: 0.9em; color: #888; }
 
         @media (max-width: 768px) {
-            .portfolio-hero h1 { font-size: 2.2rem; }
+            .about-section h1 { font-size: 2rem; }
+            .about-content { padding: 25px; }
+            .btn { width: 100%; margin: 10px 0; }
         }
     </style>
 </head>
@@ -149,100 +156,38 @@
 
     <main class="container">
         
-        <section class="portfolio-hero">
-            <h1>André Luiz Messias</h1>
-            <p>Infraestrutura TI | Open Source Specialist | Developer</p>
-            <div style="margin-top: 30px;">
-                <a href="https://github.com/amdremessias" target="_blank" class="btn" style="background:#222; border: 1px solid #444;">GitHub</a>
-                <a href="contact.html" class="btn">Solicitar Orçamento</a>
+        <section class="about-section">
+            <div class="about-content">
+                <h1>André Luiz Messias</h1>
+                <h2>Consultor de TI | Especialista em Open Source, Infraestrutura e Automação de Negócios</h2>
+                
+                <p>
+                    Com ampla trajetória em TI e entusiasta do movimento Open Source, foco em transformar a infraestrutura tecnológica de empresas em ativos de alta performance. Através da <strong>MC Infra TI</strong>, desenvolvo soluções personalizadas que unem segurança, escalabilidade e automação inteligente.
+                </p>
+
+                <div class="btn-group">
+                    <a href="https://www.linkedin.com/in/andré-luiz-messias/" target="_blank" class="btn btn-primary">Ver LinkedIn</a>
+                    <a href="https://github.com/amdremessias" target="_blank" class="btn" style="background:#333; color:white;">GitHub</a>
+                    <a href="contact.html" class="btn btn-success">Falar com Messias</a>
+                </div>
             </div>
         </section>
 
-        <h2 class="section-title">Projetos em Destaque</h2>
+        <h2 class="section-title">Portfólio de Soluções</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-body">
-                    <h3>Novo Chat (CRM WhatsApp)</h3>
-                    <p>Ecossistema completo para automação de atendimento corporativo. Utiliza Waha API e n8n para centralizar vendas e suporte em um único fluxo inteligente.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Waha API</span>
-                        <span class="tech-tag">n8n</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">Node.js</span>
-                    </div>
-                </div>
+                <h3>Novo Chat (CRM WhatsApp)</h3>
+                <p>Ecossistema de comunicação via WhatsApp utilizando Waha API e n8n. Automação inteligente de fluxos de vendas e suporte corporativo.</p>
             </div>
-
             <div class="project-card">
-                <div class="project-body">
-                    <h3>Projeto Sentinela</h3>
-                    <p>Solução de videomonitoramento de alta performance baseada em Linux. Foco em segurança de perímetro, gravação em nuvem e acesso remoto via VPN segura.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">CFTV</span>
-                        <span class="tech-tag">Linux Server</span>
-                        <span class="tech-tag">NetBird</span>
-                        <span class="tech-tag">Shinobi/Zoneminder</span>
-                    </div>
-                </div>
+                <h3>Projeto Sentinela</h3>
+                <p>Monitoramento avançado CFTV baseado em tecnologias abertas, com foco em segurança de perímetro e acesso remoto via VPN.</p>
             </div>
-
             <div class="project-card">
-                <div class="project-body">
-                    <h3>Power Scan & Security</h3>
-                    <p>Ferramenta de análise de vulnerabilidades para servidores Windows/Linux. Identificação de falhas e aplicação de patches de segurança (Hardening).</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">CyberSecurity</span>
-                        <span class="tech-tag">Pentest</span>
-                        <span class="tech-tag">OpenVAS</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
+                <h3>Infraestrutura Crítica</h3>
+                <p>Virtualização com Proxmox e VMware, gestão de containers Docker e segurança de rede (Hardening e Firewalls).</p>
             </div>
         </div>
-
-        <div class="skills-section">
-            <h2 style="color:#0AFF0A; margin-top:0;">Especialidades Técnicas</h2>
-            <div class="skills-grid">
-                <div class="skill-group">
-                    <h4>Virtualização</h4>
-                    <ul>
-                        <li>Proxmox VE</li>
-                        <li>VMware ESXi</li>
-                        <li>Docker / Compose</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h4>Redes & VPN</h4>
-                    <ul>
-                        <li>NetBird / WireGuard</li>
-                        <li>Proxy (Nginx/Traefik)</li>
-                        <li>AdGuard Home / DNS</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h4>Sistemas</h4>
-                    <ul>
-                        <li>Debian / Ubuntu / Zorin</li>
-                        <li>Hardening de Servidores</li>
-                        <li>Backups Imutáveis</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h4>Automação</h4>
-                    <ul>
-                        <li>Integração n8n</li>
-                        <li>ESP32 / IoT</li>
-                        <li>Shell Scripting</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <section class="cta-box">
-            <h2>Precisa de uma infraestrutura profissional?</h2>
-            <p>Seja para automação de atendimento ou segurança de rede, eu entrego a solução.</p>
-            <a href="contact.html" class="btn">Vamos Conversar</a>
-        </section>
 
     </main>
 
@@ -250,7 +195,7 @@
         <div class="container">
             <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
             <p>&copy; 2026 | André Luiz Messias - MC Infra TI</p>
-            <p style="font-size: 0.7em;">Especialista em Soluções Open Source e Infraestrutura Crítica.</p>
+            <p>Soluções em TI, Segurança e Automação com a força do Open Source.</p>
         </div>
     </footer>
 
