@@ -114,34 +114,6 @@
         .cat-icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
         .cat-card h3 { margin: 10px 0; font-size: 1rem; color: #4CAF50; }
 
-        /* --- PLANOS --- */
-        .pricing-section { padding: 40px 0 80px; text-align: center; }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .price-card {
-            background: rgba(15, 15, 15, 0.95);
-            border: 1px solid rgba(76, 175, 80, 0.2);
-            border-radius: 15px;
-            padding: 40px 25px;
-            transition: 0.3s;
-            position: relative;
-        }
-        .price-value { font-size: 2.5rem; font-weight: bold; color: #0AFF0A; margin: 15px 0; }
-        .btn-buy {
-            display: block;
-            background: #4CAF50;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
         /* --- FOOTER --- */
         footer {
             background: rgba(0, 0, 0, 0.95); text-align: center;
@@ -165,8 +137,8 @@
                 <a href="index.html" class="logo">🛠️ Serviço Certo APP</a>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#planos">Assinaturas</a></li>
-                    <li><a href="#">Ajuda</a></li>
+                    <li><a href="#categorias">Serviços</a></li>
+                    <li><a href="#planos">Planos</a></li>
                 </ul>
             </nav>
         </div>
@@ -186,7 +158,7 @@
             </div>
         </section>
 
-        <h2 style="text-align: center; color: #4CAF50;">Categorias Populares</h2>
+        <h2 id="categorias" style="text-align: center; color: #4CAF50;">Categorias Populares</h2>
         <div class="categories-grid">
             <div class="cat-card" onclick="enviarParaN8N('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
             <div class="cat-card" onclick="enviarParaN8N('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
@@ -200,29 +172,22 @@
             <div class="cat-card" onclick="enviarParaN8N('Monitoramento 24h')"><span class="cat-icon">🛡️</span><h3>Monitoramento 24h</h3></div>
             <div class="cat-card" onclick="enviarParaN8N('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
             <div class="cat-card" onclick="enviarParaN8N('Jardinagem')"><span class="cat-icon">🍃</span><h3>Jardinagem</h3></div>
+            <div class="cat-card" onclick="enviarParaN8N('Serralheiro')"><span class="cat-icon">⚙️</span><h3>Serralheiro</h3></div>
+            <div class="cat-card" onclick="enviarParaN8N('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
+            <div class="cat-card" onclick="enviarParaN8N('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador de Móveis</h3></div>
         </div>
-
-        <section id="planos" class="pricing-section">
-            <h2 style="color: #4CAF50;">Planos para Profissionais</h2>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <h3>Pro Técnico</h3>
-                    <div class="price-value">R$ 49<span>/mês</span></div>
-                    <a href="#" class="btn-buy">Assinar Agora</a>
-                </div>
-            </div>
-        </section>
 
     </main>
 
     <footer>
         <div class="container">
             <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
-            <p>&copy; 2026 | MC Services | Desenvolvido por MC Infra TI</p>
+            <p>&copy; 2026 | MC Services | Powered by MC Infra TI</p>
         </div>
     </footer>
 
     <script>
+        // URL DE PRODUÇÃO (Removido o -test)
         const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
         const WHATS_BACKUP = "5514997911398";
 
@@ -232,9 +197,13 @@
                 return;
             }
 
+            // Feedback visual básico no console para debug
+            console.log(`Iniciando requisição para: ${servico}`);
+
             try {
                 const response = await fetch(N8N_URL, {
                     method: 'POST',
+                    mode: 'no-cors', // Útil se o n8n não estiver com CORS liberado ainda
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
                         servico: servico,
@@ -243,23 +212,21 @@
                     })
                 });
 
-                if (response.ok) {
-                    alert("Pedido recebido! Nossa IA está processando e você receberá um retorno em breve.");
-                } else {
-                    abrirWhatsAppFallback(servico);
-                }
+                // Com mode: 'no-cors', a response não traz status ok (opaque), 
+                // mas a requisição chega no servidor.
+                alert("Sua solicitação foi enviada com sucesso!");
+                
             } catch (error) {
-                console.error("Erro na automação, usando fallback WhatsApp.");
+                console.error("Erro na comunicação. Iniciando redundância via WhatsApp.");
                 abrirWhatsAppFallback(servico);
             }
         }
 
         function abrirWhatsAppFallback(servico) {
-            const msg = `Olá Messias! Gostaria de um orçamento para: ${servico}`;
+            const msg = `Olá! Gostaria de um orçamento para: ${servico}`;
             window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // Enter no input
         document.getElementById('serviceInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') enviarParaN8N(document.getElementById('serviceInput').value);
         });
