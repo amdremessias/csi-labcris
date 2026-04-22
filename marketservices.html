@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Serviço Certo APP - Marketplace de Técnicos Especializados da MC Infra TI">
+    <meta name="description" content="Plataforma de Marketplace de Serviços Técnicos Especializados - MC Infra TI">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <title>Serviço Certo APP | Marketplace de Técnicos</title>
+    <title>MC Services | Marketplace de Técnicos</title>
     <style>
-        /* --- ESTILOS GERAIS --- */
+        /* --- ESTILOS BASE (PADRÃO MC INFRA TI) --- */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0; padding: 0;
@@ -31,97 +31,213 @@
             position: sticky; top: 0; z-index: 1000;
         }
 
-        header nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        
-        header .logo { 
-            font-size: 1.6em; 
-            font-weight: 700; 
-            color: #0AFF0A; 
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-shadow: 0 0 10px rgba(10, 255, 10, 0.3);
-        }
-
+        header nav { display: flex; justify-content: space-between; align-items: center; }
+        header .logo { font-size: 1.5em; font-weight: 700; color: #4CAF50; text-decoration: none; }
         header ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; transition: 0.3s; }
         header ul li a:hover { color: #4CAF50; }
 
         /* --- HERO BUSCA --- */
-        .search-hero { padding: 80px 0 60px; text-align: center; }
-        .search-hero h1 { font-size: 3rem; color: #0AFF0A; margin-bottom: 10px; text-shadow: 0 0 15px rgba(10, 255, 10, 0.4); }
-        .search-hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 40px; }
+        .search-hero {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .search-hero h1 {
+            font-size: 3rem; color: #0AFF0A;
+            text-shadow: 0 0 20px rgba(10, 255, 10, 0.4);
+            margin-bottom: 20px;
+        }
 
         .search-container {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px; border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(76, 175, 80, 0.3);
-            max-width: 700px; margin: 0 auto;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .search-box { display: flex; gap: 10px; }
-        input[type="text"] { flex: 1; padding: 15px; border-radius: 5px; border: none; font-size: 1rem; outline: none; }
-        .btn-search { background: #4CAF50; color: white; border: none; padding: 0 30px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .btn-search {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
         .btn-search:hover { background: #45a049; }
 
-        /* --- GRID DE SERVIÇOS --- */
-        .services-grid {
+        /* --- CATEGORIAS --- */
+        .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px; margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
         }
 
-        .service-card {
+        .cat-card {
             background: rgba(20, 20, 20, 0.9);
             border: 1px solid rgba(76, 175, 80, 0.2);
-            padding: 30px; border-radius: 12px;
-            text-align: center; transition: 0.3s;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
         }
 
-        .service-card:hover { border-color: #0AFF0A; transform: translateY(-5px); }
-        .service-card .icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
-        .service-card h3 { color: #4CAF50; margin-bottom: 10px; }
-        .service-card p { font-size: 0.9rem; color: #aaa; }
+        .cat-card:hover {
+            border-color: #0AFF0A;
+            transform: translateY(-5px);
+            background: rgba(76, 175, 80, 0.1);
+        }
 
-        /* --- PLANOS DE ASSINATURA --- */
-        .pricing-section { padding: 60px 0; text-align: center; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        
-        .pricing-card {
-            background: rgba(10, 10, 10, 0.95);
+        .cat-icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+        .cat-card h3 { margin: 10px 0; font-size: 1.1rem; color: #4CAF50; }
+
+        /* --- FLUXO DE TRABALHO --- */
+        .how-it-works {
+            background: rgba(10, 10, 10, 0.8);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin: 60px 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step { text-align: center; position: relative; }
+        .step-num {
+            background: #4CAF50;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: bold; font-size: 1.2rem;
+        }
+
+        .step h4 { color: #0AFF0A; margin-bottom: 10px; }
+        .step p { font-size: 0.9rem; color: #ccc; }
+
+        /* --- SEÇÃO DE PREÇOS (PLANOS) --- */
+        .pricing-section {
+            padding: 40px 0 80px;
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .price-card {
+            background: rgba(15, 15, 15, 0.95);
             border: 1px solid rgba(76, 175, 80, 0.2);
-            border-radius: 15px; padding: 40px 20px;
-            transition: 0.3s; position: relative; overflow: hidden;
+            border-radius: 15px;
+            padding: 40px 25px;
+            transition: 0.3s;
+            position: relative;
         }
 
-        .pricing-card.featured { border: 2px solid #0AFF0A; transform: scale(1.05); box-shadow: 0 0 20px rgba(10, 255, 10, 0.2); }
-        .pricing-card.featured::before {
-            content: "RECOMENDADO"; position: absolute; top: 15px; right: -35px;
-            background: #0AFF0A; color: #000; font-size: 0.7rem; font-weight: bold;
-            padding: 5px 40px; transform: rotate(45deg);
+        .price-card:hover {
+            border-color: #0AFF0A;
+            transform: scale(1.02);
         }
 
-        .price { font-size: 2.5rem; color: #0AFF0A; font-weight: bold; margin: 20px 0; }
-        .price span { font-size: 1rem; color: #888; }
+        .price-card.featured {
+            border: 2px solid #0AFF0A;
+            box-shadow: 0 0 20px rgba(10, 255, 10, 0.1);
+        }
 
-        .pricing-features { list-style: none; padding: 0; margin: 0 0 30px 0; text-align: left; }
-        .pricing-features li { padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: #ccc; font-size: 0.9rem; }
-        .pricing-features li::before { content: "✔"; color: #0AFF0A; margin-right: 10px; }
+        .badge {
+            background: #0AFF0A;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-        .btn-plan { display: block; width: 100%; padding: 12px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-align: center; }
-        .btn-plan-outline { border: 1px solid #4CAF50; color: #4CAF50; }
-        .btn-plan-fill { background: #4CAF50; color: #fff; }
-        .btn-plan:hover { transform: translateY(-2px); filter: brightness(1.2); }
+        .price-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .price-value { font-size: 2.5rem; font-weight: bold; color: #0AFF0A; margin: 15px 0; }
+        .price-value span { font-size: 1rem; color: #888; }
+
+        .price-features {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features li::before { content: "✔"; color: #0AFF0A; }
+
+        .btn-buy {
+            display: block;
+            background: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-buy:hover { background: #45a049; }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+        }
 
         /* --- FOOTER --- */
-        footer { background: rgba(0, 0, 0, 0.95); text-align: center; padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 60px; }
+        footer {
+            background: rgba(0, 0, 0, 0.95); text-align: center;
+            padding: 40px 0; border-top: 1px solid #4CAF50;
+            margin-top: 60px;
+        }
+
         .footer-logo { max-width: 130px; margin-bottom: 15px; }
 
         @media (max-width: 768px) {
-            header nav { justify-content: center; gap: 15px; }
-            .pricing-card.featured { transform: scale(1); }
+            .search-box { flex-direction: column; }
+            .search-hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -135,9 +251,9 @@
                 <a href="index.html" class="logo">🛠️ Serviço Certo APP</a>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                    <li><a href="portf.html">Sobre</a></li>
-                    <li><a href="contact.html">Suporte</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#planos">Assinaturas</a></li>
+                    <li><a href="contact.html">Ajuda</a></li>
                 </ul>
             </nav>
         </div>
@@ -146,80 +262,113 @@
     <main class="container">
         
         <section class="search-hero">
-            <h1>O técnico certo, no momento certo.</h1>
-            <p>Conectando você aos melhores profissionais de infraestrutura e manutenção.</p>
+            <h1>O técnico ideal para o seu problema</h1>
+            <p>De ar condicionado a redes de alta performance. Solicite orçamentos em minutos.</p>
+            
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" placeholder="Ex: Técnico de Ar Condicionado, CFTV, Redes...">
+                    <input type="text" placeholder="Qual serviço você precisa hoje? (ex: Instalador de Ar, CFTV...)">
                     <button class="btn-search">Buscar</button>
                 </div>
             </div>
         </section>
 
-        <div class="services-grid">
-            <div class="service-card">
-                <span class="icon">🖥️</span>
-                <h3>IT Services</h3>
-                <p>Suporte técnico especializado em hardware, software e redes.</p>
+        <h2 style="text-align: center; color: #4CAF50;">Categorias Populares</h2>
+        <div class="categories-grid">
+            <div class="cat-card">
+                <span class="cat-icon">❄️</span>
+                <h3>Ar Condicionado</h3>
             </div>
-            <div class="service-card">
-                <span class="icon">📑</span>
-                <h3>Ordem de Serviço</h3>
-                <p>Gestão completa de O.S. para técnicos e empresas.</p>
+            <div class="cat-card">
+                <span class="cat-icon">📹</span>
+                <h3>Técnico CFTV</h3>
             </div>
-            <div class="service-card">
-                <span class="icon">💽</span>
-                <h3>Backup Server</h3>
-                <p>Segurança de dados e redundância para seus arquivos críticos.</p>
+            <div class="cat-card">
+                <span class="cat-icon">🌐</span>
+                <h3>Redes e TI</h3>
             </div>
-            <div class="service-card">
-                <span class="icon">✅</span>
-                <h3>Tarefas</h3>
-                <p>Organização de rotinas e demandas de manutenção em campo.</p>
+            <div class="cat-card">
+                <span class="cat-icon">⚙️</span>
+                <h3>Serralheiro</h3>
+            </div>
+            <div class="cat-card">
+                <span class="cat-icon">🚰</span>
+                <h3>Hidráulico</h3>
+            </div>
+            <div class="cat-card">
+                <span class="cat-icon">📦</span>
+                <h3>Montador de Móveis</h3>
             </div>
         </div>
 
+        <section id="como-funciona" class="how-it-works">
+            <h2 style="text-align: center; color: #0AFF0A; margin-top: 0;">Como funciona a plataforma?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h4>Solicite</h4>
+                    <p>Descreva o que você precisa. Nossa plataforma identifica os melhores técnicos.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h4>Receba Orçamentos</h4>
+                    <p>Técnicos qualificados enviam propostas diretamente no seu painel 📑.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h4>Aprove e Execute</h4>
+                    <p>Escolha o melhor orçamento e agende a execução com segurança ✅.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h4>Pague e Avalie</h4>
+                    <p>Pagamento seguro e garantia de backup dos dados do serviço 💽.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="planos" class="pricing-section">
-            <h2 style="color: #4CAF50; font-size: 2.2rem;">Planos para Profissionais</h2>
-            <p>Escale seu negócio com as ferramentas da MC Infra TI</p>
+            <h2 style="color: #4CAF50; margin-bottom: 10px;">Planos para Profissionais</h2>
+            <p>Escale seus atendimentos e organize sua empresa com nossas ferramentas.</p>
 
             <div class="pricing-grid">
-                <div class="pricing-card">
+                <div class="price-card">
                     <h3>Plano Start</h3>
-                    <div class="price">R$ 0<span>/mês</span></div>
-                    <ul class="pricing-features">
-                        <li>Até 5 orçamentos por mês</li>
-                        <li>Perfil básico no aplicativo</li>
-                        <li>Gestão de Tarefas básica</li>
-                        <li>Suporte via Fórum</li>
+                    <div class="price-value">Grátis</div>
+                    <ul class="price-features">
+                        <li>Receba até 3 orçamentos/mês</li>
+                        <li>Perfil básico no catálogo</li>
+                        <li>Notificações por e-mail</li>
+                        <li>Suporte via comunidade</li>
                     </ul>
-                    <a href="#" class="btn-plan btn-plan-outline">Começar Agora</a>
+                    <a href="#" class="btn-buy btn-outline">Começar agora</a>
                 </div>
 
-                <div class="pricing-card featured">
+                <div class="price-card featured">
+                    <div class="badge">MAIS POPULAR</div>
                     <h3>Pro Técnico</h3>
-                    <div class="price">R$ 49<span>/mês</span></div>
-                    <ul class="pricing-features">
-                        <li>Orçamentos Ilimitados</li>
-                        <li>Selo de Profissional Verificado</li>
-                        <li>Gestão de O.S. Enterprise</li>
-                        <li>Alertas via WhatsApp (n8n)</li>
-                        <li>Backup Server integrado</li>
+                    <div class="price-value">R$ 49<span>/mês</span></div>
+                    <ul class="price-features">
+                        <li>Orçamentos ilimitados</li>
+                        <li>Gestão completa de O.S. 📑</li>
+                        <li>Selo de profissional verificado</li>
+                        <li>Notificação WhatsApp em tempo real</li>
+                        <li>Prioridade na busca de clientes</li>
                     </ul>
-                    <a href="#" class="btn-plan btn-plan-fill">Assinar Agora</a>
+                    <a href="#" class="btn-buy">Assinar Plano Pro</a>
                 </div>
 
-                <div class="pricing-card">
+                <div class="price-card">
                     <h3>Enterprise</h3>
-                    <div class="price">Sob Consulta</div>
-                    <ul class="pricing-features">
-                        <li>Gestão de Equipes (Multi-login)</li>
-                        <li>Dashboard de Faturamento</li>
-                        <li>API para Integrações Customizadas</li>
-                        <li>White Label (Sua Logo no App)</li>
-                        <li>Suporte Prioritário</li>
+                    <div class="price-value">Consultar</div>
+                    <ul class="price-features">
+                        <li>Múltiplos usuários técnicos</li>
+                        <li>Backup automático de relatórios 💽</li>
+                        <li>API de integração personalizada</li>
+                        <li>Relatórios de faturamento</li>
+                        <li>Gerente de conta dedicado</li>
                     </ul>
-                    <a href="contact.html" class="btn-plan btn-plan-outline">Contatar Consultoria</a>
+                    <a href="contact.html" class="btn-buy btn-outline">Falar com vendas</a>
                 </div>
             </div>
         </section>
@@ -229,8 +378,8 @@
     <footer>
         <div class="container">
             <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
-            <p>&copy; 2026 | MC infra TI | Serviço Certo APP</p>
-            <p style="font-size: 0.8em; color: #555;">Desenvolvido com foco em Privacidade e Open Source.</p>
+            <p>&copy; 2026 | MC Services Marketplace</p>
+            <p style="font-size: 0.8em; color: #666;">Uma solução tecnológica by MC Infra TI</p>
         </div>
     </footer>
 
