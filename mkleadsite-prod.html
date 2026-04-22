@@ -34,19 +34,12 @@
             z-index: 1000;
         }
 
-        /* Fixar apenas em Desktop */
         @media (min-width: 769px) {
-            header {
-                position: sticky;
-                top: 0;
-            }
+            header { position: sticky; top: 0; }
         }
 
-        /* Estático em Mobile para ganhar espaço */
         @media (max-width: 768px) {
-            header {
-                position: relative;
-            }
+            header { position: relative; }
         }
 
         header nav { display: flex; justify-content: space-between; align-items: center; }
@@ -135,17 +128,35 @@
             text-decoration: none; font-weight: bold; width: 100%; border: none; cursor: pointer;
         }
 
+        /* --- AJUSTE SWEETALERT (MOBILE CENTRALIZADO) --- */
+        .swal2-popup {
+            background: #111 !important;
+            color: #fff !important;
+            border: 1px solid #4CAF50 !important;
+            border-radius: 15px !important;
+            padding: 1.5rem !important;
+            width: 90% !important; /* Ocupa quase toda a largura no mobile */
+            max-width: 450px !important;
+        }
+        .swal2-title { color: #0AFF0A !important; font-size: 1.4rem !important; }
+        .swal2-input {
+            color: #fff !important;
+            background: #222 !important;
+            border: 1px solid #444 !important;
+            margin: 10px auto !important; /* Centraliza e dá espaço entre inputs */
+            width: 90% !important;
+            font-size: 1rem !important;
+        }
+        .swal2-actions { margin-top: 1.5rem !important; }
+        .swal2-confirm { background-color: #4CAF50 !important; padding: 10px 30px !important; }
+        .swal2-validation-message { background: #333 !important; color: #ff4444 !important; }
+
         /* --- FOOTER --- */
         footer {
             background: rgba(0, 0, 0, 0.95); text-align: center;
             padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 60px;
         }
         .footer-logo { max-width: 130px; margin-bottom: 15px; }
-
-        /* SweetAlert Dark Theme */
-        .swal2-popup { background: #111 !important; color: #fff !important; border: 1px solid #4CAF50 !important; }
-        .swal2-title { color: #0AFF0A !important; }
-        .swal2-input { color: #fff !important; background: #222 !important; border: 1px solid #444 !important; }
 
         @media (max-width: 768px) { .search-box { flex-direction: column; } .plan-card.featured { transform: scale(1); } }
     </style>
@@ -289,10 +300,10 @@
                 title: `Solicitar ${servico}`,
                 html: 
                     '<input id="swal-nome" class="swal2-input" placeholder="Seu Nome">' +
-                    '<input id="swal-whats" class="swal2-input" placeholder="WhatsApp (Somente números)" maxlength="11">' +
-                    '<input id="swal-cidade" class="swal2-input" placeholder="Sua Cidade">',
+                    '<input id="swal-whats" class="swal2-input" placeholder="WhatsApp (DDD + Número)" maxlength="11">' +
+                    '<input id="swal-cidade" class="swal2-input" placeholder="Sua Cidade (Ex: Ourinhos)">',
                 showCancelButton: true,
-                confirmButtonText: 'Enviar',
+                confirmButtonText: 'Enviar Pedido',
                 didOpen: () => {
                     const inputWhats = document.getElementById('swal-whats');
                     inputWhats.addEventListener('input', (e) => {
@@ -304,7 +315,7 @@
                     const whats = document.getElementById('swal-whats').value.trim();
                     const cidade = document.getElementById('swal-cidade').value.trim();
                     if (!nome || !whats || !cidade) return Swal.showValidationMessage('Preencha todos os campos!');
-                    if (whats.length < 10) return Swal.showValidationMessage('WhatsApp inválido');
+                    if (whats.length < 10) return Swal.showValidationMessage('WhatsApp inválido (Mínimo 10 dígitos)');
                     return { nome, whatsapp: whats, cidade }
                 }
             });
