@@ -67,7 +67,7 @@
         }
         .btn-search:hover { background: #45a049; }
 
-        /* --- COMO FUNCIONA (JORNADA) --- */
+        /* --- COMO FUNCIONA --- */
         .process-section {
             padding: 60px 0; background: rgba(10, 10, 10, 0.7);
             border-radius: 20px; margin: 40px 0; border: 1px solid rgba(76, 175, 80, 0.2);
@@ -171,27 +171,27 @@
                 <div class="process-step">
                     <div class="step-number">1</div>
                     <h4>Solicitação</h4>
-                    <p>O cliente solicita o serviço desejado pela plataforma.</p>
+                    <p>Você descreve o que precisa em segundos.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">2</div>
-                    <h4>Localização</h4>
-                    <p>Nossa IA localiza o técnico ideal cadastrado na região.</p>
+                    <h4>Triagem IA</h4>
+                    <p>Nossa plataforma localiza o técnico ideal.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">3</div>
                     <h4>Orçamento</h4>
-                    <p>O técnico recebe a demanda e envia o orçamento ao cliente.</p>
+                    <p>O profissional envia os valores para análise.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">4</div>
                     <h4>Aprovação</h4>
-                    <p>Cliente aprova o valor e realiza o agendamento do serviço.</p>
+                    <p>Você aprova e agenda o melhor horário.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">5</div>
-                    <h4>Finalização</h4>
-                    <p>Após a execução, o pagamento é liberado e o técnico qualificado.</p>
+                    <h4>Garantia</h4>
+                    <p>Pagamento liberado após o serviço e avaliação.</p>
                 </div>
             </div>
         </section>
@@ -224,29 +224,27 @@
                     <ul class="plan-features">
                         <li>Listagem no diretório</li>
                         <li>Perfil básico</li>
-                        <li>Receba leads por e-mail</li>
                     </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Adesão Plano Básico')">Cadastrar</button>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Básico')">Cadastrar</button>
                 </div>
                 <div class="plan-card featured">
                     <h3>Premium</h3>
                     <div class="plan-price">R$ 49,90/mês</div>
                     <ul class="plan-features">
                         <li>Destaque nas buscas</li>
-                        <li>Leads via WhatsApp Instantâneo</li>
-                        <li>Selo de Técnico Verificado</li>
+                        <li>Leads via WhatsApp</li>
+                        <li>Selo de Verificado</li>
                     </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Adesão Plano Premium')">Ser Premium</button>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Premium')">Ser Premium</button>
                 </div>
                 <div class="plan-card">
                     <h3>Empresarial</h3>
                     <div class="plan-price">Consultar</div>
                     <ul class="plan-features">
                         <li>Multi-perfis</li>
-                        <li>Painel CRM Admin</li>
                         <li>API de Integração</li>
                     </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Adesão Plano Empresa')">Falar com Consultor</button>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Empresa')">Falar com Consultor</button>
                 </div>
             </div>
         </section>
@@ -256,7 +254,7 @@
     <footer>
         <div class="container">
             <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
-            <p>&copy; 2026 | MC Services | Desenvolvido por André Messias - MC Infra TI</p>
+            <p>&copy; 2026 | MC Services | Powered by MC Infra TI</p>
         </div>
     </footer>
 
@@ -273,38 +271,66 @@
         async function solicitarDados(servico) {
             const { value: formValues } = await Swal.fire({
                 title: `Solicitar ${servico}`,
-                html: '<input id="swal-nome" class="swal2-input" placeholder="Seu Nome"><input id="swal-whats" class="swal2-input" placeholder="Seu WhatsApp">',
+                html: 
+                    '<input id="swal-nome" class="swal2-input" placeholder="Seu Nome">' +
+                    '<input id="swal-whats" class="swal2-input" placeholder="WhatsApp (Somente números - 11 dígitos)" maxlength="11">' +
+                    '<input id="swal-cidade" class="swal2-input" placeholder="Sua Cidade (Ex: Ourinhos)">',
+                focusConfirm: false,
                 showCancelButton: true,
                 confirmButtonText: 'Enviar Pedido',
+                didOpen: () => {
+                    // Limitação para apenas números no WhatsApp
+                    const inputWhats = document.getElementById('swal-whats');
+                    inputWhats.addEventListener('input', (e) => {
+                        e.target.value = e.target.value.replace(/\D/g, '');
+                    });
+                },
                 preConfirm: () => {
-                    const nome = document.getElementById('swal-nome').value;
-                    const whats = document.getElementById('swal-whats').value;
-                    if (!nome || !whats) return Swal.showValidationMessage('Preencha os dados!');
-                    return { nome, whatsapp: whats }
+                    const nome = document.getElementById('swal-nome').value.trim();
+                    const whats = document.getElementById('swal-whats').value.trim();
+                    const cidade = document.getElementById('swal-cidade').value.trim();
+                    
+                    if (!nome || !whats || !cidade) {
+                        return Swal.showValidationMessage('Preencha todos os campos!');
+                    }
+                    if (whats.length < 10) {
+                        return Swal.showValidationMessage('O WhatsApp deve ter no mínimo 10 dígitos (DDD + Número)');
+                    }
+                    return { nome, whatsapp: whats, cidade }
                 }
             });
-            if (formValues) enviarParaN8N(servico, formValues.nome, formValues.whatsapp);
+
+            if (formValues) {
+                enviarParaN8N(servico, formValues.nome, formValues.whatsapp, formValues.cidade);
+            }
         }
 
-        async function enviarParaN8N(servico, nome, whatsapp) {
+        async function enviarParaN8N(servico, nome, whatsapp, cidade) {
             Swal.fire({ title: 'Processando...', didOpen: () => Swal.showLoading() });
             try {
                 await fetch(N8N_URL, {
-                    method: 'POST', mode: 'no-cors',
+                    method: 'POST',
+                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
-                        servico, 
+                        servico: servico, 
                         cliente_nome: nome, 
                         cliente_whatsapp: whatsapp, 
+                        cliente_cidade: cidade,
                         origem: "Marketplace_Web",
                         data: new Date().toLocaleString('pt-BR') 
                     })
                 });
-                Swal.fire('Sucesso!', 'Seu pedido foi registrado. Nossa IA está localizando o técnico ideal!', 'success');
+                Swal.fire('Sucesso!', 'Pedido registrado. Nossa IA está localizando o técnico ideal em ' + cidade + '!', 'success');
             } catch (e) {
-                window.open(`https://wa.me/${WHATS_BACKUP}?text=Olá, preciso de orçamento para ${servico}`, '_blank');
+                const msg = `Olá! Preciso de orçamento para ${servico} em ${cidade}.`;
+                window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(msg)}`, '_blank');
             }
         }
+
+        document.getElementById('serviceInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') executarBusca();
+        });
     </script>
 </body>
 </html>
