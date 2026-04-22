@@ -32,7 +32,7 @@
         }
 
         header nav { display: flex; justify-content: space-between; align-items: center; }
-        header .logo { font-size: 1.5em; font-weight: 700; color: #4CAF50; text-decoration: none; }
+        header .logo { font-size: 1.5em; font-weight: 700; color: #4CAF50; text-decoration: none; display: flex; align-items: center; gap: 8px; }
         header ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; transition: 0.3s; }
         header ul li a:hover { color: #4CAF50; }
@@ -163,16 +163,6 @@
             position: relative;
         }
 
-        .price-card:hover {
-            border-color: #0AFF0A;
-            transform: scale(1.02);
-        }
-
-        .price-card.featured {
-            border: 2px solid #0AFF0A;
-            box-shadow: 0 0 20px rgba(10, 255, 10, 0.1);
-        }
-
         .badge {
             background: #0AFF0A;
             color: #000;
@@ -186,7 +176,6 @@
             transform: translateX(-50%);
         }
 
-        .price-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
         .price-value { font-size: 2.5rem; font-weight: bold; color: #0AFF0A; margin: 15px 0; }
         .price-value span { font-size: 1rem; color: #888; }
 
@@ -219,12 +208,6 @@
         }
 
         .btn-buy:hover { background: #45a049; }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #4CAF50;
-            color: #4CAF50;
-        }
 
         /* --- FOOTER --- */
         footer {
@@ -267,74 +250,29 @@
             
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" placeholder="Qual serviço você precisa hoje? (ex: Entregador, Alarme...)">
-                    <button class="btn-search">Buscar</button>
+                    <input type="text" id="serviceInput" placeholder="Qual serviço você precisa hoje?">
+                    <button class="btn-search" onclick="enviarBusca()">Buscar</button>
                 </div>
             </div>
         </section>
 
         <h2 style="text-align: center; color: #4CAF50;">Categorias Populares</h2>
         <div class="categories-grid">
-            <div class="cat-card">
-                <span class="cat-icon">❄️</span>
-                <h3>Ar Condicionado</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">📹</span>
-                <h3>Técnico CFTV</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🌐</span>
-                <h3>Redes e TI</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🏍️</span>
-                <h3>Entregador</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🚨</span>
-                <h3>Alarme</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">⚡</span>
-                <h3>Cerca Elétrica</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🚪</span>
-                <h3>Portão Automático</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🔑</span>
-                <h3>Controle de Acesso</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🏠</span>
-                <h3>Home Automação</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🛡️</span>
-                <h3>Monitoramento 24h</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🔌</span>
-                <h3>Elétrica Básica</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🍃</span>
-                <h3>Jardinagem</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">⚙️</span>
-                <h3>Serralheiro</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">🚰</span>
-                <h3>Hidráulico</h3>
-            </div>
-            <div class="cat-card">
-                <span class="cat-icon">📦</span>
-                <h3>Montador de Móveis</h3>
-            </div>
+            <div class="cat-card" onclick="dispararWhats('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Entregador')"><span class="cat-icon">🏍️</span><h3>Entregador</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Alarme')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Cerca Elétrica')"><span class="cat-icon">⚡</span><h3>Cerca Elétrica</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Portão Automático')"><span class="cat-icon">🚪</span><h3>Portão Automático</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Controle de Acesso')"><span class="cat-icon">🔑</span><h3>Controle de Acesso</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Home Automação')"><span class="cat-icon">🏠</span><h3>Home Automação</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Monitoramento 24h')"><span class="cat-icon">🛡️</span><h3>Monitoramento 24h</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Jardinagem')"><span class="cat-icon">🍃</span><h3>Jardinagem</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Serralheiro')"><span class="cat-icon">⚙️</span><h3>Serralheiro</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
+            <div class="cat-card" onclick="dispararWhats('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador de Móveis</h3></div>
         </div>
 
         <section id="como-funciona" class="how-it-works">
@@ -343,7 +281,7 @@
                 <div class="step">
                     <div class="step-num">1</div>
                     <h4>Solicite</h4>
-                    <p>Descreva o que você precisa. Nossa plataforma identifica os melhores técnicos.</p>
+                    <p>Descreva o que você precisa ou clique em uma categoria.</p>
                 </div>
                 <div class="step">
                     <div class="step-num">2</div>
@@ -365,8 +303,6 @@
 
         <section id="planos" class="pricing-section">
             <h2 style="color: #4CAF50; margin-bottom: 10px;">Planos para Profissionais</h2>
-            <p>Escale seus atendimentos e organize sua empresa com nossas ferramentas.</p>
-
             <div class="pricing-grid">
                 <div class="price-card">
                     <h3>Plano Start</h3>
@@ -377,10 +313,10 @@
                         <li>Notificações por e-mail</li>
                         <li>Suporte via comunidade</li>
                     </ul>
-                    <a href="#" class="btn-buy btn-outline">Começar agora</a>
+                    <a href="#" class="btn-buy" style="background: transparent; border: 1px solid #4CAF50; color: #4CAF50;">Começar agora</a>
                 </div>
 
-                <div class="price-card featured">
+                <div class="price-card" style="border: 2px solid #0AFF0A;">
                     <div class="badge">MAIS POPULAR</div>
                     <h3>Pro Técnico</h3>
                     <div class="price-value">R$ 49<span>/mês</span></div>
@@ -404,7 +340,7 @@
                         <li>Relatórios de faturamento</li>
                         <li>Gerente de conta dedicado</li>
                     </ul>
-                    <a href="contact.html" class="btn-buy btn-outline">Falar com vendas</a>
+                    <a href="contact.html" class="btn-buy" style="background: transparent; border: 1px solid #4CAF50; color: #4CAF50;">Falar com vendas</a>
                 </div>
             </div>
         </section>
@@ -418,6 +354,34 @@
             <p style="font-size: 0.8em; color: #666;">Uma solução tecnológica by MC Infra TI</p>
         </div>
     </footer>
+
+    <script>
+        const NUMERO_WHATS = "5514997911398";
+
+        // Função base para o disparo
+        function dispararWhats(servico) {
+            if (!servico || servico.trim() === "") {
+                alert("Por favor, digite ou selecione um serviço.");
+                return;
+            }
+            const mensagem = `Olá! Gostaria de solicitar um orçamento para o serviço de: ${servico}`;
+            const url = `https://wa.me/${NUMERO_WHATS}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        }
+
+        // Função específica para o campo de busca
+        function enviarBusca() {
+            const input = document.getElementById('serviceInput').value;
+            dispararWhats(input);
+        }
+
+        // Enviar com a tecla Enter no input
+        document.getElementById('serviceInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                enviarBusca();
+            }
+        });
+    </script>
 
     <script data-goatcounter="https://m3ss14s.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
