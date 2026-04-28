@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plataforma de Marketplace de Serviços Técnicos Especializados - MC Infra TI">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>MC Services | Marketplace de Técnicos</title>
     <style>
-        /* --- ESTILOS BASE (MANTIDOS) --- */
+        /* --- ESTILOS BASE --- */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0; padding: 0;
@@ -21,38 +22,38 @@
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: -1; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
 
-        /* --- HEADER ADAPTÁVEL --- */
         header {
             background-color: rgba(0, 0, 0, 0.95);
             padding: 1rem 0; border-bottom: 1px solid #4CAF50;
             z-index: 1000; position: sticky; top: 0;
         }
         header nav { display: flex; justify-content: space-between; align-items: center; }
-        header .logo { font-size: 1.2rem; font-weight: 700; color: #4CAF50; text-decoration: none; }
+        header .logo { font-size: 1.2em; font-weight: 700; color: #4CAF50; text-decoration: none; }
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
-        header ul li a { color: #fff; text-decoration: none; font-size: 0.85rem; }
+        header ul li a { color: #fff; text-decoration: none; font-size: 0.85em; }
 
-        /* --- HERO RESPONSIVO --- */
-        .search-hero { padding: 40px 0; text-align: center; }
-        .search-hero h1 { font-size: 2rem; color: #0AFF0A; margin-bottom: 20px; padding: 0 10px; }
-        
+        /* --- HERO --- */
+        .search-hero { padding: 50px 0 30px; text-align: center; }
+        .search-hero h1 { font-size: 2.2rem; color: #0AFF0A; text-shadow: 0 0 20px rgba(10, 255, 10, 0.4); margin-bottom: 10px; }
+        .search-hero p { font-size: 1rem; opacity: 0.9; margin-bottom: 25px; }
+
         .search-container {
-            background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;
             backdrop-filter: blur(10px); border: 1px solid rgba(76, 175, 80, 0.3);
             max-width: 700px; margin: 0 auto;
         }
-        .search-box { display: flex; flex-wrap: wrap; gap: 10px; }
-        input[type="text"] { flex: 1; min-width: 200px; padding: 15px; border-radius: 8px; border: none; font-size: 1rem; }
-        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; }
+        .search-box { display: flex; flex-direction: column; gap: 10px; }
+        input[type="text"] { padding: 15px; border-radius: 8px; border: none; font-size: 1rem; width: 100%; box-sizing: border-box; }
+        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
-        /* --- GALERIA DESLIZANTE (VERSÃO ESTÁVEL) --- */
-        .slider-section { padding: 40px 0; overflow: hidden; width: 100%; }
+        /* --- GALERIA SLIDER --- */
+        .slider-section { padding: 40px 0; overflow: hidden; }
         .slider-track {
             display: flex;
             width: calc(280px * 10); 
             animation: scroll 25s linear infinite;
         }
-        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; box-sizing: border-box; }
+        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
         .slide-content {
             position: relative; width: 100%; height: 100%;
             border-radius: 15px; overflow: hidden;
@@ -61,7 +62,7 @@
         .slide-content img { width: 100%; height: 100%; object-fit: cover; }
         .slide-label {
             position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            width: 100%; padding: 20px 10px; text-align: center; color: #0AFF0A; font-weight: bold;
+            width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; box-sizing: border-box;
         }
 
         @keyframes scroll {
@@ -69,38 +70,56 @@
             100% { transform: translateX(calc(-280px * 5)); } 
         }
 
-        /* --- GRID DE SERVIÇOS --- */
+        /* --- CATEGORIAS --- */
         .categories-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+            grid-template-columns: repeat(2, 1fr); 
             gap: 15px; margin: 40px 0; 
         }
-        .cat-card { background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(76, 175, 80, 0.2); padding: 15px; border-radius: 12px; text-align: center; }
-        .cat-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
-        .cat-card h3 { font-size: 0.85rem; color: #4CAF50; margin: 0; }
+        .cat-card { background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(76, 175, 80, 0.2); padding: 20px; border-radius: 12px; text-align: center; transition: 0.3s; cursor: pointer; }
+        .cat-card:hover { border-color: #0AFF0A; }
+        .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .cat-card h3 { font-size: 0.9rem; color: #4CAF50; margin: 0; }
 
-        /* --- PLANOS --- */
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .plan-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #4CAF50; border-radius: 15px; padding: 30px 20px; text-align: center; }
-        .plan-card.featured { border: 2px solid #0AFF0A; }
-        .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; width: 100%; border: none; font-weight: bold; margin-top: 15px; }
+        /* --- PLANOS (RESTAURADOS) --- */
+        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin: 40px 0; }
+        .plan-card { 
+            background: rgba(15, 15, 15, 0.95); 
+            border: 1px solid #4CAF50; border-radius: 15px; 
+            padding: 30px 20px; display: flex; flex-direction: column; 
+        }
+        .plan-card.featured { border: 2px solid #0AFF0A; box-shadow: 0 0 20px rgba(10, 255, 10, 0.2); }
+        .plan-price { font-size: 2rem; font-weight: bold; margin: 15px 0; color: #fff; text-align: center; }
+        .plan-features { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; flex-grow: 1; }
+        .plan-features li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; font-weight: bold; }
+        .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; text-transform: uppercase; }
 
-        /* --- POPUP SWEETALERT (RESTAURADO E RESPONSIVO) --- */
+        /* --- POPUP (RESTAURADO) --- */
         .swal2-popup {
             background: #111 !important; color: #fff !important;
-            border: 1px solid #4CAF50 !important; width: 95% !important; max-width: 450px !important;
+            border: 1px solid #4CAF50 !important; border-radius: 15px !important;
+            width: 95% !important; max-width: 500px !important;
         }
+        .swal2-title { color: #0AFF0A !important; }
         .swal2-input, .swal2-textarea {
-            background: #222 !important; color: #fff !important; border: 1px solid #444 !important;
+            color: #fff !important; background: #222 !important;
+            border: 1px solid #444 !important; border-radius: 8px !important;
+            margin: 10px auto !important; width: 90% !important;
         }
         .swal2-confirm { background-color: #4CAF50 !important; }
 
-        /* Ajustes para telas maiores */
+        /* --- MEDIA QUERIES PARA DESKTOP --- */
         @media (min-width: 768px) {
-            .search-hero h1 { font-size: 3rem; }
-            .btn-search { width: auto; }
-            header .logo { font-size: 1.5rem; }
+            .search-hero h1 { font-size: 3.5rem; }
+            .search-box { flex-direction: row; }
+            .categories-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+            .plans-grid { grid-template-columns: repeat(3, 1fr); }
+            .plan-card.featured { transform: scale(1.05); }
         }
+
+        footer { background: rgba(0, 0, 0, 0.95); text-align: center; padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 50px; }
+        .footer-logo { max-width: 120px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -111,8 +130,9 @@
             <nav>
                 <a href="#" class="logo">🛠️ MC Services</a>
                 <ul>
-                    <li><a href="#galeria">Fotos</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
                     <li><a href="#categorias">Serviços</a></li>
+                    <li><a href="#planos">Planos</a></li>
                 </ul>
             </nav>
         </div>
@@ -120,78 +140,119 @@
 
     <main class="container">
         <section class="search-hero">
-            <h1>O técnico ideal para você</h1>
+            <h1>O técnico ideal agora.</h1>
+            <p>Conectando soluções técnicas em Ourinhos e região.</p>
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" id="serviceInput" placeholder="O que você precisa?">
-                    <button class="btn-search" onclick="executarBusca()">Buscar</button>
+                    <input type="text" id="serviceInput" placeholder="O que você precisa hoje?">
+                    <button class="btn-search" onclick="executarBusca()">Buscar Agora</button>
                 </div>
             </div>
         </section>
 
         <section id="galeria" class="slider-section">
             <div class="slider-track">
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Câmeras</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança e CFTV</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Infraestrutura de Rede</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Climatização</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Manutenção Elétrica</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Câmeras</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança e CFTV</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Infraestrutura de Rede</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Climatização</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Manutenção Elétrica</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação</div></div></div>
             </div>
         </section>
 
-        <div class="categories-grid" id="categorias">
+        <h2 id="categorias" style="text-align: center; color: #4CAF50;">Categorias</h2>
+        <div class="categories-grid">
             <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
-            <div class="cat-card" onclick="solicitarDados('CFTV')"><span class="cat-icon">📹</span><h3>CFTV</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Redes')"><span class="cat-icon">🌐</span><h3>Redes</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Alarmes')"><span class="cat-icon">🚨</span><h3>Alarmes</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
             <div class="cat-card" onclick="solicitarDados('Elétrica')"><span class="cat-icon">🔌</span><h3>Elétrica</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Portões')"><span class="cat-icon">🚪</span><h3>Portões</h3></div>
         </div>
 
-        <section id="planos">
-            <div class="plans-grid">
-                <div class="plan-card featured">
-                    <h3 style="color:#0AFF0A">Elite Pro</h3>
-                    <p>Orçamentos Ilimitados</p>
-                    <button class="btn-plan" onclick="solicitarDados('Assinatura Elite')">R$ 49,90/mês</button>
-                </div>
-                <div class="plan-card">
-                    <h3>Iniciante</h3>
-                    <p>3 orçamentos grátis</p>
-                    <button class="btn-plan" style="background:#444" onclick="solicitarDados('Assinatura Iniciante')">Cadastrar</button>
-                </div>
+        <h2 id="planos" style="text-align: center; color: #4CAF50;">Planos</h2>
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3>Iniciante</h3>
+                <div class="plan-price">Grátis</div>
+                <ul class="plan-features">
+                    <li>Até 3 orçamentos mensais</li>
+                    <li>Perfil no diretório público</li>
+                    <li>Suporte via E-mail</li>
+                </ul>
+                <button class="btn-plan" onclick="solicitarDados('Plano Iniciante')">Cadastrar</button>
             </div>
-        </section>
+            <div class="plan-card featured">
+                <h3>Elite Pro</h3>
+                <div class="plan-price">R$ 49,90<span>/mês</span></div>
+                <ul class="plan-features">
+                    <li><strong>Orçamentos Ilimitados</strong></li>
+                    <li>Leads via WhatsApp Instantâneo</li>
+                    <li>Selo de Técnico Verificado</li>
+                    <li>Destaque nas buscas</li>
+                </ul>
+                <button class="btn-plan" onclick="solicitarDados('Plano Elite Pro')">Ser Premium</button>
+            </div>
+            <div class="plan-card">
+                <h3>Enterprise</h3>
+                <div class="plan-price">Consultar</div>
+                <ul class="plan-features">
+                    <li>Gestão de múltiplas equipes</li>
+                    <li>Integração API dedicada</li>
+                    <li>Geofencing exclusivo</li>
+                </ul>
+                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Plano Enterprise')">Falar Conosco</button>
+            </div>
+        </div>
     </main>
 
-    <footer style="text-align:center; padding: 40px 0; opacity: 0.6; font-size: 0.8rem;">
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" class="footer-logo">
         <p>&copy; 2026 MC Services | Ourinhos/SP</p>
     </footer>
 
     <script>
         const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
-        async function solicitarDados(servico) {
+        const WHATS_BACKUP = "5514997911398";
+
+        async function solicitarDados(servico, valorPadrao = "") {
             const { value: formValues } = await Swal.fire({
                 title: servico,
-                html: '<input id="swal-nome" class="swal2-input" placeholder="Nome"><input id="swal-whats" class="swal2-input" placeholder="WhatsApp"><textarea id="swal-msg" class="swal2-textarea" placeholder="Detalhes..."></textarea>',
-                preConfirm: () => ({
-                    nome: document.getElementById('swal-nome').value,
-                    whats: document.getElementById('swal-whats').value,
-                    msg: document.getElementById('swal-msg').value
-                })
+                html: 
+                    `<input id="swal-nome" class="swal2-input" placeholder="Seu Nome">` +
+                    `<input id="swal-whats" class="swal2-input" placeholder="WhatsApp (DDD+Número)">` +
+                    `<input id="swal-cidade" class="swal2-input" placeholder="Cidade">` +
+                    `<textarea id="swal-problema" class="swal2-textarea" placeholder="Como podemos ajudar?">${valorPadrao}</textarea>`,
+                showCancelButton: true,
+                confirmButtonText: 'Enviar Pedido',
+                preConfirm: () => {
+                    const nome = document.getElementById('swal-nome').value;
+                    const whats = document.getElementById('swal-whats').value;
+                    const cidade = document.getElementById('swal-cidade').value;
+                    if(!nome || !whats || !cidade) return Swal.showValidationMessage('Preencha os campos obrigatórios!');
+                    return { nome, whats, cidade, prob: document.getElementById('swal-problema').value }
+                }
             });
-            if (formValues && formValues.nome) {
-                Swal.fire('Enviado!', 'Sucesso.', 'success');
-                fetch(N8N_URL, { method: 'POST', body: JSON.stringify({...formValues, servico}) });
+
+            if (formValues) {
+                Swal.fire({ title: 'Enviando...', didOpen: () => Swal.showLoading() });
+                try {
+                    await fetch(N8N_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ ...formValues, servico })
+                    });
+                    Swal.fire('Sucesso!', 'Recebemos seu pedido.', 'success');
+                } catch (e) {
+                    window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(formValues.prob || 'Olá, solicito orçamento para '+servico)}`, '_blank');
+                }
             }
         }
         function executarBusca() {
-            const t = document.getElementById('serviceInput').value;
+            const t = document.getElementById('serviceInput').value.trim();
             if(t) solicitarDados(t);
         }
     </script>
