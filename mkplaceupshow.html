@@ -165,4 +165,91 @@
             </div>
         </section>
 
-        <h2 id="categorias" style="text-align: center; color: #4CAF50
+        <h2 id="categorias" style="text-align: center; color: #4CAF50; margin-bottom: 30px;">Categorias Populares</h2>
+        <div class="categories-grid">
+            <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Entregador')"><span class="cat-icon">🏍️</span><h3>Entregador</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Alarme')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Cerca Elétrica')"><span class="cat-icon">⚡</span><h3>Cerca Elétrica</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Portão Automático')"><span class="cat-icon">🚪</span><h3>Portão Automático</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Controle de Acesso')"><span class="cat-icon">🔑</span><h3>Controle de Acesso</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Home Automação')"><span class="cat-icon">🏠</span><h3>Home Automação</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Monitoramento 24h')"><span class="cat-icon">🛡️</span><h3>Monitoramento 24h</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Jardinagem')"><span class="cat-icon">🍃</span><h3>Jardinagem</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Serralheiro')"><span class="cat-icon">⚙️</span><h3>Serralheiro</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador</h3></div>
+        </div>
+
+        <section id="galeria" class="slider-section">
+            <h2 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">Serviços Realizados</h2>
+            <div class="slider-track">
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança e CFTV</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Infraestrutura de Rede</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Climatização</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Manutenção Elétrica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança e CFTV</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Infraestrutura de Rede</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Climatização</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Manutenção Elétrica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação</div></div></div>
+            </div>
+        </section>
+
+        <h2 id="planos" style="text-align: center; color: #4CAF50; margin-top: 40px;">Planos para Profissionais</h2>
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3>Iniciante</h3>
+                <div class="plan-price">Grátis</div>
+                <ul class="plan-features"><li>3 orçamentos/mês</li><li>Perfil básico</li></ul>
+                <button class="btn-plan" onclick="solicitarDados('Adesão Plano Iniciante')">Cadastrar</button>
+            </div>
+            <div class="plan-card featured">
+                <h3>Elite Pro</h3>
+                <div class="plan-price">R$ 49,90/mês</div>
+                <ul class="plan-features"><li><strong>Orçamentos Ilimitados</strong></li><li>Selo Verificado</li><li>Prioridade nas buscas</li></ul>
+                <button class="btn-plan" onclick="solicitarDados('Adesão Plano Elite Pro')">Ser Premium</button>
+            </div>
+            <div class="plan-card">
+                <h3>Enterprise</h3>
+                <div class="plan-price">Consultar</div>
+                <ul class="plan-features"><li>Painel Multi-equipes</li><li>Integração via API</li></ul>
+                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise')">Falar Conosco</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" class="footer-logo" alt="Logo MC Infra TI">
+        <p>&copy; 2026 MC Services | Ourinhos-SP</p>
+    </footer>
+
+    <script>
+        const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
+        async function solicitarDados(servico) {
+            const { value: f } = await Swal.fire({
+                title: servico,
+                html: `<input id="n" class="swal2-input" placeholder="Seu Nome"><input id="w" class="swal2-input" placeholder="WhatsApp (DDD+Número)"><input id="c" class="swal2-input" placeholder="Cidade"><textarea id="p" class="swal2-textarea" placeholder="Como podemos ajudar?"></textarea>`,
+                preConfirm: () => ({ nome: document.getElementById('n').value, whats: document.getElementById('w').value, cidade: document.getElementById('c').value, desc: document.getElementById('p').value })
+            });
+            if (f && f.nome && f.whats) {
+                Swal.fire({ title: 'Enviando...', didOpen: () => Swal.showLoading() });
+                try {
+                    await fetch(N8N_URL, { method: 'POST', body: JSON.stringify({...f, servico}) });
+                    Swal.fire('Sucesso!', 'Recebemos seu pedido. Em breve entraremos em contato.', 'success');
+                } catch(e) {
+                    Swal.fire('Erro', 'Houve um problema ao enviar. Tente novamente.', 'error');
+                }
+            }
+        }
+        function executarBusca() {
+            const t = document.getElementById('serviceInput').value.trim();
+            if(t) solicitarDados('Busca: ' + t);
+        }
+    </script>
+</body>
+</html>
