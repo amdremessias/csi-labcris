@@ -32,7 +32,7 @@
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; }
 
-        /* --- SESSÃO RESUMO (MELHORADA) --- */
+        /* --- SESSÃO RESUMO --- */
         .about-platform { 
             padding: 50px 20px; text-align: center; 
             background: rgba(10, 255, 10, 0.04); 
@@ -68,10 +68,24 @@
             margin: 0 auto 15px; font-weight: bold; box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
         }
 
-        /* --- CATEGORIAS --- */
+        /* --- CATEGORIAS (COM TRANSPARÊNCIA NO HOVER) --- */
         .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
-        .cat-card { background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(76, 175, 80, 0.2); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.3s; }
-        .cat-card:hover { border-color: #0AFF0A; transform: translateY(-3px); }
+        .cat-card { 
+            background: rgba(20, 20, 20, 0.9); 
+            border: 1px solid rgba(76, 175, 80, 0.2); 
+            padding: 20px; 
+            border-radius: 12px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
+        .cat-card:hover { 
+            background: rgba(10, 255, 10, 0.1); /* Transparência esverdeada */
+            border-color: #0AFF0A; 
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(10, 255, 10, 0.2);
+            backdrop-filter: blur(4px);
+        }
         .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
 
         /* --- ESTILIZAÇÃO DOS PLANOS --- */
