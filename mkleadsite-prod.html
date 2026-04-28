@@ -26,7 +26,7 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* --- HEADER (Ajustado para Mobile) --- */
+        /* --- HEADER --- */
         header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 1rem 0; 
@@ -36,10 +36,6 @@
 
         @media (min-width: 769px) {
             header { position: sticky; top: 0; }
-        }
-
-        @media (max-width: 768px) {
-            header { position: relative; }
         }
 
         header nav { display: flex; justify-content: space-between; align-items: center; }
@@ -76,22 +72,6 @@
         }
         .btn-search:hover { background: #45a049; }
 
-        /* --- COMO FUNCIONA (FLUXO) --- */
-        .process-section {
-            padding: 60px 0; background: rgba(10, 10, 10, 0.7);
-            border-radius: 20px; margin: 40px 0; border: 1px solid rgba(76, 175, 80, 0.2);
-        }
-
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 30px; }
-        .process-step { text-align: center; padding: 15px; position: relative; }
-        .step-number {
-            width: 35px; height: 35px; background: #4CAF50; color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 15px; font-weight: bold; box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-        }
-        .process-step h4 { color: #0AFF0A; margin-bottom: 8px; font-size: 1rem; }
-        .process-step p { font-size: 0.8rem; color: #ccc; }
-
         /* --- CATEGORIAS --- */
         .categories-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -109,56 +89,44 @@
         .cat-card h3 { margin: 10px 0; font-size: 1rem; color: #4CAF50; }
 
         /* --- PLANOS --- */
-        .plans-section { padding: 60px 0; text-align: center; }
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .plan-card {
             background: rgba(15, 15, 15, 0.95); border: 1px solid #4CAF50;
-            border-radius: 15px; padding: 40px 20px; transition: 0.3s;
-        }
-        .plan-card.featured {
-            border-color: #0AFF0A; transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(10, 255, 10, 0.2);
+            border-radius: 15px; padding: 40px 20px; transition: 0.3s; text-align: center;
         }
         .plan-price { font-size: 2rem; font-weight: bold; margin: 20px 0; color: #0AFF0A; }
-        .plan-features { list-style: none; padding: 0; margin: 20px 0; text-align: left; font-size: 0.9rem; }
-        .plan-features li { margin-bottom: 8px; }
-        .plan-features li::before { content: '✔ '; color: #4CAF50; }
         .btn-plan {
             background: #4CAF50; color: white; padding: 12px; border-radius: 5px;
             text-decoration: none; font-weight: bold; width: 100%; border: none; cursor: pointer;
         }
 
-        /* --- AJUSTE SWEETALERT (MOBILE CENTRALIZADO) --- */
+        /* --- AJUSTE SWEETALERT --- */
         .swal2-popup {
             background: #111 !important;
             color: #fff !important;
             border: 1px solid #4CAF50 !important;
             border-radius: 15px !important;
-            padding: 1.5rem !important;
-            width: 90% !important; /* Ocupa quase toda a largura no mobile */
+            width: 90% !important;
             max-width: 450px !important;
         }
-        .swal2-title { color: #0AFF0A !important; font-size: 1.4rem !important; }
-        .swal2-input {
+        .swal2-title { color: #0AFF0A !important; }
+        .swal2-input, .swal2-textarea {
             color: #fff !important;
             background: #222 !important;
             border: 1px solid #444 !important;
-            margin: 10px auto !important; /* Centraliza e dá espaço entre inputs */
             width: 90% !important;
-            font-size: 1rem !important;
+            margin: 10px auto !important;
         }
-        .swal2-actions { margin-top: 1.5rem !important; }
-        .swal2-confirm { background-color: #4CAF50 !important; padding: 10px 30px !important; }
-        .swal2-validation-message { background: #333 !important; color: #ff4444 !important; }
+        .swal2-textarea { height: 100px; padding: 10px; font-family: inherit; }
+        .swal2-confirm { background-color: #4CAF50 !important; }
 
-        /* --- FOOTER --- */
         footer {
             background: rgba(0, 0, 0, 0.95); text-align: center;
             padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 60px;
         }
         .footer-logo { max-width: 130px; margin-bottom: 15px; }
 
-        @media (max-width: 768px) { .search-box { flex-direction: column; } .plan-card.featured { transform: scale(1); } }
+        @media (max-width: 768px) { .search-box { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -171,7 +139,6 @@
                 <a href="#" class="logo">🛠️ Serviço Certo APP</a>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#como-funciona">Como Funciona</a></li>
                     <li><a href="#categorias">Serviços</a></li>
                     <li><a href="#planos">Planos</a></li>
                 </ul>
@@ -183,42 +150,10 @@
         
         <section class="search-hero">
             <h1>O técnico ideal para o seu problema</h1>
-            <p>Conectando soluções técnicas em Ourinhos e região com inteligência.</p>
             <div class="search-container">
                 <div class="search-box">
                     <input type="text" id="serviceInput" placeholder="O que você precisa hoje?">
                     <button class="btn-search" onclick="executarBusca()">Buscar</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="como-funciona" class="process-section">
-            <h2 style="text-align: center; color: #4CAF50;">Fluxo Inteligente de Serviço</h2>
-            <div class="process-grid">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h4>Solicitação</h4>
-                    <p>Você descreve o que precisa na plataforma.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h4>Localização</h4>
-                    <p>Nossa IA localiza o técnico ideal na região.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h4>Orçamento</h4>
-                    <p>O técnico envia o orçamento para sua análise.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h4>Aprovação</h4>
-                    <p>Você aprova o valor e faz o agendamento.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <h4>Finalização</h4>
-                    <p>Pagamento liberado após execução e avaliação.</p>
                 </div>
             </div>
         </section>
@@ -228,50 +163,16 @@
             <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
             <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
             <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Entregador')"><span class="cat-icon">🏍️</span><h3>Entregador</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Alarme')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Cerca Elétrica')"><span class="cat-icon">⚡</span><h3>Cerca Elétrica</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Portão Automático')"><span class="cat-icon">🚪</span><h3>Portão Automático</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Controle de Acesso')"><span class="cat-icon">🔑</span><h3>Controle de Acesso</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Home Automação')"><span class="cat-icon">🏠</span><h3>Home Automação</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Monitoramento 24h')"><span class="cat-icon">🛡️</span><h3>Monitoramento 24h</h3></div>
             <div class="cat-card" onclick="solicitarDados('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Jardinagem')"><span class="cat-icon">🍃</span><h3>Jardinagem</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Serralheiro')"><span class="cat-icon">⚙️</span><h3>Serralheiro</h3></div>
             <div class="cat-card" onclick="solicitarDados('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador de Móveis</h3></div>
         </div>
 
-        <section id="planos" class="plans-section">
-            <h2 style="color: #4CAF50;">Planos Profissionais</h2>
+        <section id="planos">
             <div class="plans-grid">
                 <div class="plan-card">
-                    <h3>Básico</h3>
-                    <div class="plan-price">Grátis</div>
-                    <ul class="plan-features">
-                        <li>Listagem no diretório</li>
-                        <li>Receba leads por e-mail</li>
-                    </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Plano Básico')">Cadastrar</button>
-                </div>
-                <div class="plan-card featured">
                     <h3>Premium</h3>
                     <div class="plan-price">R$ 49,90/mês</div>
-                    <ul class="plan-features">
-                        <li>Destaque nas buscas</li>
-                        <li>Leads via WhatsApp Instantâneo</li>
-                        <li>Selo de Verificado</li>
-                    </ul>
                     <button class="btn-plan" onclick="solicitarDados('Plano Premium')">Ser Premium</button>
-                </div>
-                <div class="plan-card">
-                    <h3>Empresarial</h3>
-                    <div class="plan-price">Consultar</div>
-                    <ul class="plan-features">
-                        <li>Multi-perfis</li>
-                        <li>Painel CRM Admin</li>
-                    </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Plano Empresa')">Falar Conosco</button>
                 </div>
             </div>
         </section>
@@ -280,8 +181,8 @@
 
     <footer>
         <div class="container">
-            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
-            <p>&copy; 2026 | MC Services | Powered by MC Infra TI</p>
+            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo" class="footer-logo">
+            <p>&copy; 2026 | MC Services</p>
         </div>
     </footer>
 
@@ -301,7 +202,8 @@
                 html: 
                     '<input id="swal-nome" class="swal2-input" placeholder="Seu Nome">' +
                     '<input id="swal-whats" class="swal2-input" placeholder="WhatsApp (DDD + Número)" maxlength="11">' +
-                    '<input id="swal-cidade" class="swal2-input" placeholder="Sua Cidade (Ex: Ourinhos)">',
+                    '<input id="swal-cidade" class="swal2-input" placeholder="Sua Cidade">' +
+                    '<textarea id="swal-problema" class="swal2-textarea" placeholder="Descreva o Problema (Ex: Meu ar não está gelando...)"></textarea>',
                 showCancelButton: true,
                 confirmButtonText: 'Enviar Pedido',
                 didOpen: () => {
@@ -314,16 +216,21 @@
                     const nome = document.getElementById('swal-nome').value.trim();
                     const whats = document.getElementById('swal-whats').value.trim();
                     const cidade = document.getElementById('swal-cidade').value.trim();
-                    if (!nome || !whats || !cidade) return Swal.showValidationMessage('Preencha todos os campos!');
-                    if (whats.length < 10) return Swal.showValidationMessage('WhatsApp inválido (Mínimo 10 dígitos)');
-                    return { nome, whatsapp: whats, cidade }
+                    const problema = document.getElementById('swal-problema').value.trim();
+
+                    if (!nome || !whats || !cidade || !problema) {
+                        return Swal.showValidationMessage('Preencha todos os campos, inclusive a descrição!');
+                    }
+                    if (whats.length < 10) return Swal.showValidationMessage('WhatsApp inválido');
+                    
+                    return { nome, whatsapp: whats, cidade, problema }
                 }
             });
 
-            if (formValues) enviarParaN8N(servico, formValues.nome, formValues.whatsapp, formValues.cidade);
+            if (formValues) enviarParaN8N(servico, formValues.nome, formValues.whatsapp, formValues.cidade, formValues.problema);
         }
 
-        async function enviarParaN8N(servico, nome, whatsapp, cidade) {
+        async function enviarParaN8N(servico, nome, whatsapp, cidade, problema) {
             Swal.fire({ title: 'Processando...', didOpen: () => Swal.showLoading() });
             try {
                 await fetch(N8N_URL, {
@@ -334,13 +241,14 @@
                         cliente_nome: nome, 
                         cliente_whatsapp: whatsapp, 
                         cliente_cidade: cidade,
+                        descricao_problema: problema,
                         origem: "Marketplace_Web",
                         data: new Date().toLocaleString('pt-BR') 
                     })
                 });
                 Swal.fire('Sucesso!', 'Pedido registrado. Verifique seu WhatsApp em instantes.', 'success');
             } catch (e) {
-                const msg = `Olá! Preciso de orçamento para ${servico} em ${cidade}.`;
+                const msg = `Olá! Preciso de ${servico} em ${cidade}. Problema: ${problema}`;
                 window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(msg)}`, '_blank');
             }
         }
