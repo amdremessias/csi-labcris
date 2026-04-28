@@ -32,7 +32,7 @@
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; }
 
-        /* --- SESSÃO RESUMO --- */
+        /* --- SESSÃO RESUMO (RESTAURADA) --- */
         .about-platform { 
             padding: 50px 20px; text-align: center; 
             background: rgba(10, 255, 10, 0.04); 
@@ -80,7 +80,7 @@
             transition: all 0.3s ease; 
         }
         .cat-card:hover { 
-            background: rgba(10, 255, 10, 0.1);
+            background: rgba(10, 255, 10, 0.1); 
             border-color: #0AFF0A; 
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(10, 255, 10, 0.2);
@@ -112,15 +112,22 @@
         .swal2-input, .swal2-textarea { background: #222 !important; color: #fff !important; border: 1px solid #333 !important; width: 90% !important; margin: 10px auto !important; box-sizing: border-box !important; }
         .swal2-confirm { background-color: #4CAF50 !important; }
 
-        /* --- GALERIA SLIDER --- */
+        /* --- GALERIA SLIDER (AJUSTADA PARA LOOP INFINITO PERFEITO) --- */
         .slider-section { padding: 40px 0; overflow: hidden; }
-        .slider-track { display: flex; width: calc(280px * 14); animation: scroll 25s linear infinite; }
+        .slider-track { 
+            display: flex; 
+            width: calc(280px * 14); /* Dobro do número de slides reais */
+            animation: scroll 25s linear infinite; 
+        }
         .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
         .slide-content { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; border: 1px solid rgba(76, 175, 80, 0.4); }
         .slide-content img { width: 100%; height: 100%; object-fit: cover; }
         .slide-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; }
 
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 7)); } }
+        @keyframes scroll { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(calc(-280px * 7)); } /* Move exatamente a metade do track total */
+        }
 
         @media (min-width: 768px) {
             .categories-grid { grid-template-columns: repeat(5, 1fr); }
@@ -152,7 +159,7 @@
     <main class="container">
         <section class="about-platform">
             <h2>Excelência Técnica a um Clique</h2>
-            <p>O <span class="highlight-green">Tec-Work</span> é a plataforma de elite que redefine a contratação de serviços técnicos em Ourinhos e região. Unimos tecnologia de ponta e uma <span class="highlight-green">curadoria rigorosa</span> para conectar você aos melhores especialistas.</p>
+            <p>O <span class="highlight-green">Tec-Work</span> é a plataforma de elite que redefine a contratação de serviços técnicos em Ourinhos e região. Unimos tecnologia de ponta e uma <span class="highlight-green">curadoria rigorosa</span> para conectar você aos melhores especialistas em TI, Infraestrutura e Manutenção. Nossa missão é oferecer segurança total, orçamentos instantâneos e a garantia de que seu projeto está em mãos profissionais.</p>
         </section>
 
         <section class="search-hero">
@@ -202,9 +209,17 @@
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes Estruturadas</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Câmeras IP</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Infraestrutura TI</div></div></div>
+                
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes Estruturadas</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Câmeras IP</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Infraestrutura TI</div></div></div>
             </div>
         </section>
 
@@ -216,8 +231,9 @@
                 <ul class="plan-features">
                     <li>3 orçamentos mensais</li>
                     <li>Perfil no diretório</li>
+                    <li>Suporte via ticket</li>
                 </ul>
-                <button class="btn-plan" onclick="solicitarDados('Plano Iniciante', 'Interesse no Plano Grátis.')">Cadastrar</button>
+                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Iniciante', 'Gostaria de me cadastrar no Plano Iniciante (Grátis).')">Cadastrar</button>
             </div>
             
             <div class="plan-card featured">
@@ -226,8 +242,10 @@
                 <ul class="plan-features">
                     <li><strong>Orçamentos Ilimitados</strong></li>
                     <li>Leads via WhatsApp</li>
+                    <li>Selo de Verificado</li>
+                    <li>Destaque nas buscas</li>
                 </ul>
-                <button class="btn-plan" onclick="solicitarDados('Plano Elite Pro', 'Interesse no Plano Elite Pro.')">Ser Premium</button>
+                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Elite Pro', 'Gostaria de contratar o Plano Elite Pro (R$ 49,90/mês).')">Ser Premium</button>
             </div>
 
             <div class="plan-card">
@@ -236,8 +254,9 @@
                 <ul class="plan-features">
                     <li>Multi-equipes</li>
                     <li>Integração API / CRM</li>
+                    <li>Geofencing exclusivo</li>
                 </ul>
-                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Plano Enterprise', 'Interesse no Plano Enterprise.')">Falar Conosco</button>
+                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Tenho interesse no Plano Enterprise para minha empresa.')">Falar Conosco</button>
             </div>
         </div>
     </main>
@@ -250,7 +269,6 @@
     <script>
         const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
         
-        // Validação: 11 dígitos, inicia com DDD (1-9) e tem o 9 como terceiro dígito
         function validarWhatsApp(numero) {
             const limpo = numero.replace(/\D/g, ''); 
             const regex = /^[1-9]{2}9[0-9]{8}$/;
@@ -265,9 +283,9 @@
                 title: servico,
                 html: 
                     `<input id="swal-n" class="swal2-input" placeholder="Seu Nome">` +
-                    `<input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (DDD + 9 dígitos)">` +
+                    `<input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (ex: 14991234567)">` +
                     `<input id="swal-c" class="swal2-input" placeholder="Cidade">` +
-                    `<textarea id="swal-p" class="swal2-textarea" placeholder="Detalhes...">${preenchimentoAutomatico}</textarea>`,
+                    `<textarea id="swal-p" class="swal2-textarea" placeholder="Descreva sua solicitação...">${preenchimentoAutomatico}</textarea>`,
                 showCancelButton: true,
                 confirmButtonText: 'Enviar Pedido',
                 cancelButtonText: 'Cancelar',
@@ -285,7 +303,7 @@
                     }
 
                     if (!checagem.valido) {
-                        Swal.showValidationMessage('WhatsApp inválido! Use DDD + 9 números (Total 11 dígitos)');
+                        Swal.showValidationMessage('WhatsApp inválido! Use: DDD + 9 + número (11 dígitos)');
                         return false;
                     }
 
@@ -301,9 +319,9 @@
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({...f, servico}) 
                     });
-                    Swal.fire('Sucesso!', 'Pedido enviado para nossa central.', 'success');
+                    Swal.fire('Sucesso!', 'Seu pedido foi enviado para nossa central.', 'success');
                 } catch(e) {
-                    Swal.fire('Ops!', 'Erro na conexão.', 'error');
+                    Swal.fire('Ops!', 'Houve um problema na conexão.', 'error');
                 }
             }
         }
@@ -311,9 +329,9 @@
         function executarBusca() {
             const t = document.getElementById('serviceInput').value.trim();
             if(t) {
-                solicitarDados('Busca: ' + t);
+                solicitarDados('Busca do Usuário: ' + t);
             } else {
-                Swal.fire('Aviso', 'O que você procura?', 'info');
+                Swal.fire('Aviso', 'Digite o que você procura antes de buscar.', 'info');
             }
         }
     </script>
