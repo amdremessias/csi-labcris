@@ -32,14 +32,16 @@
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; }
 
-        /* --- SOBRE A PLATAFORMA --- */
+        /* --- SESSÃO RESUMO (MELHORADA) --- */
         .about-platform { 
-            padding: 40px 20px; text-align: center; 
-            background: rgba(10, 255, 10, 0.03); 
-            border: 1px dashed rgba(76, 175, 80, 0.2); 
+            padding: 50px 20px; text-align: center; 
+            background: rgba(10, 255, 10, 0.04); 
+            border: 1px dashed rgba(76, 175, 80, 0.3); 
             border-radius: 20px; margin: 30px 0;
         }
-        .about-platform h2 { color: #0AFF0A; margin-bottom: 15px; font-size: 1.6rem; }
+        .about-platform h2 { color: #0AFF0A; margin-bottom: 20px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .about-platform p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; }
+        .highlight-green { color: #0AFF0A; font-weight: bold; }
 
         /* --- HERO --- */
         .search-hero { padding: 30px 0; text-align: center; }
@@ -72,49 +74,28 @@
         .cat-card:hover { border-color: #0AFF0A; transform: translateY(-3px); }
         .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
 
-        /* --- ESTILIZAÇÃO DOS PLANOS (RESTAURADA) --- */
+        /* --- ESTILIZAÇÃO DOS PLANOS --- */
         .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; padding-bottom: 40px; }
         .plan-card { 
-            background: rgba(15, 15, 15, 0.95); 
-            border: 1px solid rgba(76, 175, 80, 0.4); 
-            border-radius: 15px; 
-            padding: 30px 20px; 
-            text-align: center; 
-            transition: all 0.4s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
+            background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(76, 175, 80, 0.4); 
+            border-radius: 15px; padding: 30px 20px; text-align: center; 
+            transition: all 0.4s ease; position: relative; display: flex; flex-direction: column;
         }
         .plan-card:hover { transform: translateY(-10px); border-color: #0AFF0A; box-shadow: 0 10px 30px rgba(10, 255, 10, 0.1); }
-        
-        .plan-card.featured { 
-            border: 2px solid #0AFF0A; 
-            box-shadow: 0 0 20px rgba(10, 255, 10, 0.2); 
-            transform: scale(1.03);
-        }
+        .plan-card.featured { border: 2px solid #0AFF0A; box-shadow: 0 0 20px rgba(10, 255, 10, 0.2); transform: scale(1.03); }
         .plan-card.featured:hover { box-shadow: 0 0 40px rgba(10, 255, 10, 0.4); }
-
-        .plan-price { font-size: 2.2rem; font-weight: bold; margin: 15px 0; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        .plan-price { font-size: 2.2rem; font-weight: bold; margin: 15px 0; color: #fff; }
         .plan-price span { font-size: 1rem; opacity: 0.6; }
-
         .plan-features { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; text-align: left; flex-grow: 1; }
         .plan-features li { margin-bottom: 12px; padding-left: 30px; position: relative; }
-        .plan-features li::before { 
-            content: '✓'; color: #0AFF0A; position: absolute; left: 0; 
-            font-weight: bold; font-size: 1.1rem;
-        }
-
-        .btn-plan { 
-            background: #4CAF50; color: white; padding: 15px; border-radius: 8px; 
-            font-weight: bold; width: 100%; border: none; cursor: pointer; 
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
-        }
+        .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; font-weight: bold; }
+        .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
         .btn-plan:hover { background: #0AFF0A; box-shadow: 0 0 15px rgba(10, 255, 10, 0.5); }
 
-        /* --- CORREÇÃO POPUP --- */
+        /* --- CORREÇÃO POPUP MOBILE --- */
         .swal2-popup { background: #111 !important; color: #fff !important; border: 1px solid #4CAF50 !important; border-radius: 20px !important; padding: 1.5rem 0.5rem !important; }
         .swal2-title { color: #0AFF0A !important; }
-        .swal2-input, .swal2-textarea { background: #222 !important; color: #fff !important; border: 1px solid #333 !important; width: 90% !important; margin: 10px auto !important; }
+        .swal2-input, .swal2-textarea { background: #222 !important; color: #fff !important; border: 1px solid #333 !important; width: 90% !important; margin: 10px auto !important; box-sizing: border-box !important; }
         .swal2-confirm { background-color: #4CAF50 !important; }
 
         /* --- GALERIA SLIDER --- */
@@ -156,15 +137,15 @@
 
     <main class="container">
         <section class="about-platform">
-            <h2>O Marketplace do Futuro</h2>
-            <p>O <strong>MC Services</strong> conecta você aos melhores profissionais de Ourinhos e região, garantindo segurança e agilidade em serviços de infraestrutura e TI.</p>
+            <h2>Excelência Técnica a um Clique</h2>
+            <p>O <span class="highlight-green">MC Services</span> é a plataforma de elite que redefine a contratação de serviços técnicos em Ourinhos e região. Unimos tecnologia de ponta e uma <span class="highlight-green">curadoria rigorosa</span> para conectar você aos melhores especialistas em TI, Infraestrutura e Manutenção. Nossa missão é oferecer segurança total, orçamentos instantâneos e a garantia de que seu projeto está em mãos profissionais.</p>
         </section>
 
         <section class="search-hero">
-            <h1>Encontre um Técnico</h1>
+            <h1>O que você precisa hoje?</h1>
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" id="serviceInput" placeholder="O que você precisa hoje?">
+                    <input type="text" id="serviceInput" placeholder="Ex: Ar Condicionado, Câmeras, Redes...">
                     <button class="btn-search" onclick="executarBusca()">Buscar Agora</button>
                 </div>
             </div>
@@ -173,11 +154,11 @@
         <section id="fluxo" class="flow-section">
             <h2>Fluxo Inteligente de Serviço</h2>
             <div class="flow-grid">
-                <div class="flow-item"><div class="flow-number">1</div><h3>Solicitação</h3><p>Descreva seu problema.</p></div>
-                <div class="flow-item"><div class="flow-number">2</div><h3>Localização</h3><p>Busca inteligente.</p></div>
-                <div class="flow-item"><div class="flow-number">3</div><h3>Orçamento</h3><p>Receba propostas.</p></div>
-                <div class="flow-item"><div class="flow-number">4</div><h3>Aprovação</h3><p>Agende o serviço.</p></div>
-                <div class="flow-item"><div class="flow-number">5</div><h3>Finalização</h3><p>Avalie o técnico.</p></div>
+                <div class="flow-item"><div class="flow-number">1</div><h3>Solicitação</h3><p>Descreva sua necessidade.</p></div>
+                <div class="flow-item"><div class="flow-number">2</div><h3>Localização</h3><p>IA encontra o técnico ideal.</p></div>
+                <div class="flow-item"><div class="flow-number">3</div><h3>Orçamento</h3><p>Receba propostas rápidas.</p></div>
+                <div class="flow-item"><div class="flow-number">4</div><h3>Aprovação</h3><p>Agende o serviço com 1 clique.</p></div>
+                <div class="flow-item"><div class="flow-number">5</div><h3>Finalização</h3><p>Avalie e pague com segurança.</p></div>
             </div>
         </section>
 
@@ -201,18 +182,15 @@
         </div>
 
         <section id="galeria" class="slider-section">
-            <h2 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">Serviços Realizados</h2>
+            <h2 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">Portfólio de Serviços</h2>
             <div class="slider-track">
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança e CFTV</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Climatização</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança e CFTV</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Climatização</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes Estruturadas</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes Estruturadas</div></div></div>
             </div>
         </section>
 
@@ -222,11 +200,11 @@
                 <h3>Iniciante</h3>
                 <div class="plan-price">Grátis</div>
                 <ul class="plan-features">
-                    <li>Até 3 orçamentos mensais</li>
-                    <li>Perfil no diretório público</li>
-                    <li>Suporte via E-mail</li>
+                    <li>3 orçamentos mensais</li>
+                    <li>Perfil no diretório</li>
+                    <li>Suporte via ticket</li>
                 </ul>
-                <button class="btn-plan" onclick="solicitarDados('Plano Iniciante')">Cadastrar</button>
+                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Iniciante', 'Gostaria de me cadastrar no Plano Iniciante (Grátis).')">Cadastrar</button>
             </div>
             
             <div class="plan-card featured">
@@ -235,21 +213,21 @@
                 <ul class="plan-features">
                     <li><strong>Orçamentos Ilimitados</strong></li>
                     <li>Leads via WhatsApp</li>
-                    <li>Selo de Técnico Verificado</li>
+                    <li>Selo de Verificado</li>
                     <li>Destaque nas buscas</li>
                 </ul>
-                <button class="btn-plan" onclick="solicitarDados('Plano Elite Pro')">Ser Premium</button>
+                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Elite Pro', 'Gostaria de contratar o Plano Elite Pro (R$ 49,90/mês).')">Ser Premium</button>
             </div>
 
             <div class="plan-card">
                 <h3>Enterprise</h3>
                 <div class="plan-price">Consultar</div>
                 <ul class="plan-features">
-                    <li>Gestão de múltiplas equipes</li>
-                    <li>Integração via API / CRM</li>
+                    <li>Multi-equipes</li>
+                    <li>Integração API / CRM</li>
                     <li>Geofencing exclusivo</li>
                 </ul>
-                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Enterprise')">Falar Conosco</button>
+                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Tenho interesse no Plano Enterprise para minha empresa.')">Falar Conosco</button>
             </div>
         </div>
     </main>
@@ -262,14 +240,14 @@
     <script>
         const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
         
-        async function solicitarDados(servico) {
+        async function solicitarDados(servico, preenchimentoAutomatico = "") {
             const { value: f } = await Swal.fire({
                 title: servico,
                 html: 
                     `<input id="swal-n" class="swal2-input" placeholder="Seu Nome">` +
                     `<input id="swal-w" class="swal2-input" placeholder="WhatsApp (14999999999)">` +
                     `<input id="swal-c" class="swal2-input" placeholder="Cidade">` +
-                    `<textarea id="swal-p" class="swal2-textarea" placeholder="Descreva brevemente o que precisa..."></textarea>`,
+                    `<textarea id="swal-p" class="swal2-textarea" placeholder="Descreva sua solicitação...">${preenchimentoAutomatico}</textarea>`,
                 showCancelButton: true,
                 confirmButtonText: 'Enviar Pedido',
                 cancelButtonText: 'Cancelar',
@@ -292,16 +270,16 @@
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({...f, servico}) 
                     });
-                    Swal.fire('Sucesso!', 'Pedido enviado com sucesso.', 'success');
+                    Swal.fire('Sucesso!', 'Seu pedido foi enviado para nossa central.', 'success');
                 } catch(e) {
-                    Swal.fire('Ops!', 'Houve um problema.', 'error');
+                    Swal.fire('Ops!', 'Houve um problema na conexão.', 'error');
                 }
             }
         }
 
         function executarBusca() {
             const t = document.getElementById('serviceInput').value.trim();
-            if(t) solicitarDados('Busca: ' + t);
+            if(t) solicitarDados('Busca do Usuário: ' + t);
         }
     </script>
 </body>
