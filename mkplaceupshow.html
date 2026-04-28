@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plataforma de Marketplace de Serviços Técnicos Especializados - MC Infra TI">
+    <meta name="description" content="Marketplace de Serviços Técnicos Especializados - MC Services">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -20,7 +20,7 @@
         }
 
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: -1; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
 
         header {
             background-color: rgba(0, 0, 0, 0.95);
@@ -28,98 +28,73 @@
             z-index: 1000; position: sticky; top: 0;
         }
         header nav { display: flex; justify-content: space-between; align-items: center; }
-        header .logo { font-size: 1.2em; font-weight: 700; color: #4CAF50; text-decoration: none; }
+        header .logo { font-size: 1.3em; font-weight: 700; color: #4CAF50; text-decoration: none; display: flex; align-items: center; gap: 8px; }
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
-        header ul li a { color: #fff; text-decoration: none; font-size: 0.85em; }
+        header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; transition: 0.3s; }
+
+        /* --- SESSÃO RESUMO (PROPOSTA) --- */
+        .intro-section { padding: 40px 0; text-align: center; background: rgba(10, 255, 10, 0.05); border-radius: 20px; margin: 20px 0; border: 1px dashed rgba(76, 175, 80, 0.3); }
+        .intro-section h2 { color: #0AFF0A; margin-bottom: 15px; }
+        .intro-section p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; padding: 0 15px; }
 
         /* --- HERO --- */
-        .search-hero { padding: 50px 0 30px; text-align: center; }
+        .search-hero { padding: 40px 0; text-align: center; }
         .search-hero h1 { font-size: 2.2rem; color: #0AFF0A; text-shadow: 0 0 20px rgba(10, 255, 10, 0.4); margin-bottom: 10px; }
-        .search-hero p { font-size: 1rem; opacity: 0.9; margin-bottom: 25px; }
-
         .search-container {
-            background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 15px;
             backdrop-filter: blur(10px); border: 1px solid rgba(76, 175, 80, 0.3);
             max-width: 700px; margin: 0 auto;
         }
         .search-box { display: flex; flex-direction: column; gap: 10px; }
-        input[type="text"] { padding: 15px; border-radius: 8px; border: none; font-size: 1rem; width: 100%; box-sizing: border-box; }
-        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        input[type="text"] { flex: 1; padding: 15px; border-radius: 8px; border: none; font-size: 1rem; outline: none; }
+        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
         /* --- GALERIA SLIDER --- */
         .slider-section { padding: 40px 0; overflow: hidden; }
-        .slider-track {
-            display: flex;
-            width: calc(280px * 10); 
-            animation: scroll 25s linear infinite;
-        }
-        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
-        .slide-content {
-            position: relative; width: 100%; height: 100%;
-            border-radius: 15px; overflow: hidden;
-            border: 1px solid rgba(76, 175, 80, 0.4);
-        }
+        .slider-track { display: flex; width: calc(280px * 10); animation: scroll 25s linear infinite; }
+        .slider-track:hover { animation-play-state: paused; }
+        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; box-sizing: border-box; }
+        .slide-content { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; border: 1px solid rgba(76, 175, 80, 0.4); }
         .slide-content img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-label {
-            position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; box-sizing: border-box;
-        }
+        .slide-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; box-sizing: border-box; }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-280px * 5)); } 
-        }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 5)); } }
 
-        /* --- CATEGORIAS --- */
-        .categories-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 15px; margin: 40px 0; 
-        }
-        .cat-card { background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(76, 175, 80, 0.2); padding: 20px; border-radius: 12px; text-align: center; transition: 0.3s; cursor: pointer; }
-        .cat-card:hover { border-color: #0AFF0A; }
+        /* --- CATEGORIAS (GAMA COMPLETA) --- */
+        .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
+        .cat-card { background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(76, 175, 80, 0.2); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .cat-card:hover { border-color: #0AFF0A; transform: translateY(-3px); }
         .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
         .cat-card h3 { font-size: 0.9rem; color: #4CAF50; margin: 0; }
 
-        /* --- PLANOS (RESTAURADOS) --- */
-        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin: 40px 0; }
-        .plan-card { 
-            background: rgba(15, 15, 15, 0.95); 
-            border: 1px solid #4CAF50; border-radius: 15px; 
-            padding: 30px 20px; display: flex; flex-direction: column; 
-        }
-        .plan-card.featured { border: 2px solid #0AFF0A; box-shadow: 0 0 20px rgba(10, 255, 10, 0.2); }
-        .plan-price { font-size: 2rem; font-weight: bold; margin: 15px 0; color: #fff; text-align: center; }
+        /* --- PLANOS (REVISADOS COM TODAS AS INFO) --- */
+        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+        .plan-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #4CAF50; border-radius: 15px; padding: 30px 20px; display: flex; flex-direction: column; }
+        .plan-card.featured { border: 2px solid #0AFF0A; transform: scale(1.02); }
+        .plan-price { font-size: 2rem; font-weight: bold; margin: 15px 0; text-align: center; color: #fff; }
         .plan-features { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; flex-grow: 1; }
-        .plan-features li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .plan-features li { margin-bottom: 12px; padding-left: 25px; position: relative; }
         .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; font-weight: bold; }
         .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; text-transform: uppercase; }
 
-        /* --- POPUP (RESTAURADO) --- */
-        .swal2-popup {
-            background: #111 !important; color: #fff !important;
-            border: 1px solid #4CAF50 !important; border-radius: 15px !important;
-            width: 95% !important; max-width: 500px !important;
-        }
-        .swal2-title { color: #0AFF0A !important; }
-        .swal2-input, .swal2-textarea {
-            color: #fff !important; background: #222 !important;
-            border: 1px solid #444 !important; border-radius: 8px !important;
-            margin: 10px auto !important; width: 90% !important;
-        }
-        .swal2-confirm { background-color: #4CAF50 !important; }
-
-        /* --- MEDIA QUERIES PARA DESKTOP --- */
+        /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
             .search-hero h1 { font-size: 3.5rem; }
             .search-box { flex-direction: row; }
+            .btn-search { width: auto; }
             .categories-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
             .plans-grid { grid-template-columns: repeat(3, 1fr); }
-            .plan-card.featured { transform: scale(1.05); }
+            header .logo { font-size: 1.5em; }
         }
 
+        /* --- POPUP --- */
+        .swal2-popup { background: #111 !important; color: #fff !important; border: 1px solid #4CAF50 !important; border-radius: 15px !important; width: 90% !important; max-width: 500px !important; }
+        .swal2-title { color: #0AFF0A !important; }
+        .swal2-input, .swal2-textarea { color: #fff !important; background: #222 !important; border: 1px solid #444 !important; }
+        .swal2-confirm { background-color: #4CAF50 !important; }
+
         footer { background: rgba(0, 0, 0, 0.95); text-align: center; padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 50px; }
-        .footer-logo { max-width: 120px; margin-bottom: 10px; }
+        .footer-logo { max-width: 130px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -130,7 +105,7 @@
             <nav>
                 <a href="#" class="logo">🛠️ MC Services</a>
                 <ul>
-                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#solucao">Sobre</a></li>
                     <li><a href="#categorias">Serviços</a></li>
                     <li><a href="#planos">Planos</a></li>
                 </ul>
@@ -139,12 +114,16 @@
     </header>
 
     <main class="container">
+        <section id="solucao" class="intro-section">
+            <h2>Tecnologia que Conecta</h2>
+            <p>O <strong>MC Services</strong> é a plataforma definitiva para Ourinhos e região. Unimos clientes que buscam excelência técnica a profissionais qualificados em infraestrutura, TI e serviços domésticos, garantindo agilidade no orçamento e segurança na contratação.</p>
+        </section>
+
         <section class="search-hero">
-            <h1>O técnico ideal agora.</h1>
-            <p>Conectando soluções técnicas em Ourinhos e região.</p>
+            <h1>Encontre um Especialista</h1>
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" id="serviceInput" placeholder="O que você precisa hoje?">
+                    <input type="text" id="serviceInput" placeholder="Ex: Instalar Câmeras, Consertar Ar...">
                     <button class="btn-search" onclick="executarBusca()">Buscar Agora</button>
                 </div>
             </div>
@@ -165,15 +144,21 @@
             </div>
         </section>
 
-        <h2 id="categorias" style="text-align: center; color: #4CAF50;">Categorias</h2>
+        <h2 id="categorias" style="text-align: center; color: #4CAF50;">Gama de Serviços</h2>
         <div class="categories-grid">
             <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
             <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
             <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Elétrica')"><span class="cat-icon">🔌</span><h3>Elétrica</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Alarmes')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Cerca Elétrica')"><span class="cat-icon">⚡</span><h3>Cerca Elétrica</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Portão Automático')"><span class="cat-icon">🚪</span><h3>Portão Automático</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Controle de Acesso')"><span class="cat-icon">🔑</span><h3>Controle de Acesso</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador</h3></div>
         </div>
 
-        <h2 id="planos" style="text-align: center; color: #4CAF50;">Planos</h2>
+        <h2 id="planos" style="text-align: center; color: #4CAF50;">Nossos Planos</h2>
         <div class="plans-grid">
             <div class="plan-card">
                 <h3>Iniciante</h3>
@@ -181,7 +166,7 @@
                 <ul class="plan-features">
                     <li>Até 3 orçamentos mensais</li>
                     <li>Perfil no diretório público</li>
-                    <li>Suporte via E-mail</li>
+                    <li>Suporte básico</li>
                 </ul>
                 <button class="btn-plan" onclick="solicitarDados('Plano Iniciante')">Cadastrar</button>
             </div>
@@ -192,7 +177,7 @@
                     <li><strong>Orçamentos Ilimitados</strong></li>
                     <li>Leads via WhatsApp Instantâneo</li>
                     <li>Selo de Técnico Verificado</li>
-                    <li>Destaque nas buscas</li>
+                    <li>Destaque Prioritário</li>
                 </ul>
                 <button class="btn-plan" onclick="solicitarDados('Plano Elite Pro')">Ser Premium</button>
             </div>
@@ -201,8 +186,9 @@
                 <div class="plan-price">Consultar</div>
                 <ul class="plan-features">
                     <li>Gestão de múltiplas equipes</li>
-                    <li>Integração API dedicada</li>
+                    <li>Integração com CRM via API</li>
                     <li>Geofencing exclusivo</li>
+                    <li>Gerente dedicado</li>
                 </ul>
                 <button class="btn-plan" style="background:#444" onclick="solicitarDados('Plano Enterprise')">Falar Conosco</button>
             </div>
@@ -211,7 +197,7 @@
 
     <footer>
         <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" class="footer-logo">
-        <p>&copy; 2026 MC Services | Ourinhos/SP</p>
+        <p>&copy; 2026 MC Services | Ourinhos-SP</p>
     </footer>
 
     <script>
@@ -227,7 +213,7 @@
                     `<input id="swal-cidade" class="swal2-input" placeholder="Cidade">` +
                     `<textarea id="swal-problema" class="swal2-textarea" placeholder="Como podemos ajudar?">${valorPadrao}</textarea>`,
                 showCancelButton: true,
-                confirmButtonText: 'Enviar Pedido',
+                confirmButtonText: 'Enviar Solicitação',
                 preConfirm: () => {
                     const nome = document.getElementById('swal-nome').value;
                     const whats = document.getElementById('swal-whats').value;
@@ -247,7 +233,7 @@
                     });
                     Swal.fire('Sucesso!', 'Recebemos seu pedido.', 'success');
                 } catch (e) {
-                    window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(formValues.prob || 'Olá, solicito orçamento para '+servico)}`, '_blank');
+                    window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(formValues.prob || 'Solicito orçamento para '+servico)}`, '_blank');
                 }
             }
         }
