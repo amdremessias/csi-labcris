@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>MC Services | Marketplace de Técnicos</title>
     <style>
-        /* --- ESTILOS BASE --- */
+        /* --- ESTILOS ORIGINAIS PRESERVADOS --- */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0; padding: 0;
@@ -26,7 +26,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* --- HEADER --- */
         header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 1rem 0; 
@@ -44,7 +43,6 @@
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; transition: 0.3s; }
         header ul li a:hover { color: #4CAF50; }
 
-        /* --- HERO BUSCA --- */
         .search-hero { padding: 80px 0 60px; text-align: center; }
         .search-hero h1 {
             font-size: 3rem; color: #0AFF0A;
@@ -72,14 +70,13 @@
         }
         .btn-search:hover { background: #45a049; }
 
-        /* --- COMO FUNCIONA --- */
+        /* --- SEÇÃO COMO FUNCIONA (RESTAURADA) --- */
         .process-section {
             padding: 60px 0; background: rgba(10, 10, 10, 0.7);
             border-radius: 20px; margin: 40px 0; border: 1px solid rgba(76, 175, 80, 0.2);
         }
-
         .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 30px; }
-        .process-step { text-align: center; padding: 15px; }
+        .process-step { text-align: center; padding: 15px; position: relative; }
         .step-number {
             width: 35px; height: 35px; background: #4CAF50; color: white;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -104,7 +101,7 @@
         .cat-icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
         .cat-card h3 { margin: 10px 0; font-size: 1rem; color: #4CAF50; }
 
-        /* --- PLANOS (REEDITADO) --- */
+        /* --- NOVOS PLANOS IMPACTANTES --- */
         .plans-section { padding: 60px 0; text-align: center; }
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; align-items: stretch; }
         
@@ -119,8 +116,7 @@
         .plan-card.featured {
             border: 2px solid #0AFF0A;
             background: linear-gradient(145deg, rgba(20,20,20,0.95) 0%, rgba(10,50,10,0.4) 100%);
-            transform: scale(1.05);
-            position: relative;
+            transform: scale(1.05); position: relative;
         }
 
         .plan-card.featured::before {
@@ -144,7 +140,7 @@
         }
         .btn-plan:hover { background: #0AFF0A; color: #000; box-shadow: 0 0 15px rgba(10, 255, 10, 0.4); }
 
-        /* --- SWEETALERT --- */
+        /* --- SWEETALERT CUSTOM --- */
         .swal2-popup {
             background: #111 !important; color: #fff !important;
             border: 1px solid #4CAF50 !important; border-radius: 15px !important;
@@ -178,6 +174,7 @@
                 <a href="#" class="logo">🛠️ Serviço Certo APP</a>
                 <ul>
                     <li><a href="#">Home</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
                     <li><a href="#categorias">Serviços</a></li>
                     <li><a href="#planos">Planos</a></li>
                 </ul>
@@ -188,8 +185,8 @@
     <main class="container">
         
         <section class="search-hero">
-            <h1>Sua vitrine profissional de serviços</h1>
-            <p>Conectando quem entende com quem precisa, em Ourinhos e região.</p>
+            <h1>O técnico ideal para o seu problema</h1>
+            <p>Conectando soluções técnicas em Ourinhos e região com inteligência.</p>
             <div class="search-container">
                 <div class="search-box">
                     <input type="text" id="serviceInput" placeholder="O que você precisa hoje?">
@@ -198,19 +195,38 @@
             </div>
         </section>
 
-        <h2 id="categorias" style="text-align: center; color: #4CAF50;">Categorias em Destaque</h2>
+        <section id="como-funciona" class="process-section">
+            <h2 style="text-align: center; color: #4CAF50;">Fluxo Inteligente de Serviço</h2>
+            <div class="process-grid">
+                <div class="process-step"><div class="step-number">1</div><h4>Solicitação</h4><p>Você descreve o que precisa na plataforma.</p></div>
+                <div class="process-step"><div class="step-number">2</div><h4>Localização</h4><p>Nossa IA localiza o técnico ideal na região.</p></div>
+                <div class="process-step"><div class="step-number">3</div><h4>Orçamento</h4><p>O técnico envia o orçamento para sua análise.</p></div>
+                <div class="process-step"><div class="step-number">4</div><h4>Aprovação</h4><p>Você aprova o valor e faz o agendamento.</p></div>
+                <div class="process-step"><div class="step-number">5</div><h4>Finalização</h4><p>Pagamento liberado após execução.</p></div>
+            </div>
+        </section>
+
+        <h2 id="categorias" style="text-align: center; color: #4CAF50;">Categorias Populares</h2>
         <div class="categories-grid">
             <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
             <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
             <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Entregador')"><span class="cat-icon">🏍️</span><h3>Entregador</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Alarme')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Cerca Elétrica')"><span class="cat-icon">⚡</span><h3>Cerca Elétrica</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Portão Automático')"><span class="cat-icon">🚪</span><h3>Portão Automático</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Controle de Acesso')"><span class="cat-icon">🔑</span><h3>Controle de Acesso</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Home Automação')"><span class="cat-icon">🏠</span><h3>Home Automação</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Monitoramento 24h')"><span class="cat-icon">🛡️</span><h3>Monitoramento 24h</h3></div>
             <div class="cat-card" onclick="solicitarDados('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
             <div class="cat-card" onclick="solicitarDados('Jardinagem')"><span class="cat-icon">🍃</span><h3>Jardinagem</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Serralheiro')"><span class="cat-icon">⚙️</span><h3>Serralheiro</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador de Móveis</h3></div>
         </div>
 
         <section id="planos" class="plans-section">
             <h2 style="color: #4CAF50; font-size: 2rem;">Impulsione seu Trabalho</h2>
-            <p style="color: #ccc;">Escolha o plano ideal para o tamanho da sua demanda.</p>
-            
             <div class="plans-grid">
                 <div class="plan-card">
                     <h3>Iniciante</h3>
@@ -219,9 +235,8 @@
                         <li>Até <strong>3 orçamentos mensais</strong></li>
                         <li>Perfil no diretório público</li>
                         <li>Notificações por e-mail</li>
-                        <li>Suporte via chat padrão</li>
                     </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Inscrição Profissional', 'Solicito cadastro no Plano Grátis. Tenho interesse em receber até 3 orçamentos mensais.')">Cadastrar Agora</button>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Iniciante', 'Gostaria de me cadastrar no Plano Iniciante (Grátis). Tenho interesse em receber até 3 orçamentos mensais.')">Cadastrar</button>
                 </div>
 
                 <div class="plan-card featured">
@@ -229,25 +244,22 @@
                     <div class="plan-price">R$ 49,90<span>/mês</span></div>
                     <ul class="plan-features">
                         <li><strong>Orçamentos Ilimitados</strong></li>
-                        <li>Leads direto no seu <strong>WhatsApp</strong></li>
-                        <li>Selo de <strong>Técnico Verificado</strong></li>
-                        <li>Destaque no topo das buscas</li>
-                        <li>Painel de estatísticas de acesso</li>
+                        <li>Leads via <strong>WhatsApp Instantâneo</strong></li>
+                        <li>Selo de <strong>Verificado</strong></li>
+                        <li>Destaque nas buscas</li>
                     </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Upgrade Premium', 'Quero ser Elite Pro! Desejo orçamentos ilimitados, selo de verificado e leads direto no meu WhatsApp.')">Ser Premium</button>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Elite Pro', 'Gostaria de assinar o Plano Elite Pro para ter orçamentos ilimitados, destaque e leads via WhatsApp.')">Ser Premium</button>
                 </div>
 
                 <div class="plan-card">
                     <h3>Enterprise</h3>
                     <div class="plan-price">Consultar</div>
                     <ul class="plan-features">
-                        <li>Gestão de <strong>múltiplas equipes</strong></li>
-                        <li>Integração com <strong>CRM via API</strong></li>
-                        <li>Geofencing exclusivo por cidade</li>
-                        <li>Gerente de conta dedicado</li>
-                        <li>Recursos robustos e White-label</li>
+                        <li>Gestão de múltiplas equipes</li>
+                        <li>Recursos robustos e integração</li>
+                        <li>Painel CRM Admin</li>
                     </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Plano Enterprise', 'Solicito consultoria para o Plano Enterprise. Temos interesse em recursos robustos, gestão de equipes e integração via API.')">Falar Conosco</button>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Enterprise', 'Gostaria de falar com um consultor sobre o Plano Empresarial com recursos robustos.')">Falar Conosco</button>
                 </div>
             </div>
         </section>
@@ -257,7 +269,7 @@
     <footer>
         <div class="container">
             <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC" class="footer-logo">
-            <p>&copy; 2026 | MC Services | Inteligência em Serviços</p>
+            <p>&copy; 2026 | MC Services | Powered by MC Infra TI</p>
         </div>
     </footer>
 
@@ -292,7 +304,6 @@
                     const whats = document.getElementById('swal-whats').value.trim();
                     const cidade = document.getElementById('swal-cidade').value.trim();
                     const problema = document.getElementById('swal-problema').value.trim();
-
                     if (!nome || !whats || !cidade || !problema) return Swal.showValidationMessage('Preencha todos os campos!');
                     return { nome, whatsapp: whats, cidade, problema }
                 }
@@ -313,7 +324,7 @@
                         origem: "Marketplace_Web", data: new Date().toLocaleString('pt-BR') 
                     })
                 });
-                Swal.fire('Recebido!', 'Nossa equipe entrará em contato em breve.', 'success');
+                Swal.fire('Sucesso!', 'Recebemos seu pedido.', 'success');
             } catch (e) {
                 const msg = `Olá! Tenho interesse em: ${servico}. \nDetalhes: ${problema}`;
                 window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(msg)}`, '_blank');
