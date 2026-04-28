@@ -28,69 +28,85 @@
             z-index: 1000; position: sticky; top: 0;
         }
         header nav { display: flex; justify-content: space-between; align-items: center; }
-        header .logo { font-size: 1.3em; font-weight: 700; color: #4CAF50; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        header .logo { font-size: 1.3em; font-weight: 700; color: #4CAF50; text-decoration: none; }
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
-        header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; transition: 0.3s; }
+        header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; }
 
-        /* --- SESSÃO RESUMO (PROPOSTA) --- */
-        .intro-section { padding: 40px 0; text-align: center; background: rgba(10, 255, 10, 0.05); border-radius: 20px; margin: 20px 0; border: 1px dashed rgba(76, 175, 80, 0.3); }
-        .intro-section h2 { color: #0AFF0A; margin-bottom: 15px; }
-        .intro-section p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; padding: 0 15px; }
-
-        /* --- HERO --- */
+        /* --- SESSÃO INTRO/HERO --- */
         .search-hero { padding: 40px 0; text-align: center; }
-        .search-hero h1 { font-size: 2.2rem; color: #0AFF0A; text-shadow: 0 0 20px rgba(10, 255, 10, 0.4); margin-bottom: 10px; }
+        .search-hero h1 { font-size: 2.2rem; color: #0AFF0A; text-shadow: 0 0 20px rgba(10, 255, 10, 0.4); margin-bottom: 20px; }
         .search-container {
             background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 15px;
             backdrop-filter: blur(10px); border: 1px solid rgba(76, 175, 80, 0.3);
             max-width: 700px; margin: 0 auto;
         }
         .search-box { display: flex; flex-direction: column; gap: 10px; }
-        input[type="text"] { flex: 1; padding: 15px; border-radius: 8px; border: none; font-size: 1rem; outline: none; }
-        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        input[type="text"] { padding: 15px; border-radius: 8px; border: none; font-size: 1rem; outline: none; }
+        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
-        /* --- GALERIA SLIDER --- */
-        .slider-section { padding: 40px 0; overflow: hidden; }
-        .slider-track { display: flex; width: calc(280px * 10); animation: scroll 25s linear infinite; }
-        .slider-track:hover { animation-play-state: paused; }
-        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; box-sizing: border-box; }
-        .slide-content { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; border: 1px solid rgba(76, 175, 80, 0.4); }
-        .slide-content img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; box-sizing: border-box; }
+        /* --- FLUXO INTELIGENTE (NOVA SEÇÃO) --- */
+        .flow-section { 
+            background: rgba(20, 20, 20, 0.8); 
+            border: 1px solid #4CAF50; 
+            border-radius: 20px; 
+            padding: 40px 20px; 
+            margin: 40px 0; 
+            text-align: center;
+        }
+        .flow-section h2 { color: #0AFF0A; margin-bottom: 30px; font-size: 1.5rem; }
+        .flow-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 20px; 
+        }
+        .flow-item { padding: 10px; }
+        .flow-number { 
+            width: 40px; height: 40px; background: #4CAF50; color: white; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            margin: 0 auto 15px; font-weight: bold; font-size: 1.2rem;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+        .flow-item h3 { color: #0AFF0A; font-size: 1rem; margin-bottom: 10px; }
+        .flow-item p { font-size: 0.85rem; opacity: 0.8; margin: 0; }
 
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 5)); } }
-
-        /* --- CATEGORIAS (GAMA COMPLETA) --- */
+        /* --- CATEGORIAS (ATUALIZADAS) --- */
         .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
         .cat-card { background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(76, 175, 80, 0.2); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.3s; }
         .cat-card:hover { border-color: #0AFF0A; transform: translateY(-3px); }
         .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-        .cat-card h3 { font-size: 0.9rem; color: #4CAF50; margin: 0; }
+        .cat-card h3 { font-size: 0.85rem; color: #4CAF50; margin: 0; }
 
-        /* --- PLANOS (REVISADOS COM TODAS AS INFO) --- */
+        /* --- GALERIA SLIDER --- */
+        .slider-section { padding: 40px 0; overflow: hidden; }
+        .slider-track { display: flex; width: calc(280px * 10); animation: scroll 25s linear infinite; }
+        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; box-sizing: border-box; }
+        .slide-content { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; border: 1px solid rgba(76, 175, 80, 0.4); }
+        .slide-content img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; }
+
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 5)); } }
+
+        /* --- PLANOS --- */
         .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
-        .plan-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #4CAF50; border-radius: 15px; padding: 30px 20px; display: flex; flex-direction: column; }
-        .plan-card.featured { border: 2px solid #0AFF0A; transform: scale(1.02); }
-        .plan-price { font-size: 2rem; font-weight: bold; margin: 15px 0; text-align: center; color: #fff; }
-        .plan-features { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; flex-grow: 1; }
-        .plan-features li { margin-bottom: 12px; padding-left: 25px; position: relative; }
-        .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; font-weight: bold; }
-        .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; text-transform: uppercase; }
+        .plan-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #4CAF50; border-radius: 15px; padding: 30px 20px; text-align: center; }
+        .plan-card.featured { border: 2px solid #0AFF0A; box-shadow: 0 0 20px rgba(10, 255, 10, 0.2); }
+        .plan-price { font-size: 2rem; font-weight: bold; margin: 15px 0; color: #fff; }
+        .plan-features { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; text-align: left; }
+        .plan-features li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; }
+        .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; }
 
         /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
             .search-hero h1 { font-size: 3.5rem; }
             .search-box { flex-direction: row; }
-            .btn-search { width: auto; }
-            .categories-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+            .categories-grid { grid-template-columns: repeat(5, 1fr); }
             .plans-grid { grid-template-columns: repeat(3, 1fr); }
-            header .logo { font-size: 1.5em; }
+            .flow-section h2 { font-size: 2rem; }
         }
 
         /* --- POPUP --- */
-        .swal2-popup { background: #111 !important; color: #fff !important; border: 1px solid #4CAF50 !important; border-radius: 15px !important; width: 90% !important; max-width: 500px !important; }
-        .swal2-title { color: #0AFF0A !important; }
-        .swal2-input, .swal2-textarea { color: #fff !important; background: #222 !important; border: 1px solid #444 !important; }
+        .swal2-popup { background: #111 !important; color: #fff !important; border: 1px solid #4CAF50 !important; border-radius: 15px !important; }
         .swal2-confirm { background-color: #4CAF50 !important; }
 
         footer { background: rgba(0, 0, 0, 0.95); text-align: center; padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 50px; }
@@ -105,31 +121,58 @@
             <nav>
                 <a href="#" class="logo">🛠️ MC Services</a>
                 <ul>
-                    <li><a href="#solucao">Sobre</a></li>
+                    <li><a href="#fluxo">Como Funciona</a></li>
                     <li><a href="#categorias">Serviços</a></li>
-                    <li><a href="#planos">Planos</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <section id="solucao" class="intro-section">
-            <h2>Tecnologia que Conecta</h2>
-            <p>O <strong>MC Services</strong> é a plataforma definitiva para Ourinhos e região. Unimos clientes que buscam excelência técnica a profissionais qualificados em infraestrutura, TI e serviços domésticos, garantindo agilidade no orçamento e segurança na contratação.</p>
-        </section>
-
+        
         <section class="search-hero">
-            <h1>Encontre um Especialista</h1>
+            <h1>Encontre o Técnico Ideal</h1>
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" id="serviceInput" placeholder="Ex: Instalar Câmeras, Consertar Ar...">
+                    <input type="text" id="serviceInput" placeholder="O que você precisa hoje?">
                     <button class="btn-search" onclick="executarBusca()">Buscar Agora</button>
                 </div>
             </div>
         </section>
 
+        <section id="fluxo" class="flow-section">
+            <h2>Fluxo Inteligente de Serviço</h2>
+            <div class="flow-grid">
+                <div class="flow-item">
+                    <div class="flow-number">1</div>
+                    <h3>Solicitação</h3>
+                    <p>Você descreve o que precisa na plataforma.</p>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-number">2</div>
+                    <h3>Localização</h3>
+                    <p>Nossa IA localiza o técnico ideal na região.</p>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-number">3</div>
+                    <h3>Orçamento</h3>
+                    <p>O técnico envia o orçamento para sua análise.</p>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-number">4</div>
+                    <h3>Aprovação</h3>
+                    <p>Você aprova o valor e faz o agendamento.</p>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-number">5</div>
+                    <h3>Finalização</h3>
+                    <p>Pagamento liberado após execução.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="galeria" class="slider-section">
+            <h2 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">Serviços Realizados</h2>
             <div class="slider-track">
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança e CFTV</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Infraestrutura de Rede</div></div></div>
@@ -144,16 +187,23 @@
             </div>
         </section>
 
-        <h2 id="categorias" style="text-align: center; color: #4CAF50;">Gama de Serviços</h2>
+        <h2 id="categorias" style="text-align: center; color: #4CAF50;">Categorias Populares</h2>
         <div class="categories-grid">
             <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
             <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
             <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Alarmes')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Entregador')"><span class="cat-icon">🏍️</span><h3>Entregador</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Alarme')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
+            
             <div class="cat-card" onclick="solicitarDados('Cerca Elétrica')"><span class="cat-icon">⚡</span><h3>Cerca Elétrica</h3></div>
             <div class="cat-card" onclick="solicitarDados('Portão Automático')"><span class="cat-icon">🚪</span><h3>Portão Automático</h3></div>
             <div class="cat-card" onclick="solicitarDados('Controle de Acesso')"><span class="cat-icon">🔑</span><h3>Controle de Acesso</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Home Automação')"><span class="cat-icon">🏠</span><h3>Home Automação</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Monitoramento 24h')"><span class="cat-icon">🛡️</span><h3>Monitoramento 24h</h3></div>
+            
             <div class="cat-card" onclick="solicitarDados('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Jardinagem')"><span class="cat-icon">🍃</span><h3>Jardinagem</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Serralheiro')"><span class="cat-icon">⚙️</span><h3>Serralheiro</h3></div>
             <div class="cat-card" onclick="solicitarDados('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
             <div class="cat-card" onclick="solicitarDados('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador</h3></div>
         </div>
@@ -164,19 +214,17 @@
                 <h3>Iniciante</h3>
                 <div class="plan-price">Grátis</div>
                 <ul class="plan-features">
-                    <li>Até 3 orçamentos mensais</li>
-                    <li>Perfil no diretório público</li>
-                    <li>Suporte básico</li>
+                    <li>3 orçamentos/mês</li>
+                    <li>Perfil básico</li>
                 </ul>
                 <button class="btn-plan" onclick="solicitarDados('Plano Iniciante')">Cadastrar</button>
             </div>
             <div class="plan-card featured">
                 <h3>Elite Pro</h3>
-                <div class="plan-price">R$ 49,90<span>/mês</span></div>
+                <div class="plan-price">R$ 49,90/mês</div>
                 <ul class="plan-features">
                     <li><strong>Orçamentos Ilimitados</strong></li>
-                    <li>Leads via WhatsApp Instantâneo</li>
-                    <li>Selo de Técnico Verificado</li>
+                    <li>Selo Verificado</li>
                     <li>Destaque Prioritário</li>
                 </ul>
                 <button class="btn-plan" onclick="solicitarDados('Plano Elite Pro')">Ser Premium</button>
@@ -185,10 +233,8 @@
                 <h3>Enterprise</h3>
                 <div class="plan-price">Consultar</div>
                 <ul class="plan-features">
-                    <li>Gestão de múltiplas equipes</li>
-                    <li>Integração com CRM via API</li>
-                    <li>Geofencing exclusivo</li>
-                    <li>Gerente dedicado</li>
+                    <li>Multi-equipes</li>
+                    <li>API de Integração</li>
                 </ul>
                 <button class="btn-plan" style="background:#444" onclick="solicitarDados('Plano Enterprise')">Falar Conosco</button>
             </div>
@@ -202,39 +248,15 @@
 
     <script>
         const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
-        const WHATS_BACKUP = "5514997911398";
-
-        async function solicitarDados(servico, valorPadrao = "") {
-            const { value: formValues } = await Swal.fire({
+        async function solicitarDados(servico) {
+            const { value: f } = await Swal.fire({
                 title: servico,
-                html: 
-                    `<input id="swal-nome" class="swal2-input" placeholder="Seu Nome">` +
-                    `<input id="swal-whats" class="swal2-input" placeholder="WhatsApp (DDD+Número)">` +
-                    `<input id="swal-cidade" class="swal2-input" placeholder="Cidade">` +
-                    `<textarea id="swal-problema" class="swal2-textarea" placeholder="Como podemos ajudar?">${valorPadrao}</textarea>`,
-                showCancelButton: true,
-                confirmButtonText: 'Enviar Solicitação',
-                preConfirm: () => {
-                    const nome = document.getElementById('swal-nome').value;
-                    const whats = document.getElementById('swal-whats').value;
-                    const cidade = document.getElementById('swal-cidade').value;
-                    if(!nome || !whats || !cidade) return Swal.showValidationMessage('Preencha os campos obrigatórios!');
-                    return { nome, whats, cidade, prob: document.getElementById('swal-problema').value }
-                }
+                html: `<input id="n" class="swal2-input" placeholder="Seu Nome"><input id="w" class="swal2-input" placeholder="WhatsApp"><input id="c" class="swal2-input" placeholder="Cidade"><textarea id="p" class="swal2-textarea" placeholder="Detalhes..."></textarea>`,
+                preConfirm: () => ({ nome: document.getElementById('n').value, whats: document.getElementById('w').value, cidade: document.getElementById('c').value, desc: document.getElementById('p').value })
             });
-
-            if (formValues) {
-                Swal.fire({ title: 'Enviando...', didOpen: () => Swal.showLoading() });
-                try {
-                    await fetch(N8N_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ ...formValues, servico })
-                    });
-                    Swal.fire('Sucesso!', 'Recebemos seu pedido.', 'success');
-                } catch (e) {
-                    window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(formValues.prob || 'Solicito orçamento para '+servico)}`, '_blank');
-                }
+            if (f && f.nome) {
+                Swal.fire('Enviado!', 'Entraremos em contato.', 'success');
+                fetch(N8N_URL, { method: 'POST', body: JSON.stringify({...f, servico}) });
             }
         }
         function executarBusca() {
