@@ -26,7 +26,7 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* --- HEADER (Ajustado para Mobile) --- */
+        /* --- HEADER --- */
         header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 1rem 0; 
@@ -76,14 +76,14 @@
         }
         .btn-search:hover { background: #45a049; }
 
-        /* --- COMO FUNCIONA (FLUXO) --- */
+        /* --- COMO FUNCIONA --- */
         .process-section {
             padding: 60px 0; background: rgba(10, 10, 10, 0.7);
             border-radius: 20px; margin: 40px 0; border: 1px solid rgba(76, 175, 80, 0.2);
         }
 
         .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 30px; }
-        .process-step { text-align: center; padding: 15px; position: relative; }
+        .process-step { text-align: center; padding: 15px; }
         .step-number {
             width: 35px; height: 35px; background: #4CAF50; color: white;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -128,36 +128,21 @@
             text-decoration: none; font-weight: bold; width: 100%; border: none; cursor: pointer;
         }
 
-        /* --- AJUSTE SWEETALERT (MOBILE CENTRALIZADO) --- */
+        /* --- SWEETALERT --- */
         .swal2-popup {
-            background: #111 !important;
-            color: #fff !important;
-            border: 1px solid #4CAF50 !important;
-            border-radius: 15px !important;
-            padding: 1.5rem !important;
-            width: 90% !important;
-            max-width: 450px !important;
+            background: #111 !important; color: #fff !important;
+            border: 1px solid #4CAF50 !important; border-radius: 15px !important;
+            width: 90% !important; max-width: 450px !important;
         }
-        .swal2-title { color: #0AFF0A !important; font-size: 1.4rem !important; }
+        .swal2-title { color: #0AFF0A !important; }
         .swal2-input, .swal2-textarea {
-            color: #fff !important;
-            background: #222 !important;
-            border: 1px solid #444 !important;
+            color: #fff !important; background: #222 !important;
+            border: 1px solid #444 !important; width: 90% !important;
             margin: 10px auto !important;
-            width: 90% !important;
-            font-size: 1rem !important;
         }
-        .swal2-textarea {
-            height: 80px !important;
-            padding: 10px !important;
-            resize: none;
-            font-family: 'Roboto', sans-serif;
-        }
-        .swal2-actions { margin-top: 1.5rem !important; }
-        .swal2-confirm { background-color: #4CAF50 !important; padding: 10px 30px !important; }
-        .swal2-validation-message { background: #333 !important; color: #ff4444 !important; }
+        .swal2-textarea { height: 80px !important; resize: none; font-family: 'Roboto', sans-serif; }
+        .swal2-confirm { background-color: #4CAF50 !important; }
 
-        /* --- FOOTER --- */
         footer {
             background: rgba(0, 0, 0, 0.95); text-align: center;
             padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 60px;
@@ -201,31 +186,11 @@
         <section id="como-funciona" class="process-section">
             <h2 style="text-align: center; color: #4CAF50;">Fluxo Inteligente de Serviço</h2>
             <div class="process-grid">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h4>Solicitação</h4>
-                    <p>Você descreve o que precisa na plataforma.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h4>Localização</h4>
-                    <p>Nossa IA localiza o técnico ideal na região.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h4>Orçamento</h4>
-                    <p>O técnico envia o orçamento para sua análise.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h4>Aprovação</h4>
-                    <p>Você aprova o valor e faz o agendamento.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <h4>Finalização</h4>
-                    <p>Pagamento liberado após execução e avaliação.</p>
-                </div>
+                <div class="process-step"><div class="step-number">1</div><h4>Solicitação</h4><p>Você descreve o que precisa.</p></div>
+                <div class="process-step"><div class="step-number">2</div><h4>Localização</h4><p>Nossa IA localiza o técnico.</p></div>
+                <div class="process-step"><div class="step-number">3</div><h4>Orçamento</h4><p>O técnico envia o valor.</p></div>
+                <div class="process-step"><div class="step-number">4</div><h4>Aprovação</h4><p>Você aprova e agenda.</p></div>
+                <div class="process-step"><div class="step-number">5</div><h4>Finalização</h4><p>Pagamento após execução.</p></div>
             </div>
         </section>
 
@@ -254,30 +219,20 @@
                 <div class="plan-card">
                     <h3>Básico</h3>
                     <div class="plan-price">Grátis</div>
-                    <ul class="plan-features">
-                        <li>Listagem no diretório</li>
-                        <li>Receba leads por e-mail</li>
-                    </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Plano Básico')">Cadastrar</button>
+                    <ul class="plan-features"><li>Listagem no diretório</li><li>Receba leads por e-mail</li></ul>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Básico', 'Gostaria de me cadastrar no Plano Básico (Grátis).')">Cadastrar</button>
                 </div>
                 <div class="plan-card featured">
                     <h3>Premium</h3>
                     <div class="plan-price">R$ 49,90/mês</div>
-                    <ul class="plan-features">
-                        <li>Destaque nas buscas</li>
-                        <li>Leads via WhatsApp Instantâneo</li>
-                        <li>Selo de Verificado</li>
-                    </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Plano Premium')">Ser Premium</button>
+                    <ul class="plan-features"><li>Destaque nas buscas</li><li>Leads via WhatsApp Instantâneo</li><li>Selo de Verificado</li></ul>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Premium', 'Gostaria de assinar o Plano Premium para ter destaque e leads via WhatsApp.')">Ser Premium</button>
                 </div>
                 <div class="plan-card">
                     <h3>Empresarial</h3>
                     <div class="plan-price">Consultar</div>
-                    <ul class="plan-features">
-                        <li>Multi-perfis</li>
-                        <li>Painel CRM Admin</li>
-                    </ul>
-                    <button class="btn-plan" onclick="solicitarDados('Plano Empresa')">Falar Conosco</button>
+                    <ul class="plan-features"><li>Multi-perfis</li><li>Painel CRM Admin</li></ul>
+                    <button class="btn-plan" onclick="solicitarDados('Plano Empresa', 'Gostaria de falar com um consultor sobre o Plano Empresarial.')">Falar Conosco</button>
                 </div>
             </div>
         </section>
@@ -301,14 +256,14 @@
             solicitarDados(termo);
         }
 
-        async function solicitarDados(servico) {
+        async function solicitarDados(servico, valorPadrao = "") {
             const { value: formValues } = await Swal.fire({
                 title: `Solicitar ${servico}`,
                 html: 
                     '<input id="swal-nome" class="swal2-input" placeholder="Seu Nome">' +
                     '<input id="swal-whats" class="swal2-input" placeholder="WhatsApp (DDD + Número)" maxlength="11">' +
                     '<input id="swal-cidade" class="swal2-input" placeholder="Sua Cidade (Ex: Ourinhos)">' +
-                    '<textarea id="swal-problema" class="swal2-textarea" placeholder="Descreva o Problema ou Serviço..."></textarea>',
+                    `<textarea id="swal-problema" class="swal2-textarea" placeholder="Descreva o Problema ou Serviço...">${valorPadrao}</textarea>`,
                 showCancelButton: true,
                 confirmButtonText: 'Enviar Pedido',
                 didOpen: () => {
@@ -324,7 +279,7 @@
                     const problema = document.getElementById('swal-problema').value.trim();
 
                     if (!nome || !whats || !cidade || !problema) return Swal.showValidationMessage('Preencha todos os campos!');
-                    if (whats.length < 10) return Swal.showValidationMessage('WhatsApp inválido (Mínimo 10 dígitos)');
+                    if (whats.length < 10) return Swal.showValidationMessage('WhatsApp inválido');
                     
                     return { nome, whatsapp: whats, cidade, problema }
                 }
@@ -336,34 +291,23 @@
         async function enviarParaN8N(servico, nome, whatsapp, cidade, problema) {
             Swal.fire({ title: 'Processando...', didOpen: () => Swal.showLoading() });
             try {
-                const response = await fetch(N8N_URL, {
+                await fetch(N8N_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
-                        servico, 
-                        cliente_nome: nome, 
-                        cliente_whatsapp: whatsapp, 
-                        cliente_cidade: cidade,
-                        descricao_problema: problema,
-                        origem: "Marketplace_Web",
-                        data: new Date().toLocaleString('pt-BR') 
+                        servico, cliente_nome: nome, cliente_whatsapp: whatsapp, 
+                        cliente_cidade: cidade, descricao_problema: problema,
+                        origem: "Marketplace_Web", data: new Date().toLocaleString('pt-BR') 
                     })
                 });
-
-                if (!response.ok) throw new Error('Falha no webhook');
-
                 Swal.fire('Sucesso!', 'Pedido registrado. Verifique seu WhatsApp em instantes.', 'success');
             } catch (e) {
-                // Em caso de erro no fetch, abre o WhatsApp direto como fallback
-                const msg = `Olá! Preciso de orçamento para ${servico} em ${cidade}. \n\nProblema: ${problema}`;
+                const msg = `Olá! Preciso de ${servico} em ${cidade}. \n\nProblema: ${problema}`;
                 window.open(`https://wa.me/${WHATS_BACKUP}?text=${encodeURIComponent(msg)}`, '_blank');
-                Swal.fire('Encaminhando...', 'Houve um atraso na conexão, enviando via WhatsApp.', 'info');
             }
         }
 
-        document.getElementById('serviceInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') executarBusca();
-        });
+        document.getElementById('serviceInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') executarBusca(); });
     </script>
 </body>
 </html>
