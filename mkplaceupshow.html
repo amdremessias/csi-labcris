@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plataforma de Marketplace de Serviços Técnicos Especializados - MC Infra TI">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>MC Services | Marketplace de Técnicos</title>
     <style>
-        /* --- ESTILOS BASE --- */
+        /* --- ESTILOS BASE (MANTIDOS) --- */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0; padding: 0;
@@ -22,78 +21,86 @@
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: -1; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
 
+        /* --- HEADER ADAPTÁVEL --- */
         header {
             background-color: rgba(0, 0, 0, 0.95);
             padding: 1rem 0; border-bottom: 1px solid #4CAF50;
             z-index: 1000; position: sticky; top: 0;
         }
-
         header nav { display: flex; justify-content: space-between; align-items: center; }
-        header .logo { font-size: 1.2em; font-weight: 700; color: #4CAF50; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        header .logo { font-size: 1.2rem; font-weight: 700; color: #4CAF50; text-decoration: none; }
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
-        header ul li a { color: #fff; text-decoration: none; font-size: 0.85em; transition: 0.3s; }
+        header ul li a { color: #fff; text-decoration: none; font-size: 0.85rem; }
 
         /* --- HERO RESPONSIVO --- */
         .search-hero { padding: 40px 0; text-align: center; }
-        .search-hero h1 { font-size: 2rem; color: #0AFF0A; text-shadow: 0 0 15px rgba(10, 255, 10, 0.3); margin-bottom: 15px; padding: 0 10px; }
-
+        .search-hero h1 { font-size: 2rem; color: #0AFF0A; margin-bottom: 20px; padding: 0 10px; }
+        
         .search-container {
             background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px;
             backdrop-filter: blur(10px); border: 1px solid rgba(76, 175, 80, 0.3);
-            max-width: 600px; margin: 0 auto;
+            max-width: 700px; margin: 0 auto;
         }
+        .search-box { display: flex; flex-wrap: wrap; gap: 10px; }
+        input[type="text"] { flex: 1; min-width: 200px; padding: 15px; border-radius: 8px; border: none; font-size: 1rem; }
+        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; }
 
-        .search-box { display: flex; flex-direction: column; gap: 10px; }
-        input[type="text"] { width: 100%; padding: 15px; border-radius: 8px; border: none; font-size: 1rem; box-sizing: border-box; }
-        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; }
-
-        /* --- GALERIA RESPONSIVA --- */
-        .slider-section { padding: 30px 0; overflow: hidden; }
+        /* --- GALERIA DESLIZANTE (VERSÃO ESTÁVEL) --- */
+        .slider-section { padding: 40px 0; overflow: hidden; width: 100%; }
         .slider-track {
             display: flex;
-            width: calc(260px * 10); /* Ajustado largura para mobile */
-            animation: scroll 20s linear infinite;
+            width: calc(280px * 10); 
+            animation: scroll 25s linear infinite;
         }
-        .slide { width: 260px; height: 320px; padding: 8px; flex-shrink: 0; }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-260px * 5)); } 
+        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; box-sizing: border-box; }
+        .slide-content {
+            position: relative; width: 100%; height: 100%;
+            border-radius: 15px; overflow: hidden;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+        .slide-content img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-label {
+            position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            width: 100%; padding: 20px 10px; text-align: center; color: #0AFF0A; font-weight: bold;
         }
 
-        /* --- GRID DE SERVIÇOS MOBILE-FRIENDLY --- */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-280px * 5)); } 
+        }
+
+        /* --- GRID DE SERVIÇOS --- */
         .categories-grid { 
             display: grid; 
-            grid-template-columns: repeat(2, 1fr); /* 2 colunas no mobile */
-            gap: 12px; 
-            margin: 30px 0; 
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+            gap: 15px; margin: 40px 0; 
         }
         .cat-card { background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(76, 175, 80, 0.2); padding: 15px; border-radius: 12px; text-align: center; }
         .cat-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
-        .cat-card h3 { font-size: 0.9rem; color: #4CAF50; margin: 0; }
+        .cat-card h3 { font-size: 0.85rem; color: #4CAF50; margin: 0; }
 
-        /* --- PLANOS RESPONSIVOS --- */
-        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 30px; }
-        .plan-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #4CAF50; border-radius: 15px; padding: 30px 20px; }
-        .plan-card.featured { border: 2px solid #0AFF0A; order: -1; /* Destaque aparece primeiro no mobile */ }
+        /* --- PLANOS --- */
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .plan-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #4CAF50; border-radius: 15px; padding: 30px 20px; text-align: center; }
+        .plan-card.featured { border: 2px solid #0AFF0A; }
+        .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; width: 100%; border: none; font-weight: bold; margin-top: 15px; }
 
-        /* --- MEDIA QUERIES PARA DESKTOP --- */
-        @media (min-width: 768px) {
-            .search-hero h1 { font-size: 3.5rem; }
-            .search-box { flex-direction: row; }
-            .btn-search { width: auto; padding: 0 30px; }
-            .categories-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-            .plans-grid { grid-template-columns: repeat(3, 1fr); }
-            header .logo { font-size: 1.5em; }
-            .slide { width: 300px; height: 380px; }
-            @keyframes scroll {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(calc(-300px * 5)); } 
-            }
+        /* --- POPUP SWEETALERT (RESTAURADO E RESPONSIVO) --- */
+        .swal2-popup {
+            background: #111 !important; color: #fff !important;
+            border: 1px solid #4CAF50 !important; width: 95% !important; max-width: 450px !important;
         }
+        .swal2-input, .swal2-textarea {
+            background: #222 !important; color: #fff !important; border: 1px solid #444 !important;
+        }
+        .swal2-confirm { background-color: #4CAF50 !important; }
 
-        /* --- SWEETALERT MOBILE FIX --- */
-        .swal2-popup { width: 90% !important; font-size: 0.9rem !important; }
+        /* Ajustes para telas maiores */
+        @media (min-width: 768px) {
+            .search-hero h1 { font-size: 3rem; }
+            .btn-search { width: auto; }
+            header .logo { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -104,9 +111,8 @@
             <nav>
                 <a href="#" class="logo">🛠️ MC Services</a>
                 <ul>
-                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#galeria">Fotos</a></li>
                     <li><a href="#categorias">Serviços</a></li>
-                    <li><a href="#planos">Planos</a></li>
                 </ul>
             </nav>
         </div>
@@ -114,10 +120,10 @@
 
     <main class="container">
         <section class="search-hero">
-            <h1>Técnicos Especialistas</h1>
+            <h1>O técnico ideal para você</h1>
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" id="serviceInput" placeholder="Ex: Câmeras, Elétrica...">
+                    <input type="text" id="serviceInput" placeholder="O que você precisa?">
                     <button class="btn-search" onclick="executarBusca()">Buscar</button>
                 </div>
             </div>
@@ -125,12 +131,12 @@
 
         <section id="galeria" class="slider-section">
             <div class="slider-track">
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Câmeras</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Câmeras</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=400"><div class="slide-label">Redes</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica</div></div></div>
@@ -140,46 +146,48 @@
 
         <div class="categories-grid" id="categorias">
             <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Câmeras/CFTV</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes/TI</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Elétrica')"><span class="cat-icon">⚡</span><h3>Elétrica</h3></div>
+            <div class="cat-card" onclick="solicitarDados('CFTV')"><span class="cat-icon">📹</span><h3>CFTV</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Redes')"><span class="cat-icon">🌐</span><h3>Redes</h3></div>
             <div class="cat-card" onclick="solicitarDados('Alarmes')"><span class="cat-icon">🚨</span><h3>Alarmes</h3></div>
+            <div class="cat-card" onclick="solicitarDados('Elétrica')"><span class="cat-icon">🔌</span><h3>Elétrica</h3></div>
             <div class="cat-card" onclick="solicitarDados('Portões')"><span class="cat-icon">🚪</span><h3>Portões</h3></div>
         </div>
 
         <section id="planos">
             <div class="plans-grid">
                 <div class="plan-card featured">
-                    <h3 style="color:#0AFF0A">ELITE PRO</h3>
-                    <p>O mais assinado</p>
-                    <button class="btn-plan" onclick="solicitarDados('Elite Pro')">Assinar R$ 49,90</button>
+                    <h3 style="color:#0AFF0A">Elite Pro</h3>
+                    <p>Orçamentos Ilimitados</p>
+                    <button class="btn-plan" onclick="solicitarDados('Assinatura Elite')">R$ 49,90/mês</button>
                 </div>
                 <div class="plan-card">
                     <h3>Iniciante</h3>
-                    <p>Perfil básico</p>
-                    <button class="btn-plan" style="background:#666" onclick="solicitarDados('Iniciante')">Grátis</button>
+                    <p>3 orçamentos grátis</p>
+                    <button class="btn-plan" style="background:#444" onclick="solicitarDados('Assinatura Iniciante')">Cadastrar</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer style="text-align:center; padding: 40px 0; font-size: 0.8rem; opacity: 0.6;">
-        <p>&copy; 2026 MC Services - Ourinhos/SP</p>
+    <footer style="text-align:center; padding: 40px 0; opacity: 0.6; font-size: 0.8rem;">
+        <p>&copy; 2026 MC Services | Ourinhos/SP</p>
     </footer>
 
     <script>
         const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
         async function solicitarDados(servico) {
-            const { value: f } = await Swal.fire({
+            const { value: formValues } = await Swal.fire({
                 title: servico,
-                background: '#111',
-                color: '#fff',
-                html: `<input id="n" class="swal2-input" placeholder="Nome"><input id="w" class="swal2-input" placeholder="WhatsApp">`,
-                preConfirm: () => ({ nome: document.getElementById('n').value, whats: document.getElementById('w').value })
+                html: '<input id="swal-nome" class="swal2-input" placeholder="Nome"><input id="swal-whats" class="swal2-input" placeholder="WhatsApp"><textarea id="swal-msg" class="swal2-textarea" placeholder="Detalhes..."></textarea>',
+                preConfirm: () => ({
+                    nome: document.getElementById('swal-nome').value,
+                    whats: document.getElementById('swal-whats').value,
+                    msg: document.getElementById('swal-msg').value
+                })
             });
-            if(f && f.nome && f.whats) {
-                Swal.fire('Enviado!', 'Entraremos em contato.', 'success');
-                fetch(N8N_URL, { method: 'POST', body: JSON.stringify({...f, servico}) });
+            if (formValues && formValues.nome) {
+                Swal.fire('Enviado!', 'Sucesso.', 'success');
+                fetch(N8N_URL, { method: 'POST', body: JSON.stringify({...formValues, servico}) });
             }
         }
         function executarBusca() {
