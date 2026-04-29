@@ -112,7 +112,7 @@
             backdrop-filter: blur(5px);
         }
         .cat-card:hover { 
-            background: transparent; /* Card fica transparente */
+            background: transparent; 
             border-color: #0AFF0A; 
             transform: translateY(-5px);
             box-shadow: 0 5px 20px rgba(10, 255, 10, 0.2);
@@ -120,20 +120,45 @@
         }
         .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
 
-        /* --- PLANOS --- */
+        /* --- #3 PLANOS: BADGE E BRILHO NO BOTÃO --- */
         .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; padding-bottom: 40px; }
         .plan-card { 
             background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(76, 175, 80, 0.4); 
-            border-radius: 15px; padding: 30px 20px; text-align: center; 
+            border-radius: 15px; padding: 40px 20px 30px; text-align: center; 
             transition: all 0.4s ease; position: relative; display: flex; flex-direction: column;
         }
+        
+        /* Fita de Mais Popular */
+        .badge-popular {
+            position: absolute;
+            top: 0; right: 0;
+            background: #0AFF0A; color: #000;
+            font-size: 0.75rem; font-weight: bold;
+            padding: 6px 15px; border-radius: 0 15px 0 15px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(10, 255, 10, 0.5);
+            z-index: 10;
+        }
+
         .plan-card:hover { transform: translateY(-10px); border-color: #0AFF0A; box-shadow: 0 10px 30px rgba(10, 255, 10, 0.1); }
         .plan-card.featured { border: 2px solid #0AFF0A; box-shadow: 0 0 20px rgba(10, 255, 10, 0.2); }
         .plan-price { font-size: 2.2rem; font-weight: bold; margin: 15px 0; color: #fff; }
         .plan-features { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; text-align: left; flex-grow: 1; }
         .plan-features li { margin-bottom: 12px; padding-left: 30px; position: relative; }
         .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; font-weight: bold; }
-        .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        
+        /* Botão com Brilho Pulsante */
+        .btn-plan { 
+            background: #4CAF50; color: white; padding: 15px; border-radius: 8px; 
+            font-weight: bold; width: 100%; border: none; cursor: pointer; 
+            transition: 0.3s; text-transform: uppercase;
+            animation: btnGlowPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes btnGlowPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); background: #4CAF50; }
+            50% { box-shadow: 0 0 20px rgba(10, 255, 10, 0.8); background: #0AFF0A; }
+        }
 
         /* --- POPUP --- */
         .swal2-popup { 
@@ -264,6 +289,7 @@
             </div>
              
             <div class="plan-card featured">
+                <div class="badge-popular">Mais Popular</div>
                 <h3>Elite Pro</h3>
                 <div class="plan-price">R$ 49,90<span>/mês</span></div>
                 <ul class="plan-features">
@@ -281,7 +307,7 @@
                     <li>Multi-equipes</li>
                     <li>Integração API / CRM</li>
                 </ul>
-                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Tenho interesse no Plano Enterprise.')">Falar Conosco</button>
+                <button class="btn-plan" style="background:#444; animation: none;" onclick="solicitarDados('Contato Enterprise', 'Tenho interesse no Plano Enterprise.')">Falar Conosco</button>
             </div>
         </div>
     </main>
