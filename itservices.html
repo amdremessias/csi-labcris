@@ -5,24 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Serviços de TI, Manutenção de computadores, Backup, Instalação de Windows e Linux da MC Infra TI">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Favicon Corrigido -->
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <title>Serviços de TI - MC Infra TI</title>
-    <link rel="icon" href="http://googleusercontent.com/image_generation_content/0" type="image/x-icon">
+    
     <style>
-        /* Estilos gerais - Adaptados do seu index.html */
+        /* --- ESTILOS GERAIS E FUNDO --- */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
             color: #333;
-            background-color: #f4f4f4;
+            background-color: #0a0a0a; /* Fundo base escuro */
             background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Tecnologia32-1024x683-1.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            overflow-x: hidden; /* Evita scroll horizontal por causa das animações */
         }
+
+        /* --- ANIMAÇÃO TECH-FLOW (PARTÍCULAS DE DADOS) --- */
+        .tech-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .data-particle {
+            position: absolute;
+            background: rgba(220, 20, 60, 0.4); /* Carmesim suave */
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: flow linear infinite;
+        }
+
+        @keyframes flow {
+            from { transform: translateY(110vh) translateX(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            to { transform: translateY(-10vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Variações das partículas */
+        .data-particle:nth-child(1) { left: 10%; width: 2px; height: 2px; animation-duration: 8s; }
+        .data-particle:nth-child(2) { left: 30%; width: 4px; height: 4px; animation-duration: 12s; animation-delay: 2s; }
+        .data-particle:nth-child(3) { left: 55%; width: 2px; height: 2px; animation-duration: 10s; animation-delay: 4s; }
+        .data-particle:nth-child(4) { left: 80%; width: 3px; height: 3px; animation-duration: 15s; }
+        .data-particle:nth-child(5) { left: 95%; width: 2px; height: 2px; animation-duration: 9s; animation-delay: 1s; }
 
         .overlay {
             position: fixed;
@@ -30,7 +65,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Overlay escuro para a imagem de fundo */
+            background-color: rgba(0, 0, 0, 0.85); /* Overlay levemente mais denso para foco no texto */
             z-index: -1;
         }
 
@@ -38,16 +73,19 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Header */
+        /* --- HEADER --- */
         header {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             padding: 1rem 0;
             text-align: center;
+            position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         header nav {
@@ -64,7 +102,6 @@
             font-size: 1.8em;
             font-weight: 700;
             color: #DC143C; /* Carmesim */
-            margin-bottom: 0;
         }
 
         header nav ul {
@@ -72,301 +109,124 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
         }
 
-        header nav ul li {
-            margin: 0 15px;
-        }
+        header nav ul li { margin: 0 15px; }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
-            font-weight: 400;
+            transition: 0.3s;
             padding: 5px 10px;
-            transition: color 0.3s ease, background-color 0.3s ease;
             border-radius: 4px;
         }
 
-        header nav ul li a:hover,
-        header nav ul li a.active {
-            color: #DC143C; /* Carmesim no hover e no ativo */
+        header nav ul li a:hover, header nav ul li a.active {
+            color: #DC143C;
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Hero Section */
+        /* --- HERO --- */
         #hero {
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #fff;
             text-align: center;
-            padding: 100px 20px;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: inset 0 0 20px rgba(220, 20, 60, 0.3);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 120px 20px;
+            color: #fff;
             animation: fadeIn 1.5s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         #hero h2 {
-            font-size: 3.2em;
-            margin-bottom: 20px;
-            color: #FF6347; /* Vermelho mais claro para destaque */
-            text-shadow: 0 0 15px rgba(220, 20, 60, 0.7);
+            font-size: 3em;
+            color: #FF6347;
+            text-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
         }
 
         #hero p {
-            font-size: 1.3em;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            color: #FFC0CB; /* Rosa claro para leitura */
-        }
-
-        .button {
-            display: inline-block;
-            background-color: #DC143C; /* Carmesim */
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            font-weight: 700;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            border: 2px solid #DC143C; /* Carmesim */
-        }
-
-        .button:hover {
-            background-color: #B22222; /* Vermelho Fogo mais escuro */
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .button.cookies-button {
-            background-color: #607D8B;
-            border-color: #607D8B;
-        }
-
-        .button.cookies-button:hover {
-            background-color: #546E7A;
-        }
-
-        /* Seções de conteúdo */
-        section {
-            padding: 60px 20px;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.15);
-            margin: 30px auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            color: #fff;
-        }
-
-        section h2 {
-            font-size: 2.5em;
-            margin-bottom: 25px;
-            color: #FF6347;
-            position: relative;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -10px;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: #DC143C;
-            border-radius: 2px;
-        }
-
-        section p {
-            font-size: 1.1em;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
+            font-size: 1.2em;
             color: #FFC0CB;
+            max-width: 700px;
+            margin: 20px auto 40px;
         }
 
-        /* Estilos da nova seção de serviços */
-        #our-services {
-            padding: 40px 20px;
-            background-color: rgba(255, 255, 255, 0.15);
+        /* --- SERVICES CARDS --- */
+        section {
+            background-color: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(5px); /* Efeito de vidro moderno */
+            border: 1px solid rgba(220, 20, 60, 0.2);
+            padding: 50px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
         }
 
         .service-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            gap: 25px;
+            margin-top: 40px;
         }
 
         .service-card {
-            background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo mais escura para o card */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: left;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            color: #FFC0CB;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 25px;
+            border-radius: 10px;
+            transition: 0.3s;
+            border-bottom: 3px solid transparent;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transform: translateY(-8px);
+            border-bottom: 3px solid #DC143C;
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
-        .service-card .service-icon {
-            font-size: 3em;
-            color: #DC143C;
-            margin-bottom: 15px;
-            text-align: center;
-        }
+        .service-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .service-card h3 { color: #FF6347; margin-top: 0; }
+        .service-card p { color: #ccc; font-size: 0.95em; }
 
-        .service-card h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #FF6347;
-            text-align: center;
-        }
-
-        .service-card p {
-            font-size: 1em;
-            color: #ccc;
-            margin-bottom: 0;
-            text-align: center;
-        }
-
-        /* Contact Preview */
-        #contact-preview .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            text-align: center;
-            padding: 20px;
-            color: #DC143C;
-            margin-top: 50px;
-        }
-
-        footer p {
-            font-size: 0.9em;
-            margin-bottom: 10px;
-            color: #ccc;
-        }
-
-        .footer-logo {
-            display: block;
-            margin: 0 auto 15px auto;
-            max-width: 150px;
-            height: auto;
-        }
-
-        footer ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        footer ul li {
-            margin: 0 15px;
-        }
-
-        footer ul li a {
-            color: #fff;
+        /* --- BUTTONS --- */
+        .button {
+            display: inline-block;
+            background-color: #DC143C;
+            color: white;
+            padding: 14px 28px;
             text-decoration: none;
-            font-size: 0.95em;
-            transition: color 0.3s ease;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        footer ul li a:hover {
-            color: #DC143C;
+        .button:hover {
+            background-color: #B22222;
+            transform: scale(1.05);
         }
 
-        /* Responsividade */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 30px;
+            text-align: center;
+            color: #ccc;
+            border-top: 1px solid #DC143C;
+        }
+
+        /* --- RESPONSIVIDADE --- */
         @media (max-width: 768px) {
-            header nav {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            header nav ul {
-                flex-direction: column;
-                width: 100%;
-                margin-top: 15px;
-            }
-
-            header nav ul li {
-                margin: 5px 0;
-            }
-
-            header .logo {
-                margin-bottom: 10px;
-            }
-
-            #hero {
-                padding: 80px 15px;
-            }
-
-            #hero h2 {
-                font-size: 2.5em;
-            }
-
-            #hero p {
-                font-size: 1.1em;
-            }
-
-            section {
-                padding: 40px 15px;
-            }
-
-            section h2 {
-                font-size: 2em;
-            }
-            
-            .service-list {
-                grid-template-columns: 1fr;
-            }
-
-            .service-card {
-                width: 100%;
-            }
-
-            #contact-preview .button-group {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            footer ul {
-                flex-direction: column;
-                gap: 10px;
-            }
+            header nav { flex-direction: column; }
+            header nav ul { margin-top: 15px; }
+            #hero h2 { font-size: 2em; }
         }
     </style>
 </head>
-<body>
+
+<!-- SEGURANÇA: Bloqueio de clique direito no Body -->
+<body oncontextmenu="return false;">
+
+    <!-- Partículas de animação tech -->
+    <div class="tech-bg">
+        <div class="data-particle"></div>
+        <div class="data-particle"></div>
+        <div class="data-particle"></div>
+        <div class="data-particle"></div>
+        <div class="data-particle"></div>
+    </div>
 
     <div class="overlay"></div>
 
@@ -382,80 +242,67 @@
         </nav>
     </header>
 
-    <main>
-        
-        <section id="hero">
+    <main class="container">
+        <section id="hero" style="background: transparent; border: none; box-shadow: none;">
             <div class="hero-content">
-            <h2>Soluções de TI Completas para Você e sua Empresa</h2>
-            <p>Seja para resolver um problema técnico urgente ou para manter seus sistemas funcionando perfeitamente, a MC Infra TI oferece um portfólio completo de serviços para garantir a tranquilidade de seus negócios.</p>
-            <a href="#our-services" class="button">Ver Nossos Serviços</a>
+                <h2>Soluções de TI Completas</h2>
+                <p>Garantimos a performance e segurança da sua infraestrutura tecnológica com suporte especializado.</p>
+                <a href="#our-services" class="button">Nossos Serviços</a>
             </div>
         </section>
 
-        <section id="our-services" class="container">
-            <h2>Nossos Serviços</h2>
-            <p>Oferecemos suporte técnico especializado e soluções personalizadas para atender todas as suas necessidades de tecnologia.</p>
+        <section id="our-services">
+            <h2 style="color: #FF6347; text-align: center;">O Que Fazemos</h2>
             <div class="service-list">
-                
                 <div class="service-card">
                     <div class="service-icon">💻</div>
-                    <h3>Formatação e Instalação de Sistemas</h3>
-                    <p>Instalação profissional de Windows e Linux, tanto em computadores e notebooks quanto em servidores. Deixamos seu sistema novo em folha e otimizado.</p>
+                    <h3>Sistemas</h3>
+                    <p>Instalação de Windows/Linux e otimização completa de performance.</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon">💾</div>
-                    <h3>Backup de Arquivos</h3>
-                    <p>Proteja seus dados mais importantes. Fazemos backups seguros e confiáveis, garantindo que você nunca perca seus documentos, fotos ou informações críticas.</p>
+                    <h3>Backup</h3>
+                    <p>Proteção de dados críticos com rotinas de backup seguras.</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon">🛠️</div>
-                    <h3>Manutenção de Hardware</h3>
-                    <p>Reparo e manutenção em computadores, notebooks e servidores. Realizamos limpeza interna, troca de componentes e solução de problemas físicos.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">🔄</div>
-                    <h3>Troca de Hardware</h3>
-                    <p>Atualize seu equipamento! Fazemos a troca de componentes como memória RAM, SSD, placa de vídeo e outros, melhorando a performance do seu dispositivo.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Instalação de Softwares e Pacote Office</h3>
-                    <p>Instalamos e configuramos softwares essenciais para o seu dia a dia, incluindo o pacote Microsoft Office, garantindo que tudo funcione perfeitamente.</p>
+                    <h3>Hardware</h3>
+                    <p>Manutenção física, limpeza e reparo de componentes internos.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">⚙️</div>
-                    <h3>Suporte Técnico</h3>
-                    <p>Suporte técnico para resolução de problemas em computadores, impressoras, dispositivos IoT e dispositivos de Técnologia.</p>
-                </div>                
+                    <h3>Suporte</h3>
+                    <p>Assistência técnica para impressoras, IoT e dispositivos de rede.</p>
+                </div>
             </div>
         </section>
-        
-        <section id="contact-preview">
-            <div class="container">
-                <h2>Precisa de um Serviço? Fale Conosco!</h2>
-                <p>Nossa equipe está pronta para te ajudar a resolver qualquer problema de TI e a manter seus sistemas em perfeito estado.</p>
-                <div class="button-group">
-                    <a href="https://wa.me/5514997135218" target="_blank" class="button cookies-button">Conversar no WhatsApp</a>
-                    <a href="contact.html" class="button cookies-button">Preencher Formulário</a>
-                </div>
+
+        <section id="contact-preview" style="text-align: center;">
+            <h2 style="color: #FF6347;">Precisa de Ajuda Técnica?</h2>
+            <p style="color: #FFC0CB;">Fale com um especialista agora mesmo via WhatsApp.</p>
+            <div style="margin-top: 25px;">
+                <a href="https://wa.me/5514997135218" target="_blank" class="button">Chamar no WhatsApp</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" class="footer-logo">
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC" style="max-width: 120px; margin-bottom: 10px;">
         <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
-        <ul>
-            <li><a href="services.html">Serviços</a></li>
-            <li><a href="cookies.html">Cookies</a></li>
-            <li><a href="contact.html">Contato</a></li>
-            <li><a href="#">Política de Privacidade</a></li>
-        </ul>
     </footer>
 
+    <!-- SEGURANÇA: Script para bloquear atalhos de desenvolvedor (F12, Ctrl+U, etc) -->
+    <script>
+        document.onkeydown = function(e) {
+            // Bloqueia F12
+            if(e.keyCode == 123) return false;
+            // Bloqueia Ctrl+Shift+I (Inspeção)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            // Bloqueia Ctrl+Shift+J (Console)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            // Bloqueia Ctrl+U (Ver código fonte)
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+    </script>
 </body>
 </html>
