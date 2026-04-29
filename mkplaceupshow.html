@@ -32,24 +32,24 @@
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; }
 
-        /* --- NOVAS ANIMAÇÕES (SEM QUEBRAR O LAYOUT) --- */
+        /* --- ANIMAÇÕES RESTAURADAS --- */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 5px rgba(10, 255, 10, 0.2); }
-            50% { text-shadow: 0 0 15px rgba(10, 255, 10, 0.5); }
+            0%, 100% { text-shadow: 0 0 8px rgba(10, 255, 10, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(10, 255, 10, 0.7); }
         }
 
-        /* --- SESSÃO RESUMO --- */
+        /* --- SESSÃO RESUMO (COM ANIMAÇÃO) --- */
         .about-platform { 
             padding: 50px 20px; text-align: center; 
             background: rgba(10, 255, 10, 0.04); 
             border: 1px dashed rgba(76, 175, 80, 0.3); 
             border-radius: 20px; margin: 30px 0;
-            animation: fadeInUp 0.8s ease-out;
+            animation: fadeInUp 1s ease-out forwards;
         }
         .about-platform h2 { 
             color: #0AFF0A; margin-bottom: 20px; font-size: 1.8rem; 
@@ -57,10 +57,14 @@
             animation: glowPulse 3s infinite ease-in-out;
         }
         .about-platform p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; }
-        .highlight-green { color: #0AFF0A; font-weight: bold; transition: 0.3s; }
-        .highlight-green:hover { text-shadow: 0 0 10px #0AFF0A; }
+        
+        .highlight-green { 
+            color: #0AFF0A; font-weight: bold; 
+            display: inline-block; transition: all 0.3s ease; 
+        }
+        .highlight-green:hover { transform: scale(1.1); text-shadow: 0 0 10px #0AFF0A; color: #fff; }
 
-        /* --- HERO --- */
+        /* --- HERO & BUSCA --- */
         .search-hero { padding: 30px 0; text-align: center; }
         .search-hero h1 { font-size: 2.2rem; color: #0AFF0A; text-shadow: 0 0 20px rgba(10, 255, 10, 0.4); margin-bottom: 20px; }
         .search-container {
@@ -69,11 +73,10 @@
             max-width: 700px; margin: 0 auto;
         }
         .search-box { display: flex; flex-direction: column; gap: 10px; }
-        input[type="text"] { padding: 15px; border-radius: 8px; border: none; font-size: 1rem; outline: none; flex: 1; color: #000; }
+        input[type="text"] { padding: 15px; border-radius: 8px; border: none; font-size: 1rem; outline: none; flex: 1; }
         .btn-search { background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-search:hover { background: #45a049; transform: scale(1.02); }
 
-        /* --- FLUXO INTELIGENTE --- */
+        /* --- FLUXO --- */
         .flow-section { 
             background: rgba(20, 20, 20, 0.8); border: 1px solid #4CAF50; 
             border-radius: 20px; padding: 40px 20px; margin: 40px 0; text-align: center;
@@ -89,8 +92,7 @@
         /* --- CATEGORIAS --- */
         .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
         .cat-card { 
-            background: rgba(20, 20, 20, 0.9); 
-            border: 1px solid rgba(76, 175, 80, 0.2); 
+            background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(76, 175, 80, 0.2); 
             padding: 20px; border-radius: 12px; text-align: center; 
             cursor: pointer; transition: all 0.3s ease; 
         }
@@ -100,7 +102,7 @@
         }
         .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
 
-        /* --- PLANOS --- */
+        /* --- PLANOS (RESTAURADOS) --- */
         .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; padding-bottom: 40px; }
         .plan-card { 
             background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(76, 175, 80, 0.4); 
@@ -112,7 +114,7 @@
         .plan-price { font-size: 2.2rem; font-weight: bold; margin: 15px 0; color: #fff; }
         .plan-price span { font-size: 1rem; opacity: 0.6; }
         .plan-features { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; text-align: left; flex-grow: 1; }
-        .plan-features li { margin-bottom: 12px; padding-left: 25px; position: relative; }
+        .plan-features li { margin-bottom: 12px; padding-left: 30px; position: relative; }
         .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; font-weight: bold; }
         .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
         .btn-plan:hover { background: #0AFF0A; box-shadow: 0 0 15px rgba(10, 255, 10, 0.5); }
@@ -138,8 +140,8 @@
         footer { background: rgba(0, 0, 0, 0.95); text-align: center; padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 50px; }
         .footer-logo { max-width: 130px; margin-bottom: 10px; }
 
-        /* --- SWEETALERT CUSTOM --- */
-        .swal2-popup { background: #111 !important; color: #fff !important; border: 1px solid #4CAF50 !important; }
+        /* --- POPUP --- */
+        .swal2-popup { background: #111 !important; color: #fff !important; border: 1px solid #4CAF50 !important; border-radius: 20px !important; }
         .swal2-title { color: #0AFF0A !important; }
         .swal2-input, .swal2-textarea { background: #222 !important; color: #fff !important; border: 1px solid #333 !important; }
     </style>
@@ -215,19 +217,10 @@
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
-
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
             </div>
         </section>
 
-        <h2 id="planos" style="text-align: center; color: #4CAF50; margin-top: 40px;">Planos para Profissionais</h2>
-        <div class="plans-grid">
+        <div id="planos" class="plans-grid">
             <div class="plan-card">
                 <h3>Iniciante</h3>
                 <div class="plan-price">Grátis</div>
@@ -235,9 +228,8 @@
                     <li>3 orçamentos mensais</li>
                     <li>Perfil no diretório</li>
                 </ul>
-                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Iniciante', 'Interesse no plano Grátis.')">Cadastrar</button>
+                <button class="btn-plan" onclick="solicitarDados('Plano Iniciante', 'Gostaria de aderir ao plano gratuito.')">Cadastrar</button>
             </div>
-            
             <div class="plan-card featured">
                 <h3>Elite Pro</h3>
                 <div class="plan-price">R$ 49,90<span>/mês</span></div>
@@ -246,17 +238,16 @@
                     <li>Leads via WhatsApp</li>
                     <li>Selo de Verificado</li>
                 </ul>
-                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Elite Pro', 'Interesse no plano Elite Pro.')">Ser Premium</button>
+                <button class="btn-plan" onclick="solicitarDados('Plano Elite Pro', 'Gostaria de aderir ao plano Elite Pro.')">Ser Premium</button>
             </div>
-
             <div class="plan-card">
                 <h3>Enterprise</h3>
                 <div class="plan-price">Consultar</div>
                 <ul class="plan-features">
                     <li>Multi-equipes</li>
-                    <li>Integração API</li>
+                    <li>Integração API / CRM</li>
                 </ul>
-                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Interesse no plano Enterprise.')">Falar Conosco</button>
+                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Gostaria de saber mais sobre o plano Enterprise.')">Falar Conosco</button>
             </div>
         </div>
     </main>
@@ -269,27 +260,26 @@
     <script>
         const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
         
-        function validarWhatsApp(numero) {
-            const limpo = numero.replace(/\D/g, ''); 
-            const regex = /^[1-9]{2}9[0-9]{8}$/;
-            return { valido: regex.test(limpo), numeroFormatado: limpo };
+        function validarWhatsApp(n) {
+            const limpo = n.replace(/\D/g, ''); 
+            return { valido: /^[1-9]{2}9[0-9]{8}$/.test(limpo), numeroFormatado: limpo };
         }
 
         async function solicitarDados(servico, preenchimento = "") {
             const { value: f } = await Swal.fire({
                 title: servico,
                 html: `<input id="swal-n" class="swal2-input" placeholder="Seu Nome">` +
-                     `<input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (DDD+9+Número)">` +
+                     `<input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (149...)">` +
                      `<input id="swal-c" class="swal2-input" placeholder="Cidade">` +
                      `<textarea id="swal-p" class="swal2-textarea" placeholder="Detalhes...">${preenchimento}</textarea>`,
                 showCancelButton: true,
-                confirmButtonText: 'Enviar',
+                confirmButtonText: 'Enviar Pedido',
                 preConfirm: () => {
-                    const n = document.getElementById('swal-n').value;
-                    const w = document.getElementById('swal-w').value;
-                    const c = document.getElementById('swal-c').value;
+                    const n = document.getElementById('swal-n').value.trim();
+                    const w = document.getElementById('swal-w').value.trim();
+                    const c = document.getElementById('swal-c').value.trim();
                     const checagem = validarWhatsApp(w);
-                    if (!n || !w || !c) { Swal.showValidationMessage('Preencha tudo!'); return false; }
+                    if (!n || !w || !c) { Swal.showValidationMessage('Preencha os campos obrigatórios!'); return false; }
                     if (!checagem.valido) { Swal.showValidationMessage('WhatsApp inválido!'); return false; }
                     return { nome: n, whats: checagem.numeroFormatado, cidade: c, desc: document.getElementById('swal-p').value };
                 }
@@ -299,14 +289,15 @@
                 Swal.fire({ title: 'Enviando...', didOpen: () => Swal.showLoading() });
                 try {
                     await fetch(N8N_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({...f, servico}) });
-                    Swal.fire('Sucesso!', 'Pedido enviado.', 'success');
-                } catch(e) { Swal.fire('Erro', 'Falha na conexão.', 'error'); }
+                    Swal.fire('Sucesso!', 'Seu pedido foi enviado.', 'success');
+                } catch(e) { Swal.fire('Ops!', 'Problema na conexão.', 'error'); }
             }
         }
 
         function executarBusca() {
-            const t = document.getElementById('serviceInput').value;
+            const t = document.getElementById('serviceInput').value.trim();
             if(t) solicitarDados('Busca: ' + t);
+            else Swal.fire('Aviso', 'Digite o que procura.', 'info');
         }
     </script>
 </body>
