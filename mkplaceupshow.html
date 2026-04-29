@@ -1,235 +1,78 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TecWork | MC Services</title>
+<script>
+(function() {
 
-  <!-- Segurança básica -->
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    img-src 'self' https: data:;
-    script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src https://fonts.gstatic.com;
-    connect-src 'self' http: https:;
-  ">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="no-referrer">
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
-  <!-- SweetAlert -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      background: #000;
-      color: #fff;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    header {
-      background: #000;
-      padding: 15px;
-      border-bottom: 1px solid #4CAF50;
-      position: sticky;
-      top: 0;
-    }
-
-    .logo {
-      color: #4CAF50;
-      font-weight: bold;
-    }
-
-    .search-container {
-      margin-top: 30px;
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    input {
-      padding: 12px;
-      width: 100%;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      border: none;
-    }
-
-    button {
-      padding: 12px;
-      background: #4CAF50;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-top: 30px;
-    }
-
-    .cat {
-      background: #111;
-      padding: 15px;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-
-    .cat:hover {
-      background: #1c1c1c;
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="container">
-      <span class="logo">🛠️ Tec-Work</span>
-    </div>
-  </header>
-
-  <main class="container">
-
-    <h1>O que você precisa hoje?</h1>
-
-    <div class="search-container">
-      <input type="text" id="serviceInput" placeholder="Ex: Ar condicionado, redes...">
-      <button id="btnBuscar">Buscar</button>
-    </div>
-
-    <div class="categories">
-      <div class="cat" data-serv="Ar Condicionado">❄️ Ar Condicionado</div>
-      <div class="cat" data-serv="CFTV">📹 CFTV</div>
-      <div class="cat" data-serv="Redes">🌐 Redes</div>
-      <div class="cat" data-serv="Elétrica">🔌 Elétrica</div>
-    </div>
-
-  </main>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-
-      const API_URL = "/api/lead";
-
-      // Utils
-      const sanitize = (str) => str.replace(/[<>&"'`]/g, "");
-      const onlyNumbers = (str) => str.replace(/\D/g, "");
-
-      // Honeypot
-      const bot = document.createElement("input");
-      bot.style.display = "none";
-      bot.id = "hp";
-      document.body.appendChild(bot);
-
-      async function solicitarDados(servico) {
-
-        if (typeof Swal === "undefined") {
-          alert("Erro ao carregar interface.");
-          return;
-        }
+    window.solicitarDados = async function(servico, preenchimentoAutomatico = "") {
 
         const { value: f } = await Swal.fire({
-          title: sanitize(servico),
-          html: `
-            <input id="n" class="swal2-input" placeholder="Nome">
-            <input id="w" class="swal2-input" placeholder="WhatsApp">
-            <input id="c" class="swal2-input" placeholder="Cidade">
-            <textarea id="d" class="swal2-textarea" placeholder="Descrição"></textarea>
-          `,
-          showCancelButton: true,
-          confirmButtonText: "Enviar",
-          preConfirm: () => {
-            const nome = sanitize(document.getElementById('n').value.trim());
-            const whats = onlyNumbers(document.getElementById('w').value);
-            const cidade = sanitize(document.getElementById('c').value.trim());
-            const desc = sanitize(document.getElementById('d').value.trim());
+            title: servico,
+            html: `
+                <input id="swal-n" class="swal2-input" placeholder="Seu Nome">
+                <input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (DDD + Número)">
+                <input id="swal-c" class="swal2-input" placeholder="Cidade">
+                <textarea id="swal-p" class="swal2-textarea" placeholder="Descreva sua solicitação...">${preenchimentoAutomatico}</textarea>
+            `,
+            showCancelButton: true,
+            confirmButtonText: 'Enviar Pedido',
+            didOpen: () => {
+                const inputW = document.getElementById('swal-w');
+                inputW.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.replace(/\D/g, '');
+                });
+            },
+            preConfirm: () => {
+                const nome = document.getElementById('swal-n').value.trim();
+                const whats = document.getElementById('swal-w').value.trim();
+                const cidade = document.getElementById('swal-c').value.trim();
 
-            if (!nome || !whats || !cidade) {
-              Swal.showValidationMessage("Preencha os campos");
-              return false;
+                if (!nome || !whats || !cidade) {
+                    Swal.showValidationMessage('Preencha Nome, WhatsApp e Cidade!');
+                    return false;
+                }
+
+                if (whats.length < 10) {
+                    Swal.showValidationMessage('Digite o DDD + Número completo!');
+                    return false;
+                }
+
+                return {
+                    nome,
+                    whats,
+                    cidade,
+                    desc: document.getElementById('swal-p').value
+                };
             }
-
-            if (whats.length < 10) {
-              Swal.showValidationMessage("WhatsApp inválido");
-              return false;
-            }
-
-            return { nome, whats, cidade, desc };
-          }
         });
 
         if (!f) return;
 
-        // Honeypot check
-        if (document.getElementById("hp").value !== "") {
-          console.warn("Bot detectado");
-          return;
-        }
-
         Swal.fire({
-          title: "Enviando...",
-          didOpen: () => Swal.showLoading()
+            title: 'Enviando...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
         });
 
         try {
-          const controller = new AbortController();
-          setTimeout(() => controller.abort(), 8000);
 
-          const res = await fetch(API_URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ ...f, servico }),
-            signal: controller.signal
-          });
+            const res = await fetch("/api/lead", {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({...f, servico})
+            });
 
-          if (!res.ok) throw new Error();
+            if (!res.ok) throw new Error();
 
-          Swal.fire("Sucesso", "Pedido enviado", "success");
+            Swal.fire('Sucesso!', 'Seu pedido foi enviado.', 'success');
 
-        } catch (e) {
-          console.error(e);
-          Swal.fire("Erro", "Falha ao enviar", "error");
+        } catch(e) {
+            console.error(e);
+            Swal.fire('Erro!', 'Falha ao enviar.', 'error');
         }
-      }
+    };
 
-      // Eventos
-      document.getElementById("btnBuscar").addEventListener("click", () => {
-        const t = document.getElementById("serviceInput").value.trim();
-        if (t.length > 2) {
-          solicitarDados("Busca: " + t);
-        }
-      });
+    window.executarBusca = function() {
+        const t = document.getElementById('serviceInput').value.trim();
+        if (t) solicitarDados('Busca: ' + t);
+    };
 
-      document.querySelectorAll(".cat").forEach(el => {
-        el.addEventListener("click", () => {
-          solicitarDados(el.dataset.serv);
-        });
-      });
-
-    });
-  </script>
-
-</body>
-</html>
+})();
+</script>
