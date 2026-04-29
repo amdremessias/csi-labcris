@@ -32,16 +32,61 @@
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; }
 
-        /* --- SESSÃO RESUMO (RESTAURADA) --- */
+        /* --- SESSÃO RESUMO COM ANIMAÇÕES --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 5px rgba(10, 255, 10, 0.2); }
+            50% { text-shadow: 0 0 15px rgba(10, 255, 10, 0.6); }
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { border-color: rgba(76, 175, 80, 0.3); }
+            50% { border-color: rgba(10, 255, 10, 0.8); }
+        }
+
         .about-platform { 
             padding: 50px 20px; text-align: center; 
             background: rgba(10, 255, 10, 0.04); 
             border: 1px dashed rgba(76, 175, 80, 0.3); 
             border-radius: 20px; margin: 30px 0;
+            animation: fadeInUp 1s ease-out forwards, borderPulse 4s infinite ease-in-out;
+            position: relative;
+            overflow: hidden;
         }
-        .about-platform h2 { color: #0AFF0A; margin-bottom: 20px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .about-platform p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; }
-        .highlight-green { color: #0AFF0A; font-weight: bold; }
+
+        .about-platform h2 { 
+            color: #0AFF0A; 
+            margin-bottom: 20px; 
+            font-size: 1.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            animation: glowPulse 3s infinite ease-in-out;
+        }
+
+        .about-platform p { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            font-size: 1.1rem; 
+            line-height: 1.8; 
+            color: #e0e0e0; 
+        }
+
+        .highlight-green { 
+            color: #0AFF0A; 
+            font-weight: bold; 
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .about-platform:hover .highlight-green {
+            color: #fff;
+            text-shadow: 0 0 8px #0AFF0A;
+            transform: scale(1.03);
+        }
 
         /* --- HERO --- */
         .search-hero { padding: 30px 0; text-align: center; }
@@ -112,11 +157,11 @@
         .swal2-input, .swal2-textarea { background: #222 !important; color: #fff !important; border: 1px solid #333 !important; width: 90% !important; margin: 10px auto !important; box-sizing: border-box !important; }
         .swal2-confirm { background-color: #4CAF50 !important; }
 
-        /* --- GALERIA SLIDER (AJUSTADA PARA LOOP INFINITO PERFEITO) --- */
+        /* --- GALERIA SLIDER --- */
         .slider-section { padding: 40px 0; overflow: hidden; }
         .slider-track { 
             display: flex; 
-            width: calc(280px * 14); /* Dobro do número de slides reais */
+            width: calc(280px * 14); 
             animation: scroll 25s linear infinite; 
         }
         .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
@@ -126,7 +171,7 @@
 
         @keyframes scroll { 
             0% { transform: translateX(0); } 
-            100% { transform: translateX(calc(-280px * 7)); } /* Move exatamente a metade do track total */
+            100% { transform: translateX(calc(-280px * 7)); } 
         }
 
         @media (min-width: 768px) {
@@ -158,181 +203,18 @@
 
     <main class="container">
         <section class="about-platform">
-            <h2>Excelência Técnica a um Clique</h2>
-            <p>O <span class="highlight-green">Tec-Work</span> é a plataforma de elite que redefine a contratação de serviços técnicos em Ourinhos e região. Unimos tecnologia de ponta e uma <span class="highlight-green">curadoria rigorosa</span> para conectar você aos melhores especialistas em TI, Infraestrutura e Manutenção. Nossa missão é oferecer segurança total, orçamentos instantâneos e a garantia de que seu projeto está em mãos profissionais.</p>
+            <h2 style="opacity: 0; animation: fadeInUp 0.8s ease-out 0.3s forwards;">
+                Excelência Técnica a um Clique
+            </h2>
+            <p style="opacity: 0; animation: fadeInUp 0.8s ease-out 0.6s forwards;">
+                O <span class="highlight-green">Tec-Work</span> é a plataforma de elite que redefine a contratação de serviços técnicos em <strong>Ourinhos e região</strong>. 
+                Unimos tecnologia de ponta e uma <span class="highlight-green">curadoria rigorosa</span> para conectar você aos melhores especialistas em TI, Infraestrutura e Manutenção. 
+                Nossa missão é oferecer segurança total, orçamentos instantâneos e a garantia de que seu projeto está em mãos profissionais.
+            </p>
         </section>
 
         <section class="search-hero">
             <h1>O que você precisa hoje?</h1>
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" id="serviceInput" placeholder="Ex: Ar Condicionado, Câmeras, Redes...">
-                    <button class="btn-search" onclick="executarBusca()">Buscar Agora</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="fluxo" class="flow-section">
-            <h2>Fluxo Inteligente de Serviço</h2>
-            <div class="flow-grid">
-                <div class="flow-item"><div class="flow-number">1</div><h3>Solicitação</h3><p>Descreva sua necessidade.</p></div>
-                <div class="flow-item"><div class="flow-number">2</div><h3>Localização</h3><p>IA encontra o técnico ideal.</p></div>
-                <div class="flow-item"><div class="flow-number">3</div><h3>Orçamento</h3><p>Receba propostas rápidas.</p></div>
-                <div class="flow-item"><div class="flow-number">4</div><h3>Aprovação</h3><p>Agende o serviço com 1 clique.</p></div>
-                <div class="flow-item"><div class="flow-number">5</div><h3>Finalização</h3><p>Avalie e pague com segurança.</p></div>
-            </div>
-        </section>
-
-        <h2 id="categorias" style="text-align: center; color: #4CAF50; margin-bottom: 30px;">Categorias Populares</h2>
-        <div class="categories-grid">
-            <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Entregador')"><span class="cat-icon">🏍️</span><h3>Entregador</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Alarme')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Cerca Elétrica')"><span class="cat-icon">⚡</span><h3>Cerca Elétrica</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Portão Automático')"><span class="cat-icon">🚪</span><h3>Portão Automático</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Controle de Acesso')"><span class="cat-icon">🔑</span><h3>Controle de Acesso</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Home Automação')"><span class="cat-icon">🏠</span><h3>Home Automação</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Monitoramento 24h')"><span class="cat-icon">🛡️</span><h3>Monitoramento 24h</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Jardinagem')"><span class="cat-icon">🍃</span><h3>Jardinagem</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Serralheiro')"><span class="cat-icon">⚙️</span><h3>Serralheiro</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador</h3></div>
-        </div>
-
-        <section id="galeria" class="slider-section">
-            <h2 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">Portfólio de Serviços</h2>
-            <div class="slider-track">
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Câmeras IP</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ArtemisTheCat.jpeg"><div class="slide-label">Infraestrutura TI</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Câmeras IP</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ArtemisTheCat.jpeg"><div class="slide-label">Infraestrutura TI</div></div></div>
-            </div>
-        </section>
-
-        <h2 id="planos" style="text-align: center; color: #4CAF50; margin-top: 40px;">Planos para Profissionais</h2>
-        <div class="plans-grid">
-            <div class="plan-card">
-                <h3>Iniciante</h3>
-                <div class="plan-price">Grátis</div>
-                <ul class="plan-features">
-                    <li>3 orçamentos mensais</li>
-                    <li>Perfil no diretório</li>
-                    <li>Suporte via ticket</li>
-                </ul>
-                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Iniciante', 'Gostaria de me cadastrar no Plano Iniciante (Grátis).')">Cadastrar</button>
-            </div>
-            
-            <div class="plan-card featured">
-                <h3>Elite Pro</h3>
-                <div class="plan-price">R$ 49,90<span>/mês</span></div>
-                <ul class="plan-features">
-                    <li><strong>Orçamentos Ilimitados</strong></li>
-                    <li>Leads via WhatsApp</li>
-                    <li>Selo de Verificado</li>
-                    <li>Destaque nas buscas</li>
-                </ul>
-                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Elite Pro', 'Gostaria de contratar o Plano Elite Pro (R$ 49,90/mês).')">Ser Premium</button>
-            </div>
-
-            <div class="plan-card">
-                <h3>Enterprise</h3>
-                <div class="plan-price">Consultar</div>
-                <ul class="plan-features">
-                    <li>Multi-equipes</li>
-                    <li>Integração API / CRM</li>
-                    <li>Geofencing exclusivo</li>
-                </ul>
-                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Tenho interesse no Plano Enterprise para minha empresa.')">Falar Conosco</button>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" class="footer-logo">
-        <p>&copy; 2026 MC Services | Ourinhos-SP</p>
-    </footer>
-
-    <script>
-        const N8N_URL = "https://app-n8n.duckdns.org/webhook/servico-certo-webhook";
-        
-        function validarWhatsApp(numero) {
-            const limpo = numero.replace(/\D/g, ''); 
-            const regex = /^[1-9]{2}9[0-9]{8}$/;
-            return {
-                valido: regex.test(limpo),
-                numeroFormatado: limpo
-            };
-        }
-
-        async function solicitarDados(servico, preenchimentoAutomatico = "") {
-            const { value: f } = await Swal.fire({
-                title: servico,
-                html: 
-                    `<input id="swal-n" class="swal2-input" placeholder="Seu Nome">` +
-                    `<input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (ex: 14991234567)">` +
-                    `<input id="swal-c" class="swal2-input" placeholder="Cidade">` +
-                    `<textarea id="swal-p" class="swal2-textarea" placeholder="Descreva sua solicitação...">${preenchimentoAutomatico}</textarea>`,
-                showCancelButton: true,
-                confirmButtonText: 'Enviar Pedido',
-                cancelButtonText: 'Cancelar',
-                preConfirm: () => {
-                    const nome = document.getElementById('swal-n').value.trim();
-                    const whatsRaw = document.getElementById('swal-w').value.trim();
-                    const cidade = document.getElementById('swal-c').value.trim();
-                    const desc = document.getElementById('swal-p').value.trim();
-
-                    const checagem = validarWhatsApp(whatsRaw);
-
-                    if (!nome || !whatsRaw || !cidade) {
-                        Swal.showValidationMessage('Preencha os campos obrigatórios!');
-                        return false;
-                    }
-
-                    if (!checagem.valido) {
-                        Swal.showValidationMessage('WhatsApp inválido! Use: DDD + 9 + número (11 dígitos)');
-                        return false;
-                    }
-
-                    return { nome, whats: checagem.numeroFormatado, cidade, desc }
-                }
-            });
-
-            if (f) {
-                Swal.fire({ title: 'Enviando...', didOpen: () => Swal.showLoading() });
-                try {
-                    await fetch(N8N_URL, { 
-                        method: 'POST', 
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({...f, servico}) 
-                    });
-                    Swal.fire('Sucesso!', 'Seu pedido foi enviado para nossa central.', 'success');
-                } catch(e) {
-                    Swal.fire('Ops!', 'Houve um problema na conexão.', 'error');
-                }
-            }
-        }
-
-        function executarBusca() {
-            const t = document.getElementById('serviceInput').value.trim();
-            if(t) {
-                solicitarDados('Busca do Usuário: ' + t);
-            } else {
-                Swal.fire('Aviso', 'Digite o que você procura antes de buscar.', 'info');
-            }
-        }
-    </script>
-</body>
-</html>
+                    <input type="text" id="serviceInput" placeholder="Ex: Ar Condicionado, Câmeras, Redes
