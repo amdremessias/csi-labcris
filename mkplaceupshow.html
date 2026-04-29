@@ -34,17 +34,17 @@
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; font-weight: bold; }
 
-        /* --- #1 ANIMAÇÃO RESUMO --- */
+        /* --- #1 ANIMAÇÃO RESUMO (AJUSTADA) --- */
         .about-platform { 
             padding: 50px 20px; text-align: center; 
             background: rgba(10, 255, 10, 0.04); 
             border: 1px dashed rgba(76, 175, 80, 0.3); 
             border-radius: 20px; margin: 30px 0;
-            animation: slideUpFade 1.2s ease-out forwards;
+            animation: resumeFadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         }
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes resumeFadeIn {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
         .about-platform h2 { color: #0AFF0A; margin-bottom: 20px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
         .about-platform p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; }
@@ -63,7 +63,7 @@
         .btn-search { background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .btn-search:hover { background: #0AFF0A; box-shadow: 0 0 15px #0AFF0A; }
 
-        /* --- #2 ANIMAÇÃO FLUXO (ESTILO CONEXÃO) --- */
+        /* --- #2 ANIMAÇÃO FLUXO --- */
         .flow-section { 
             background: rgba(20, 20, 20, 0.8); border: 1px solid #4CAF50; 
             border-radius: 20px; padding: 40px 20px; margin: 40px 0; text-align: center;
@@ -99,24 +99,25 @@
         }
         .flow-item:hover .flow-number { transform: rotate(360deg); background: #4CAF50; color: #fff; }
 
-        /* --- #3 CATEGORIAS (TRANSPARÊNCIA) --- */
+        /* --- #3 CATEGORIAS (TRANSPARÊNCIA AO HOVER) --- */
         .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
         .cat-card { 
-            background: rgba(20, 20, 20, 0.7); 
+            background: rgba(20, 20, 20, 0.9); 
             border: 1px solid rgba(76, 175, 80, 0.2); 
             padding: 20px; border-radius: 12px; text-align: center; 
-            cursor: pointer; transition: all 0.3s ease; 
-            backdrop-filter: blur(5px);
+            cursor: pointer; transition: all 0.3s ease;
         }
         .cat-card:hover { 
-            background: rgba(10, 255, 10, 0.15); 
+            background: rgba(10, 255, 10, 0.05); /* Transparência com toque verde */
             border-color: #0AFF0A; 
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
-        .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; transition: 0.3s; }
+        .cat-card:hover .cat-icon { transform: scale(1.2); }
 
-        /* --- ESTILIZAÇÃO DOS PLANOS --- */
+        /* --- PLANOS --- */
         .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; padding-bottom: 40px; }
         .plan-card { 
             background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(76, 175, 80, 0.4); 
@@ -132,25 +133,24 @@
         .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
         .btn-plan:hover { background: #0AFF0A; box-shadow: 0 0 15px rgba(10, 255, 10, 0.5); }
 
-        /* --- #4 CORREÇÃO POPUP MOBILE --- */
+        /* --- POPUP MOBILE --- */
         .swal2-popup { 
             background: #111 !important; color: #fff !important; 
             border: 1px solid #4CAF50 !important; border-radius: 20px !important; 
-            padding: 1rem !important;
             width: 95% !important; max-width: 450px !important;
         }
         .swal2-input, .swal2-textarea { 
             background: #222 !important; color: #fff !important; 
             border: 1px solid #333 !important; 
             width: 100% !important; margin: 10px 0 !important; 
-            font-size: 16px !important; /* Evita zoom forçado no iOS */
+            font-size: 16px !important;
         }
 
-        /* --- #5 GALERIA SLIDER (LOOP INFINITO) --- */
+        /* --- SLIDER LOOP --- */
         .slider-section { padding: 40px 0; overflow: hidden; }
         .slider-track { 
             display: flex; 
-            width: calc(280px * 14); /* Dobro do número de slides para loop */
+            width: calc(280px * 14); 
             animation: scrollLoop 30s linear infinite; 
         }
         .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
@@ -163,7 +163,6 @@
             100% { transform: translateX(calc(-280px * 7)); } 
         }
 
-        /* --- COMPATIBILIDADE SMARTPHONE/TABLET --- */
         @media (min-width: 768px) {
             .categories-grid { grid-template-columns: repeat(5, 1fr); }
             .plans-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -309,17 +308,16 @@
                 title: servico,
                 html: 
                     `<input id="swal-n" class="swal2-input" placeholder="Seu Nome">` +
-                    `<input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (Somente Números)">` +
+                    `<input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (14999999999)">` +
                     `<input id="swal-c" class="swal2-input" placeholder="Cidade">` +
                     `<textarea id="swal-p" class="swal2-textarea" placeholder="Descreva sua solicitação...">${preenchimentoAutomatico}</textarea>`,
                 showCancelButton: true,
                 confirmButtonText: 'Enviar Pedido',
                 cancelButtonText: 'Cancelar',
                 didOpen: () => {
-                    // #3 TRAVA DE NÚMEROS DDD + TELEFONE
                     const inputW = document.getElementById('swal-w');
                     inputW.addEventListener('input', (e) => {
-                        e.target.value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+                        e.target.value = e.target.value.replace(/\D/g, ''); 
                     });
                 },
                 preConfirm: () => {
@@ -327,11 +325,11 @@
                     const whats = document.getElementById('swal-w').value.trim();
                     const cidade = document.getElementById('swal-c').value.trim();
                     if(!nome || !whats || !cidade) {
-                        Swal.showValidationMessage('Preencha Nome, WhatsApp e Cidade!');
+                        Swal.showValidationMessage('Preencha os campos obrigatórios!');
                         return false;
                     }
                     if(whats.length < 10) {
-                        Swal.showValidationMessage('Digite o DDD + Número completo!');
+                        Swal.showValidationMessage('WhatsApp incompleto!');
                         return false;
                     }
                     return { nome, whats, cidade, desc: document.getElementById('swal-p').value }
