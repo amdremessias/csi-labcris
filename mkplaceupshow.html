@@ -34,18 +34,29 @@
         header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
         header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; font-weight: bold; }
 
-        /* --- #1 ANIMAÇÃO RESUMO --- */
+        /* --- #1 ANIMAÇÃO RESUMO E TEXTO PULSANDO --- */
         .about-platform { 
             padding: 50px 20px; text-align: center; 
             background: rgba(10, 255, 10, 0.04); 
-            border: 1px dashed rgba(76, 175, 80, 0.3); 
+            border: 1px solid rgba(76, 175, 80, 0.3); 
             border-radius: 20px; margin: 30px 0;
-            animation: slideUpFade 1.2s ease-out forwards;
+            animation: pulseSection 3s infinite ease-in-out;
         }
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes pulseSection {
+            0%, 100% { border-color: rgba(76, 175, 80, 0.3); box-shadow: 0 0 5px rgba(10, 255, 10, 0.05); }
+            50% { border-color: rgba(10, 255, 10, 0.8); box-shadow: 0 0 20px rgba(10, 255, 10, 0.1); }
         }
+
+        .about-platform h2, .about-platform p {
+            animation: pulseText 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.01); text-shadow: 0 0 10px rgba(10, 255, 10, 0.3); }
+        }
+
         .about-platform h2 { color: #0AFF0A; margin-bottom: 20px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
         .about-platform p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; }
         .highlight-green { color: #0AFF0A; font-weight: bold; }
@@ -63,7 +74,7 @@
         .btn-search { background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .btn-search:hover { background: #0AFF0A; box-shadow: 0 0 15px #0AFF0A; }
 
-        /* --- #2 ANIMAÇÃO FLUXO (ESTILO CONEXÃO) --- */
+        /* --- FLUXO --- */
         .flow-section { 
             background: rgba(20, 20, 20, 0.8); border: 1px solid #4CAF50; 
             border-radius: 20px; padding: 40px 20px; margin: 40px 0; text-align: center;
@@ -81,15 +92,7 @@
         }
         @keyframes pulseLine { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 
-        .flow-item { opacity: 0; animation: flowPop 0.6s forwards; z-index: 1; }
-        .flow-item:nth-child(1) { animation-delay: 0.2s; }
-        .flow-item:nth-child(2) { animation-delay: 0.4s; }
-        .flow-item:nth-child(3) { animation-delay: 0.6s; }
-        .flow-item:nth-child(4) { animation-delay: 0.8s; }
-        .flow-item:nth-child(5) { animation-delay: 1s; }
-
-        @keyframes flowPop { to { opacity: 1; transform: scale(1); } from { transform: scale(0.9); } }
-
+        .flow-item { z-index: 1; }
         .flow-number { 
             width: 40px; height: 40px; background: #000; color: #0AFF0A; 
             border: 2px solid #4CAF50; border-radius: 50%; display: flex; 
@@ -99,7 +102,7 @@
         }
         .flow-item:hover .flow-number { transform: rotate(360deg); background: #4CAF50; color: #fff; }
 
-        /* --- #3 CATEGORIAS (TRANSPARÊNCIA) --- */
+        /* --- #2 CATEGORIAS (HOVER TRANSPARENTE) --- */
         .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
         .cat-card { 
             background: rgba(20, 20, 20, 0.7); 
@@ -109,14 +112,15 @@
             backdrop-filter: blur(5px);
         }
         .cat-card:hover { 
-            background: rgba(10, 255, 10, 0.15); 
+            background: transparent; /* Card fica transparente */
             border-color: #0AFF0A; 
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 20px rgba(10, 255, 10, 0.2);
+            backdrop-filter: blur(2px);
         }
         .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
 
-        /* --- ESTILIZAÇÃO DOS PLANOS --- */
+        /* --- PLANOS --- */
         .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; padding-bottom: 40px; }
         .plan-card { 
             background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(76, 175, 80, 0.4); 
@@ -130,40 +134,29 @@
         .plan-features li { margin-bottom: 12px; padding-left: 30px; position: relative; }
         .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; font-weight: bold; }
         .btn-plan { background: #4CAF50; color: white; padding: 15px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        .btn-plan:hover { background: #0AFF0A; box-shadow: 0 0 15px rgba(10, 255, 10, 0.5); }
 
-        /* --- #4 CORREÇÃO POPUP MOBILE --- */
+        /* --- POPUP --- */
         .swal2-popup { 
             background: #111 !important; color: #fff !important; 
             border: 1px solid #4CAF50 !important; border-radius: 20px !important; 
-            padding: 1rem !important;
             width: 95% !important; max-width: 450px !important;
         }
         .swal2-input, .swal2-textarea { 
             background: #222 !important; color: #fff !important; 
-            border: 1px solid #333 !important; 
-            width: 100% !important; margin: 10px 0 !important; 
-            font-size: 16px !important; /* Evita zoom forçado no iOS */
+            border: 1px solid #333 !important; width: 100% !important; 
+            margin: 10px 0 !important; font-size: 16px !important;
         }
 
-        /* --- #5 GALERIA SLIDER (LOOP INFINITO) --- */
+        /* --- SLIDER --- */
         .slider-section { padding: 40px 0; overflow: hidden; }
-        .slider-track { 
-            display: flex; 
-            width: calc(280px * 14); /* Dobro do número de slides para loop */
-            animation: scrollLoop 30s linear infinite; 
-        }
+        .slider-track { display: flex; width: calc(280px * 14); animation: scrollLoop 30s linear infinite; }
         .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
         .slide-content { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; border: 1px solid rgba(76, 175, 80, 0.4); }
         .slide-content img { width: 100%; height: 100%; object-fit: cover; }
         .slide-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; }
 
-        @keyframes scrollLoop { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(calc(-280px * 7)); } 
-        }
+        @keyframes scrollLoop { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 7)); } }
 
-        /* --- COMPATIBILIDADE SMARTPHONE/TABLET --- */
         @media (min-width: 768px) {
             .categories-grid { grid-template-columns: repeat(5, 1fr); }
             .plans-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -266,7 +259,6 @@
                 <ul class="plan-features">
                     <li>3 orçamentos mensais</li>
                     <li>Perfil no diretório</li>
-                    <li>Suporte via ticket</li>
                 </ul>
                 <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Iniciante', 'Gostaria de me cadastrar no Plano Iniciante (Grátis).')">Cadastrar</button>
             </div>
@@ -278,7 +270,6 @@
                     <li><strong>Orçamentos Ilimitados</strong></li>
                     <li>Leads via WhatsApp</li>
                     <li>Selo de Verificado</li>
-                    <li>Destaque nas buscas</li>
                 </ul>
                 <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Elite Pro', 'Gostaria de contratar o Plano Elite Pro (R$ 49,90/mês).')">Ser Premium</button>
             </div>
@@ -289,9 +280,8 @@
                 <ul class="plan-features">
                     <li>Multi-equipes</li>
                     <li>Integração API / CRM</li>
-                    <li>Geofencing exclusivo</li>
                 </ul>
-                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Tenho interesse no Plano Enterprise para minha empresa.')">Falar Conosco</button>
+                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Tenho interesse no Plano Enterprise.')">Falar Conosco</button>
             </div>
         </div>
     </main>
@@ -316,10 +306,9 @@
                 confirmButtonText: 'Enviar Pedido',
                 cancelButtonText: 'Cancelar',
                 didOpen: () => {
-                    // #3 TRAVA DE NÚMEROS DDD + TELEFONE
                     const inputW = document.getElementById('swal-w');
                     inputW.addEventListener('input', (e) => {
-                        e.target.value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+                        e.target.value = e.target.value.replace(/\D/g, ''); 
                     });
                 },
                 preConfirm: () => {
@@ -327,11 +316,7 @@
                     const whats = document.getElementById('swal-w').value.trim();
                     const cidade = document.getElementById('swal-c').value.trim();
                     if(!nome || !whats || !cidade) {
-                        Swal.showValidationMessage('Preencha Nome, WhatsApp e Cidade!');
-                        return false;
-                    }
-                    if(whats.length < 10) {
-                        Swal.showValidationMessage('Digite o DDD + Número completo!');
+                        Swal.showValidationMessage('Preencha os campos obrigatórios!');
                         return false;
                     }
                     return { nome, whats, cidade, desc: document.getElementById('swal-p').value }
@@ -346,17 +331,16 @@
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({...f, servico}) 
                     });
-                    Swal.fire('Sucesso!', 'Seu pedido foi enviado para nossa central.', 'success');
+                    Swal.fire('Sucesso!', 'Seu pedido foi enviado.', 'success');
                 } catch(e) {
-                    Swal.fire('Ops!', 'Houve um problema na conexão.', 'error');
+                    Swal.fire('Ops!', 'Houve um problema.', 'error');
                 }
             }
         }
 
         function executarBusca() {
             const t = document.getElementById('serviceInput').value.trim();
-            if(t) solicitarDados('Busca do Usuário: ' + t);
-            else Swal.fire('Aviso', 'O que você procura hoje?', 'info');
+            if(t) solicitarDados('Busca: ' + t);
         }
     </script>
 </body>
