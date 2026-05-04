@@ -115,6 +115,32 @@
         }
         .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
 
+        /* --- Slider Section --- */
+        .slider-section { padding: 40px 0; overflow: hidden; }
+        .slider-track { display: flex; width: calc(280px * 14); animation: scrollLoop 30s linear infinite; }
+        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
+        .slide-content { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; border: 1px solid rgba(76, 175, 80, 0.4); }
+        .slide-content img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; }
+
+        @keyframes scrollLoop { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 7)); } }
+
+        /* --- Seção de Vídeo Revisional --- */
+        .video-highlight-section { padding: 50px 0; text-align: center; }
+        .video-container-wrapper {
+            max-width: 800px; margin: 0 auto;
+            border: 2px solid #4CAF50; border-radius: 20px;
+            overflow: hidden; box-shadow: 0 0 25px rgba(10, 255, 10, 0.2);
+            position: relative; background: #000;
+        }
+        .responsive-video {
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+        }
+        .responsive-video iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        /* --- Planos --- */
         .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; padding-bottom: 40px; }
         .plan-card { 
             background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(76, 175, 80, 0.4); 
@@ -161,15 +187,6 @@
             border: 1px solid #333 !important; width: 100% !important; 
             margin: 10px 0 !important; font-size: 16px !important;
         }
-
-        .slider-section { padding: 40px 0; overflow: hidden; }
-        .slider-track { display: flex; width: calc(280px * 14); animation: scrollLoop 30s linear infinite; }
-        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
-        .slide-content { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; border: 1px solid rgba(76, 175, 80, 0.4); }
-        .slide-content img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; }
-
-        @keyframes scrollLoop { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 7)); } }
 
         @media (min-width: 768px) {
             .categories-grid { grid-template-columns: repeat(5, 1fr); }
@@ -245,7 +262,7 @@
             <div class="cat-card" onclick="solicitarDados('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador</h3></div>
         </div>
 
-         <section id="galeria" class="slider-section">
+        <section id="galeria" class="slider-section">
             <h2 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">Portfólio de Serviços</h2>
             <div class="slider-track">
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
@@ -255,6 +272,7 @@
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <!-- Repetição para o loop infinito -->
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/images.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
@@ -264,6 +282,16 @@
             </div>
         </section>
 
+        <!-- NOVA SESSÃO DE VÍDEO -->
+        <section class="video-highlight-section">
+            <h2 style="color: #0AFF0A; margin-bottom: 10px;">Monitoramento Inteligente & Segurança</h2>
+            <p style="margin-bottom: 30px; color: #ccc;">Veja como nossas soluções de CFTV garantem a proteção do seu patrimônio em tempo real.</p>
+            <div class="video-container-wrapper">
+                <div class="responsive-video">
+                    <iframe src="https://www.youtube.com/embed/cuQeUT660y8" title="Segurança Eletrônica" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
 
         <h2 id="planos" style="text-align: center; color: #4CAF50; margin-top: 40px;">Planos para Profissionais</h2>
         <div class="plans-grid">
@@ -279,6 +307,7 @@
             </div>
              
             <div class="plan-card featured">
+                <div class="badge-popular">Mais Procurado</div>
                 <h3>Elite Pro</h3>
                 <div class="plan-price">R$ 59,90<span>/mês</span></div>
                 <ul class="plan-features">
@@ -310,11 +339,9 @@
 
     <script>
         (function() {
-            // Ofuscação básica da URL para evitar varredura de bots
             const _0x1 = "aHR0cHM6Ly9hcHAtbjhuLmR1Y2tkbnMub3JnL3dlYmhvb2svc2Vydmljby1jZXJ0by13ZWJob29r";
             const _u = atob(_0x1);
 
-            // Bloqueio de Inspeção
             document.addEventListener('contextmenu', e => e.preventDefault());
             document.onkeydown = e => {
                 if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
