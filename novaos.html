@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OS Master - Gestão de Ordens de Serviço e Clientes</title>
+    <title>Nova O.S - Gestão de Ordens de Serviço e Clientes</title>
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -51,6 +51,9 @@
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .logo {
             font-size: 2.2em;
@@ -71,7 +74,6 @@
             color: var(--white);
             text-decoration: none;
             font-size: 1.1em;
-            font-weight: 400;
             transition: color 0.3s ease;
         }
         nav ul li a:hover {
@@ -80,8 +82,8 @@
 
         /* --- Hero Section --- */
         .hero-section {
-            padding: 80px 20px;
-            background: linear-gradient(rgba(10, 28, 46, 0.88), rgba(10, 28, 46, 0.88)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(10, 28, 46, 0.9), rgba(10, 28, 46, 0.9)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
         }
@@ -91,12 +93,37 @@
             margin-bottom: 10px;
         }
         .hero-section .subtitle {
-            font-size: 1.5em;
+            font-size: 1.4em;
             font-weight: 300;
             margin-bottom: 40px;
-            max-width: 800px;
+            max-width: 850px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* --- Video Demo Section --- */
+        .video-container {
+            max-width: 900px;
+            margin: -60px auto 40px auto; /* Overlap na hero */
+            padding: 10px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         /* --- Info Sections --- */
@@ -146,10 +173,12 @@
             text-align: left;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         .price-card.highlight {
             border: 3px solid var(--primary-green);
-            transform: scale(1.03);
+            transform: scale(1.05);
+            z-index: 2;
         }
         .price-card h3 {
             font-size: 1.8em;
@@ -202,7 +231,7 @@
             background-color: var(--primary-green);
             color: var(--white);
             text-decoration: none;
-            padding: 15px 25px;
+            padding: 15px 30px;
             border-radius: 50px;
             font-size: 1.1em;
             font-weight: 700;
@@ -220,16 +249,18 @@
         footer {
             background-color: var(--dark-blue);
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             color: var(--white);
             margin-top: 50px;
         }
-        .footer-logo { max-width: 150px; margin-bottom: 15px; }
+        .footer-logo { max-width: 180px; margin-bottom: 20px; }
 
         @media (max-width: 768px) {
             .hero-section h1 { font-size: 2.2em; }
             .pricing-grid { grid-template-columns: 1fr; }
+            .price-card.highlight { transform: scale(1); }
             nav ul li { display: block; margin: 10px 0; }
+            .video-container { margin-top: 20px; }
         }
     </style>
 </head>
@@ -249,27 +280,39 @@
 
     <main>
         <section class="hero-section">
-            <h1 style="color: var(--primary-green);">Gestão Inteligente de Ordens de Serviço e Clientes</h1>
-            <p class="subtitle">Controle orçamentos, acompanhe serviços em tempo real e organize sua base de clientes em uma única plataforma robusta e intuitiva.</p>
-            <a href="#planos" class="cta-button">Conhecer Planos de Implantação</a>
+            <h1 style="color: var(--primary-green);">Gestão Profissional de Assistência Técnica</h1>
+            <p class="subtitle">Controle faturamento, histórico de equipamentos e ordens de serviço em uma plataforma ágil e segura, desenhada para quem não pode perder tempo.</p>
+            <a href="#planos" class="cta-button">Ver Modelos de Implantação</a>
         </section>
 
+        <!-- Seção do Vídeo demonstrativo -->
+        <div class="container">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://odysee.com/$/embed/@MCinfraTI:d/Reviewer-NovaOS:b" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
         <section id="beneficios" class="container">
-            <h2 class="section-title">Por que automatizar sua gestão?</h2>
-            <p>Elimine planilhas confusas e blocos de papel. Centralize toda a operação da sua assistência técnica ou empresa de serviços com segurança e profissionalismo.</p>
+            <h2 class="section-title">Por que o Nova O.S?</h2>
+            <p>Otimize sua operação com a tecnologia que você viu no vídeo. Foco em clareza visual e rapidez na abertura de chamados.</p>
             
             <div class="info-card-grid">
                 <div class="info-card">
-                    <h3><span>📊</span> Controle Total</h3>
-                    <p>Saiba exatamente o status de cada serviço, prazos de entrega e produtividade da sua equipe em tempo real.</p>
+                    <h3><span>📊</span> Dashboard Estratégico</h3>
+                    <p>Visão geral de faturamento e status das ordens (abertas, orçadas e finalizadas) logo na tela inicial.</p>
                 </div>
                 <div class="info-card">
-                    <h3><span>💰</span> Orçamentos Rápidos</h3>
-                    <p>Gere orçamentos profissionais em PDF e envie diretamente para o WhatsApp ou e-mail do seu cliente.</p>
+                    <h3><span>🛠️</span> Gestão de Equipamentos</h3>
+                    <p>Vincule equipamentos a clientes e mantenha um histórico vitalício de manutenções realizadas.</p>
                 </div>
                 <div class="info-card">
-                    <h3><span>👥</span> CRM Integrado</h3>
-                    <p>Histórico completo de cada cliente: serviços realizados, equipamentos, pagamentos e preferências.</p>
+                    <h3><span>🛡️</span> Soberania de Dados</h3>
+                    <p>Seus dados, suas regras. Opção de hospedagem em sua própria infraestrutura com segurança de ponta.</p>
                 </div>
             </div>
         </section>
@@ -280,70 +323,72 @@
             <h2 class="section-title">Recursos Especializados</h2>
             <div class="info-card-grid">
                 <div class="info-card">
-                    <h3><span>🛠️</span> Fluxo de Trabalho</h3>
-                    <p>Personalize os status da OS (Aguardando Peças, Em Manutenção, Finalizado) conforme sua necessidade.</p>
+                    <h3><span>🧾</span> Orçamentos em PDF</h3>
+                    <p>Envio instantâneo para WhatsApp. Profissionalismo que encanta o cliente e agiliza a aprovação.</p>
                 </div>
                 <div class="info-card">
-                    <h3><span>📱</span> Acesso Remoto</h3>
-                    <p>Sistema 100% web. Sua equipe de campo pode atualizar ordens de serviço diretamente do celular.</p>
+                    <h3><span>🔄</span> Fluxo Customizável</h3>
+                    <p>Adapte os status do sistema ao seu processo real: "Aguardando Peça", "Em Bancada", "Pronto para Retirada".</p>
                 </div>
                 <div class="info-card">
-                    <h3><span>📈</span> Relatórios Prontos</h3>
-                    <p>Relatórios de faturamento, serviços mais realizados e desempenho técnico para tomadas de decisão.</p>
+                    <h3><span>🔐</span> Acesso Multi-Nível</h3>
+                    <p>Controle o que cada técnico ou atendente pode visualizar e editar dentro do sistema.</p>
                 </div>
             </div>
         </section>
 
         <section id="planos" class="container">
             <h2 class="section-title">Modelos de Implantação</h2>
-            <p class="subtitle">Escolha como prefere manter seus dados e sua operação.</p>
+            <p class="subtitle">Escolha a liberdade da infraestrutura própria ou a comodidade da nossa nuvem.</p>
 
             <div class="pricing-grid">
+                <!-- Plano Self-Hosted -->
                 <article class="price-card">
                     <div>
                         <h3>Sua Infraestrutura</h3>
-                        <p class="plan-tag">Instalação em seu Servidor ou VPS</p>
+                        <p class="plan-tag">Self-Hosted / On-Premise</p>
                         <p class="setup-fee">Taxa de Setup: R$ 1.900,00 <span>(Único)</span></p>
                         <p class="price-value">R$ 160,00 <span>/mês</span></p>
                         <ul class="price-list">
-                            <li>Instalação completa no seu servidor</li>
-                            <li>Sua base de dados sob seu controle</li>
-                            <li>Suporte mensal especializado</li>
-                            <li>Atualizações de segurança inclusas</li>
-                            <li>Treinamento remoto inicial</li>
-                            <li>Sem limite de usuários/registros</li>
+                            <li><strong>Instalação em seu Servidor ou VPS</strong></li>
+                            <li>Total controle e soberania dos dados</li>
+                            <li>Sem limite de usuários ou registros</li>
+                            <li>Suporte técnico mensal especializado</li>
+                            <li>Atualizações de segurança aplicadas por nós</li>
+                            <li>Treinamento remoto para equipe</li>
                         </ul>
                     </div>
                     <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Solicitar Deploy</a>
                 </article>
 
+                <!-- Plano SaaS -->
                 <article class="price-card highlight">
                     <div>
                         <h3>Nossa Infraestrutura</h3>
-                        <p class="plan-tag">Sistema em Nuvem (SaaS)</p>
+                        <p class="plan-tag">Cloud Gerenciada (SaaS)</p>
                         <p class="setup-fee">Taxa de Ativação: R$ 1.380,00 <span>(Único)</span></p>
                         <p class="price-value">R$ 180,00 <span>/mês</span></p>
                         <ul class="price-list">
-                            <li>Hospedagem Cloud de alta performance</li>
-                            <li>Backups automáticos diários</li>
-                            <li>Ativação prioritária</li>
+                            <li><strong>Hospedagem em Nuvem de alta performance</strong></li>
+                            <li>Backups diários automatizados</li>
+                            <li>Ativação prioritária em até 24h</li>
                             <li>Suporte técnico prioritário</li>
-                            <li>Monitoramento 24/7</li>
-                            <li>Acesso de qualquer lugar do mundo</li>
+                            <li>Monitoramento de uptime 24/7</li>
+                            <li>Acesso global via HTTPS seguro</li>
                         </ul>
                     </div>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Começar Agora</a>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Assinar Agora</a>
                 </article>
             </div>
         </section>
 
         <section id="contato" class="container">
             <hr>
-            <h2>Precisa de uma demonstração?</h2>
-            <p class="subtitle">Veja como o Nova O.S pode transformar a rotina da sua empresa.</p>
+            <h2>Pronto para profissionalizar sua gestão?</h2>
+            <p class="subtitle">Fale diretamente com quem entende de infraestrutura e segurança.</p>
             <div style="margin-top: 30px;">
-                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366;">
-                    Falar com Consultor Técnico 📞
+                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366; font-size: 1.3em;">
+                    Agendar Demonstração via WhatsApp 📞
                 </a>
             </div>
         </section>
@@ -351,8 +396,9 @@
 
     <footer>
         <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
-        <p>&copy; 2026 Nova O.S by MC Infra TI | Todos os direitos reservados.</p>
-        <p><small>A implantação em infraestrutura própria requer sistema Linux Ubuntu 22.04+ ou equivalente.</small></p>
+        <p><strong>Nova O.S</strong> é um produto da <strong>MC Infra TI</strong></p>
+        <p>&copy; 2026 | Desenvolvido por André Luiz Messias. Todos os direitos reservados.</p>
+        <p><small>Requisitos para infra própria: Linux Ubuntu 22.04 LTS ou Docker Engine.</small></p>
     </footer>
 
 </body>
