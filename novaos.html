@@ -14,7 +14,6 @@
             --white: #FFFFFF;
             --light-gray: #F4F6F9;
             --text-dark: #333333;
-            --accent-blue: #007bff;
         }
 
         body {
@@ -27,55 +26,49 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Global Sections --- */
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        
-        .section-title {
-            font-size: 2.2em;
-            color: var(--dark-blue);
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        hr { border: 0; height: 1px; background: #ddd; margin: 40px 0; }
-
-        /* --- Header --- */
+        /* --- Header Ajustado (Fix para não quebrar) --- */
         header {
             background-color: var(--dark-blue);
-            padding: 1.5rem 0;
-            text-align: center;
+            padding: 1rem 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            color: var(--white);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
+
+        header .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .logo {
-            font-size: 2.2em;
+            font-size: 1.8em;
             font-weight: 700;
             color: var(--primary-green);
             letter-spacing: 1px;
+            text-decoration: none;
         }
+
         nav ul {
             list-style: none;
             padding: 0;
-            margin-top: 15px;
+            margin: 0;
+            display: flex;
+            gap: 20px;
         }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
+
         nav ul li a {
             color: var(--white);
             text-decoration: none;
-            font-size: 1.1em;
+            font-size: 1em;
+            font-weight: 400;
             transition: color 0.3s ease;
         }
+
         nav ul li a:hover {
             color: var(--primary-green);
         }
@@ -87,24 +80,13 @@
             color: var(--white);
             text-align: center;
         }
-        .hero-section h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .hero-section .subtitle {
-            font-size: 1.4em;
-            font-weight: 300;
-            margin-bottom: 40px;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .hero-section h1 { font-size: 3.5em; margin-bottom: 10px; }
+        .hero-section .subtitle { font-size: 1.4em; max-width: 850px; margin: 0 auto 40px auto; }
 
-        /* --- Video Demo Section --- */
+        /* --- Video Section --- */
         .video-container {
             max-width: 900px;
-            margin: -60px auto 40px auto; /* Overlap na hero */
+            margin: -60px auto 40px auto;
             padding: 10px;
             background: var(--white);
             border-radius: 15px;
@@ -126,106 +108,24 @@
             border: 0;
         }
 
-        /* --- Info Sections --- */
-        .info-card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .info-card {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-            text-align: left;
-            transition: transform 0.3s ease;
-        }
-        .info-card:hover {
-            transform: translateY(-5px);
-        }
-        .info-card h3 {
-            font-size: 1.4em;
-            color: var(--dark-blue);
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-        }
-        .info-card h3 span {
-            font-size: 1.5em;
-            margin-right: 10px;
-            color: var(--primary-green);
-        }
-        
-        /* --- Pricing Grid --- */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        .price-card {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        .price-card.highlight {
-            border: 3px solid var(--primary-green);
-            transform: scale(1.05);
-            z-index: 2;
-        }
-        .price-card h3 {
-            font-size: 1.8em;
-            color: var(--dark-blue);
-            margin-bottom: 5px;
-            text-align: center;
-        }
-        .plan-tag {
-            font-size: 0.9em;
-            color: var(--primary-green);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        .price-value {
-            font-size: 2.5em;
-            font-weight: 700;
-            color: var(--dark-green);
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .price-value span { font-size: 0.4em; color: var(--text-dark); font-weight: 400; }
-        .setup-fee { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--dark-blue); }
+        /* --- Global Grid --- */
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .section-title { font-size: 2.2em; color: var(--dark-blue); margin-bottom: 30px; }
+        .info-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .info-card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.05); text-align: left; }
+        .info-card h3 { display: flex; align-items: center; color: var(--dark-blue); }
+        .info-card h3 span { font-size: 1.5em; margin-right: 10px; color: var(--primary-green); }
 
-        .price-list {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
-            flex-grow: 1;
-        }
-        .price-list li {
-            font-size: 1em;
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 25px;
-        }
-        .price-list li::before {
-            content: '✓';
-            display: inline-block;
-            color: var(--primary-green);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
+        /* --- Pricing --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 30px; }
+        .price-card { background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+        .price-card.highlight { border: 3px solid var(--primary-green); transform: scale(1.05); z-index: 2; }
+        .price-value { font-size: 2.5em; font-weight: 700; color: var(--dark-green); text-align: center; }
+        .price-list { list-style: none; padding: 0; flex-grow: 1; margin: 20px 0; }
+        .price-list li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .price-list li::before { content: '✓'; color: var(--primary-green); position: absolute; left: 0; font-weight: bold; }
 
-        /* --- Buttons --- */
+        /* --- CTA --- */
         .cta-button {
             display: inline-block;
             background-color: var(--primary-green);
@@ -233,162 +133,112 @@
             text-decoration: none;
             padding: 15px 30px;
             border-radius: 50px;
-            font-size: 1.1em;
             font-weight: 700;
-            text-align: center;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        .cta-button:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        footer {
-            background-color: var(--dark-blue);
             text-align: center;
-            padding: 60px 20px;
-            color: var(--white);
-            margin-top: 50px;
         }
+        .cta-button:hover { background-color: var(--dark-green); transform: translateY(-3px); }
+
+        footer { background: var(--dark-blue); text-align: center; padding: 60px 20px; color: var(--white); }
         .footer-logo { max-width: 180px; margin-bottom: 20px; }
 
         @media (max-width: 768px) {
+            header .nav-container { flex-direction: column; gap: 15px; }
             .hero-section h1 { font-size: 2.2em; }
             .pricing-grid { grid-template-columns: 1fr; }
             .price-card.highlight { transform: scale(1); }
-            nav ul li { display: block; margin: 10px 0; }
-            .video-container { margin-top: 20px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <nav>
-            <div class="logo">Nova O.S</div>
-            <ul>
-                <li><a href="#beneficios">Benefícios</a></li>
-                <li><a href="#recursos">Recursos</a></li>
-                <li><a href="#planos">Planos</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Nova O.S</a>
+            <nav>
+                <ul>
+                    <li><a href="#beneficios">Benefícios</a></li>
+                    <li><a href="#recursos">Recursos</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
         <section class="hero-section">
             <h1 style="color: var(--primary-green);">Gestão Profissional de Assistência Técnica</h1>
-            <p class="subtitle">Controle faturamento, histórico de equipamentos e ordens de serviço em uma plataforma ágil e segura, desenhada para quem não pode perder tempo.</p>
+            <p class="subtitle">Controle faturamento, histórico de equipamentos e ordens de serviço em uma plataforma ágil e segura.</p>
             <a href="#planos" class="cta-button">Ver Modelos de Implantação</a>
         </section>
 
-        <!-- Seção do Vídeo demonstrativo -->
         <div class="container">
             <div class="video-container">
                 <div class="video-wrapper">
-                    <iframe 
-                        src="https://odysee.com/$/embed/@MCinfraTI:d/Reviewer-NovaOS:b" 
-                        allowfullscreen>
-                    </iframe>
+                    <iframe src="https://odysee.com/$/embed/@MCinfraTI:d/Reviewer-NovaOS:b" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
 
         <section id="beneficios" class="container">
             <h2 class="section-title">Por que o Nova O.S?</h2>
-            <p>Otimize sua operação com a tecnologia que você viu no vídeo. Foco em clareza visual e rapidez na abertura de chamados.</p>
-            
             <div class="info-card-grid">
                 <div class="info-card">
                     <h3><span>📊</span> Dashboard Estratégico</h3>
-                    <p>Visão geral de faturamento e status das ordens (abertas, orçadas e finalizadas) logo na tela inicial.</p>
+                    <p>Visão clara de faturamento e status das ordens (abertas, orçadas e finalizadas) em tempo real.</p>
                 </div>
                 <div class="info-card">
                     <h3><span>🛠️</span> Gestão de Equipamentos</h3>
-                    <p>Vincule equipamentos a clientes e mantenha um histórico vitalício de manutenções realizadas.</p>
+                    <p>Histórico completo de manutenções por equipamento, facilitando o diagnóstico futuro.</p>
                 </div>
                 <div class="info-card">
                     <h3><span>🛡️</span> Soberania de Dados</h3>
-                    <p>Seus dados, suas regras. Opção de hospedagem em sua própria infraestrutura com segurança de ponta.</p>
-                </div>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="recursos" class="container">
-            <h2 class="section-title">Recursos Especializados</h2>
-            <div class="info-card-grid">
-                <div class="info-card">
-                    <h3><span>🧾</span> Orçamentos em PDF</h3>
-                    <p>Envio instantâneo para WhatsApp. Profissionalismo que encanta o cliente e agiliza a aprovação.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span>🔄</span> Fluxo Customizável</h3>
-                    <p>Adapte os status do sistema ao seu processo real: "Aguardando Peça", "Em Bancada", "Pronto para Retirada".</p>
-                </div>
-                <div class="info-card">
-                    <h3><span>🔐</span> Acesso Multi-Nível</h3>
-                    <p>Controle o que cada técnico ou atendente pode visualizar e editar dentro do sistema.</p>
+                    <p>Seus dados sob seu controle. Opção de hospedagem local ou em nuvem privada.</p>
                 </div>
             </div>
         </section>
 
         <section id="planos" class="container">
             <h2 class="section-title">Modelos de Implantação</h2>
-            <p class="subtitle">Escolha a liberdade da infraestrutura própria ou a comodidade da nossa nuvem.</p>
-
             <div class="pricing-grid">
-                <!-- Plano Self-Hosted -->
                 <article class="price-card">
-                    <div>
-                        <h3>Sua Infraestrutura</h3>
-                        <p class="plan-tag">Self-Hosted / On-Premise</p>
-                        <p class="setup-fee">Taxa de Setup: R$ 1.900,00 <span>(Único)</span></p>
-                        <p class="price-value">R$ 160,00 <span>/mês</span></p>
-                        <ul class="price-list">
-                            <li><strong>Instalação em seu Servidor ou VPS</strong></li>
-                            <li>Total controle e soberania dos dados</li>
-                            <li>Sem limite de usuários ou registros</li>
-                            <li>Suporte técnico mensal especializado</li>
-                            <li>Atualizações de segurança aplicadas por nós</li>
-                            <li>Treinamento remoto para equipe</li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Solicitar Deploy</a>
+                    <h3>Sua Infraestrutura</h3>
+                    <p style="text-align:center">Self-Hosted</p>
+                    <p style="text-align:center; font-weight:bold">Setup: R$ 1.900,00</p>
+                    <p class="price-value">R$ 160,00 <span>/mês</span></p>
+                    <ul class="price-list">
+                        <li>Instalação em seu Servidor/VPS</li>
+                        <li>Soberania total dos dados</li>
+                        <li>Usuários ilimitados</li>
+                        <li>Suporte mensal especializado</li>
+                        <li>Atualizações de segurança</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218" class="cta-button">Solicitar Deploy</a>
                 </article>
 
-                <!-- Plano SaaS -->
                 <article class="price-card highlight">
-                    <div>
-                        <h3>Nossa Infraestrutura</h3>
-                        <p class="plan-tag">Cloud Gerenciada (SaaS)</p>
-                        <p class="setup-fee">Taxa de Ativação: R$ 1.380,00 <span>(Único)</span></p>
-                        <p class="price-value">R$ 180,00 <span>/mês</span></p>
-                        <ul class="price-list">
-                            <li><strong>Hospedagem em Nuvem de alta performance</strong></li>
-                            <li>Backups diários automatizados</li>
-                            <li>Ativação prioritária em até 24h</li>
-                            <li>Suporte técnico prioritário</li>
-                            <li>Monitoramento de uptime 24/7</li>
-                            <li>Acesso global via HTTPS seguro</li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Assinar Agora</a>
+                    <h3>Nossa Infraestrutura</h3>
+                    <p style="text-align:center">Cloud SaaS</p>
+                    <p style="text-align:center; font-weight:bold">Ativação: R$ 1.380,00</p>
+                    <p class="price-value">R$ 180,00 <span>/mês</span></p>
+                    <ul class="price-list">
+                        <li>Hospedagem Cloud de alta performance</li>
+                        <li>Backups diários automáticos</li>
+                        <li>Ativação em até 24h</li>
+                        <li>Suporte prioritário</li>
+                        <li>Acesso HTTPS seguro</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218" class="cta-button">Assinar Agora</a>
                 </article>
             </div>
         </section>
 
         <section id="contato" class="container">
-            <hr>
-            <h2>Pronto para profissionalizar sua gestão?</h2>
-            <p class="subtitle">Fale diretamente com quem entende de infraestrutura e segurança.</p>
+            <h2>Pronto para começar?</h2>
             <div style="margin-top: 30px;">
-                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366; font-size: 1.3em;">
-                    Agendar Demonstração via WhatsApp 📞
+                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366; font-size: 1.2em;">
+                    Falar com Consultor via WhatsApp 📞
                 </a>
             </div>
         </section>
@@ -397,8 +247,7 @@
     <footer>
         <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
         <p><strong>Nova O.S</strong> é um produto da <strong>MC Infra TI</strong></p>
-        <p>&copy; 2026 | Desenvolvido por André Luiz Messias. Todos os direitos reservados.</p>
-        <p><small>Requisitos para infra própria: Linux Ubuntu 22.04 LTS ou Docker Engine.</small></p>
+        <p>&copy; 2026 | Desenvolvido por André Luiz Messias.</p>
     </footer>
 
 </body>
