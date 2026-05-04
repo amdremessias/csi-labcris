@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova O.S - Gestão de Ordens de Serviço e Clientes</title>
+    <title>Nova O.S - Gestão Profissional e Infraestrutura</title>
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -26,7 +26,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Header Ajustado (Fix para não quebrar) --- */
+        /* --- Header (Layout Seguro) --- */
         header {
             background-color: var(--dark-blue);
             padding: 1rem 0;
@@ -49,8 +49,8 @@
             font-size: 1.8em;
             font-weight: 700;
             color: var(--primary-green);
-            letter-spacing: 1px;
             text-decoration: none;
+            letter-spacing: 1px;
         }
 
         nav ul {
@@ -65,13 +65,10 @@
             color: var(--white);
             text-decoration: none;
             font-size: 1em;
-            font-weight: 400;
             transition: color 0.3s ease;
         }
 
-        nav ul li a:hover {
-            color: var(--primary-green);
-        }
+        nav ul li a:hover { color: var(--primary-green); }
 
         /* --- Hero Section --- */
         .hero-section {
@@ -100,28 +97,45 @@
             border-radius: 10px;
         }
         .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
 
+        /* --- Seção de Recursos (Nova) --- */
+        .recursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .recurso-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            border-bottom: 4px solid var(--primary-green);
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .recurso-card h4 {
+            margin-top: 0;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2em;
+        }
+        .recurso-card p { font-size: 0.95em; color: #555; margin-bottom: 0; }
+
         /* --- Global Grid --- */
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; text-align: center; }
-        .section-title { font-size: 2.2em; color: var(--dark-blue); margin-bottom: 30px; }
-        .info-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .info-card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.05); text-align: left; }
-        .info-card h3 { display: flex; align-items: center; color: var(--dark-blue); }
-        .info-card h3 span { font-size: 1.5em; margin-right: 10px; color: var(--primary-green); }
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; text-align: center; }
+        .section-title { font-size: 2.5em; color: var(--dark-blue); margin-bottom: 10px; }
+        .section-subtitle { font-size: 1.1em; color: #666; margin-bottom: 40px; }
 
         /* --- Pricing --- */
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 30px; }
         .price-card { background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
         .price-card.highlight { border: 3px solid var(--primary-green); transform: scale(1.05); z-index: 2; }
         .price-value { font-size: 2.5em; font-weight: 700; color: var(--dark-green); text-align: center; }
-        .price-list { list-style: none; padding: 0; flex-grow: 1; margin: 20px 0; }
+        .price-list { list-style: none; padding: 0; flex-grow: 1; margin: 20px 0; text-align: left; }
         .price-list li { margin-bottom: 10px; padding-left: 25px; position: relative; }
         .price-list li::before { content: '✓'; color: var(--primary-green); position: absolute; left: 0; font-weight: bold; }
 
@@ -139,7 +153,7 @@
         }
         .cta-button:hover { background-color: var(--dark-green); transform: translateY(-3px); }
 
-        footer { background: var(--dark-blue); text-align: center; padding: 60px 20px; color: var(--white); }
+        footer { background: var(--dark-blue); text-align: center; padding: 60px 20px; color: var(--white); margin-top: 80px; }
         .footer-logo { max-width: 180px; margin-bottom: 20px; }
 
         @media (max-width: 768px) {
@@ -157,7 +171,6 @@
             <a href="#" class="logo">Nova O.S</a>
             <nav>
                 <ul>
-                    <li><a href="#beneficios">Benefícios</a></li>
                     <li><a href="#recursos">Recursos</a></li>
                     <li><a href="#planos">Planos</a></li>
                     <li><a href="#contato">Contato</a></li>
@@ -168,9 +181,9 @@
 
     <main>
         <section class="hero-section">
-            <h1 style="color: var(--primary-green);">Gestão Profissional de Assistência Técnica</h1>
-            <p class="subtitle">Controle faturamento, histórico de equipamentos e ordens de serviço em uma plataforma ágil e segura.</p>
-            <a href="#planos" class="cta-button">Ver Modelos de Implantação</a>
+            <h1 style="color: var(--primary-green);">Ecossistema de Gestão para TI e Assistências</h1>
+            <p class="subtitle">Muito além de ordens de serviço. Uma plataforma completa de faturamento, inventário e suporte.</p>
+            <a href="#planos" class="cta-button">Explorar Planos</a>
         </section>
 
         <div class="container">
@@ -181,64 +194,85 @@
             </div>
         </div>
 
-        <section id="beneficios" class="container">
-            <h2 class="section-title">Por que o Nova O.S?</h2>
-            <div class="info-card-grid">
-                <div class="info-card">
-                    <h3><span>📊</span> Dashboard Estratégico</h3>
-                    <p>Visão clara de faturamento e status das ordens (abertas, orçadas e finalizadas) em tempo real.</p>
+        <section id="recursos" class="container">
+            <h2 class="section-title">Funcionalidades do Sistema</h2>
+            <p class="section-subtitle">Tudo o que você viu no vídeo e muito mais para automatizar seu fluxo de trabalho.</p>
+            
+            <div class="recursos-grid">
+                <div class="recurso-card">
+                    <h4>🛠️ Ordem de Serviço</h4>
+                    <p>Abertura ágil com status personalizados (Bancada, Aguardando Peça, Finalizado). Histórico completo de técnico responsável.</p>
                 </div>
-                <div class="info-card">
-                    <h3><span>🛠️</span> Gestão de Equipamentos</h3>
-                    <p>Histórico completo de manutenções por equipamento, facilitando o diagnóstico futuro.</p>
+                <div class="recurso-card">
+                    <h4>👥 Gestão de Clientes</h4>
+                    <p>Base de dados centralizada com histórico de serviços, equipamentos vinculados e facilidade de contato via WhatsApp.</p>
                 </div>
-                <div class="info-card">
-                    <h3><span>🛡️</span> Soberania de Dados</h3>
-                    <p>Seus dados sob seu controle. Opção de hospedagem local ou em nuvem privada.</p>
+                <div class="recurso-card">
+                    <h4>📋 Orçamentos Profissionais</h4>
+                    <p>Geração de orçamentos em PDF com um clique. Envio automatizado e controle de aprovações pendentes.</p>
+                </div>
+                <div class="recurso-card">
+                    <h4>📦 Produtos e Vendas</h4>
+                    <p>Venda direta de balcão integrada ao estoque. Gerencie vendas de produtos junto aos serviços de mão de obra.</p>
+                </div>
+                <div class="recurso-card">
+                    <h4>🖥️ Inventário (Equipamentos)</h4>
+                    <p>Controle o que entra e sai. Inventário detalhado por cliente, incluindo números de série e especificações técnicas.</p>
+                </div>
+                <div class="recurso-card">
+                    <h4>🎧 Módulo de Suporte</h4>
+                    <p>Sistema interno para acompanhamento de chamados e solicitações de clientes com SLA de atendimento.</p>
+                </div>
+                <div class="recurso-card">
+                    <h4>📂 Backup On-Demand</h4>
+                    <p>Segurança total. Realize backups manuais ou agendados da sua base de dados com facilidade de restauração.</p>
+                </div>
+                <div class="recurso-card">
+                    <h4>📈 Relatórios Financeiros</h4>
+                    <p>Dashboard de faturamento mensal, serviços mais lucrativos e desempenho da equipe técnica.</p>
                 </div>
             </div>
         </section>
 
         <section id="planos" class="container">
-            <h2 class="section-title">Modelos de Implantação</h2>
+            <h2 class="section-title">Escolha sua Implantação</h2>
             <div class="pricing-grid">
                 <article class="price-card">
                     <h3>Sua Infraestrutura</h3>
-                    <p style="text-align:center">Self-Hosted</p>
                     <p style="text-align:center; font-weight:bold">Setup: R$ 1.900,00</p>
                     <p class="price-value">R$ 160,00 <span>/mês</span></p>
                     <ul class="price-list">
-                        <li>Instalação em seu Servidor/VPS</li>
-                        <li>Soberania total dos dados</li>
-                        <li>Usuários ilimitados</li>
-                        <li>Suporte mensal especializado</li>
-                        <li>Atualizações de segurança</li>
+                        <li>Instalação via Docker em seu Servidor</li>
+                        <li>Soberania total dos dados e arquivos</li>
+                        <li>Sem limites de registros ou usuários</li>
+                        <li>Suporte especializado em Infra TI</li>
+                        <li>Atualizações de segurança inclusas</li>
                     </ul>
-                    <a href="https://wa.me/5514997135218" class="cta-button">Solicitar Deploy</a>
+                    <a href="https://wa.me/5514997135218" class="cta-button">Solicitar Deploy Local</a>
                 </article>
 
                 <article class="price-card highlight">
                     <h3>Nossa Infraestrutura</h3>
-                    <p style="text-align:center">Cloud SaaS</p>
                     <p style="text-align:center; font-weight:bold">Ativação: R$ 1.380,00</p>
                     <p class="price-value">R$ 180,00 <span>/mês</span></p>
                     <ul class="price-list">
-                        <li>Hospedagem Cloud de alta performance</li>
-                        <li>Backups diários automáticos</li>
-                        <li>Ativação em até 24h</li>
-                        <li>Suporte prioritário</li>
-                        <li>Acesso HTTPS seguro</li>
+                        <li>Hospedagem Cloud MC Infra TI</li>
+                        <li>Backup diário automatizado em nuvem</li>
+                        <li>Certificado SSL e HTTPS ativo</li>
+                        <li>Ativação imediata (Go-Live 24h)</li>
+                        <li>Monitoramento de performance 24/7</li>
                     </ul>
-                    <a href="https://wa.me/5514997135218" class="cta-button">Assinar Agora</a>
+                    <a href="https://wa.me/5514997135218" class="cta-button">Começar Agora</a>
                 </article>
             </div>
         </section>
 
         <section id="contato" class="container">
-            <h2>Pronto para começar?</h2>
+            <h2>Dúvidas sobre a implantação?</h2>
+            <p>Fale diretamente com André Luiz Messias, especialista em Infraestrutura e Segurança.</p>
             <div style="margin-top: 30px;">
                 <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366; font-size: 1.2em;">
-                    Falar com Consultor via WhatsApp 📞
+                    Falar com Consultor Técnico 📞
                 </a>
             </div>
         </section>
@@ -247,7 +281,7 @@
     <footer>
         <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
         <p><strong>Nova O.S</strong> é um produto da <strong>MC Infra TI</strong></p>
-        <p>&copy; 2026 | Desenvolvido por André Luiz Messias.</p>
+        <p>&copy; 2026 | Tecnologia e Segurança por André Luiz Messias.</p>
     </footer>
 
 </body>
