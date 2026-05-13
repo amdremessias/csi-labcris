@@ -185,7 +185,7 @@
                 <li>Faça login e localize seu <strong>Token</strong>.</li>
             </ol>
             <div class="important">
-                <strong>Exemplo de Token:</strong> <code>26887e1b-e75c-43d8-9d16-5f11135bb84d</code>
+                <strong>Exemplo de Token:</strong> <code>xxx87e1b-e75c-xxx-9d16-xxxxxxxxxx4d</code>
             </div>
 
             <h2>Passo 2: Configurar o Docker Compose para NPM</h2>
@@ -276,12 +276,14 @@ BACKEND_PORT=443</code></pre>
         <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" style="max-width:150px; margin-bottom:15px;">
         <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
     </footer>
+    <!-- Script Extra para reforçar o bloqueio de teclas de atalho (opcional) -->
     <script>
-        // Bloqueio de teclas de inspeção
         document.onkeydown = function(e) {
-            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
-                return false;
-            }
+            if(e.keyCode == 123) { return false; } // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } // Inspect
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; } // Inspect
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } // Console
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } // View Source
         }
     </script>
 </body>
