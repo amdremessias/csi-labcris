@@ -259,81 +259,268 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
-
-    <div class="star-container">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-    </div>
-
-    <div class="overlay"></div>
-
-    <header>
-        <div class="logo">MC infra TI - Technical Labs</div>
-    </header>
-
-    <div class="container">
-        <section>
-            <h1>Configurando Nginx Proxy Manager com DuckDNS e SSL</h1>
-            <p>Este guia detalha a configuração do Nginx Proxy Manager (NPM) para resolver problemas de acesso a recursos como microfone no serviço Ticketz.</p>
-
-            <h2>1. Obtenha seu Token do DuckDNS</h2>
-            <p>O token é essencial para que o NPM valide a propriedade do domínio via DNS Challenge:</p>
-            <ul>
-                <li>Acesse o site <a href="https://www.duckdns.org/">DuckDNS</a>.</li>
-                <li>Copie seu Token (ex: <code>26887e1b-e75c-43d8-9d16-5f11135bb84d</code>).</li>
-            </ul>
-
-            <h2>2. Configuração da Rede Docker</h2>
-            <p>Ambos os serviços precisam estar na mesma rede para comunicação interna segura:</p>
-            <pre>docker network create nginx-proxy</pre>
-
-            <h2>3. Ajuste no Docker Compose do Ticketz</h2>
-            <p>Edite o <code>docker-compose.yaml</code> do serviço frontend:</p>
-            <pre>
-frontend:
-  expose:
-    - 80
-  networks:
-    - ticketz
-    - nginx-proxy
-            </pre>
-            <div class="important">
-                <strong>Nota:</strong> Remova a seção <code>ports</code> para evitar exposição direta e forçar o tráfego pelo Proxy Reverso.
-            </div>
-
-            <h2>4. Configuração do SSL via DNS Challenge</h2>
-            <p>No painel do NPM (porta 81), ao adicionar o Proxy Host para <code>novochat.duckdns.org</code>:</p>
-            <ul>
-                <li>Selecione <strong>Request a new SSL Certificate</strong>.</li>
-                <li>Ative <strong>Use a DNS Challenge</strong> e escolha <strong>DuckDNS</strong>.</li>
-                <li>Insira a configuração: <code>dns_duckdns_token = seu_token_aqui</code>.</li>
-                <li>Aumente o <strong>Propagation Seconds</strong> para 120 para garantir a sincronia.</li>
-            </ul>
-
-            <h2>5. Variáveis de Ambiente (.env)</h2>
-            <p>Atualize os arquivos <code>.env-frontend</code> e <code>.env-backend</code> para usar HTTPS e evitar erros de "Mixed Content":</p>
-            <pre>
+<body>
+    <h1>Tutorial: Configurando Nginx Proxy Manager com DuckDNS e SSL para o Serviço Ticketz</h1>
+<p>Este tutorial detalhado guiará você através do processo de configuração do Nginx Proxy Manager (NPM) com um subdomínio DuckDNS e certificados SSL via DNS Challenge. O objetivo é resolver problemas de acesso a recursos como microfone em aplicações web (como o Ticketz) que exigem uma conexão HTTPS segura.</p>
+<h2>Introdução</h2>
+<p>Ao desenvolver e hospedar aplicações web, especialmente aquelas que utilizam recursos sensíveis do navegador como o microfone (através da API <code>enumerateDevices</code>), é crucial garantir que a conexão seja segura (HTTPS). Sem um certificado SSL válido, os navegadores modernos bloqueiam o acesso a esses recursos, resultando em erros como <code>TypeError: Cannot read properties of undefined (reading 'enumerateDevices')</code>.</p>
+<p>Este guia aborda a integração do Nginx Proxy Manager, uma ferramenta poderosa para gerenciar proxies reversos e certificados SSL, com o serviço de DNS dinâmico DuckDNS. Utilizaremos o método DNS Challenge para a emissão de certificados Let's Encrypt, que permite a validação do domínio sem a necessidade de abrir portas como a 80 ou expor diretamente o IP público do seu servidor.</p>
+<h2>Pré-requisitos</h2>
+<p>Antes de iniciar, certifique-se de ter os seguintes itens configurados:</p>
+<ul>
+<li><strong>Servidor:</strong> Uma máquina virtual (VM) ou servidor com Docker e Docker Compose instalados (ex: Ubuntu em Proxmox).</li>
+<li><strong>Nginx Proxy Manager (NPM):</strong> Uma instância do NPM já em execução ou pronta para ser configurada via Docker Compose.</li>
+<li><strong>DuckDNS:</strong> Uma conta ativa no DuckDNS com um ou mais subdomínios configurados (ex: <code>novochat.duckdns.org</code>).</li>
+<li><strong>Serviço Web:</strong> O serviço que você deseja expor (neste caso, o <code>Ticketz</code> ou <code>chat</code>) rodando em containers Docker e acessível internamente.</li>
+<li><strong>NetBird (Opcional):</strong> Se você utiliza o NetBird para acesso à rede interna, certifique-se de que o IP do seu servidor esteja configurado corretamente.</li>
+</ul>
+<h2>Passo 1: Obtenha seu Token do DuckDNS</h2>
+<p>O token do DuckDNS é essencial para que o Nginx Proxy Manager possa se comunicar com o serviço DuckDNS e validar a propriedade do seu domínio para a emissão do certificado SSL.</p>
+<ol>
+<li>Acesse o site oficial do <a href="https://www.duckdns.org/">DuckDNS</a>.</li>
+<li>Faça login com suas credenciais.</li>
+<li>Localize e copie o seu <strong>Token</strong> (uma sequência longa de letras e números). Guarde-o em segurança, pois ele será usado nas próximas etapas.</li>
+</ol>
+<blockquote>
+<p><strong>Exemplo de Token:</strong> <code>26887e1b-e75c-43d8-9d16-5f11135bb84d</code></p>
+</blockquote>
+<h2>Passo 2: Configurar o Docker Compose para Nginx Proxy Manager</h2>
+<p>Se você ainda não tem o Nginx Proxy Manager configurado, use o seguinte <code>docker-compose.yml</code> para iniciá-lo. Este arquivo garante a persistência dos dados e a exposição das portas necessárias.</p>
+<ol>
+<li>Crie um diretório para o NPM no seu servidor (ex: <code>mkdir nginx-proxy</code>).</li>
+<li>Dentro deste diretório, crie um arquivo chamado <code>docker-compose.yml</code> e adicione o seguinte conteúdo:</li>
+</ol>
+<p>```yaml
+version: '3.8'</p>
+<p>services:
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - '80:80'   # Porta HTTP padrão
+      - '81:81'   # Painel de Administração
+      - '443:443' # Porta HTTPS padrão
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    environment:
+      DISABLE_IPV6: 'true'
+    # Opcional: Adicione servidores DNS para resolver problemas de comunicação externa
+    # dns:
+    #   - 8.8.8.8
+    #   - 1.1.1.1</p>
+<p>networks:
+  default:
+    name: nginx-proxy
+    # Se a rede 'nginx-proxy' foi criada manualmente (docker network create), use external: true
+    # external: true
+```</p>
+<ol>
+<li>
+<p><strong>Suba o container:</strong> No terminal, dentro do diretório <code>nginx-proxy</code>, execute:</p>
+<p><code>bash
+docker compose up -d</code></p>
+</li>
+<li>
+<p><strong>Acesse o Painel do NPM:</strong> Abra seu navegador e acesse o IP do seu servidor (ou IP do NetBird) na porta <code>81</code> (ex: <code>http://seu_ip:81</code>).</p>
+<ul>
+<li><strong>Login padrão:</strong> <code>admin@example.com</code></li>
+<li><strong>Senha padrão:</strong> <code>changeme</code></li>
+</ul>
+<p>Altere as credenciais padrão imediatamente após o primeiro login.</p>
+</li>
+</ol>
+<h2>Passo 3: Configurar o Docker Compose do Serviço Ticketz para integração com NPM</h2>
+<p>Para que o Nginx Proxy Manager possa rotear o tráfego para o seu serviço Ticketz, ambos precisam estar na mesma rede Docker. Além disso, o serviço Ticketz não deve expor suas portas diretamente para o host, mas sim para a rede interna do Docker.</p>
+<ol>
+<li>
+<p><strong>Crie a rede externa (se ainda não existir):</strong></p>
+<p><code>bash
+docker network create nginx-proxy</code></p>
+</li>
+<li>
+<p><strong>Edite o <code>docker-compose.yaml</code> do seu serviço Ticketz:</strong></p>
+<p>Localize o arquivo <code>docker-compose.yaml</code> do seu serviço Ticketz (ex: <code>/opt/ticketz-docker-local/docker-compose.yaml</code>).</p>
+<ul>
+<li>
+<p><strong>Adicione a rede <code>nginx-proxy</code> como externa:</strong> Dentro da seção <code>networks</code>, adicione a declaração para <code>nginx-proxy</code>:</p>
+<p><code>yaml
+networks:
+  ticketz:
+  nginx-proxy:
+    external: true</code></p>
+</li>
+<li>
+<p><strong>Ajuste o serviço <code>frontend</code>:</strong> Remova a seção <code>ports</code> e adicione <code>expose</code> para a porta interna <code>80</code>. Certifique-se de que o serviço <code>frontend</code> também esteja conectado à rede <code>nginx-proxy</code>.</p>
+<p><code>yaml
+  frontend:
+    image: ghcr.io/ticketz-oss/ticketz-frontend:latest
+    volumes:
+      - backend_public:/var/www/backend-public
+    env_file:
+      - .env-frontend
+    # Retire as linhas de 'ports' e use 'expose'
+    expose:
+      - 80
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - ticketz
+      - nginx-proxy # Adicione esta linha</code></p>
+</li>
+<li>
+<p><strong>Ajuste o serviço <code>backend</code> (se necessário):</strong> Se o NPM precisar se comunicar diretamente com o backend, adicione-o à rede <code>nginx-proxy</code> também.</p>
+<p><code>yaml
+  backend:
+    image: ghcr.io/ticketz-oss/ticketz-backend:latest
+    volumes:
+      - ./backend/config:/usr/src/app/config
+      - backend_public:/usr/src/app/public
+      - backend_private:/usr/src/app/private
+      - ./migrations:/usr/src/app/migrations
+    env_file:
+      - .env-backend
+    restart: always
+    networks:
+      - ticketz
+      - nginx-proxy # Adicione esta linha
+    depends_on:
+      - postgres
+      - redis</code></p>
+</li>
+<li>
+<p><strong>Verifique a indentação:</strong> O YAML é sensível à indentação. Use apenas espaços (nunca tabs) e mantenha o alinhamento correto. Erros de indentação podem causar falhas no <code>docker compose</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Aplique as mudanças:</strong> No terminal, no diretório do seu serviço Ticketz, execute:</p>
+<p><code>bash
+docker compose up -d --force-recreate</code></p>
+<p>Isso recriará os containers com as novas configurações de rede.</p>
+</li>
+</ol>
+<h2>Passo 4: Configurar o Proxy Host no Nginx Proxy Manager</h2>
+<p>Agora que o NPM está rodando e o serviço Ticketz está na mesma rede, você precisa criar um Proxy Host no NPM para direcionar o tráfego externo para o seu frontend do Ticketz.</p>
+<ol>
+<li>Acesse o painel do NPM (porta 81).</li>
+<li>Vá em <strong>Hosts &gt; Proxy Hosts</strong>.</li>
+<li>Clique em <strong>Add Proxy Host</strong>.</li>
+<li>Na aba <strong>Details</strong>, preencha da seguinte forma:<ul>
+<li><strong>Domain Names:</strong> <code>novochat.duckdns.org</code> (ou o seu subdomínio DuckDNS).</li>
+<li><strong>Scheme:</strong> <code>http</code></li>
+<li><strong>Forward Hostname / IP:</strong> <code>frontend</code> (Este é o nome do serviço <code>frontend</code> no seu <code>docker-compose.yaml</code> do Ticketz).</li>
+<li><strong>Forward Port:</strong> <code>80</code> (Esta é a porta interna do container <code>frontend</code>).</li>
+<li><strong>Websockets Support:</strong> Marque esta opção (essencial para aplicações de chat como o Ticketz).</li>
+</ul>
+</li>
+</ol>
+<h2>Passo 5: Configurar o Certificado SSL via DNS Challenge (DuckDNS) no NPM</h2>
+<p>Esta etapa é crucial para obter o cadeado verde e habilitar o HTTPS, resolvendo o problema do microfone.</p>
+<ol>
+<li>Ainda na janela de configuração do Proxy Host, clique na aba <strong>SSL</strong>.</li>
+<li>Em <strong>SSL Certificate</strong>, selecione <strong>Request a new SSL Certificate</strong>.</li>
+<li>Marque a opção <strong>Use a DNS Challenge</strong>.</li>
+<li>Em <strong>DNS Provider</strong>, escolha <strong>DuckDNS</strong> na lista suspensa.</li>
+<li>
+<p>No campo <strong>DNS Provider Configuration</strong> que aparecerá, insira o seu token do DuckDNS no formato:</p>
+<p><code>ini
+dns_duckdns_token = seu_token_aqui</code></p>
+<blockquote>
+<p><strong>Exemplo:</strong> <code>dns_duckdns_token = 26887e1b-e75c-43d8-9d16-5f11135bb84d</code></p>
+</blockquote>
+</li>
+<li>
+<p><strong>Propagation Seconds:</strong> Pode deixar o padrão ou aumentar para <code>60</code> ou <code>120</code> segundos para dar mais tempo para o DuckDNS propagar as mudanças antes do Certbot verificar.</p>
+</li>
+<li>Aceite os termos do Let's Encrypt e clique em <strong>Save</strong>.</li>
+</ol>
+<h3>Solução de Problemas (Troubleshooting) - Erros na Geração do Certificado</h3>
+<p>Se você encontrar erros como 
+"<code>KO</code>" ou "<code>Internal Error</code>" durante a geração do certificado, verifique o seguinte:</p>
+<ul>
+<li><strong>Sintaxe do Token:</strong> Certifique-se de que o token está inserido exatamente como <code>dns_duckdns_token = seu_token_aqui</code>, sem espaços extras ou caracteres incorretos. O NPM é sensível a isso.</li>
+<li><strong>Subdomínio Existente:</strong> O erro <code>KO</code> do DuckDNS geralmente significa que o subdomínio (<code>novochat.duckdns.org</code>) não está criado ou não está vinculado à sua conta no painel do DuckDNS. Acesse o site do DuckDNS e crie o subdomínio se ele ainda não existir.</li>
+<li><strong>DNS do Docker:</strong> Se o erro persistir, o container do NPM pode estar com dificuldades para resolver nomes externos. Considere adicionar servidores DNS públicos (como Google <code>8.8.8.8</code> ou Cloudflare <code>1.1.1.1</code>) ao seu <code>docker-compose.yml</code> do NPM, conforme o exemplo comentado no Passo 2.</li>
+</ul>
+<h2>Passo 6: Vincular o Certificado ao Proxy Host e Forçar SSL</h2>
+<p>Após a geração bem-sucedida do certificado, você precisa vinculá-lo ao seu Proxy Host e configurar o NPM para forçar o uso de HTTPS.</p>
+<ol>
+<li>No painel do NPM, vá em <strong>Hosts &gt; Proxy Hosts</strong>.</li>
+<li>Edite o Proxy Host que você criou para <code>novochat.duckdns.org</code>.</li>
+<li>Na aba <strong>SSL</strong>:<ul>
+<li>Em <strong>SSL Certificate</strong>, selecione o certificado que você acabou de gerar (ele deve aparecer na lista com o nome do seu domínio, ex: <code>novochat.duckdns.org</code>).</li>
+<li>Marque a opção <strong>Force SSL</strong> (Isso garante que todas as requisições HTTP sejam redirecionadas para HTTPS).</li>
+<li>Marque <strong>HTTP/2 Support</strong>.</li>
+<li>Marque <strong>HSTS Enabled</strong>.</li>
+</ul>
+</li>
+<li>Clique em <strong>Save</strong>.</li>
+</ol>
+<h2>Passo 7: Ajustar Variáveis de Ambiente do Serviço Ticketz</h2>
+<p>Com o HTTPS configurado, o frontend do Ticketz precisa ser informado para usar o novo domínio HTTPS para se comunicar com o backend. Erros de <code>Mixed Content</code> (conteúdo misto) ocorrem quando uma página HTTPS tenta carregar recursos via HTTP.</p>
+<ol>
+<li>No seu servidor, navegue até a pasta do seu serviço Ticketz (ex: <code>/opt/ticketz-docker-local</code>).</li>
+<li>
+<p>Edite o arquivo <code>.env-frontend</code> (ou o arquivo de ambiente correspondente ao seu frontend):</p>
+<ul>
+<li><strong>Remova ou comente</strong> quaisquer variáveis que forcem o protocolo <code>http</code> ou portas específicas (ex: <code>3011</code>).</li>
+<li><strong>Atualize as URLs do backend</strong> para usar o novo domínio HTTPS. Um exemplo de configuração otimizada seria:</li>
+</ul>
+<p><code>ini
 FRONTEND_HOST=novochat.duckdns.org
 REACT_APP_BACKEND_URL=https://novochat.duckdns.org/backend
+BACKEND_HOST=novochat.duckdns.org
 BACKEND_PROTOCOL=https
-            </pre>
-        </section>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 | MC infra TI | André Luiz Messias</p>
-    </footer>
-
-    <script>
-        // Bloqueio de teclas de inspeção conforme o padrão do site original
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
-                return false;
-            }
-        }
-    </script>
+BACKEND_PORT=443
+BACKEND_PATH=/backend</code></p>
+</li>
+<li>
+<p>Edite o arquivo <code>.env-backend</code> (ou o arquivo de ambiente correspondente ao seu backend):</p>
+<ul>
+<li>Atualize as variáveis <code>BACKEND_URL</code> e <code>FRONTEND_URL</code> para usar <code>https://novochat.duckdns.org</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Recrie os containers</strong> para que as novas variáveis de ambiente sejam aplicadas:</p>
+<p><code>bash
+docker compose up -d --force-recreate</code></p>
+</li>
+</ol>
+<h2>Passo 8: Configurar Custom Location para o Backend no NPM (Opcional, mas Recomendado)</h2>
+<p>Se o seu frontend do Ticketz tenta acessar o backend através de um caminho específico (ex: <code>/backend</code>), você precisará configurar uma 
+Custom Location no Nginx Proxy Manager para rotear essas requisições corretamente.</p>
+<ol>
+<li>No painel do NPM, edite o Proxy Host para <code>novochat.duckdns.org</code>.</li>
+<li>Vá para a aba <strong>Custom Locations</strong>.</li>
+<li>Clique em <strong>Add Location</strong>.</li>
+<li>Preencha da seguinte forma:<ul>
+<li><strong>Define Location:</strong> <code>/backend</code></li>
+<li><strong>Scheme:</strong> <code>http</code></li>
+<li><strong>Forward Hostname / IP:</strong> <code>backend</code> (Este é o nome do serviço <code>backend</code> no seu <code>docker-compose.yaml</code> do Ticketz).</li>
+<li><strong>Forward Port:</strong> (A porta interna que o seu backend utiliza, ex: <code>8080</code> ou <code>4000</code>).</li>
+</ul>
+</li>
+<li>Clique em <strong>Save</strong>.</li>
+</ol>
+<h2>Passo 9: Limpeza de Cache do Navegador e Teste Final</h2>
+<p>Mesmo após todas as configurações, o navegador pode estar com informações em cache que impedem o acesso correto.</p>
+<ol>
+<li><strong>Verifique a URL:</strong> Certifique-se de que você está acessando o site com <code>https://</code> (ex: <code>https://novochat.duckdns.org</code>).</li>
+<li><strong>Force SSL no NPM:</strong> Verifique novamente se a opção <code>Force SSL</code> está marcada no seu Proxy Host no NPM.</li>
+<li><strong>Limpe o cache do navegador:</strong><ul>
+<li>Abra uma <strong>Aba Incógnita</strong> (Ctrl+Shift+N) e tente acessar <code>https://novochat.duckdns.org</code>.</li>
+<li>Se o problema persistir, limpe o cache e os dados do site para o seu domínio nas configurações do navegador.</li>
+<li><strong>Limpeza de HSTS (Chrome/Zorin OS):</strong> Digite <code>chrome://net-internals/#hsts</code> na barra de endereços, vá em <code>Delete domain security policies</code>, digite <code>novochat.duckdns.org</code> e clique em <code>Delete</code>.</li>
+</ul>
+</li>
+<li><strong>Verifique Permissões do Microfone:</strong> Clique no ícone de cadeado ao lado da URL no navegador e verifique se o microfone está permitido para o site.</li>
+</ol>
+<h2>Conclusão</h2>
+<p>Ao seguir estes passos, você terá configurado com sucesso o Nginx Proxy Manager para atuar como um proxy reverso seguro para o seu serviço Ticketz, utilizando certificados SSL do Let's Encrypt via DNS Challenge do DuckDNS. Isso não apenas garante a segurança da sua aplicação, mas também resolve problemas de funcionalidade em navegadores que exigem HTTPS para acesso a recursos como o microfone.</p>
+<p>Lembre-se de que a paciência e a verificação cuidadosa de cada etapa são fundamentais para o sucesso da configuração. Em caso de dúvidas, consulte os logs do Nginx Proxy Manager e do Docker para identificar a causa raiz de qualquer problema.</p>
 </body>
 </html>
     </div>
