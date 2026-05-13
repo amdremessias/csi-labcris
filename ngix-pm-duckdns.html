@@ -6,7 +6,7 @@
     <meta name="description" content="Tutorial Técnico - MC Infra TI">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <title>Tutorial SSL - MC infra TI</title>
+    <title>Tutorial SSL NPM - MC infra TI</title>
     <style>
         /* Estilos baseados na identidade visual da MC infra TI */
         body {
@@ -163,8 +163,8 @@
 
     <div class="container">
         <section>
-            <h1>Tutorial: Configurando Nginx Proxy Manager com DuckDNS e SSL para o Serviço Ticketz</h1>
-            <p>Este tutorial detalhado guiará você através do processo de configuração do Nginx Proxy Manager (NPM) com um subdomínio DuckDNS e certificados SSL via DNS Challenge. O objetivo é resolver problemas de acesso a recursos como microfone em aplicações web (como o Ticketz) que exigem uma conexão HTTPS segura.</p>
+            <h1>Tutorial: Configurando Nginx Proxy Manager com DuckDNS e SSL para o Serviço NovoChat</h1>
+            <p>Este tutorial detalhado guiará você através do processo de configuração do Nginx Proxy Manager (NPM) com um subdomínio DuckDNS e certificados SSL via DNS Challenge. O objetivo é resolver problemas de acesso a recursos como microfone em aplicações web (como o NovoChat) que exigem uma conexão HTTPS segura.</p>
 
             <h2>Introdução</h2>
             <p>Ao desenvolver e hospedar aplicações web, especialmente aquelas que utilizam recursos sensíveis do navegador como o microfone (através da API <code>enumerateDevices</code>), é crucial garantir que a conexão seja segura (HTTPS). Sem um certificado SSL válido, os navegadores modernos bloqueiam o acesso a esses recursos, resultando em erros como <code>TypeError: Cannot read properties of undefined (reading 'enumerateDevices')</code>.</p>
@@ -175,7 +175,7 @@
                 <li><strong>Servidor:</strong> VM com Docker e Docker Compose (ex: Ubuntu em Proxmox).</li>
                 <li><strong>Nginx Proxy Manager (NPM):</strong> Instância em execução ou pronta para configurar.</li>
                 <li><strong>DuckDNS:</strong> Conta ativa com subdomínio configurado (ex: <code>novochat.duckdns.org</code>).</li>
-                <li><strong>Serviço Web:</strong> O serviço <code>Ticketz</code> rodando em containers.</li>
+                <li><strong>Serviço Web:</strong> O serviço <code>NovoChat</code> rodando em containers.</li>
                 <li><strong>NetBird (Opcional):</strong> Configurado se necessário para acesso interno.</li>
             </ul>
 
@@ -210,10 +210,10 @@ networks:
     name: nginx-proxy</code></pre>
             <p><strong>Acesse o Painel:</strong> IP:81 (Login: <code>admin@example.com</code> / Senha: <code>changeme</code>).</p>
 
-            <h2>Passo 3: Integração do Serviço Ticketz</h2>
+            <h2>Passo 3: Integração do Serviço NovoChat</h2>
             <p>Certifique-se de que os serviços estejam na mesma rede:</p>
             <pre><code>networks:
-  ticketz:
+  NovoCht:
   nginx-proxy:
     external: true
 
@@ -223,7 +223,7 @@ services:
     expose:
       - 80
     networks:
-      - ticketz
+      - NovoCht
       - nginx-proxy</code></pre>
 
             <h2>Passo 4: Configurar o Proxy Host</h2>
@@ -269,7 +269,7 @@ BACKEND_PORT=443</code></pre>
             <p>Limpe o cache do navegador ou use aba anônima. Verifique o cadeado e as permissões de microfone.</p>
 
             <h2>Conclusão</h2>
-            <p>Agora seu serviço Ticketz está seguro e com todas as funcionalidades de mídia operacionais via HTTPS!</p>
+            <p>Agora seu serviço NovoCht está seguro e com todas as funcionalidades de mídia operacionais via HTTPS!</p>
         </section>
     </div>
     <footer>
