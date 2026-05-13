@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: HTTPS e Proxy Reverso no Ticketz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        code { color: #e11d48; background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Configuração de HTTPS e Proxy Reverso</h1>
+            <p class="text-lg text-gray-600">Guia técnico para implementação do Nginx Proxy Manager com DuckDNS no sistema Ticketz.</p>
+        </header>
+
+        <!-- Seção 1: Objetivo -->
+        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-4 flex items-center">
+                <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-3 text-sm">1</span>
+                Objetivo do Projeto
+            </h2>
+            <p class="mb-4">O foco desta implementação foi resolver a indisponibilidade das APIs de mídia (microfone) causadas pela falta de ambiente seguro (HTTPS). Utilizamos o <strong>Nginx Proxy Manager (NPM)</strong> para gerenciar certificados e tráfego via <strong>DuckDNS</strong>.</p>
+        </section>
+
+        <!-- Seção 2: Docker Networking -->
+        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-4 flex items-center">
+                <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-3 text-sm">2</span>
+                Infraestrutura de Rede
+            </h2>
+            <p class="mb-4">Criamos uma rede bridge externa para integrar os containers do sistema ao Proxy:</p>
+            <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>docker network create nginx-proxy</code></pre>
+            <p class="mt-4 text-sm text-gray-500 italic">No Docker Compose, os serviços frontend e backend foram conectados a esta rede.</p>
+        </section>
+
+        <!-- Seção 3: Variáveis de Ambiente -->
+        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-4 flex items-center">
+                <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-3 text-sm">3</span>
+                Ajuste das Variáveis (.env)
+            </h2>
+            <div class="space-y-4">
+                <p>Para evitar erros de <em>Mixed Content</em>, as URLs foram atualizadas para HTTPS:</p>
+                <div class="border-l-4 border-blue-500 pl-4 bg-gray-50 py-2">
+                    <p class="text-sm font-mono font-bold">FRONTEND_HOST=novochat.duckdns.org</p>
+                    <p class="text-sm font-mono font-bold">BACKEND_PROTOCOL=https</p>
+                    <p class="text-sm font-mono font-bold">REACT_APP_BACKEND_URL=https://novochat.duckdns.org/backend</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Configuração NPM -->
+        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-4 flex items-center">
+                <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-3 text-sm">4</span>
+                Nginx Proxy Manager
+            </h2>
+            <ul class="list-disc ml-6 space-y-2">
+                <li><strong>SSL:</strong> Let's Encrypt via DNS Challenge com DuckDNS Token.</li>
+                <li><strong>Websockets Support:</strong> Ativado para funcionamento das notificações em tempo real.</li>
+                <li><strong>Force SSL:</strong> Ativado para garantir que todo acesso seja via porta 443.</li>
+            </ul>
+        </section>
+
+        <footer class="text-center text-gray-500 text-sm">
+            <p>Documentação gerada por André Luiz Messias</p>
+        </footer>
+    </div>
+
+</body>
+</html>
