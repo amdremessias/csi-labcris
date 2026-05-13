@@ -3,72 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial: HTTPS e Proxy Reverso no Ticketz</title>
+    <title>Documentação Técnica: Deploy Ticketz com HTTPS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        code { color: #e11d48; background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 0.5rem; font-family: 'Fira Code', monospace; font-size: 0.875rem; overflow-x: auto; }
+        .step-number { background: #2563eb; color: white; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.875rem; margin-right: 10px; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+<body class="bg-slate-50 text-slate-800">
 
-    <div class="max-w-4xl mx-auto px-4 py-12">
-        <header class="text-center mb-16">
-            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Configuração de HTTPS e Proxy Reverso</h1>
-            <p class="text-lg text-gray-600">Guia técnico para implementação do Nginx Proxy Manager com DuckDNS no sistema Ticketz.</p>
+    <div class="max-w-5xl mx-auto px-6 py-12">
+        <!-- Header -->
+        <header class="border-b border-slate-200 pb-8 mb-12 text-center">
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">Guia de Implementação: Novochat (Ticketz)</h1>
+            <p class="mt-4 text-lg text-slate-600 italic">Infraestrutura com Docker, Nginx Proxy Manager e SSL via DuckDNS</p>
         </header>
 
-        <!-- Seção 1: Objetivo -->
-        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
-            <h2 class="text-2xl font-bold mb-4 flex items-center">
-                <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-3 text-sm">1</span>
-                Objetivo do Projeto
-            </h2>
-            <p class="mb-4">O foco desta implementação foi resolver a indisponibilidade das APIs de mídia (microfone) causadas pela falta de ambiente seguro (HTTPS). Utilizamos o <strong>Nginx Proxy Manager (NPM)</strong> para gerenciar certificados e tráfego via <strong>DuckDNS</strong>.</p>
-        </section>
+        <!-- Seção 1: Infraestrutura -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">1. Preparação da Infraestrutura</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"><span class="step-number">1.1</span>Criando Domínio no DuckDNS</h3>
+                    <p class="mb-3">Acesse o painel do DuckDNS e registre o subdomínio <code>novochat</code>. Aponte o IP para o endereço do seu servidor (neste caso, o IP do túnel NetBird <code>100.116.5.168</code>).</p>
+                </div>
 
-        <!-- Seção 2: Docker Networking -->
-        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
-            <h2 class="text-2xl font-bold mb-4 flex items-center">
-                <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-3 text-sm">2</span>
-                Infraestrutura de Rede
-            </h2>
-            <p class="mb-4">Criamos uma rede bridge externa para integrar os containers do sistema ao Proxy:</p>
-            <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>docker network create nginx-proxy</code></pre>
-            <p class="mt-4 text-sm text-gray-500 italic">No Docker Compose, os serviços frontend e backend foram conectados a esta rede.</p>
-        </section>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"><span class="step-number">1.2</span>Deploy do Nginx Proxy Manager (NPM)</h3>
+                    <p class="mb-3">Configure o NPM em uma rede Docker isolada chamada <code>nginx-proxy</code> para facilitar o roteamento interno.</p>
+                    <div class="code-block">
+networks:<br>
+&nbsp;&nbsp;default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name: nginx-proxy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;external: true
+                    </div>
+                </div>
 
-        <!-- Seção 3: Variáveis de Ambiente -->
-        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
-            <h2 class="text-2xl font-bold mb-4 flex items-center">
-                <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-3 text-sm">3</span>
-                Ajuste das Variáveis (.env)
-            </h2>
-            <div class="space-y-4">
-                <p>Para evitar erros de <em>Mixed Content</em>, as URLs foram atualizadas para HTTPS:</p>
-                <div class="border-l-4 border-blue-500 pl-4 bg-gray-50 py-2">
-                    <p class="text-sm font-mono font-bold">FRONTEND_HOST=novochat.duckdns.org</p>
-                    <p class="text-sm font-mono font-bold">BACKEND_PROTOCOL=https</p>
-                    <p class="text-sm font-mono font-bold">REACT_APP_BACKEND_URL=https://novochat.duckdns.org/backend</p>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"><span class="step-number">1.3</span>Configurando o NPM</h3>
+                    <p>Acesse o painel administrativo na porta <code>81</code>. O NPM atuará como a porta de entrada única para o tráfego 80 (HTTP) e 443 (HTTPS).</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"><span class="step-number">1.4</span>Configurando o Certificado SSL</h3>
+                    <p class="mb-3">Gere um certificado Let's Encrypt usando o <strong>DNS Challenge</strong>. Utilize o seu Token do DuckDNS para validação automática.</p>
+                    <ul class="list-disc ml-8 mb-3 text-sm">
+                        <li><strong>Propagation Seconds:</strong> Ajustado para 120s para garantir estabilidade.</li>
+                        <li><strong>Sintaxe do Token:</strong> <code>dns_duckdns_token=seu_token_aqui</code>.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"><span class="step-number">1.5</span>Configurando o Proxy Host</h3>
+                    <p class="mb-3">No NPM, adicione um novo Proxy Host para <code>novochat.duckdns.org</code>:</p>
+                    <ul class="list-disc ml-8 text-sm">
+                        <li><strong>Forward IP:</strong> <code>frontend</code> (nome do serviço no docker).</li>
+                        <li><strong>Forward Port:</strong> <code>80</code>.</li>
+                        <li><strong>Websockets Support:</strong> Ativado (Essencial para o chat).</li>
+                        <li><strong>SSL:</strong> Force SSL e HTTP/2 Support ativados.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"><span class="step-number">1.6</span>Configurando Custom Locations (Opcional)</h3>
+                    <p class="text-sm">Caso o backend precise de uma rota específica, configure o path <code>/backend</code> apontando para o container <code>backend</code> na porta <code>4000</code>.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Seção 4: Configuração NPM -->
-        <section class="bg-white rounded-xl shadow-sm p-8 mb-8">
-            <h2 class="text-2xl font-bold mb-4 flex items-center">
-                <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-3 text-sm">4</span>
-                Nginx Proxy Manager
-            </h2>
-            <ul class="list-disc ml-6 space-y-2">
-                <li><strong>SSL:</strong> Let's Encrypt via DNS Challenge com DuckDNS Token.</li>
-                <li><strong>Websockets Support:</strong> Ativado para funcionamento das notificações em tempo real.</li>
-                <li><strong>Force SSL:</strong> Ativado para garantir que todo acesso seja via porta 443.</li>
-            </ul>
+        <!-- Seção 2: Serviço -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">2. Configuração do Serviço Novochat</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"><span class="step-number">2.0</span>Ajuste do Ambiente (.env)</h3>
+                    <p class="mb-3">Para evitar erros de <em>Mixed Content</em> (bloqueio de scripts inseguros), os arquivos <code>.env-frontend</code> e <code>.env-backend</code> foram atualizados:</p>
+                    <div class="code-block">
+REACT_APP_BACKEND_URL=https://novochat.duckdns.org/backend<br>
+BACKEND_PROTOCOL=https<br>
+FRONTEND_HOST=novochat.duckdns.org
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3"><span class="step-number">2.1</span>Considerações Finais</h3>
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4">
+                        <p class="text-green-700 font-medium italic">"A implementação do HTTPS foi o fator decisivo para a ativação das APIs de mídia (microfone), garantindo que o navegador autorizasse o uso de dispositivos de entrada para mensagens de áudio."</p>
+                    </div>
+                    <p class="mt-4">Com esta configuração, o sistema Ticketz opera de forma totalmente segura, centralizada no Nginx Proxy Manager, sem a necessidade de expor portas vulneráveis (como a 3011) diretamente no host.</p>
+                </div>
+            </div>
         </section>
 
-        <footer class="text-center text-gray-500 text-sm">
-            <p>Documentação gerada por André Luiz Messias</p>
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-slate-200 text-center text-slate-500 text-sm">
+            <p>Documentação Técnica Elaborada para o Lab André Luiz Messias</p>
         </footer>
     </div>
 
