@@ -1,317 +1,453 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="h-full antialiased font-sans">
+<html lang="pt">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Aula 2 — Funções, condicionais e loops | BuscaFreelas</title>
-    <meta name="description" content="Conteúdo do curso BuscaFreelas."/>
-    <!-- Importando Tailwind CSS para renderizar as classes idênticas ao seu site -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="shortcut icon" href="/favicon.png"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aula 2 - Funções, Condicionais e Loops | MC Infra TI">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <title>Aula 2 — Funções, Condicionais e Loops | MC infra TI</title>
     <style>
-        /* Ajustes finos para emular o comportamento exato do layout original */
-        .edu-prose h2 {
-            font-size: 20px;
-            font-weight: 900;
-            color: #1a1c1f;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        .edu-prose p {
-            font-size: 14.5px;
-            color: #404145;
+        /* Estilos gerais idênticos ao site original */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
-            margin-bottom: 1rem;
+            color: #333;
+            background-color: #000;
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow-x: hidden;
         }
-        .edu-prose ul {
-            list-style-type: disc;
-            padding-left: 1.25rem;
-            margin-bottom: 1rem;
-            font-size: 14.5px;
-            color: #404145;
+
+        /* --- ANIMAÇÃO DE METEOROS --- */
+        .star-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
-        .edu-prose li {
-            margin-bottom: 0.25rem;
+
+        .star {
+            position: absolute;
+            background: linear-gradient(45deg, #4CAF50, transparent);
+            width: 2px;
+            height: 50px;
+            opacity: 0.5;
+            animation: fall linear infinite;
         }
-        .edu-prose pre {
-            background-color: #fafafa;
-            border: 1px border #e4e5e7;
-            padding: 1rem;
-            border-radius: 0.375rem;
-            font-family: monospace;
-            font-size: 12.5px;
+
+        @keyframes fall {
+            from { transform: translateY(-100px) translateX(0) rotate(-45deg); opacity: 1; }
+            to { transform: translateY(100vh) translateX(-500px) rotate(-45deg); opacity: 0; }
+        }
+
+        .star:nth-child(1) { left: 80%; animation-duration: 3s; animation-delay: 0s; }
+        .star:nth-child(2) { left: 40%; animation-duration: 5s; animation-delay: 1s; }
+        .star:nth-child(3) { left: 60%; animation-duration: 4s; animation-delay: 2s; }
+        .star:nth-child(4) { left: 90%; animation-duration: 6s; animation-delay: 3s; }
+        .star:nth-child(5) { left: 20%; animation-duration: 4s; animation-delay: 1.5s; }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); 
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- HEADER ORIGINAL --- */
+        header {
+            background-color: rgba(0, 0, 0, 0.9); 
+            padding: 1rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #4CAF50;
+            margin-bottom: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        header nav ul li a:hover {
+            color: #4CAF50;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- CONTEÚDO DA AULA --- */
+        #class-hero {
+            background-color: rgba(0, 0, 0, 0.85); 
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 30px;
+            border-radius: 8px 8px 0 0;
+            border-bottom: 3px solid #4CAF50;
+            box-shadow: inset 0 0 20px rgba(0,255,0,0.1);
+        }
+
+        #class-hero h1 {
+            font-size: 2.8em;
+            margin: 0 0 10px 0;
+            color: #0AFF0A; 
+            text-shadow: 0 0 15px rgba(0,255,0,0.7);
+        }
+
+        #class-hero p {
+            font-size: 1.1em;
+            color: #E0FFE0;
+            margin: 0;
+        }
+
+        .class-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .class-content h2 {
+            font-size: 1.8em;
+            color: #222;
+            margin-top: 30px;
+            border-left: 5px solid #4CAF50;
+            padding-left: 15px;
+        }
+
+        .class-content p {
+            font-size: 1.05em;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* Blocos de Código estilo Hacker */
+        pre {
+            background-color: #111;
+            color: #0AFfff;
+            padding: 20px;
+            border-radius: 6px;
             overflow-x: auto;
-            margin-bottom: 1.25rem;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 4px solid #0AFF0A;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-        .edu-prose code {
-            font-family: monospace;
-            background-color: #f3f4f6;
-            padding: 0.125rem 0.25rem;
-            border-radius: 0.25rem;
-            font-size: 13px;
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #c0392b;
+            font-weight: bold;
         }
-        .edu-prose pre code {
+
+        pre code {
             background-color: transparent;
             padding: 0;
+            color: #0AFF0A;
+            font-weight: normal;
+        }
+
+        /* --- LAB INTERATIVO DA MC INFRA --- */
+        .interactive-lab {
+            background-color: rgba(15, 15, 15, 0.95);
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .interactive-lab h2 {
+            color: #0AFF0A;
+            text-shadow: 0 0 10px rgba(10,255,10,0.5);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .lab-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .interactive-lab textarea {
+            width: 100%;
+            height: 180px;
+            background-color: #000;
+            color: #0AFF0A;
+            border: 1px solid #4CAF50;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .interactive-lab textarea:focus {
+            outline: none;
+            border-color: #0AFfff;
+            box-shadow: 0 0 10px rgba(0,255,255,0.5);
+        }
+
+        .console-output {
+            background-color: #050505;
+            border: 1px solid #333;
+            min-height: 100px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #0AFfff;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+
+        .lab-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid #4CAF50;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,255,0,0.3);
+        }
+
+        .button.secondary {
+            background-color: transparent;
+            border-color: #555;
+            color: #aaa;
+        }
+
+        .button.secondary:hover {
+            border-color: #4CAF50;
+            color: #fff;
+            box-shadow: none;
+        }
+
+        /* --- FOOTER ORIGINAL --- */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 20px;
+            color: #0af;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            #class-hero h1 { font-size: 2em; }
+            header nav { flex-direction: column; }
+            header nav ul { flex-direction: column; width: 100%; margin-top: 15px; }
+            .class-content { padding: 20px; }
         }
     </style>
 </head>
-<body class="min-h-full flex flex-col bg-[#f7f7f7]">
+<body oncontextmenu="return false;">
 
-    <!-- HEADER (Idêntico ao seu modelo original) -->
-    <header class="site-header sticky top-0 z-[70] bg-white border-b border-[#e4e5e7]">
-        <div class="mx-auto max-w-[1400px] px-3 sm:px-4 md:px-6 h-[68px] flex items-center gap-2 sm:gap-3 md:gap-6">
-            <a href="/" class="flex items-center gap-1.5 sm:gap-2 shrink-0 min-w-0">
-                <img src="/logo.png" alt="Logo da BuscaFreelas" class="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 object-contain"/>
-                <span class="text-[17px] sm:text-[20px] md:text-[22px] leading-none font-black text-[#404145] tracking-tight whitespace-nowrap">busca<span class="text-[#FF6A01]">freelas</span></span>
-            </a>
-            <div class="flex-1"></div>
-            <nav class="hidden md:flex items-center gap-1">
-                <a href="/dashboard/freelancer" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-semibold text-[#74767e] hover:text-[#404145] transition-colors whitespace-nowrap">Painel</a>
-                <a href="/dashboard/freelancer/services" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-semibold text-[#74767e] hover:text-[#404145] transition-colors whitespace-nowrap">Meus Serviços</a>
-                <a href="/dashboard/mensagens" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-semibold text-[#74767e] hover:text-[#404145] transition-colors whitespace-nowrap">Mensagens</a>
-                <a href="/explorar" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-semibold text-[#74767e] hover:text-[#404145] transition-colors whitespace-nowrap">Marketplace</a>
-                <a href="/freelancers" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-semibold text-[#74767e] hover:text-[#404145] transition-colors whitespace-nowrap">Freelancers</a>
-                <a href="/jobs" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-semibold text-[#74767e] hover:text-[#404145] transition-colors whitespace-nowrap">Projetos</a>
-                <a href="/edu" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-semibold text-[#74767e] hover:text-[#404145] transition-colors whitespace-nowrap">Cursos</a>
-                <a href="/dashboard/freelancer/wallet" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-semibold text-[#74767e] hover:text-[#404145] transition-colors whitespace-nowrap">Ganhos</a>
-                <a href="/pro" class="px-2.5 lg:px-3 py-2 text-[13.5px] lg:text-[14px] font-black text-[#FF6A01] hover:text-[#e55e01] transition-colors whitespace-nowrap">Seja PRO</a>
-            </nav>
-            <div class="flex items-center gap-1.5 sm:gap-2 md:gap-4 shrink-0">
-                <div class="relative hidden md:block">
-                    <button type="button" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[12.5px] font-semibold text-[#404145] bg-[#f3f4f6] hover:bg-[#e5e7eb] hover:text-[#FF6A01] transition-colors whitespace-nowrap">
-                        <span class="hidden xl:inline">Freelancer</span>
-                    </button>
-                </div>
-                <a href="/dashboard/profile" class="flex items-center justify-center p-1.5 sm:p-0 shrink-0 rounded-full">
-                    <div style="width:32px;height:32px" class="rounded-full overflow-hidden shrink-0 flex items-center justify-center bg-[#FF6A01]">
-                        <img src="/api/avatar/default" alt="Foto de perfil" class="w-full h-full object-cover"/>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- BANNER DA AULA -->
-    <div class="min-h-screen bg-[#f7f7f7] font-sans">
-        <section class="bg-white border-b border-[#e4e5e7] py-5 px-6">
-            <div class="max-w-[1200px] mx-auto">
-                <nav class="text-[13px] text-[#74767e] mb-2 flex items-center gap-2 flex-wrap">
-                    <a href="/edu" class="hover:text-[#404145]">Cursos</a><span>/</span>
-                    <a href="/edu/javascript-essencial" class="hover:text-[#404145]">JavaScript Essencial</a>
-                </nav>
-                <h1 class="text-[22px] font-black text-[#1a1c1f] leading-tight">Aula 2: Funções, condicionais e loops</h1>
-                <div class="mt-2 flex items-center gap-3 text-[12px] text-[#74767e]">
-                    <span>1 de 4 concluídas</span>
-                    <span class="w-px h-3 bg-[#e4e5e7]"></span>
-                    <a href="/edu/javascript-essencial" class="hover:text-[#404145] font-semibold">Visão geral do curso</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- GRID PRINCIPAL -->
-        <div class="max-w-[1200px] mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8">
-            
-            <!-- SIDEBAR (Navegação com a Aula 2 Ativa) -->
-            <aside class="w-full lg:w-[300px] shrink-0">
-                <div class="bg-white border border-[#e4e5e7] rounded-xl p-4 lg:sticky lg:top-[84px]">
-                    <h3 class="text-[12px] font-black text-[#404145] uppercase tracking-wider mb-3 px-2">Aulas do curso</h3>
-                    <ol class="space-y-1">
-                        <!-- Aula 1 (Passado/Inativo) -->
-                        <li>
-                            <a href="/edu/javascript-essencial/aula/1" class="flex items-start gap-3 px-2 py-2 rounded-md transition-colors hover:bg-[#f7f7f7] border border-transparent">
-                                <span class="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#e4e5e7] text-[#404145]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" class="text-emerald-600"><circle cx="12" cy="12" r="10"></circle></svg>
-                                </span>
-                                <div class="min-w-0 flex-1">
-                                    <span class="block text-[11px] text-[#74767e] font-bold uppercase tracking-wider">Aula 1</span>
-                                    <span class="block text-[13px] leading-snug text-[#404145]">Variáveis, tipos e o console</span>
-                                </div>
-                            </a>
-                        </li>
-                        <!-- Aula 2 (ATIVO ATUALMENTE) -->
-                        <li>
-                            <a href="/edu/javascript-essencial/aula/2" class="flex items-start gap-3 px-2 py-2 rounded-md transition-colors bg-[#FFF2E6] border border-[#FFD3AD]">
-                                <span class="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#FF6A01] text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle w-2.5 h-2.5 fill-current"><circle cx="12" cy="12" r="10"></circle></svg>
-                                </span>
-                                <div class="min-w-0 flex-1">
-                                    <span class="block text-[11px] text-[#74767e] font-bold uppercase tracking-wider">Aula 2</span>
-                                    <span class="block text-[13px] leading-snug font-bold text-[#404145]">Funções, condicionais e loops</span>
-                                </div>
-                            </a>
-                        </li>
-                        <!-- Aula 3 -->
-                        <li>
-                            <a href="/edu/javascript-essencial/aula/3" class="flex items-start gap-3 px-2 py-2 rounded-md transition-colors hover:bg-[#f7f7f7] border border-transparent">
-                                <span class="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#f0f0f1] text-[#74767e]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle w-2.5 h-2.5 fill-current"><circle cx="12" cy="12" r="10"></circle></svg></span>
-                                <div class="min-w-0 flex-1">
-                                    <span class="block text-[11px] text-[#74767e] font-bold uppercase tracking-wider">Aula 3</span>
-                                    <span class="block text-[13px] leading-snug text-[#404145]">Arrays e objetos: a estrutura que você usa todo dia</span>
-                                </div>
-                            </a>
-                        </li>
-                        <!-- Aula 4 -->
-                        <li>
-                            <a href="/edu/javascript-essencial/aula/4" class="flex items-start gap-3 px-2 py-2 rounded-md transition-colors hover:bg-[#f7f7f7] border border-transparent"><span class="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#f0f0f1] text-[#74767e]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle w-2.5 h-2.5 fill-current"><circle cx="12" cy="12" r="10"></circle></svg></span>
-                                <div class="min-w-0 flex-1">
-                                    <span class="block text-[11px] text-[#74767e] font-bold uppercase tracking-wider">Aula 4</span>
-                                    <span class="block text-[13px] leading-snug text-[#404145]">DOM, eventos e fetch (assíncrono)</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ol>
-                    <div class="mt-4 pt-4 border-t border-[#f0f0f1]">
-                        <div class="flex items-center justify-center gap-2 bg-[#f7f7f7] text-[#b5b6ba] text-[13px] font-bold py-2.5 rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award w-4 h-4"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>Conclua todas para liberar prova
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- CONTEÚDO PRINCIPAL (Módulos de Ensino) -->
-            <main class="flex-1 min-w-0">
-                <article class="bg-white border border-[#e4e5e7] rounded-xl p-6 sm:p-10">
-                    <div class="edu-prose">
-                        <h2>Por que essa aula importa</h2>
-                        <p>Se as variáveis são os blocos de construção, as funções, condicionais e loops são a lógica que faz o seu site se mover. Sem eles, o código apenas guarda dados parados. Com eles, você toma decisões automatizadas e processa listas de freelancers ou projetos num piscar de olhos.</p>
-
-                        <h2>Funções: Blocos de Lógica Reutilizáveis</h2>
-                        <p>Evite repetir código criando funções funcionais. Em JavaScript moderno, utilizamos a sintaxe tradicional e as famosas <strong>Arrow Functions</strong> (funções de seta).</p>
-<pre><code class="language-javascript">// Função Tradicional
-function calcularOrcamento(horas, valorHora) {
-    return horas * valorHora;
-}
-
-// Arrow Function (Moderna e enxuta)
-const calcularTaxaPlataforma = (valorTotal) => valorTotal * 0.05;
-
-console.log(calcularOrcamento(10, 50)); // 500
-console.log(calcularTaxaPlataforma(500)); // 25</code></pre>
-
-                        <h2>Condicionais: Tomando Decisões (if, else e switch)</h2>
-                        <p>As condicionais guiam o fluxo da sua aplicação baseado em estados lógicos verdadeiros (truthy) ou falsos (falsy).</p>
-<pre><code class="language-javascript">const saldoFreelancer = 150;
-
-if (saldoFreelancer >= 200) {
-    console.log("Saque liberado!");
-} else if (saldoFreelancer > 0) {
-    console.log("Saldo abaixo do mínimo de saque.");
-} else {
-    console.log("Sem saldo disponível.");
-}</code></pre>
-
-                        <h2>Loops: Automatizando Repetições (for, while)</h2>
-                        <p>Loops servem para varrer listas ou repetir tarefas iterativas sem precisar duplicar linhas de comandos manuais.</p>
-<pre><code class="language-javascript">const tecnologias = ["React", "Node.js", "Tailwind"];
-
-// Loop clássico for...of (Excelente para percorrer arrays)
-for (const tech of tecnologias) {
-    console.log(`Habilidade requisitada: ${tech}`);
-}</code></pre>
-
-                        <h2>Cheatsheet</h2>
-                        <table class="w-full text-left text-[13px] border-collapse mt-4 mb-6">
-                            <thead>
-                                <tr class="border-b border-[#e4e5e7] bg-[#fafafa]">
-                                    <th class="p-2 font-black text-[#404145]">Estrutura</th>
-                                    <th class="p-2 font-black text-[#404145]">Uso Comum</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-[#e4e5e7]">
-                                    <td class="p-2 font-mono">() => {}</td>
-                                    <td class="p-2">Arrow Function moderna para funções rápidas.</td>
-                                </tr>
-                                <tr class="border-b border-[#e4e5e7]">
-                                    <td class="p-2 font-mono">if / else</td>
-                                    <td class="p-2">Validar regras de negócio ou permissões.</td>
-                                </tr>
-                                <tr class="border-b border-[#e4e5e7]">
-                                    <td class="p-2 font-mono">for...of</td>
-                                    <td class="p-2">Percorrer elementos de uma lista de forma simples.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h2>Exercícios Práticos</h2>
-                        <blockquote>
-                            <p>🧪 <strong>Exercício 1</strong></p>
-                            <p>Crie uma arrow function chamada <code>saudarUsuario</code> que recebe um nome e retorna "Olá, [nome]!".</p>
-                            <details class="cursor-pointer text-[13px] text-[#FF6A01] font-bold mt-2">
-                                <summary>Ver resposta</summary>
-                                <pre class="text-[#1a1c1f] mt-2"><code class="language-javascript">const saudarUsuario = (nome) => `Olá, ${nome}!`;\nconsole.log(saudarUsuario("Carlos"));</code></pre>
-                            </details>
-                        </blockquote>
-                    </div>
-                </article>
-
-                <!-- LAB INTERATIVO (Atualizado para o tema da Aula 2) -->
-                <div class="mt-6 bg-white border border-[#e4e5e7] rounded-xl p-4 sm:p-6">
-                    <div class="flex flex-col gap-4">
-                        <header class="flex items-start gap-3">
-                            <div class="w-9 h-9 flex items-center justify-center rounded-md bg-[#FF6A01]/10 text-[#FF6A01] shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flask-conical w-5 h-5"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"></path><path d="M6.453 15h11.094"></path><path d="M8.5 2h7"></path></svg>
-                            </div>
-                            <div class="min-w-0">
-                                <h2 class="text-[15px] font-black text-[#1a1c1f] leading-tight">Lab interativo — JavaScript (Aula 2)</h2>
-                                <p class="mt-0.5 text-[12px] text-[#74767e]">Escreva e execute JavaScript em um ambiente isolado.</p>
-                            </div>
-                        </header>
-                        <div class="grid grid-cols-1 gap-4">
-                            <div class="flex flex-col gap-3">
-                                <div class="flex items-center justify-between gap-2 flex-wrap">
-                                    <p class="text-[13px] text-[#74767e]">Teste funções e loops diretamente no editor abaixo.</p>
-                                    <div class="flex items-center gap-2">
-                                        <button type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#e4e5e7] bg-white rounded-md text-[12px] font-bold text-[#404145] hover:border-[#FF6A01] hover:text-[#FF6A01] transition-colors">Resetar</button>
-                                        <button type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FF6A01] hover:bg-[#e55e01] text-white rounded-md text-[12px] font-black transition-colors">Executar</button>
-                                    </div>
-                                </div>
-                                <label class="flex flex-col gap-1.5">
-                                    <span class="text-[12px] font-bold text-[#404145]">Código</span>
-                                    <textarea spellcheck="false" class="w-full min-h-[180px] p-3 font-mono text-[12px] leading-relaxed text-[#1a1c1f] bg-[#fafafa] border border-[#e4e5e7] rounded-md focus:outline-none focus:border-[#FF6A01] resize-y">// Exemplo prático da Aula 2
-const verificarAprovacao = (nota) => {
-    if (nota >= 7) return "Aprovado no Curso!";
-    return "Precisa revisar o conteúdo.";
-};
-
-console.log(verificarAprovacao(8.5));
-
-const aulas = ["Variáveis", "Funções", "Arrays"];
-for (let i = 0; i < aulas.length; i++) {
-    console.log(`Processando: Aula ${i+1} - ${aulas[i]}`);
-}</textarea>
-                                </label>
-                                <div class="flex flex-col gap-1.5">
-                                    <span class="text-[12px] font-bold text-[#404145]">Console</span>
-                                    <div class="w-full min-h-[100px] p-3 font-mono text-[12px] leading-relaxed bg-[#0f1115] text-[#fafafa] border border-[#e4e5e7] rounded-md">
-                                        <span>"Aprovado no Curso!"<br>"Processando: Aula 1 - Variáveis"...</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BOTÃO DE CONCLUSÃO -->
-                <div class="mt-6 flex items-center justify-between gap-3 flex-wrap">
-                    <span></span>
-                    <form class="flex items-center gap-3 flex-wrap" method="POST">
-                        <button type="submit" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FF6A01] hover:bg-[#e55e01] text-white rounded-md text-[13px] font-black transition-colors">
-                            Concluir e ir para a próxima
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                        </button>
-                    </form>
-                </div>
-            </main>
-        </div>
+    <!-- Container da Chuva de Meteoros Original -->
+    <div class="star-container">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
     </div>
 
-    <!-- FOOTER MÍNIMO ADAPTADO -->
-    <footer class="site-footer bg-white border-t border-[#e4e5e7] pt-8 pb-6 mt-12">
-        <div class="max-w-[1400px] mx-auto px-6 text-center text-[13px] text-[#74767e]">
-            &copy; 2026 BuscaFreelas. Todos os direitos reservados.
-        </div>
+    <div class="overlay"></div>
+
+    <!-- Menu Superior Original do seu Site -->
+    <header>
+        <nav>
+            <div class="logo">MC infra TI</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanvul.html">Power Scan</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="easypoint.html">Ponto Facil</a></li>
+                <li><a href="criacao_sites.html">Criar Site</a></li>
+                <li><a href="cookies.html">Cookies</a></li>
+                <li><a href="contact.html">Contato</a></li>
+                <li><a href="portf.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <!-- Topo do Conteúdo Acadêmico -->
+        <section id="class-hero">
+            <h1>Aula 2: Funções, Condicionais e Loops</h1>
+            <p>Dominando a engenharia reversa do fluxo lógico de dados em aplicações JavaScript.</p>
+        </section>
+
+        <!-- Corpo da Aula Traduzido em Material Rico -->
+        <section class="class-content">
+            <h2>1. Funções: Automatizando Rotinas</h2>
+            <p>Funções são blocos lógicos estruturados que executam tarefas repetitivas sob demanda. Na arquitetura moderna, usamos tanto funções tradicionais quanto as velozes <strong>Arrow Functions</strong>:</p>
+            
+<pre><code>// Estrutura clássica de função
+function validarAcesso(usuario) {
+    return "Acesso liberado para " + usuario;
+}
+
+// Arrow Function simplificada (Escopo moderno)
+const analisarSeguranca = (servidor) => `Analisando logs do servidor: ${servidor}`;
+
+console.log(validarAcesso("Admin"));
+console.log(analisarSeguranca("192.168.1.1"));</code></pre>
+
+            <h2>2. Condicionais: Tomadas de Decisão Logica</h2>
+            <p>Condicionais orientam os rumos do script com base em testes booleanos (Verdadeiro ou Falso). Se uma condição for atendida, o software executa o gatilho mapeado.</p>
+            
+<pre><code>let tentativasIncorretas = 3;
+
+if (tentativasIncorretas >= 5) {
+    console.log("ALERTA: IP Bloqueado por força bruta!");
+} else if (tentativasIncorretas &gt; 0) {
+    console.log("Tentativa inválida. Monitorando comportamento...");
+} else {
+    console.log("Autenticação estável.");
+}</code></pre>
+
+            <h2>3. Loops: Laços de Repetição Avançados</h2>
+            <p>Loops processam listas de dados ou repetem iterações contínuas até que uma regra de parada seja estabelecida. Perfeitos para varrer relatórios ou arrays de dados complexos.</p>
+            
+<pre><code>const portasAtivas = [21, 22, 80, 443];
+
+// Loop moderno for...of para navegar em coleções
+for (const porta of portasAtivas) {
+    console.log(`Varredura concluída na porta de rede: ${porta}`);
+}</code></pre>
+
+            <!-- Lab de Código Exclusivo MC Infra -->
+            <div class="interactive-lab">
+                <h2>🧪 Sandbox Terminal de Testes (Aula 2)</h2>
+                <div class="lab-grid">
+                    <div>
+                        <p style="margin-top:0; color: #ccc; font-size:14px;">Modifique os parâmetros do código abaixo e teste a sua lógica em tempo real:</p>
+                        <textarea spellcheck="false">// Laboratório de Código - MC Infra TI
+const processarAtaques = (total) => {
+    if (total > 100) {
+        return "Status crítico: Ativar Firewalls imediatamente!";
+    }
+    return "Tráfego dentro das margens de segurança.";
+};
+
+console.log(processarAtaques(145));
+</textarea>
+                    </div>
+                    <div>
+                        <div class="lab-buttons">
+                            <button type="button" class="button secondary">Resetar</button>
+                            <button type="button" class="button">Executar Script</button>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="margin-bottom:5px; font-weight: bold; font-size:12px; color: #aaa;">CONSOLE OUTPUT</p>
+                        <div class="console-output">"Status crítico: Ativar Firewalls imediatamente!"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-top: 40px;">
+                <a href="aula3.html" class="button">Avançar para Aula 3 →</a>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer Original mantido -->
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" style="max-width:150px; margin-bottom:15px;">
+        <p>&copy; 2026 | MC infra TI | Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Scripts de Bloqueio Originais do seu Site -->
+    <script>
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) { return false; } // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } // Inspect
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; } // Inspect
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } // Console
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } // View Source
+        }
+    </script>
+    <script data-goatcounter="https://m3ss14s.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
