@@ -73,7 +73,7 @@
             z-index: 1;
         }
 
-        /* HEADER FLUIDO */
+        /* HEADER FLUIDO (Desktop vs Mobile) */
         header {
             background-color: rgba(0, 0, 0, 0.95); 
             padding: 1rem 0;
@@ -128,6 +128,7 @@
             text-shadow: 0 0 8px rgba(10, 255, 10, 0.5);
         }
 
+        /* HERO SECTION */
         #hero {
             background-color: rgba(0, 0, 0, 0.6); 
             color: #fff;
@@ -186,21 +187,20 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
+        /* SEÇÕES GERAIS */
         section {
             padding: 60px 20px;
             text-align: center;
-            background-color: #fff;
             margin: 30px auto;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             position: relative;
             z-index: 1;
+            box-sizing: border-box;
         }
 
         section h2 {
             font-size: 2.5em;
             margin-bottom: 25px;
-            color: #333;
             position: relative;
         }
 
@@ -216,13 +216,19 @@
             border-radius: 2px;
         }
 
+        /* SESSÃO SOBRE */
         #about {
             background-color: #fff;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        #about h2 {
+            color: #333;
         }
 
-        /* SESSÃO DE SERVIÇOS */
+        /* SESSÃO DE SERVIÇOS (COM TRANSPARÊNCIA GLASSMORPHISM) */
         #services {
-            background-color: rgba(10, 10, 10, 0.9);
+            background-color: rgba(10, 10, 10, 0.8);
             border: 1px solid rgba(76, 175, 80, 0.25);
             box-shadow: 0 4px 25px rgba(0, 255, 0, 0.05);
         }
@@ -239,20 +245,34 @@
             margin-top: 50px;
         }
 
+        /* Cards transparentes com desfoque de fundo */
         .service-list article {
-            background-color: rgba(25, 25, 25, 0.85);
+            background-color: rgba(25, 25, 25, 0.55); /* Transparência ajustada */
+            backdrop-filter: blur(8px); /* Desfoque do fundo atrás do card */
+            -webkit-backdrop-filter: blur(8px);
             padding: 30px;
             border-radius: 8px;
-            border: 1px solid #222;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
         }
 
         .service-list article:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+            background-color: rgba(35, 35, 35, 0.75);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
             border-color: #4CAF50;
+        }
+
+        .service-list article .logo {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .service-list article h3 {
+            margin: 15px 0 10px 0;
+            font-size: 1.4em;
         }
 
         .service-list article h3 a {
@@ -266,29 +286,31 @@
         }
 
         .service-list article p {
-            color: #aaa;
+            color: #ccc;
+            font-size: 0.95em;
+            margin: 0;
         }
 
-        /* --- ESTILOS DA GALERIA ROTATIVA (CARROSSEL INFINITO) --- */
+        /* --- SESSÃO DA GALERIA ROTATIVA (CARROSSEL INFINITO) --- */
         .slider-section {
-            background-color: rgba(10, 10, 10, 0.9);
+            background-color: rgba(10, 10, 10, 0.85);
             border: 1px solid rgba(76, 175, 80, 0.25);
-            padding: 60px 0; /* Tirando padding lateral para o efeito fluir de ponta a ponta */
+            padding: 60px 0; 
             overflow: hidden;
             position: relative;
         }
         
-        .slider-section h2::after {
-            background-color: #4CAF50;
+        .slider-section h2 {
+            color: #4CAF50;
+            margin-bottom: 40px;
         }
 
         .slider-track {
             display: flex;
-            width: calc(250px * 13); /* Largura base do slide multiplicada pelo número de blocos */
+            width: calc(250px * 13); /* 7 originais + 6 duplicados */
             animation: scroll 30s linear infinite;
         }
 
-        /* Pausa o carrossel quando o usuário passa o mouse por cima */
         .slider-track:hover {
             animation-play-state: paused;
         }
@@ -301,8 +323,10 @@
         }
 
         .slide-content {
-            background-color: rgba(25, 25, 25, 0.9);
-            border: 1px solid #222;
+            background-color: rgba(25, 25, 25, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
@@ -328,15 +352,15 @@
             font-weight: bold;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background-color: rgba(15, 15, 15, 0.95);
+            background-color: rgba(15, 15, 15, 0.9);
         }
 
-        /* Animação que desloca exatamente metade do track duplicado para dar o looping infinito */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 7)); } /* Ajustado dinamicamente para os 7 slides únicos principais antes do loop */
+            100% { transform: translateX(calc(-250px * 7)); } 
         }
 
+        /* --- FOOTER --- */
         footer {
             background: rgba(0, 0, 0, 0.9);
             text-align: center;
@@ -377,7 +401,7 @@
             margin-top: 15px;
         }
 
-        /* --- ESTILOS DO BANNER DE COOKIES --- */
+        /* --- BANNER DE COOKIES (LGPD) --- */
         .lgpd-cookie-banner {
             position: fixed;
             bottom: -100%;
@@ -457,7 +481,7 @@
             accent-color: #4CAF50;
         }
 
-        /* MEDIA QUERIES - RESPONSIVIDADE E CORREÇÃO DO MENU FIXO */
+        /* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
         @media (max-width: 868px) {
             header {
                 position: relative; 
@@ -478,10 +502,6 @@
                 justify-content: center;
                 gap: 8px;
                 width: 100%;
-            }
-
-            header nav ul li {
-                margin: 0;
             }
 
             header nav ul li a {
@@ -622,4 +642,100 @@
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
                 <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" style="max-width:150px; margin-bottom:15px;">
+        
+        <div class="footer-compliance-links">
+            <a href="privacidade.html">Política de Privacidade</a> | 
+            <a href="termos.html">Termos de Uso</a> | 
+            <a href="cookies.html">Política de Cookies</a> | 
+            <a href="titulares.html">Direitos do Titular (Exclusão/Acesso)</a>
+        </div>
+
+        <p>&copy; 2026 | MC infra TI | Todos os direitos reservados conforme a Legislação Brasileira.</p>
+        
+        <div class="dpo-info">
+            <strong>Encarregado de Proteção de Dados (DPO):</strong> dpo@mcinfrati.com.br | Atendimento às diretrizes da ANPD.
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="lgpd-cookie-banner">
+        <div class="cookie-banner-container">
+            <div class="cookie-text">
+                Nós utilizamos cookies e tecnologias semelhantes para melhorar a sua experiência, analisar o tráfego do site e proteger seus dados de acordo com a <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. Você pode aceitar todos os cookies ou gerenciar suas preferências. Veja nossa <a href="privacidade.html">Política de Privacidade</a>.
+            </div>
+            <div class="cookie-buttons">
+                <button class="btn-cookie btn-reject" onclick="respondCookies(false)">Recusar</button>
+                <button class="btn-cookie btn-reject" onclick="togglePreferences()">Gerenciar</button>
+                <button class="btn-cookie btn-accept" onclick="respondCookies(true)">Aceitar Tudo</button>
+            </div>
+        </div>
+        <div id="cookiePrefs" class="cookie-preferences">
+            <div class="preference-item">
+                <input type="checkbox" id="prefEssenciais" checked disabled> <strong>Essenciais (Sempre ativos)</strong>
+            </div>
+            <div class="preference-item">
+                <input type="checkbox" id="prefAnaliticos"> <strong>Estatísticas / Analytics</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Bloqueio de Teclas de Inspeção (Mantido original)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) { return false; } 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; } 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
+        }
+
+        // --- SISTEMA DE CONSENTIMENTO DE COOKIES (LGPD) ---
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                document.getElementById('cookieBanner').classList.add('active');
+            } else if (consent === 'accepted_all' || consent === 'accepted_custom') {
+                loadTrackingScripts();
+            }
+        });
+
+        function togglePreferences() {
+            const prefs = document.getElementById('cookiePrefs');
+            prefs.style.display = prefs.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function respondCookies(acceptAll) {
+            if (acceptAll) {
+                localStorage.setItem('lgpd_consent', 'accepted_all');
+                loadTrackingScripts();
+            } else {
+                const analyticsChecked = document.getElementById('prefAnaliticos').checked;
+                if (analyticsChecked) {
+                    localStorage.setItem('lgpd_consent', 'accepted_custom');
+                    loadTrackingScripts();
+                } else {
+                    localStorage.setItem('lgpd_consent', 'rejected');
+                }
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                var script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.src = "//gc.zgo.at/count.js";
+                script.async = true;
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
+                document.body.appendChild(script);
+            }
+        }
+    </script>
+</body>
+</html>
