@@ -73,7 +73,7 @@
             z-index: 1;
         }
 
-        /* HEADER PADRÃO (Para Desktop) */
+        /* HEADER FLUIDO */
         header {
             background-color: rgba(0, 0, 0, 0.95); 
             padding: 1rem 0;
@@ -216,6 +216,10 @@
             border-radius: 2px;
         }
 
+        #about {
+            background-color: #fff;
+        }
+
         /* SESSÃO DE SERVIÇOS */
         #services {
             background-color: rgba(10, 10, 10, 0.9);
@@ -263,6 +267,74 @@
 
         .service-list article p {
             color: #aaa;
+        }
+
+        /* --- ESTILOS DA GALERIA ROTATIVA (CARROSSEL INFINITO) --- */
+        .slider-section {
+            background-color: rgba(10, 10, 10, 0.9);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            padding: 60px 0; /* Tirando padding lateral para o efeito fluir de ponta a ponta */
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slider-section h2::after {
+            background-color: #4CAF50;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(250px * 13); /* Largura base do slide multiplicada pelo número de blocos */
+            animation: scroll 30s linear infinite;
+        }
+
+        /* Pausa o carrossel quando o usuário passa o mouse por cima */
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        .slide {
+            width: 250px;
+            padding: 0 15px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        .slide-content {
+            background-color: rgba(25, 25, 25, 0.9);
+            border: 1px solid #222;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .slide-content:hover {
+            border-color: #0AFF0A;
+            transform: scale(1.02);
+        }
+
+        .slide-content img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-label {
+            padding: 12px;
+            color: #fff;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(15, 15, 15, 0.95);
+        }
+
+        /* Animação que desloca exatamente metade do track duplicado para dar o looping infinito */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 7)); } /* Ajustado dinamicamente para os 7 slides únicos principais antes do loop */
         }
 
         footer {
@@ -388,7 +460,7 @@
         /* MEDIA QUERIES - RESPONSIVIDADE E CORREÇÃO DO MENU FIXO */
         @media (max-width: 868px) {
             header {
-                position: relative; /* FAZ O MENU DEIXAR DE SER FIXO NO CELULAR */
+                position: relative; 
                 top: auto;
                 box-shadow: none;
                 padding: 15px 0;
@@ -533,97 +605,21 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" style="max-width:150px; margin-bottom:15px;">
-        
-        <div class="footer-compliance-links">
-            <a href="privacidade.html">Política de Privacidade</a> | 
-            <a href="termos.html">Termos de Uso</a> | 
-            <a href="cookies.html">Política de Cookies</a> | 
-            <a href="titulares.html">Direitos do Titular (Exclusão/Acesso)</a>
-        </div>
-
-        <p>&copy; 2026 | MC infra TI | Todos os direitos reservados conforme a Legislação Brasileira.</p>
-        
-        <div class="dpo-info">
-            <strong>Encarregado de Proteção de Dados (DPO):</strong> dpo@mcinfrati.com.br | Atendimento às diretrizes da ANPD.
-        </div>
-    </footer>
-
-    <div id="cookieBanner" class="lgpd-cookie-banner">
-        <div class="cookie-banner-container">
-            <div class="cookie-text">
-                Nós utilizamos cookies e tecnologias semelhantes para melhorar a sua experiência, analisar o tráfego do site e proteger seus dados de acordo com a <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. Você pode aceitar todos os cookies ou gerenciar suas preferências. Veja nossa <a href="privacidade.html">Política de Privacidade</a>.
-            </div>
-            <div class="cookie-buttons">
-                <button class="btn-cookie btn-reject" onclick="respondCookies(false)">Recusar</button>
-                <button class="btn-cookie btn-reject" onclick="togglePreferences()">Gerenciar</button>
-                <button class="btn-cookie btn-accept" onclick="respondCookies(true)">Aceitar Tudo</button>
-            </div>
-        </div>
-        <div id="cookiePrefs" class="cookie-preferences">
-            <div class="preference-item">
-                <input type="checkbox" id="prefEssenciais" checked disabled> <strong>Essenciais (Sempre ativos)</strong>
-            </div>
-            <div class="preference-item">
-                <input type="checkbox" id="prefAnaliticos"> <strong>Estatísticas / Analytics</strong>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Bloqueio de Teclas (Original mantido)
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) { return false; } 
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; } 
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
-        }
-
-        // --- SISTEMA DE CONSENTIMENTO DE COOKIES (LGPD) ---
-        window.addEventListener('DOMContentLoaded', (event) => {
-            const consent = localStorage.getItem('lgpd_consent');
-            if (!consent) {
-                document.getElementById('cookieBanner').classList.add('active');
-            } else if (consent === 'accepted_all' || consent === 'accepted_custom') {
-                loadTrackingScripts();
-            }
-        });
-
-        function togglePreferences() {
-            const prefs = document.getElementById('cookiePrefs');
-            prefs.style.display = prefs.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function respondCookies(acceptAll) {
-            if (acceptAll) {
-                localStorage.setItem('lgpd_consent', 'accepted_all');
-                loadTrackingScripts();
-            } else {
-                const analyticsChecked = document.getElementById('prefAnaliticos').checked;
-                if (analyticsChecked) {
-                    localStorage.setItem('lgpd_consent', 'accepted_custom');
-                    loadTrackingScripts();
-                } else {
-                    localStorage.setItem('lgpd_consent', 'rejected');
-                }
-            }
-            document.getElementById('cookieBanner').classList.remove('active');
-        }
-
-        function loadTrackingScripts() {
-            if (!document.getElementById('goatcounter-script')) {
-                var script = document.createElement('script');
-                script.id = 'goatcounter-script';
-                script.src = "//gc.zgo.at/count.js";
-                script.async = true;
-                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
-                document.body.appendChild(script);
-            }
-        }
-    </script>
-</body>
-</html>
+        <section id="galeria" class="slider-section">
+            <h2>Portfólio de Serviços</h2>
+            <div class="slider-track">
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="
