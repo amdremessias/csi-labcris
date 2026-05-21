@@ -226,9 +226,9 @@
             color: #333;
         }
 
-        /* SESSÃO DE SERVIÇOS (COM TRANSPARÊNCIA GLASSMORPHISM) */
+        /* SESSÃO DE SERVIÇOS (REVISADA COM TRANSPARÊNCIA GLASSMORPHISM PREMIUM) */
         #services {
-            background-color: rgba(10, 10, 10, 0.8);
+            background-color: rgba(10, 10, 10, 0.75);
             border: 1px solid rgba(76, 175, 80, 0.25);
             box-shadow: 0 4px 25px rgba(0, 255, 0, 0.05);
         }
@@ -245,24 +245,23 @@
             margin-top: 50px;
         }
 
-        /* Cards transparentes com desfoque de fundo */
         .service-list article {
-            background-color: rgba(25, 25, 25, 0.55); /* Transparência ajustada */
-            backdrop-filter: blur(8px); /* Desfoque do fundo atrás do card */
-            -webkit-backdrop-filter: blur(8px);
+            background-color: rgba(25, 25, 25, 0.45); /* Efeito translúcido ativado */
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
         }
 
         .service-list article:hover {
             transform: translateY(-5px);
-            background-color: rgba(35, 35, 35, 0.75);
+            background-color: rgba(35, 35, 35, 0.7);
             box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
-            border-color: #4CAF50;
+            border-color: #0AFF0A;
         }
 
         .service-list article .logo {
@@ -288,6 +287,70 @@
         .service-list article p {
             color: #ccc;
             font-size: 0.95em;
+            margin: 0;
+        }
+
+        /* --- SESSÃO FLUXO INTELIGENTE DE SERVIÇO --- */
+        .flow-section {
+            background-color: rgba(10, 10, 10, 0.75);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            box-shadow: 0 4px 25px rgba(0, 255, 0, 0.05);
+        }
+
+        .flow-section h2 {
+            color: #0AFF0A;
+            text-shadow: 0 0 10px rgba(0, 255, 10, 0.4);
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .flow-item {
+            background-color: rgba(25, 25, 25, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 25px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .flow-item:hover {
+            transform: translateY(-3px);
+            border-color: #4CAF50;
+        }
+
+        .flow-number {
+            width: 45px;
+            height: 45px;
+            background-color: #000;
+            color: #0AFF0A;
+            font-size: 1.3em;
+            font-weight: 700;
+            border: 2px solid #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+        }
+
+        .flow-item h3 {
+            color: #fff;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .flow-item p {
+            color: #aaa;
+            font-size: 0.9em;
             margin: 0;
         }
 
@@ -625,10 +688,42 @@
                 </div>
             </div>
         </section>
+
+        <section id="fluxo" class="flow-section">
+            <h2>Fluxo Inteligente de Serviço</h2>
+            <div class="flow-grid">
+                <div class="flow-item"><div class="flow-number">1</div><h3>Solicitação</h3><p>Descreva sua necessidade.</p></div>
+                <div class="flow-item"><div class="flow-number">2</div><h3>Localização</h3><p>IA encontra o técnico ideal.</p></div>
+                <div class="flow-item"><div class="flow-number">3</div><h3>Orçamento</h3><p>Receba propostas rápidas.</p></div>
+                <div class="flow-item"><div class="flow-number">4</div><h3>Aprovação</h3><p>Agende o serviço com 1 clique.</p></div>
+                <div class="flow-item"><div class="flow-number">5</div><h3>Finalização</h3><p>Avalie e pague com segurança.</p></div>
+            </div>
+        </section>
+
+        <section id="galeria" class="slider-section">
+            <h2>Portfólio de Serviços</h2>
+            <div class="slider-track">
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
+                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
+            </div>
+        </section>
     </main>
+
     <footer>
         <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" style="max-width:150px; margin-bottom:15px;">
-       
+        
         <div class="footer-compliance-links">
             <a href="privacidade.html">Política de Privacidade</a> | 
             <a href="termos.html">Termos de Uso</a> | 
@@ -665,7 +760,6 @@
     </div>
 
     <script>
-        // Bloqueio de Teclas de Inspeção (Mantido original)
         document.onkeydown = function(e) {
             if(e.keyCode == 123) { return false; } 
             if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
@@ -674,7 +768,6 @@
             if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
         }
 
-        // --- SISTEMA DE CONSENTIMENTO DE COOKIES (LGPD) ---
         window.addEventListener('DOMContentLoaded', (event) => {
             const consent = localStorage.getItem('lgpd_consent');
             if (!consent) {
