@@ -73,7 +73,7 @@
             z-index: 1;
         }
 
-        /* HEADER FLUIDO */
+        /* HEADER PADRÃO (Para Desktop) */
         header {
             background-color: rgba(0, 0, 0, 0.95); 
             padding: 1rem 0;
@@ -216,7 +216,7 @@
             border-radius: 2px;
         }
 
-        /* AJUSTE DO FUNDO DA SESSÃO DE SERVIÇOS */
+        /* SESSÃO DE SERVIÇOS */
         #services {
             background-color: rgba(10, 10, 10, 0.9);
             border: 1px solid rgba(76, 175, 80, 0.25);
@@ -385,8 +385,15 @@
             accent-color: #4CAF50;
         }
 
-        /* MEDIA QUERIES PARA RESPONSIVIDADE (SMARTPHONES) */
+        /* MEDIA QUERIES - RESPONSIVIDADE E CORREÇÃO DO MENU FIXO */
         @media (max-width: 868px) {
+            header {
+                position: relative; /* FAZ O MENU DEIXAR DE SER FIXO NO CELULAR */
+                top: auto;
+                box-shadow: none;
+                padding: 15px 0;
+            }
+
             header nav {
                 flex-direction: column;
                 gap: 15px;
