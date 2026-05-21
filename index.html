@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
             padding: 0;
             line-height: 1.6;
             color: #333;
-            background-color: #000; /* Fundo base preto para o efeito */
+            background-color: #000; 
             background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg');
             background-size: cover;
             background-position: center;
@@ -49,14 +49,11 @@
             to { transform: translateY(100vh) translateX(-500px) rotate(-45deg); opacity: 0; }
         }
 
-        /* Criando variações de meteoros */
         .star:nth-child(1) { left: 80%; animation-duration: 3s; animation-delay: 0s; }
         .star:nth-child(2) { left: 40%; animation-duration: 5s; animation-delay: 1s; }
         .star:nth-child(3) { left: 60%; animation-duration: 4s; animation-delay: 2s; }
         .star:nth-child(4) { left: 90%; animation-duration: 6s; animation-delay: 3s; }
         .star:nth-child(5) { left: 20%; animation-duration: 4s; animation-delay: 1.5s; }
-
-        /* --- FIM DA ANIMAÇÃO --- */
 
         .overlay {
             position: fixed;
@@ -242,14 +239,133 @@
         footer {
             background: rgba(0, 0, 0, 0.9);
             text-align: center;
-            padding: 20px;
-            color: #0af;
+            padding: 40px 20px;
+            color: #fff;
             margin-top: 50px;
             position: relative;
             z-index: 1;
         }
 
-        /* Responsividade */
+        footer p {
+            margin: 10px 0;
+            color: #ccc;
+        }
+
+        /* Links de conformidade no rodapé */
+        .footer-compliance-links {
+            margin: 20px 0;
+        }
+
+        .footer-compliance-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-compliance-links a:hover {
+            color: #0AFF0A;
+            text-decoration: underline;
+        }
+
+        .dpo-info {
+            font-size: 0.85em;
+            color: #aaa;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        /* --- ESTILOS DO BANNER DE COOKIES (LGPD) --- */
+        .lgpd-cookie-banner {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.98);
+            border-top: 3px solid #4CAF50;
+            color: #fff;
+            padding: 25px 20px;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.8);
+            z-index: 99999;
+            box-sizing: border-box;
+            transition: bottom 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .lgpd-cookie-banner.active {
+            bottom: 0;
+        }
+
+        .cookie-banner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .cookie-banner-container {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .cookie-text {
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #e0e0e0;
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .cookie-text a {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .btn-cookie {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-accept { background-color: #4CAF50; color: white; }
+        .btn-accept:hover { background-color: #45a049; }
+        .btn-reject { background-color: #333; color: #ccc; border: 1px solid #555; }
+        .btn-reject:hover { background-color: #444; color: #fff; }
+        
+        /* Painel de Preferências Opcional */
+        .cookie-preferences {
+            display: none;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .preference-item {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 0.9em;
+        }
+        .preference-item input {
+            margin-right: 5px;
+            accent-color: #4CAF50;
+        }
+
         @media (max-width: 768px) {
             #hero h2 { font-size: 2.5em; }
             header nav { flex-direction: column; }
@@ -257,10 +373,8 @@
         }
     </style>
 </head>
-<!-- Bloqueio do botão direito via atributo oncontextmenu -->
 <body oncontextmenu="return false;">
 
-    <!-- Container da Chuva de Meteoros -->
     <div class="star-container">
         <div class="star"></div>
         <div class="star"></div>
@@ -329,20 +443,94 @@
 
     <footer>
         <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" style="max-width:150px; margin-bottom:15px;">
-        <p>&copy; 2025 | MC infra TI | Todos os direitos reservados.</p>
+        
+        <div class="footer-compliance-links">
+            <a href="privacidade.html">Política de Privacidade</a> | 
+            <a href="termos.html">Termos de Uso</a> | 
+            <a href="cookiesone.html">Política de Cookies</a> | 
+            <a href="titulares.html">Direitos do Titular (Exclusão/Acesso)</a>
+        </div>
+
+        <p>&copy; 2026 | MC infra TI | Todos os direitos reservados conforme a Legislação Brasileira.</p>
+        
+        <div class="dpo-info">
+            <strong>Encarregado de Proteção de Dados (DPO):</strong> dpo@mcinfrati.com.br | Atendimento às diretrizes da ANPD.
+        </div>
     </footer>
 
-    <!-- Script Extra para reforçar o bloqueio de teclas de atalho (opcional) -->
+    <div id="cookieBanner" class="lgpd-cookie-banner">
+        <div class="cookie-banner-container">
+            <div class="cookie-text">
+                Nós utilizamos cookies e tecnologias semelhantes para melhorar a sua experiência, analisar o tráfego do site e proteger seus dados de acordo com a <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. Você pode aceitar todos os cookies ou gerenciar suas preferências. Veja nossa <a href="privacidade.html">Política de Privacidade</a>.
+            </div>
+            <div class="cookie-buttons">
+                <button class="btn-cookie btn-reject" onclick="respondCookies(false)">Recusar</button>
+                <button class="btn-cookie btn-reject" onclick="togglePreferences()">Gerenciar</button>
+                <button class="btn-cookie btn-accept" onclick="respondCookies(true)">Aceitar Tudo</button>
+            </div>
+        </div>
+        <div id="cookiePrefs" class="cookie-preferences">
+            <div class="preference-item">
+                <input type="checkbox" id="prefEssenciais" checked disabled> <strong>Essenciais (Sempre ativos)</strong>
+            </div>
+            <div class="preference-item">
+                <input type="checkbox" id="prefAnaliticos"> <strong>Estatísticas / Analytics</strong>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Bloqueio de Teclas (Original mantido)
         document.onkeydown = function(e) {
-            if(e.keyCode == 123) { return false; } // F12
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } // Inspect
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; } // Inspect
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } // Console
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } // View Source
+            if(e.keyCode == 123) { return false; } 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; } 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
+        }
+
+        // --- SISTEMA DE CONSENTIMENTO DE COOKIES (LGPD) ---
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                document.getElementById('cookieBanner').classList.add('active');
+            } else if (consent === 'accepted_all' || consent === 'accepted_custom') {
+                loadTrackingScripts();
+            }
+        });
+
+        function togglePreferences() {
+            const prefs = document.getElementById('cookiePrefs');
+            prefs.style.display = prefs.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function respondCookies(acceptAll) {
+            if (acceptAll) {
+                localStorage.setItem('lgpd_consent', 'accepted_all');
+                loadTrackingScripts();
+            } else {
+                const analyticsChecked = document.getElementById('prefAnaliticos').checked;
+                if (analyticsChecked) {
+                    localStorage.setItem('lgpd_consent', 'accepted_custom');
+                    loadTrackingScripts();
+                } else {
+                    localStorage.setItem('lgpd_consent', 'rejected');
+                }
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        // RASTREADORES DE TERCEIROS CONDICIONAIS (Não disparam antes do Opt-In)
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                var script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.src = "//gc.zgo.at/count.js";
+                script.async = true;
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
+                document.body.appendChild(script);
+            }
         }
     </script>
-
-    <script data-goatcounter="https://m3ss14s.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
