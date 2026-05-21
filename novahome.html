@@ -1,476 +1,382 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Softwares e Serviços de TI da MC Infra TI">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <meta name="description" content="Serviços MC infra TI - Soluções Inteligentes em Infraestrutura e Segurança">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <title>MC infra TI | Engenharia e Soluções Tecnológicas</title>
-    
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Serviços | MC infra TI</title>
     <style>
-        /* Variáveis de Design Global */
-        :root {
-            --bg-dark: #050505;
-            --accent-green: #0AFF0A;
-            --brand-green: #4CAF50;
-            --text-main: #f5f5f7;
-            --text-muted: #94a3b8;
-            --card-bg: rgba(17, 17, 17, 0.65);
-            --border-color: rgba(255, 255, 255, 0.06);
-        }
-
-        /* Estilos gerais */
         body {
-            font-family: 'Inter', 'Roboto', sans-serif;
+            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-services.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #0b0b0b;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            color: var(--text-main);
-            background-color: var(--bg-dark);
-            background-image: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            overflow-x: hidden;
         }
 
-        /* --- ANIMAÇÃO DE METEOROS --- */
-        .star-container {
+        /* Overlay escuro de alta fidelidade para contraste */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .star {
-            position: absolute;
-            background: linear-gradient(45deg, var(--accent-green), transparent);
-            width: 2px;
-            height: 60px;
-            opacity: 0.25;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            from { transform: translateY(-100px) translateX(0) rotate(-45deg); opacity: 1; }
-            to { transform: translateY(100vh) translateX(-500px) rotate(-45deg); opacity: 0; }
-        }
-
-        .star:nth-child(1) { left: 80%; animation-duration: 4s; animation-delay: 0s; }
-        .star:nth-child(2) { left: 30%; animation-duration: 6s; animation-delay: 1.5s; }
-        .star:nth-child(3) { left: 60%; animation-duration: 5s; animation-delay: 3s; }
-        .star:nth-child(4) { left: 95%; animation-duration: 7s; animation-delay: 0.5s; }
-        .star:nth-child(5) { left: 15%; animation-duration: 5s; animation-delay: 2.5s; }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(5, 5, 5, 0.3) 0%, rgba(5, 5, 5, 0.92) 100%);
+            background: rgba(10, 10, 10, 0.75);
             z-index: -1;
         }
 
+        header {
+            background: rgba(15, 15, 15, 0.95);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border-bottom: 1px solid rgba(0, 170, 255, 0.2);
+        }
+
+        .logo-nav {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0af;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 5px 15px;
+        }
+
+        nav ul li a {
+            color: #0af;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffffff;
+        }
+
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+            max-width: 900px;
+            margin: 40px auto 20px auto;
+            padding: 30px;
+            text-align: center;
+            background: rgba(15, 15, 15, 0.85);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 170, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 170, 255, 0.15);
             position: relative;
             z-index: 1;
         }
 
-        /* --- HEADER MODERNO --- */
-        header {
-            background-color: rgba(5, 5, 5, 0.7); 
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 1.1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        header nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        header .logo {
-            font-size: 1.4em;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            background: linear-gradient(45deg, #ffffff, var(--brand-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        header nav ul li a {
-            color: #b3b3b6;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            padding: 8px 16px;
-            transition: all 0.25s ease;
-            border-radius: 8px;
-        }
-
-        header nav ul li a:hover, header nav ul li a.active {
-            color: var(--accent-green);
-            background-color: rgba(10, 255, 10, 0.05);
-        }
-
-        /* --- HERO SECTION --- */
-        #hero {
-            text-align: center;
-            padding: 120px 24px 80px 24px;
-            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        #hero h2 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 4em;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -1.5px;
-            background: linear-gradient(to right, #ffffff 40%, #a3e635 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        #hero p {
-            font-size: 1.25em;
-            max-width: 760px;
-            margin: 0 auto;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        #hero p strong {
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-
-        /* --- SEÇÕES & CARDS ESTILO PREMIUM TECH --- */
-        section {
-            padding: 40px 0;
-        }
-
-        /* Callout do WhatsApp (Novo Chat) */
-        .featured-banner {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6), rgba(10, 10, 10, 0.8));
-            border: 1px solid var(--border-color);
-            border-top: 1px solid rgba(10, 255, 10, 0.25);
-            padding: 60px 40px;
-            border-radius: 20px;
-            text-align: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-            margin-bottom: 60px;
-        }
-
-        .featured-banner h2 {
-            font-size: 2.2em;
-            margin-top: 0;
-            margin-bottom: 16px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .section-desc {
-            font-size: 1.1em;
-            color: var(--text-muted);
-            max-width: 720px;
-            margin: 0 auto 32px auto;
-        }
-
-        /* Botão Minimalista Moderno */
-        .button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: var(--brand-green);
-            color: white;
-            padding: 14px 36px;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 1em;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(10, 255, 10, 0.2);
-            box-shadow: 0 4px 20px rgba(76, 175, 80, 0.15);
-        }
-
-        .button:hover {
-            background-color: var(--accent-green);
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(10, 255, 10, 0.35);
-        }
-
-        /* Título do Ecossistema */
-        .section-title-area {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title-area h2 {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        /* --- NOVO GRID DE SERVIÇOS --- */
         .service-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .service-list article {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 40px 32px;
-            border-radius: 16px;
-            text-align: left;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(20, 20, 20, 0.9);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 170, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .service-list article:hover {
-            transform: translateY(-6px);
-            background: rgba(25, 25, 25, 0.75);
-            border-color: rgba(10, 255, 10, 0.25);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(10, 255, 10, 0.03);
+            transform: translateY(-5px);
+            border-color: #0af;
+            box-shadow: 0 6px 15px rgba(0, 170, 255, 0.4);
         }
 
-        /* Ícones Modernizados */
-        .service-icon-wrapper {
-            width: 56px;
-            height: 56px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            transition: all 0.3s ease;
+        .service-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
 
-        .service-icon-wrapper i {
-            font-size: 1.5em;
-            color: var(--text-main);
+        h2 {
+            color: #0af;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        h2 a {
+            color: #0af;
+            text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .service-list article:hover .service-icon-wrapper {
-            background: rgba(10, 255, 10, 0.1);
-            border-color: rgba(10, 255, 10, 0.3);
-        }
-
-        .service-list article:hover .service-icon-wrapper i {
-            color: var(--accent-green);
-        }
-
-        .service-list h3 {
-            font-size: 1.4em;
-            margin: 0 0 12px 0;
-            font-weight: 600;
-        }
-
-        .service-list h3 a {
+        h2 a:hover {
             color: #ffffff;
-            text-decoration: none;
-            transition: color 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
-        .service-list p {
-            font-size: 0.98em;
-            color: var(--text-muted);
-            margin: 0;
-            line-height: 1.6;
+        p {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        .cta-card {
+            background: rgba(10, 25, 35, 0.9) !important;
+            border: 1px solid #25D366 !important;
+            justify-content: center;
             text-align: center;
-            padding: 60px 24px;
-            color: #64748b;
-            margin-top: 100px;
-            border-top: 1px solid var(--border-color);
         }
 
-        footer img {
-            max-width: 120px; 
-            filter: grayscale(1) brightness(1.3);
-            margin-bottom: 16px;
-            opacity: 0.8;
+        .cta-card h2 {
+            color: #25D366;
         }
 
-        footer p {
-            margin: 0;
-            font-size: 0.88em;
-            letter-spacing: 0.2px;
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        /* Responsividade Limpa */
-        @media (max-width: 968px) {
-            #hero h2 { font-size: 2.8em; }
-            header nav { flex-direction: column; gap: 16px; padding: 8px 24px; }
-            header nav ul { width: 100%; justify-content: center; flex-wrap: wrap; }
-            header nav ul li a { padding: 6px 12px; font-size: 0.85rem; }
-            .featured-banner { padding: 40px 24px; }
+        .whatsapp-link:hover {
+            background-color: #1DA851;
+            transform: scale(1.03);
         }
 
-        @media (max-width: 480px) {
-            #hero h2 { font-size: 2.2em; }
-            #hero p { font-size: 1.1em; }
-            .service-list { grid-template-columns: 1fr; }
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(15, 15, 15, 0.95);
+            color: #0af;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(0, 170, 255, 0.2);
+        }
+
+        .footer-logo {
+            display: block;
+            margin: 0 auto 15px auto;
+            max-width: 120px;
+            height: auto;
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
-
-    <div class="star-container">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-    </div>
-
-    <div class="overlay"></div>
+<body>
 
     <header>
         <nav>
-            <div class="logo">MC infra TI</div>
+            <div class="logo-nav">MC infra TI</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="streamhub.html">StreamHub</a></li>
+                <li><a href="ngix-pm-duckdns.html">Npm+Duck</a></li>
+                <li><a href="protocolosentinela.html">Links</a></li>
+                <li><a href="newgenrh.html">New-Gen-RH</a></li>
                 <li><a href="scanvul.html">Power Scan</a></li>
-                <li><a href="services.html" class="active">Serviços</a></li>
-                <li><a href="easypoint.html">Ponto Fácil</a></li>
-                <li><a href="criacao_sites.html">Criar Site</a></li>
-                <li><a href="cookies.html">Cookies</a></li>
                 <li><a href="contact.html">Contato</a></li>
-                <li><a href="portf.html">Sobre</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <section id="hero">
-            <h2>Atendimento Turbinado<br>no WhatsApp</h2>
-            <p>Cansado de perder tempo e clientes com um atendimento confuso no WhatsApp? Com o <strong>Novo Chat</strong>, você transforma radicalmente a comunicação da sua empresa.</p>
-        </section>
-
-        <section id="about">
-            <div class="featured-banner">
-                <h2>O Que é o Novo Chat?</h2>
-                <p class="section-desc">O Novo Chat é a evolução definitiva para o suporte rápido, eficiente e personalizado corporativo. Centralize conversas, resolva problemas com agilidade cirúrgica e aumente a fidelização dos seus clientes.</p>
-                <a href="chatnew.html" class="button">
-                    Conhecer Solução <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-        </section>
-
+    <main>
         <section id="services">
-            <div class="section-title-area">
-                <h2>Ecossistema de Serviços</h2>
-                <p class="section-desc">Infraestrutura robusta, automação de ponta e segurança da informação projetados para escalar a sua operação.</p>
+            <div class="container">
+                <h2>Soluções de Tecnologia para Sua Casa ou Negócio</h2>
+                <p>Oferecemos ferramentas e serviços robustos, rodando em servidores Linux com a mais alta segurança, para impulsionar a inovação e eficiência do seu dia a dia.</p>
             </div>
-                
+
             <div class="service-list">
+                
                 <article>
                     <div>
-                        <div class="service-icon-wrapper">
-                            <i class="fa-regular fa-comments"></i>
-                        </div>
-                        <h3><a href="chatnew.html">Novo Chat</a></h3>
-                        <p>Centralize e gerencie múltiplos atendimentos de forma inteligente via WhatsApp Web API.</p>
+                        <div class="service-icon">💬</div>
+                        <h2><a href="chatnew.html">Novo Chat Wpp</a></h2>
+                        <p>Centralize e otimize seu atendimento via WhatsApp com nossa solução completa.</p>
                     </div>
                 </article>
                 
                 <article>
                     <div>
-                        <div class="service-icon-wrapper">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                        <h3><a href="scanvul.html">Power Scan</a></h3>
-                        <p>Varreduras profundas e identificação de brechas críticas em servidores locais e em nuvem.</p>
+                        <div class="service-icon">📈</div>
+                        <h2>ERP-PDV Gestão</h2>
+                        <p>Gerencie suas vendas com facilidade e precisão para bares e restaurantes. Obtenha relatórios detalhados de caixa e movimentações.</p>
                     </div>
                 </article>
                 
                 <article>
                     <div>
-                        <div class="service-icon-wrapper">
-                            <i class="fa-solid fa-lock"></i>
-                        </div>
-                        <h3><a href="filtroweb.html">NetFilter</a></h3>
-                        <p>Filtro de conteúdo web avançado e camadas protetivas persistentes contra ameaças internas.</p>
+                        <div class="service-icon">🔐</div>
+                        <h2><a href="cofre.html">Cofre Seguro</a></h2>
+                        <p>Mantenha suas senhas protegidas em um ambiente de acesso restrito. Compartilhe credenciais com sua equipe de maneira totalmente segura.</p>
                     </div>
                 </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">📌</div>
+                        <h2><a href="http://app-mconsultoria.rf.gd" target="_blank">Gerenciador de O.S.</a></h2>
+                        <p>Controle ordens de serviços, relatórios de estoque, faturamento e muito mais em uma plataforma centralizada.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">🔑</div>
+                        <h2>Rede Privada (VPN)</h2>
+                        <p>Acesso remoto criptografado e seguro para interligar equipes, filiais e servidores locais.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">🤖</div>
+                        <h2><a href="novorobo.html">Chatbot com I.A.</a></h2>
+                        <p>Automatize seu atendimento com robôs inteligentes integrados diretamente ao WhatsApp.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">👁️</div>
+                        <h2><a href="thesentinel.html">Sentinela CFTV</a></h2>
+                        <p>Solução avançada de videomonitoramento com armazenamento seguro em nuvem e acesso remoto em tempo real.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">🌍</div>
+                        <h2><a href="criacao_sites.html">Criação de Sites</a></h2>
+                        <p>Simplificamos a criação da sua Landing Page ou Site Institucional, garantindo uma presença online profissional.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">📅</div>
+                        <h2><a href="scrumlab.html">Quadro Scrum</a></h2>
+                        <p>Gestão de tarefas colaborativa e robusta, projetada para organizar e otimizar o fluxo de projetos da sua empresa.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">🖥️</div>
+                        <h2><a href="itservices.html">Serviços de TI</a></h2>
+                        <p>Suporte técnico especializado e infraestrutura para computadores, notebooks e servidores de alto desempenho.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">🖲️</div>
+                        <h2><a href="filtroweb.html">NetFilter Bloqueador</a></h2>
+                        <p>Proteja sua rede contra links maliciosos, anúncios intrusivos e rastreadores usando camadas inteligentes de filtragem de conteúdo.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">🎥</div>
+                        <h2><a href="streamhub.html">StreamHub</a></h2>
+                        <p>O servidor de streaming de mídia definitivo feito sob medida para você e sua família.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">💬</div>
+                        <h2><a href="taskz.html">Novo ChatZ</a></h2>
+                        <p>Plataforma multiatendimento robusta para centralizar múltiplos operadores em um único número de WhatsApp.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">✍️</div>
+                        <h2><a href="aceiteaprove.html">Assinatura Digital</a></h2>
+                        <p>Valide e assine seus documentos digitalmente de forma rápida, segura e com validade jurídica.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">💾</div>
+                        <h2><a href="backupservice.html">Backup Server</a></h2>
+                        <p>Servidores de armazenamento pessoal e corporativo automatizados para prevenção contra perda de dados.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">🛠️</div>
+                        <h2><a href="novaos.html">O.S. Enterprise</a></h2>
+                        <p>Controle absoluto de orçamentos, contratos e acompanhamento de ordens de serviço em larga escala.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">🛡️</div>
+                        <h2><a href="scanvul.html">Power Scan</a></h2>
+                        <p>Identificação proativa de falhas de segurança e análise de vulnerabilidades (CVEs) em ambientes Linux e Windows.</p>
+                    </div>
+                </article>
+                
+                <article>
+                    <div>
+                        <div class="service-icon">⚡</div>
+                        <h2><a href="mkplaceupshow.html">Serviço Certo</a></h2>
+                        <p>Marketplace técnico para encontrar o operador ideal para demandas complexas de tecnologia com garantia de qualidade.</p>
+                    </div>
+                </article>
+                
+                <!-- Card de Destaque para Contato -->
+                <article class="cta-card">
+                    <div>
+                        <div class="service-icon">📞</div>
+                        <h2>Fale com um Especialista</h2>
+                        <p>Precisa de um diagnóstico sob medida ou projeto personalizado para sua empresa?</p>
+                        <a href="https://wa.me/5514997135218" target="_blank" class="whatsapp-link">Abrir WhatsApp</a>
+                    </div>
+                </article>
+                
             </div>
         </section>
     </main>
 
-    <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
-        <p>&copy; 2026 | MC infra TI | Todos os direitos reservados.</p>
-    </footer>
-
-    <script>
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) { return false; } 
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; } 
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
-        }
-    </script>
-
-    <script data-goatcounter="https://m3ss14s.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <footer> 
+        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="Logo Sentinela CFTV" class="footer-logo">
+        <p>&copy; 2026 | MC infra TI | Todos os direitos reservados.</p> 
+    </footer> 
 </body>
 </html>
