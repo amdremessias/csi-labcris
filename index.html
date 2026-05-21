@@ -73,14 +73,15 @@
             z-index: 1;
         }
 
+        /* HEADER FLUIDO */
         header {
-            background-color: rgba(0, 0, 0, 0.9); 
+            background-color: rgba(0, 0, 0, 0.95); 
             padding: 1rem 0;
-            text-align: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 10px rgba(0,255,0,0.15);
+            border-bottom: 1px solid rgba(76, 175, 80, 0.3);
         }
 
         header nav {
@@ -90,14 +91,15 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            flex-wrap: wrap;
+            box-sizing: border-box;
         }
 
         header .logo {
-            font-size: 1.8em;
+            font-size: 1.6em;
             font-weight: 700;
             color: #4CAF50;
-            margin-bottom: 0;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+            white-space: nowrap;
         }
 
         header nav ul {
@@ -105,26 +107,25 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        header nav ul li {
-            margin: 0 15px;
+            align-items: center;
+            gap: 10px;
         }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
             font-weight: 400;
-            padding: 5px 10px;
-            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 6px 12px;
+            transition: all 0.3s ease;
             border-radius: 4px;
+            font-size: 0.95em;
+            display: inline-block;
         }
 
         header nav ul li a:hover {
-            color: #4CAF50;
-            background-color: rgba(255, 255, 255, 0.1);
+            color: #0AFF0A;
+            background-color: rgba(74, 175, 80, 0.15);
+            text-shadow: 0 0 8px rgba(10, 255, 10, 0.5);
         }
 
         #hero {
@@ -132,7 +133,7 @@
             color: #fff;
             text-align: center;
             padding: 100px 20px;
-            min-height: 500px;
+            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -215,6 +216,18 @@
             border-radius: 2px;
         }
 
+        /* AJUSTE DO FUNDO DA SESSÃO DE SERVIÇOS */
+        #services {
+            background-color: rgba(10, 10, 10, 0.9);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            box-shadow: 0 4px 25px rgba(0, 255, 0, 0.05);
+        }
+
+        #services h2 {
+            color: #0AFF0A;
+            text-shadow: 0 0 10px rgba(0, 255, 10, 0.4);
+        }
+
         .service-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -223,17 +236,33 @@
         }
 
         .service-list article {
-            background-color: #f9f9f9;
+            background-color: rgba(25, 25, 25, 0.85);
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #222;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .service-list article:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+            border-color: #4CAF50;
+        }
+
+        .service-list article h3 a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .service-list article h3 a:hover {
+            color: #0AFF0A;
+        }
+
+        .service-list article p {
+            color: #aaa;
         }
 
         footer {
@@ -251,7 +280,6 @@
             color: #ccc;
         }
 
-        /* Links de conformidade no rodapé */
         .footer-compliance-links {
             margin: 20px 0;
         }
@@ -277,7 +305,7 @@
             margin-top: 15px;
         }
 
-        /* --- ESTILOS DO BANNER DE COOKIES (LGPD) --- */
+        /* --- ESTILOS DO BANNER DE COOKIES --- */
         .lgpd-cookie-banner {
             position: fixed;
             bottom: -100%;
@@ -303,14 +331,6 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-        }
-
-        @media (min-width: 768px) {
-            .cookie-banner-container {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
         }
 
         .cookie-text {
@@ -348,7 +368,6 @@
         .btn-reject { background-color: #333; color: #ccc; border: 1px solid #555; }
         .btn-reject:hover { background-color: #444; color: #fff; }
         
-        /* Painel de Preferências Opcional */
         .cookie-preferences {
             display: none;
             border-top: 1px solid #333;
@@ -366,10 +385,63 @@
             accent-color: #4CAF50;
         }
 
+        /* MEDIA QUERIES PARA RESPONSIVIDADE (SMARTPHONES) */
+        @media (max-width: 868px) {
+            header nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 5px 10px;
+            }
+
+            header nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+            }
+
+            header nav ul li {
+                margin: 0;
+            }
+
+            header nav ul li a {
+                font-size: 0.85em;
+                padding: 6px 10px;
+                background-color: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
         @media (max-width: 768px) {
-            #hero h2 { font-size: 2.5em; }
-            header nav { flex-direction: column; }
-            header nav ul { flex-direction: column; width: 100%; margin-top: 15px; }
+            #hero h2 { font-size: 2.2em; }
+            #hero p { font-size: 1.1em; }
+            section h2 { font-size: 2em; }
+            .footer-compliance-links a {
+                display: inline-block;
+                margin: 5px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header nav ul {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                text-align: center;
+                gap: 5px;
+            }
+            header nav ul li a {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 5px 2px;
+                font-size: 0.8em;
+            }
+            .cookie-buttons {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -451,9 +523,9 @@
                         <h3><a href="filtroweb.html">NetFilter</a></h3>
                         <p>Proteção e filtro de conteúdo web avançado.</p>
                     </article>
-         
                 </div>
             </div>
+        </section>
     </main>
 
     <footer>
@@ -462,7 +534,7 @@
         <div class="footer-compliance-links">
             <a href="privacidade.html">Política de Privacidade</a> | 
             <a href="termos.html">Termos de Uso</a> | 
-            <a href="cookiesone.html">Política de Cookies</a> | 
+            <a href="cookies.html">Política de Cookies</a> | 
             <a href="titulares.html">Direitos do Titular (Exclusão/Acesso)</a>
         </div>
 
@@ -535,7 +607,6 @@
             document.getElementById('cookieBanner').classList.remove('active');
         }
 
-        // RASTREADORES DE TERCEIROS CONDICIONAIS (Não disparam antes do Opt-In)
         function loadTrackingScripts() {
             if (!document.getElementById('goatcounter-script')) {
                 var script = document.createElement('script');
