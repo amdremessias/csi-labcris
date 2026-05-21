@@ -3,42 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Softwares e Serviços de TI da MC Infra TI - Soluções Arrojadas para sua Empresa">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Softwares e Serviços de TI da MC Infra TI - Soluções Tecnológicas de Alta Performance">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <title>MC Infra TI | Inovação em Tecnologia</title>
+    <title>MC Infra TI | Inovação Radical</title>
     <style>
         :root {
-            --primary: #0AFF0A;
-            --primary-dark: #4CAF50;
-            --bg-dark: #050505;
-            --card-bg: rgba(20, 20, 20, 0.6);
-            --text-main: #E0E0E0;
-            --text-dim: #A0A0A0;
-            --glass-border: rgba(76, 175, 80, 0.2);
-            --glow: 0 0 20px rgba(10, 255, 10, 0.3);
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4);
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: default;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(10, 255, 10, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(10, 255, 10, 0.05) 0%, transparent 40%);
-            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ANIMAÇÃO DE FUNDO (METEOROS MELHORADOS) --- */
-        .star-container {
+        /* --- BACKGROUND DINÂMICO --- */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.05) 0%, transparent 40%);
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg') center/cover no-repeat;
+            opacity: 0.2;
+            filter: saturate(0.5) brightness(0.5);
+        }
+
+        /* --- ANIMAÇÃO DE PARTÍCULAS (METEOROS MODERNOS) --- */
+        .particles {
             position: fixed;
             top: 0;
             left: 0;
@@ -48,42 +71,40 @@
             z-index: 0;
         }
 
-        .star {
+        .particle {
             position: absolute;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            width: 100px;
-            height: 2px;
-            opacity: 0;
-            animation: shoot 4s linear infinite;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(1px);
+            animation: float linear infinite;
         }
 
-        @keyframes shoot {
-            0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; }
-            10% { opacity: 1; }
-            30% { transform: translateX(-500px) translateY(500px) rotate(-45deg); opacity: 0; }
-            100% { opacity: 0; }
+        @keyframes float {
+            from { transform: translateY(110vh) translateX(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            to { transform: translateY(-10vh) translateX(100px); opacity: 0; }
         }
 
-        .star:nth-child(1) { top: 10%; left: 90%; animation-delay: 0s; }
-        .star:nth-child(2) { top: 30%; left: 80%; animation-delay: 1.5s; animation-duration: 5s; }
-        .star:nth-child(3) { top: 50%; left: 95%; animation-delay: 3s; }
-        .star:nth-child(4) { top: 70%; left: 85%; animation-delay: 4.5s; animation-duration: 6s; }
-
-        /* --- HEADER --- */
+        /* --- HEADER PREMIUM --- */
         header {
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 1.2rem 0;
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
             z-index: 1000;
-            border-bottom: 1px solid var(--glass-border);
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(2, 2, 2, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -92,364 +113,359 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: var(--glow);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
-        nav ul {
+        .nav-links {
             display: flex;
+            gap: 0.5rem;
             list-style: none;
-            gap: 1.5rem;
         }
 
-        nav ul li a {
-            color: var(--text-main);
+        .nav-links a {
+            color: var(--text-dim);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
             transition: 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
         }
 
-        nav ul li a:hover {
-            color: var(--primary);
-            background: rgba(10, 255, 10, 0.1);
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION RADICAL --- */
         #hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 0 1rem;
             position: relative;
-            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg') center/cover no-repeat;
-        }
-
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(5,5,5,0.8), var(--bg-dark));
+            padding: 0 2rem;
         }
 
         .hero-content {
-            position: relative;
+            text-align: center;
+            max-width: 1000px;
             z-index: 1;
-            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
         }
 
         #hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #fff, var(--primary));
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            letter-spacing: -3px;
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        #hero h1 span {
+            display: block;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         #hero p {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
             color: var(--text-dim);
-            margin-bottom: 2.5rem;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* --- BOTÕES --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            display: inline-block;
-            background: var(--primary);
-            color: #000;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.4s;
-            box-shadow: var(--glow);
+            background: var(--text);
+            color: var(--bg);
         }
 
         .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(10, 255, 10, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
         }
 
-        /* --- SECTIONS --- */
+        /* --- SEÇÕES --- */
         section {
-            padding: 100px 2rem;
-            max-width: 1200px;
+            padding: 120px 2rem;
+            max-width: 1300px;
             margin: 0 auto;
             position: relative;
-            z-index: 1;
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+        .section-header {
+            margin-bottom: 5rem;
             text-align: center;
-            font-weight: 800;
         }
 
-        .section-title span {
-            color: var(--primary);
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
         }
 
-        /* --- ABOUT SECTION --- */
-        #about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            color: var(--text-dim);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .about-image {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        /* --- SERVICES GRID --- */
+        /* --- GRID DE SERVIÇOS --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
-        .service-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            transition: 0.4s;
-            text-align: center;
-            backdrop-filter: blur(10px);
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 3.5rem;
+            border-radius: 32px;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .service-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
-            background: rgba(10, 255, 10, 0.05);
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: 0.5s;
+            z-index: -1;
         }
 
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: transparent;
+        }
+
+        .card:hover::before {
+            opacity: 0.05;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
             display: block;
         }
 
-        .service-card h3 a {
-            color: #fff;
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .card h3 a {
+            color: inherit;
             text-decoration: none;
-            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        /* --- FLUXO DE TRABALHO --- */
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .flow-card {
+            background: var(--surface-bright);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .flow-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.3;
             margin-bottom: 1rem;
             display: block;
         }
 
-        .service-card p {
-            color: var(--text-dim);
-        }
-
-        /* --- FLOW SECTION --- */
-        .flow-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .flow-step {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--bg-dark);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 0 auto 1.5rem;
-            box-shadow: var(--glow);
-        }
-
-        /* --- SLIDER --- */
-        .slider-container {
+        /* --- SLIDER PREMIUM --- */
+        .slider-wrapper {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
             overflow: hidden;
-            padding: 2rem 0;
+            padding: 4rem 0;
         }
 
         .slider-track {
             display: flex;
-            width: calc(300px * 14);
-            animation: scroll 40s linear infinite;
+            width: calc(400px * 14);
+            animation: scroll 50s linear infinite;
         }
 
         .slide {
-            width: 300px;
+            width: 400px;
             padding: 0 1rem;
         }
 
         .slide-inner {
-            background: var(--card-bg);
-            border-radius: 15px;
+            height: 500px;
+            border-radius: 32px;
             overflow: hidden;
-            border: 1px solid var(--glass-border);
+            position: relative;
+            border: 1px solid var(--border);
         }
 
         .slide-inner img {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
+            transition: 0.8s;
         }
 
-        .slide-label {
-            padding: 1rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
+        .slide-inner:hover img {
+            transform: scale(1.1);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
         }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-300px * 7)); }
+            100% { transform: translateX(calc(-400px * 7)); }
         }
 
         /* --- FOOTER --- */
         footer {
+            padding: 100px 2rem 50px;
             background: #000;
-            padding: 80px 2rem 40px;
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
+            border-top: 1px solid var(--border);
         }
 
-        .footer-logo {
-            max-width: 180px;
-            margin-bottom: 2rem;
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
         }
 
-        .footer-links {
-            margin-bottom: 2rem;
-        }
+        .footer-brand .logo { margin-bottom: 1.5rem; display: block; }
+        .footer-brand p { color: var(--text-dim); max-width: 300px; }
 
-        .footer-links a {
+        .footer-col h4 { margin-bottom: 1.5rem; font-family: 'Space Grotesk', sans-serif; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; }
+        .footer-col ul a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             color: var(--text-dim);
-            text-decoration: none;
-            margin: 0 1rem;
             font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         /* --- COOKIE BANNER --- */
-        .lgpd-cookie-banner {
+        .cookie-banner {
             position: fixed;
-            bottom: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 800px;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--primary);
-            border-radius: 20px;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--border);
             padding: 2rem;
+            border-radius: 24px;
             z-index: 9999;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .lgpd-cookie-banner.active {
-            bottom: 30px;
-        }
-
-        .cookie-buttons {
             display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            transform: translateY(200%);
+            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .btn-cookie {
-            padding: 0.8rem 1.5rem;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            transition: 0.3s;
-        }
+        .cookie-banner.active { transform: translateY(0); }
 
-        .btn-accept { background: var(--primary); color: #000; }
-        .btn-reject { background: #222; color: #fff; }
+        /* --- ANIMAÇÕES --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 992px) {
-            #about { grid-template-columns: 1fr; text-align: center; }
-            #hero h1 { font-size: 3.5rem; }
-        }
-
-        @media (max-width: 768px) {
-            nav ul { display: none; }
-            #hero h1 { font-size: 2.8rem; }
-            section { padding: 60px 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .nav-links { display: none; }
+            #hero h1 { font-size: 4.5rem; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-    <div class="star-container">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
     </div>
 
-    <header>
+    <div class="particles" id="particleContainer"></div>
+
+    <header id="mainHeader">
         <nav>
-            <div class="logo">MC Infra TI</div>
-            <ul>
+            <div class="logo">MC INFRA TI</div>
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="scanvul.html">Power Scan</a></li>
                 <li><a href="services.html">Serviços</a></li>
@@ -464,62 +480,201 @@
     <main>
         <section id="hero">
             <div class="hero-content">
-                <h1>Atendimento <br><span>Turbinado</span> no WhatsApp</h1>
-                <p>Transforme a comunicação da sua empresa com o Novo Chat. Suporte rápido, eficiente e totalmente personalizado.</p>
-                <a href="#about" class="btn-primary">Descobrir Solução</a>
+                <span class="badge">Tecnologia de Próxima Geração</span>
+                <h1>Atendimento <span>Turbinado</span> no WhatsApp</h1>
+                <p>Cansado de perder tempo e clientes com um atendimento confuso? Com o Novo Chat, você revoluciona a comunicação da sua empresa.</p>
+                <a href="#about" class="btn btn-primary">Explorar Soluções</a>
             </div>
         </section>
 
         <section id="about">
-            <div class="about-text">
-                <h2 class="section-title" style="text-align: left;">O Que é o <span>Novo Chat?</span></h2>
-                <p>O <strong>Novo Chat</strong> é a solução definitiva para empresas que buscam excelência no atendimento. Chega de perder clientes por demora ou confusão nas mensagens.</p>
-                <p>Nossa plataforma centraliza, organiza e potencializa cada interação, garantindo que seu cliente tenha a melhor experiência possível.</p>
-                <a href="chatnew.html" class="btn-primary">Conhecer Agora</a>
+            <div class="section-header">
+                <h2>O Que é o <span>Novo Chat?</span></h2>
+                <p style="max-width: 800px; margin: 0 auto; color: var(--text-dim); font-size: 1.2rem;">
+                    O Novo Chat é a solução definitiva para suporte rápido, eficiente e personalizado. 
+                    Resolva problemas com agilidade e fidelize seus clientes com uma plataforma desenhada para o futuro.
+                </p>
             </div>
-            <div class="about-image">
-                <div style="font-size: 5rem;">🚀</div>
-                <h3>Tecnologia de Ponta</h3>
-                <p>Sistemas integrados para máxima performance.</p>
+            <div style="text-align: center;">
+                <a href="chatnew.html" class="btn btn-primary" style="background: var(--accent);">Conhecer Agora</a>
             </div>
         </section>
 
         <section id="services">
-            <h2 class="section-title">Nossos <span>Serviços</span></h2>
+            <div class="section-header">
+                <h2>Nossos <span>Serviços</span></h2>
+            </div>
             <div class="services-grid">
-                <article class="service-card">
-                    <span class="service-icon">💬</span>
+                <article class="card">
+                    <span class="card-icon">💬</span>
                     <h3><a href="chatnew.html">Novo Chat</a></h3>
-                    <p>Centralize e automatize seu atendimento via WhatsApp com inteligência.</p>
+                    <p>Centralize seu atendimento via WhatsApp com inteligência e automação de ponta.</p>
                 </article>
-                <article class="service-card">
-                    <span class="service-icon">🛡️</span>
+                <article class="card">
+                    <span class="card-icon">🛡️</span>
                     <h3><a href="scanvul.html">Power Scan</a></h3>
-                    <p>Segurança em primeiro lugar. Identifique vulnerabilidades antes que virem problemas.</p>
+                    <p>Identifique falhas de segurança em seus servidores com varreduras profundas e precisas.</p>
                 </article>
-                <article class="service-card">
-                    <span class="service-icon">🔒</span>
+                <article class="card">
+                    <span class="card-icon">🔒</span>
                     <h3><a href="filtroweb.html">NetFilter</a></h3>
-                    <p>Controle total e proteção avançada para o tráfego web da sua rede corporativa.</p>
+                    <p>Proteção e filtro de conteúdo web avançado para garantir a integridade da sua rede.</p>
+                </article>
+                <!-- Repetições conforme original para manter estrutura -->
+                <article class="card">
+                    <span class="card-icon">🔒</span>
+                    <h3><a href="filtroweb.html">NetFilter</a></h3>
+                    <p>Proteção e filtro de conteúdo web avançado para garantir a integridade da sua rede.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🔒</span>
+                    <h3><a href="filtroweb.html">NetFilter</a></h3>
+                    <p>Proteção e filtro de conteúdo web avançado para garantir a integridade da sua rede.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🔒</span>
+                    <h3><a href="filtroweb.html">NetFilter</a></h3>
+                    <p>Proteção e filtro de conteúdo web avançado para garantir a integridade da sua rede.</p>
                 </article>
             </div>
         </section>
 
         <section id="fluxo">
-            <h2 class="section-title">Fluxo <span>Inteligente</span></h2>
+            <div class="section-header">
+                <h2>Fluxo <span>Inteligente</span></h2>
+            </div>
             <div class="flow-container">
-                <div class="flow-step">
-                    <div class="step-number">1</div>
-                    <h3>Solicitação</h3>
-                    <p>Você nos conta sua necessidade.</p>
+                <div class="flow-card"><span class="flow-num">01</span><h3>Solicitação</h3><p>Descreva sua necessidade em segundos.</p></div>
+                <div class="flow-card"><span class="flow-num">02</span><h3>Localização</h3><p>IA encontra o técnico ideal para você.</p></div>
+                <div class="flow-card"><span class="flow-num">03</span><h3>Orçamento</h3><p>Receba propostas rápidas e claras.</p></div>
+                <div class="flow-card"><span class="flow-num">04</span><h3>Aprovação</h3><p>Agende o serviço com apenas 1 clique.</p></div>
+                <div class="flow-card"><span class="flow-num">05</span><h3>Finalização</h3><p>Avalie e pague com total segurança.</p></div>
+            </div>
+        </section>
+
+        <section id="galeria" style="padding: 120px 0;">
+            <div class="section-header">
+                <h2>Nosso <span>Portfólio</span></h2>
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider-track">
+                    <!-- Slides -->
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-overlay"><h3>Segurança Eletrônica</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-overlay"><h3>Ar Condicionado</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-overlay"><h3>Elétrica Industrial</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-overlay"><h3>Automação Residencial</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-overlay"><h3>Redes Estruturadas</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400"><div class="slide-overlay"><h3>Data Centers</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=400"><div class="slide-overlay"><h3>Infraestrutura</h3></div></div></div>
+                    <!-- Clones -->
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-overlay"><h3>Segurança Eletrônica</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-overlay"><h3>Ar Condicionado</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-overlay"><h3>Elétrica Industrial</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-overlay"><h3>Automação Residencial</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-overlay"><h3>Redes Estruturadas</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400"><div class="slide-overlay"><h3>Data Centers</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=400"><div class="slide-overlay"><h3>Infraestrutura</h3></div></div></div>
                 </div>
-                <div class="flow-step">
-                    <div class="step-number">2</div>
-                    <h3>Análise IA</h3>
-                    <p>Nossa IA encontra o técnico ideal.</p>
-                </div>
-                <div class="flow-step">
-                    <div class="step-number">3</div>
-                    <h3>Orçamento</h3>
-                    <p>Propostas rápidas e transparentes.</p>                
-(Content truncated due to size limit. Use line ranges to read remaining content)
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">MC INFRA TI</div>
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="privacidade.html">Privacidade</a></li>
+                    <li><a href="termos.html">Termos de Uso</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="titulares.html">Direitos do Titular</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li>dpo@mcinfrati.com.br</li>
+                    <li>Suporte 24/7</li>
+                    <li>Brasil</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <p style="font-size: 0.9rem; color: var(--text-dim);">
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. 
+            Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        </p>
+        <div style="display: flex; gap: 1rem;">
+            <button class="btn" style="padding: 0.8rem 2rem; background: var(--surface); color: #fff; border: 1px solid var(--border);" onclick="respondCookies(false)">Recusar</button>
+            <button class="btn" style="padding: 0.8rem 2rem; background: var(--accent); color: #000;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Particle System
+        const container = document.getElementById('particleContainer');
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 1;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            p.style.animationDelay = (Math.random() * 5) + 's';
+            container.appendChild(p);
+        }
+
+        // Proteção de código
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+
+        // LGPD Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+            } else if (consent === 'accepted_all') {
+                loadTrackingScripts();
+            }
+        });
+
+        function respondCookies(acceptAll) {
+            localStorage.setItem('lgpd_consent', acceptAll ? 'accepted_all' : 'rejected');
+            if(acceptAll) loadTrackingScripts();
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                const script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.async = true;
+                script.src = 'https://gc.zgo.at/count.js';
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
+                document.body.appendChild(script);
+            }
+        }
+    </script>
+</body>
+</html>
