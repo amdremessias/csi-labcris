@@ -663,20 +663,18 @@
                             throw new Error('Falha na resposta do servidor principal');
                         }
 
-                        // [CENÁRIO 1] Automação bem sucedida: Apenas exibe sucesso sem botão de contingência
+                        // [CENÁRIO 1] Automação bem sucedida: Apenas exibe sucesso fixo. O processo morre aqui.
                         Swal.fire({
                             title: 'Sucesso!',
-                            text: 'Seu pedido foi registrado em nossa central. Clique em OK para abrir a validação do seu atendimento...',
+                            text: 'Sua solicitação foi registrada em nosso banco de dados corporativo com sucesso. Nossa equipe entrará em contato em breve!',
                             icon: 'success',
                             background: '#0a0a0a',
                             color: '#fff',
                             confirmButtonColor: '#00FF66'
-                        }).then(() => {
-                            window.open(linkWpp, '_blank');
                         });
 
                     } catch(e) { 
-                        // [CENÁRIO 2] TRANSBORDO: Se o n8n der erro ou cair, aciona a Central de Contingência Manual
+                        // [CENÁRIO 2] TRANSBORDO: Se o n8n der erro ou cair, aciona a Central de Contingência Manual via WhatsApp
                         Swal.fire({
                             title: 'Central de Contingência',
                             text: 'Detectamos uma oscilação temporária em nosso servidor principal. Clique no botão abaixo para concluir o envio direto via WhatsApp sem perder os seus dados!',
