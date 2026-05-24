@@ -281,13 +281,6 @@
             animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        .service-card:nth-child(1) { animation-delay: 0.1s; }
-        .service-card:nth-child(2) { animation-delay: 0.2s; }
-        .service-card:nth-child(3) { animation-delay: 0.3s; }
-        .service-card:nth-child(4) { animation-delay: 0.4s; }
-        .service-card:nth-child(5) { animation-delay: 0.5s; }
-        .service-card:nth-child(6) { animation-delay: 0.6s; }
-
         .service-card:hover {
             border-color: rgba(0, 255, 102, 0.3);
             background: var(--surface-bright);
@@ -347,7 +340,7 @@
         .btn-outline { background: transparent; color: #fff; border: 1px solid var(--border); }
         .btn-outline:hover { background: var(--surface); border-color: var(--text); }
 
-        /* --- POPUP OTMIZADO DO SWAL --- */
+        /* --- POPUP OTIMIZADO DO SWAL --- */
         .swal2-container { padding: 10px !important; }
         .custom-swal-popup { background: #0a0a0a !important; border: 1px solid rgba(255, 255, 255, 0.15) !important; border-radius: 24px !important; padding: 2rem 1.5rem !important; width: 100% !important; max-width: 450px !important; }
         .custom-swal-title { color: #fff !important; font-family: 'Space Grotesk', sans-serif !important; font-size: 1.4rem !important; font-weight: 700 !important; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; line-height: 1.3 !important; }
@@ -594,8 +587,31 @@
     <script>
         (function() {
             const _u = 'https://app-n8n.duckdns.org/webhook/mcinframk';
+            
+            // [MELHORIA 5 - OFUSCAÇÃO] Reconstrução do Token a partir de array decimal ASCII em tempo de execução
+            const _gT = () => [77,105,110,104,97,67,104,97,118,101,83,101,99,114,101,116,97,84,101,99,87,111,114,107,50,48,50,54,33].map(c => String.fromCharCode(c)).join('');
+
+            // [MELHORIA 2 - MÁSCARA] Função utilitária para aplicar máscara visual de telefone em tempo real (Ex: (14) 99999-9999)
+            function aplicarMascaraTelefone(input) {
+                let v = input.value.replace(/\D/g, "");
+                if (v.length > 11) v = v.substring(0, 11);
+                if (v.length > 6) {
+                    v = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
+                } else if (v.length > 2) {
+                    v = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+                } else if (v.length > 0) {
+                    v = `(${v}`;
+                }
+                input.value = v;
+            }
 
             window.solicitarDados = async function(servico, descPredefinida = '') {
+                // [MELHORIA 3 - LOCALSTORAGE] Tenta recuperar os rascunhos temporários salvos do usuário
+                const cacheNome = localStorage.getItem('tw_draft_nome') || '';
+                const cacheWhats = localStorage.getItem('tw_draft_whats') || '';
+                const cacheCidade = localStorage.getItem('tw_draft_cidade') || '';
+                const cacheDesc = descPredefinida || localStorage.getItem('tw_draft_desc') || '';
+
                 const { value: f } = await Swal.fire({
                     title: `Solicitar Atendimento para o ${servico}`,
                     customClass: {
@@ -606,10 +622,10 @@
                     background: '#0a0a0a',
                     color: '#fff',
                     html:
-                        '<input id="swal-n" class="custom-swal-input" placeholder="Seu Nome">' +
-                        '<input id="swal-w" class="custom-swal-input" type="tel" maxlength="11" placeholder="WhatsApp (DDD + Número sem espaços)" oninput="this.value = this.value.replace(/[^0-9]/g, \'\')">' +
-                        '<input id="swal-c" class="custom-swal-input" placeholder="Sua Cidade">' +
-                        '<textarea id="swal-p" class="custom-swal-textarea" placeholder="Descreva brevemente sua infraestrutura ou problema técnico..."></textarea>',
+                        `<input id="swal-n" class="custom-swal-input" placeholder="Seu Nome" value="${cacheNome}">` +
+                        `<input id="swal-w" class="custom-swal-input" type="tel" placeholder="WhatsApp (DDD + Número)" value="${cacheWhats}">` +
+                        `<input id="swal-c" class="custom-swal-input" placeholder="Sua Cidade" value="${cacheCidade}">` +
+                        `<textarea id="swal-p" class="custom-swal-textarea" placeholder="Descreva brevemente sua infraestrutura ou problema técnico...">${cacheDesc}</textarea>`,
                     focusConfirm: false,
                     showCancelButton: true,
                     confirmButtonColor: '#00FF66',
@@ -617,13 +633,29 @@
                     confirmButtonText: 'Enviar Solicitação',
                     cancelButtonText: 'Cancelar',
                     didOpen: () => {
-                        if(descPredefinida) {
-                            document.getElementById('swal-p').value = descPredefinida;
-                        }
+                        const inputWhats = document.getElementById('swal-w');
+                        const inputNome = document.getElementById('swal-n');
+                        const inputCidade = document.getElementById('swal-c');
+                        const inputDesc = document.getElementById('swal-p');
+
+                        // Aplica a máscara logo na abertura se já houver cache
+                        if(inputWhats.value) aplicarMascaraTelefone(inputWhats);
+
+                        // Otimiza digitação e escuta eventos em tempo real para alimentar a máscara e salvar rascunho local
+                        inputWhats.addEventListener('input', (e) => {
+                            aplicarMascaraTelefone(e.target);
+                            localStorage.setItem('tw_draft_whats', e.target.value.replace(/\D/g, ""));
+                        });
+
+                        // [MELHORIA 3] Ouvintes de alteração para armazenar rascunhos no cache local
+                        inputNome.addEventListener('input', (e) => localStorage.setItem('tw_draft_nome', e.target.value.trim()));
+                        inputCidade.addEventListener('input', (e) => localStorage.setItem('tw_draft_cidade', e.target.value.trim()));
+                        inputDesc.addEventListener('input', (e) => localStorage.setItem('tw_draft_desc', e.target.value.trim()));
                     },
                     preConfirm: () => {
                         const nome = document.getElementById('swal-n').value.trim();
-                        const whats = document.getElementById('swal-w').value.trim();
+                        const whatsMascarado = document.getElementById('swal-w').value.trim();
+                        const whats = whatsMascarado.replace(/\D/g, ""); // Extrai string puramente numérica
                         const cidade = document.getElementById('swal-c').value.trim();
                         const desc = document.getElementById('swal-p').value.trim();
                         
@@ -632,7 +664,7 @@
                             return false; 
                         }
                         if(whats.length !== 11) { 
-                            Swal.showValidationMessage('O número deve conter exatamente 11 dígitos numéricos (Ex: 14997135218)!'); 
+                            Swal.showValidationMessage('O número deve conter exatamente 11 dígitos com o DDD (Ex: 14997135218)!'); 
                             return false; 
                         }
                         return { nome, whats, cidade, desc };
@@ -654,7 +686,7 @@
                             method: 'POST', 
                             headers: {
                                 'Content-Type': 'application/json',
-                                'X-Webhook-Token': 'MinhaChaveSecretaTecWork2026!'
+                                'X-Webhook-Token': _gT() // [MELHORIA 5] Injeta dinamicamente a string gerada em memória
                             }, 
                             body: JSON.stringify({...f, servico}) 
                         });
@@ -662,6 +694,12 @@
                         if (!response.ok) {
                             throw new Error('Falha na resposta do servidor principal');
                         }
+
+                        // Se a automação respondeu com sucesso, limpa os rascunhos salvos para o formulário vir limpo na próxima vez
+                        localStorage.removeItem('tw_draft_nome');
+                        localStorage.removeItem('tw_draft_whats');
+                        localStorage.removeItem('tw_draft_cidade');
+                        localStorage.removeItem('tw_draft_desc');
 
                         // [CENÁRIO 1] Automação bem sucedida: Apenas exibe sucesso fixo. O processo morre aqui.
                         Swal.fire({
@@ -708,7 +746,7 @@
             else header.classList.remove('scrolled');
         });
 
-        // Bloqueio de Engenharia Reversa
+        // Bloqueio de Engenharia Reversa básico
         document.onkeydown = function(e) {
             if(e.keyCode == 123) return false;
             if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
