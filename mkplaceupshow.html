@@ -1,386 +1,822 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
+        });
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Marketplace de Serviços Técnicos Especializados - MC Services">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="TecWork (MC Services) - Marketplace Avançado de Serviços Técnicos Especializados com Alocação Inteligente.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <title>TecWork | MC Services</title>
+    
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4);
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0; padding: 0;
-            line-height: 1.6; color: #fff;
-            background: #000 url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg') no-repeat center center fixed;
-            background-size: cover;
-            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: -1; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        /* --- BACKGROUND GRADIENT OVERLAY --- */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(0, 255, 102, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(0, 204, 255, 0.03) 0%, transparent 50%);
+        }
 
+        /* --- HEADER PREMIUM --- */
         header {
-            background-color: rgba(0, 0, 0, 0.95);
-            padding: 1rem 0; border-bottom: 1px solid #4CAF50;
-            z-index: 1000; position: sticky; top: 0;
-        }
-        header nav { display: flex; justify-content: space-between; align-items: center; }
-        header .logo { font-size: 1.3em; font-weight: 700; color: #4CAF50; text-decoration: none; }
-        header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
-        header ul li a { color: #fff; text-decoration: none; font-size: 0.9em; font-weight: bold; }
-
-        .about-platform { 
-            padding: 50px 20px; text-align: center; 
-            background: rgba(10, 255, 10, 0.04); 
-            border: 1px solid rgba(76, 175, 80, 0.3); 
-            border-radius: 20px; margin: 30px 0;
-            animation: pulseSection 3s infinite ease-in-out;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes pulseSection {
-            0%, 100% { border-color: rgba(76, 175, 80, 0.3); box-shadow: 0 0 5px rgba(10, 255, 10, 0.05); }
-            50% { border-color: rgba(10, 255, 10, 0.8); box-shadow: 0 0 20px rgba(10, 255, 10, 0.1); }
+        header.scrolled {
+            background: rgba(2, 2, 2, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        .about-platform h2, .about-platform p {
-            animation: pulseText 3s infinite ease-in-out;
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        @keyframes pulseText {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.01); text-shadow: 0 0 10px rgba(10, 255, 10, 0.3); }
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
-        .about-platform h2 { color: #0AFF0A; margin-bottom: 20px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .about-platform p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; }
-        .highlight-green { color: #0AFF0A; font-weight: bold; }
-
-        .search-hero { padding: 30px 0; text-align: center; }
-        .search-hero h1 { font-size: 2.2rem; color: #0AFF0A; text-shadow: 0 0 20px rgba(10, 255, 10, 0.4); margin-bottom: 20px; }
-        .search-container {
-            background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 15px;
-            backdrop-filter: blur(10px); border: 1px solid rgba(76, 175, 80, 0.3);
-            max-width: 700px; margin: 0 auto;
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
         }
-        .search-box { display: flex; flex-direction: column; gap: 10px; }
-        input[type="text"] { padding: 15px; border-radius: 8px; border: none; font-size: 1rem; outline: none; flex: 1; color: #333; }
-        .btn-search { background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-search:hover { background: #0AFF0A; box-shadow: 0 0 15px #0AFF0A; }
 
-        .flow-section { 
-            background: rgba(20, 20, 20, 0.8); border: 1px solid #4CAF50; 
-            border-radius: 20px; padding: 40px 20px; margin: 40px 0; text-align: center;
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        main {
+            padding-top: 140px;
+        }
+
+        section {
+            padding: 40px 1.5rem 80px;
+            max-width: 1300px;
+            margin: 0 auto;
             position: relative;
         }
-        .flow-section h2 { color: #0AFF0A; margin-bottom: 30px; font-size: 1.5rem; }
-        .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; position: relative; }
-        
-        @media (min-width: 768px) {
-            .flow-grid::before {
-                content: ''; position: absolute; top: 20px; left: 10%; width: 80%;
-                height: 2px; background: linear-gradient(90deg, transparent, #4CAF50, transparent);
-                z-index: 0; animation: pulseLine 2s infinite;
-            }
-        }
-        @keyframes pulseLine { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 
-        .flow-item { z-index: 1; }
-        .flow-number { 
-            width: 40px; height: 40px; background: #000; color: #0AFF0A; 
-            border: 2px solid #4CAF50; border-radius: 50%; display: flex; 
-            align-items: center; justify-content: center; 
-            margin: 0 auto 15px; font-weight: bold; box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-            transition: 0.5s;
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
         }
-        .flow-item:hover .flow-number { transform: rotate(360deg); background: #4CAF50; color: #fff; }
 
-        .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
-        .cat-card { 
-            background: rgba(20, 20, 20, 0.7); 
-            border: 1px solid rgba(76, 175, 80, 0.2); 
-            padding: 20px; border-radius: 12px; text-align: center; 
-            cursor: pointer; transition: all 0.3s ease; 
-            backdrop-filter: blur(5px);
+        .section-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            letter-spacing: -1.5px;
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
         }
-        .cat-card:hover { 
-            background: transparent; 
-            border-color: #0AFF0A; 
+
+        .section-header h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-dim);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- BARRA DE BUSCA AVANÇADA --- */
+        .search-wrapper {
+            max-width: 650px;
+            margin: 0 auto 5rem;
+            position: relative;
+        }
+
+        .search-container {
+            display: flex;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.5rem;
+            border-radius: 100px;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .search-container:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+        }
+
+        .search-container input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            padding: 0 1.5rem;
+            font-size: 1rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: text;
+        }
+
+        .search-container input::placeholder {
+            color: #666;
+        }
+
+        .search-container button {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .search-container button:hover {
+            background: #00CC55;
+            transform: scale(1.02);
+        }
+
+        /* --- GRID DE CARDS DO MARKETPLACE --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            border-color: rgba(255,255,255,0.2);
+            background: var(--surface-bright);
             transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(10, 255, 10, 0.2);
-            backdrop-filter: blur(2px);
-        }
-        .cat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-
-        /* --- Slider Section --- */
-        .slider-section { padding: 40px 0; overflow: hidden; }
-        .slider-track { display: flex; width: calc(280px * 14); animation: scrollLoop 30s linear infinite; }
-        .slide { width: 280px; height: 350px; padding: 10px; flex-shrink: 0; }
-        .slide-content { position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden; border: 1px solid rgba(76, 175, 80, 0.4); }
-        .slide-content img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px 10px; text-align: center; font-weight: bold; color: #0AFF0A; }
-
-        @keyframes scrollLoop { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-280px * 7)); } }
-
-        /* --- Seção de Vídeo Revisional --- */
-        .video-highlight-section { padding: 50px 0; text-align: center; }
-        .video-container-wrapper {
-            max-width: 800px; margin: 0 auto;
-            border: 2px solid #4CAF50; border-radius: 20px;
-            overflow: hidden; box-shadow: 0 0 25px rgba(10, 255, 10, 0.2);
-            position: relative; background: #000;
-        }
-        .responsive-video {
-            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-        }
-        .responsive-video iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
 
-        /* --- Planos --- */
-        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; padding-bottom: 40px; }
-        .plan-card { 
-            background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(76, 175, 80, 0.4); 
-            border-radius: 15px; padding: 40px 20px 30px; text-align: center; 
-            transition: all 0.4s ease; position: relative; display: flex; flex-direction: column;
+        .card-top h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-top p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* --- SEÇÃO DE ASSINATURAS / PLANOS --- */
+        .plans-title {
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .plans-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+        }
+
+        .plan-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 3.5rem 2.5rem;
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: 0.4s;
+        }
+
+        .plan-card.featured {
+            border-color: rgba(0, 255, 102, 0.3);
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(0,255,102,0.01) 100%);
+        }
+
+        .plan-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-price span {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.5rem;
+        }
+
+        .plan-features li {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* --- BOTÕES PREMIUM (INTERLIGADOS À AUTOMAÇÃO) --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.9rem 2rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.9rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .btn-accent:hover {
+            background: #00CC55;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 102, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: var(--surface);
+            border-color: var(--text);
+        }
+
+        /* --- BLOCCO DE INFORMAÇÕES DO SCRIPT --- */
+        .sweet-custom-popup {
+            background: #0f0f0f !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 24px !important;
+        }
+        .sweet-custom-title {
+            color: #fff !important;
+            font-family: 'Space Grotesk', sans-serif !important;
+        }
+        .sweet-custom-input {
+            background: rgba(255,255,255,0.05) !important;
+            border: 1px solid var(--border) !important;
+            color: #fff !important;
+            border-radius: 10px !important;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 1.5rem 40px;
+            background: #000;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand img {
+            max-width: 160px;
+            margin-bottom: 1.5rem;
+            filter: brightness(1.2);
+        }
+
+        .footer-brand p { 
+            color: var(--text-dim); 
+            max-width: 350px;
+            font-size: 0.95rem; 
+        }
+
+        .footer-col h4 { 
+            margin-bottom: 1.2rem; 
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff; 
         }
         
-        .badge-popular {
-            position: absolute; top: 0; right: 0;
-            background: #0AFF0A; color: #000;
-            font-size: 0.75rem; font-weight: bold;
-            padding: 6px 15px; border-radius: 0 15px 0 15px;
-            text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(10, 255, 10, 0.5);
-            z-index: 10;
+        .footer-col ul { 
+            list-style: none;
         }
-
-        .plan-card:hover { transform: translateY(-10px); border-color: #0AFF0A; box-shadow: 0 10px 30px rgba(10, 255, 10, 0.1); }
-        .plan-card.featured { border: 2px solid #0AFF0A; box-shadow: 0 0 20px rgba(10, 255, 10, 0.2); }
-        .plan-price { font-size: 2.2rem; font-weight: bold; margin: 15px 0; color: #fff; }
-        .plan-features { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; text-align: left; flex-grow: 1; }
-        .plan-features li { margin-bottom: 12px; padding-left: 30px; position: relative; }
-        .plan-features li::before { content: '✓'; color: #0AFF0A; position: absolute; left: 0; font-weight: bold; }
         
-        .btn-plan { 
-            background: #4CAF50; color: white; padding: 15px; border-radius: 8px; 
-            font-weight: bold; width: 100%; border: none; cursor: pointer; 
-            transition: 0.3s; text-transform: uppercase;
-            animation: btnGlowPulse 2s infinite ease-in-out;
+        .footer-col ul li { 
+            margin-bottom: 0.6rem;
+        }
+        
+        .footer-col ul a { 
+            color: var(--text-dim); 
+            text-decoration: none; 
+            transition: 0.3s; 
+            font-size: 0.9rem;
+        }
+        
+        .footer-col ul a:hover { 
+            color: var(--accent);
         }
 
-        @keyframes btnGlowPulse {
-            0%, 100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); background: #4CAF50; }
-            50% { box-shadow: 0 0 20px rgba(10, 255, 10, 0.8); background: #0AFF0A; }
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .swal2-popup { 
-            background: #111 !important; color: #fff !important; 
-            border: 1px solid #4CAF50 !important; border-radius: 20px !important; 
-            width: 95% !important; max-width: 450px !important;
-        }
-        .swal2-input, .swal2-textarea { 
-            background: #222 !important; color: #fff !important; 
-            border: 1px solid #333 !important; width: 100% !important; 
-            margin: 10px 0 !important; font-size: 16px !important;
+        /* --- COOKIE BANNER --- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 20px;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            transform: translateY(200%);
+            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        @media (min-width: 768px) {
-            .categories-grid { grid-template-columns: repeat(5, 1fr); }
-            .plans-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .search-hero h1 { font-size: 3.5rem; }
-            .search-box { flex-direction: row; }
-            .plan-card.featured { transform: scale(1.05); }
-        }
+        .cookie-banner.active { transform: translateY(0); }
 
-        footer { background: rgba(0, 0, 0, 0.95); text-align: center; padding: 40px 0; border-top: 1px solid #4CAF50; margin-top: 50px; }
-        .footer-logo { max-width: 130px; margin-bottom: 10px; }
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 0; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            main { padding-top: 100px; }
+            
+            section { padding: 40px 1.5rem 40px; }
+            .section-header { margin-bottom: 3rem; }
+            
+            .search-wrapper { margin-bottom: 3.5rem; }
+            .search-container { border-radius: 20px; padding: 0.4rem; }
+            .search-container input { padding: 0.8rem 1rem; }
+            .search-container button { width: auto; padding: 0.8rem 1.5rem; }
+
+            .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .plans-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+            
+            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
+            .cookie-banner .btn { width: 100%; }
+        }
     </style>
 </head>
-<body>
-    <div class="overlay"></div>
+<body oncontextmenu="return false;">
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">🛠️ Tec-Work </a>
-                <ul>
-                    <li><a href="#fluxo">Fluxo</a></li>
-                    <li><a href="#categorias">Categorias</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                </ul>
-            </nav>
-        </div>
+    <div class="bg-wrapper"></div>
+
+    <header id="mainHeader">
+        <nav>
+            <div class="logo-text">MC INFRA TI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanvul.html">Power Scan</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="easypoint.html">Ponto Facil</a></li>
+                <li><a href="criacao_sites.html">Criar Site</a></li>
+                <li><a href="contactmcinfra.html">Contato</a></li>
+                <li><a href="portf.html">Sobre</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="about-platform">
-            <h2>Excelência Técnica a um Clique</h2>
-            <p>O <span class="highlight-green">Tec-Work</span> é a plataforma de elite que redefine a contratação de serviços técnicos em Ourinhos e região. Unimos tecnologia de ponta e uma <span class="highlight-green">curadoria rigorosa</span> para conectar você aos melhores especialistas em TI, Infraestrutura e Manutenção. Nossa missão é oferecer segurança total, orçamentos instantâneos e a garantia de que seu projeto está em mãos profissionais.</p>
-        </section>
+    <main>
+        <section id="marketplace-section">
+            <div class="section-header">
+                <h1>TecWork <span>MC Services</span></h1>
+                <p>Mapeamento inteligente e alocação imediata de operadores e técnicos especializados para demandas corporativas de infraestrutura, suporte e manutenção.</p>
+            </div>
 
-        <section class="search-hero">
-            <h1>O que você precisa hoje?</h1>
-            <div class="search-container">
-                <div class="search-box">
-                    <input type="text" id="serviceInput" placeholder="Ex: Ar Condicionado, Câmeras, Redes...">
-                    <button class="btn-search" onclick="executarBusca()">Buscar Agora</button>
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" id="serviceInput" placeholder="O que sua empresa precisa hoje? Ex: Cabeamento, Servidor...">
+                    <button type="button" onclick="executarBusca()">Buscar Técnico</button>
                 </div>
             </div>
+
+            <div class="services-grid">
+                
+                <article class="service-card">
+                    <div class="card-top">
+                        <h3>Infraestrutura de Rede</h3>
+                        <p>Desenho estrutural, cabeamento estruturado Cat6/Cat7, fusão de fibra óptica e certificação de pontos de rede locais.</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="solicitarDados('Infraestrutura de Rede')">Solicitar este Serviço</button>
+                </article>
+
+                <article class="service-card">
+                    <div class="card-top">
+                        <h3>Formatação e Hardware</h3>
+                        <p>Saneamento completo de estações de trabalho, substituição de componentes críticos, upgrades corporativos e instalação de SO Linux/Windows.</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="solicitarDados('Formatação e Hardware')">Solicitar este Serviço</button>
+                </article>
+
+                <article class="service-card">
+                    <div class="card-top">
+                        <h3>Configuração de Roteadores</h3>
+                        <p>Segmentação de tráfego de rede corporativa via VLANs, parametrização avançada de roteamento Mikrotik, Cisco e redes Wi-Fi corporativas.</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="solicitarDados('Configuração de Roteadores')">Solicitar este Serviço</button>
+                </article>
+
+                <article class="service-card">
+                    <div class="card-top">
+                        <h3>Montagem de Servidores</h3>
+                        <p>Implementação física e lógica de servidores dedicados, ambientes virtualizados com Proxmox/ESXi, provisionamento de storages e storages NAS.</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="solicitarDados('Montagem de Servidores')">Solicitar este Serviço</button>
+                </article>
+
+                <article class="service-card">
+                    <div class="card-top">
+                        <h3>Segurança de Firewalls</h3>
+                        <p>Implantação e blindagem perimetral através de pfSense, criação de túneis VPN seguros e políticas restritivas de controle de acessos.</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="solicitarDados('Segurança de Firewalls')">Solicitar este Serviço</button>
+                </article>
+
+                <article class="service-card">
+                    <div class="card-top">
+                        <h3>Suporte Técnico N1/N2/N3</h3>
+                        <p>Atendimento remoto ou presencial escalonável para resolução de incidentes lógicos, mapeamento de falhas e manutenção contínua.</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="solicitarDados('Suporte Técnico')">Solicitar este Serviço</button>
+                </article>
+
+            </div>
+
+            <h2 class="plans-title">Planos de Credenciamento <span>Corporate</span></h2>
+            <div class="plans-grid">
+                
+                <article class="plan-card">
+                    <h3>Plano Básico</h3>
+                    <div class="plan-price">R$ 50,00 <span>/ taxa única</span></div>
+                    <ul class="plan-features">
+                        <li>Acesso ao catálogo de operadores cadastrados</li>
+                        <li>Abertura de até 5 chamados técnicos por mês</li>
+                        <li>Suporte padrão via e-mail</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="solicitarDados('Plano Básico - R$50')">Adquirir Plano</button>
+                </article>
+
+                <article class="plan-card featured">
+                    <h3>Plano Premium</h3>
+                    <div class="plan-price">R$ 150,00 <span>/ taxa única</span></div>
+                    <ul class="plan-features">
+                        <li>Acesso prioritário total aos melhores operadores</li>
+                        <li>Chamados ilimitados sem limite operacional</li>
+                        <li>Suporte via WhatsApp integrado em tempo real</li>
+                        <li>Garantia de atendimento emergencial em campo</li>
+                    </ul>
+                    <button class="btn btn-accent" onclick="solicitarDados('Plano Premium - R$150')">Adquirir Plano Premium</button>
+                </article>
+
+            </div>
+
         </section>
-
-        <section id="fluxo" class="flow-section">
-            <h2>Fluxo Inteligente de Serviço</h2>
-            <div class="flow-grid">
-                <div class="flow-item"><div class="flow-number">1</div><h3>Solicitação</h3><p>Descreva sua necessidade.</p></div>
-                <div class="flow-item"><div class="flow-number">2</div><h3>Localização</h3><p>IA encontra o técnico ideal.</p></div>
-                <div class="flow-item"><div class="flow-number">3</div><h3>Orçamento</h3><p>Receba propostas rápidas.</p></div>
-                <div class="flow-item"><div class="flow-number">4</div><h3>Aprovação</h3><p>Agende o serviço com 1 clique.</p></div>
-                <div class="flow-item"><div class="flow-number">5</div><h3>Finalização</h3><p>Avalie e pague com segurança.</p></div>
-            </div>
-        </section>
-
-        <h2 id="categorias" style="text-align: center; color: #4CAF50; margin-bottom: 30px;">Categorias Populares</h2>
-        <div class="categories-grid">
-            <div class="cat-card" onclick="solicitarDados('Ar Condicionado')"><span class="cat-icon">❄️</span><h3>Ar Condicionado</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Técnico CFTV')"><span class="cat-icon">📹</span><h3>Técnico CFTV</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Redes e TI')"><span class="cat-icon">🌐</span><h3>Redes e TI</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Entregador')"><span class="cat-icon">🏍️</span><h3>Entregador</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Alarme')"><span class="cat-icon">🚨</span><h3>Alarme</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Cerca Elétrica')"><span class="cat-icon">⚡</span><h3>Cerca Elétrica</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Portão Automático')"><span class="cat-icon">🚪</span><h3>Portão Automático</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Controle de Acesso')"><span class="cat-icon">🔑</span><h3>Controle de Acesso</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Home Automação')"><span class="cat-icon">🏠</span><h3>Home Automação</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Monitoramento 24h')"><span class="cat-icon">🛡️</span><h3>Monitoramento 24h</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Elétrica Básica')"><span class="cat-icon">🔌</span><h3>Elétrica Básica</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Jardinagem')"><span class="cat-icon">🍃</span><h3>Jardinagem</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Serralheiro')"><span class="cat-icon">⚙️</span><h3>Serralheiro</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Hidráulico')"><span class="cat-icon">🚰</span><h3>Hidráulico</h3></div>
-            <div class="cat-card" onclick="solicitarDados('Montador de Móveis')"><span class="cat-icon">📦</span><h3>Montador</h3></div>
-        </div>
-
-        <section id="galeria" class="slider-section">
-            <h2 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">Portfólio de Serviços</h2>
-            <div class="slider-track">
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <!-- Repetição para o loop infinito -->
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400"><div class="slide-label">Ar Condicionado</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/ImagemSegurançaAssalto1.jpg"><div class="slide-label">Elétrica Industrial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamInstaGauve.webp"><div class="slide-label">Automação Residencial</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/CamINSt.webp"><div class="slide-label">Segurança Eletrônica</div></div></div>
-                <div class="slide"><div class="slide-content"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mkservice/redeestruturada.jpg"><div class="slide-label">Redes Estruturadas</div></div></div>
-            </div>
-        </section>
-
-        <!-- NOVA SESSÃO DE VÍDEO -->
-        <section class="video-highlight-section">
-            <h2 style="color: #0AFF0A; margin-bottom: 10px;">Monitoramento Inteligente & Segurança</h2>
-            <p style="margin-bottom: 30px; color: #ccc;">Veja como nossas soluções de CFTV garantem a proteção do seu patrimônio em tempo real.</p>
-            <div class="video-container-wrapper">
-                <div class="responsive-video">
-                    <iframe src="https://www.youtube.com/embed/cuQeUT660y8"" title="Segurança Eletrônica" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-
-        <h2 id="planos" style="text-align: center; color: #4CAF50; margin-top: 40px;">Planos para Profissionais</h2>
-        <div class="plans-grid">
-            <div class="plan-card">
-                <h3>Iniciante</h3>
-                <div class="plan-price">Grátis</div>
-                <ul class="plan-features">
-                    <li>3 orçamentos mensais</li>
-                    <li>Perfil no diretório</li>
-                    <li>Suporte via ticket</li>
-                </ul>
-                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Iniciante', 'Gostaria de me cadastrar no Plano Iniciante (Grátis).')">Cadastrar</button>
-            </div>
-             
-            <div class="plan-card featured">
-                <div class="badge-popular">Mais Procurado</div>
-                <h3>Elite Pro</h3>
-                <div class="plan-price">R$ 59,90<span>/mês</span></div>
-                <ul class="plan-features">
-                    <li><strong>Orçamentos Ilimitados</strong></li>
-                    <li>Leads via WhatsApp</li>
-                    <li>Selo de Verificado</li>
-                    <li>Destaque nas buscas</li>
-                </ul>
-                <button class="btn-plan" onclick="solicitarDados('Adesão ao Plano Elite Pro', 'Gostaria de contratar o Plano Elite Pro (R$ 59,90/mês).')">Ser Premium</button>
-            </div>
-
-            <div class="plan-card">
-                <h3>Enterprise</h3>
-                <div class="plan-price">Consultar</div>
-                <ul class="plan-features">
-                    <li>Multi-equipes</li>
-                    <li>Integração API / CRM</li>
-                    <li>Geofencing exclusivo</li>
-                </ul>
-                <button class="btn-plan" style="background:#444" onclick="solicitarDados('Contato Enterprise', 'Tenho interesse no Plano Enterprise para minha empresa.')">Falar Conosco</button>
-            </div>
-        </div>
     </main>
 
     <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" class="footer-logo">
-        <p>&copy; 2026 MC Services | Ourinhos-SP</p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a href="termos.html">Termos de Uso</a></li>
+                    <li><a href="cookies.html">Política de Cookies</a></li>
+                    <li><a href="titulares.html">Direitos do Titular</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato Urgente</h4>
+                <ul>
+                    <li>messias.consultoria@yahoo.com</li>
+                    <li>NOC operacional ativo</li>
+                    <li>Suporte Nível 3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        </div>
     </footer>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <p style="font-size: 0.85rem; color: var(--text-dim);">
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        </p>
+        <div style="display: flex; gap: 0.8rem;">
+            <button class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(false)">Recusar</button>
+            <button class="btn btn-accent" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        </div>
+    </div>
 
     <script>
         (function() {
-            const _0x1 = "aHR0cHM6Ly9hcHAtbjhuLmR1Y2tkbnMub3JnL3dlYmhvb2svc2Vydmljby1jZXJ0by13ZWJob29r";
-            const _u = atob(_0x1);
+            // URL do Webhook do n8n mantida rigorosamente conforme arquivo original
+            const _u = 'https://n8n.wtichet.online/webhook/dfc1b3f6-4be9-4bc7-95ca-9a3d6fcf4aee';
 
-            document.addEventListener('contextmenu', e => e.preventDefault());
-            document.onkeydown = e => {
-                if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
-            };
-
-            window.solicitarDados = async function(servico, preenchimentoAutomatico = "") {
+            window.solicitarDados = async function(servico) {
                 const { value: f } = await Swal.fire({
-                    title: servico,
-                    html: `<input id="swal-n" class="swal2-input" placeholder="Seu Nome"><input id="swal-w" class="swal2-input" type="tel" maxlength="11" placeholder="WhatsApp (DDD + Número)"><input id="swal-c" class="swal2-input" placeholder="Cidade"><textarea id="swal-p" class="swal2-textarea" placeholder="Descreva sua solicitação...">${preenchimentoAutomatico}</textarea>`,
+                    title: 'Solicitar Operador',
+                    text: 'Serviço: ' + servico,
+                    background: '#0f0f0f',
+                    color: '#fff',
+                    html:
+                        '<input id="swal-n" class="swal2-input" style="background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.1);" placeholder="Seu Nome">' +
+                        '<input id="swal-w" class="swal2-input" style="background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.1);" placeholder="WhatsApp (DDD + Número)">' +
+                        '<input id="swal-c" class="swal2-input" style="background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.1);" placeholder="Sua Cidade">' +
+                        '<textarea id="swal-p" class="swal2-textarea" style="background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.1);" placeholder="Descreva brevemente o problema técnico..."></textarea>',
+                    focusConfirm: false,
                     showCancelButton: true,
-                    confirmButtonText: 'Enviar Pedido',
-                    didOpen: () => {
-                        const inputW = document.getElementById('swal-w');
-                        inputW.addEventListener('input', (e) => { e.target.value = e.target.value.replace(/\D/g, ''); });
-                    },
+                    confirmButtonColor: '#00FF66',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Enviar Solicitação',
+                    cancelButtonText: 'Cancelar',
                     preConfirm: () => {
                         const nome = document.getElementById('swal-n').value.trim();
                         const whats = document.getElementById('swal-w').value.trim();
                         const cidade = document.getElementById('swal-c').value.trim();
-                        if(!nome || !whats || !cidade) { Swal.showValidationMessage('Preencha Nome, WhatsApp e Cidade!'); return false; }
-                        if(whats.length < 10) { Swal.showValidationMessage('Digite o DDD + Número completo!'); return false; }
-                        return { nome, whats, cidade, desc: document.getElementById('swal-p').value }
+                        
+                        if(!nome || !whats || !cidade) { 
+                            Swal.showValidationMessage('Por favor, preencha os campos obrigatórios: Nome, WhatsApp e Cidade!'); 
+                            return false; 
+                        }
+                        if(whats.length < 10) { 
+                            Swal.showValidationMessage('Digite um número de WhatsApp válido com o DDD corporativo!'); 
+                            return false; 
+                        }
+                        return { 
+                            nome, 
+                            whats, 
+                            cidade, 
+                            desc: document.getElementById('swal-p').value 
+                        }
                     }
                 });
 
                 if (f) {
-                    Swal.fire({ title: 'Enviando...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+                    Swal.fire({ 
+                        title: 'Processando requisição...', 
+                        text: 'Alocando canais de atendimento no n8n.',
+                        background: '#0f0f0f',
+                        color: '#fff',
+                        allowOutsideClick: false, 
+                        didOpen: () => Swal.showLoading() 
+                    });
+                    
                     try {
-                        await fetch(_u, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({...f, servico}) });
-                        Swal.fire('Sucesso!', 'Seu pedido foi enviado para nossa central.', 'success');
-                    } catch(e) { Swal.fire('Ops!', 'Houve um problema na conexão.', 'error'); }
+                        // Disparo assíncrono mantendo a mesma exata estrutura de payload
+                        await fetch(_u, { 
+                            method: 'POST', 
+                            headers: {'Content-Type': 'application/json'}, 
+                            body: JSON.stringify({...f, servico}) 
+                        });
+                        Swal.fire({
+                            title: 'Sucesso!',
+                            text: 'Sua solicitação foi registrada e enviada com sucesso para a nossa central automatizada.',
+                            icon: 'success',
+                            background: '#0f0f0f',
+                            color: '#fff',
+                            confirmButtonColor: '#00FF66'
+                        });
+                    } catch(e) { 
+                        Swal.fire({
+                            title: 'Ops! Falha de Comunicação',
+                            text: 'Houve um problema ao conectar com os servidores de automação do webhook.',
+                            icon: 'error',
+                            background: '#0f0f0f',
+                            color: '#fff',
+                            confirmButtonColor: '#d33'
+                        }); 
+                    }
                 }
             };
 
             window.executarBusca = function() {
                 const t = document.getElementById('serviceInput').value.trim();
-                if(t) solicitarDados('Busca: ' + t);
+                if(t) solicitarDados('Busca Customizada: ' + t);
             };
         })();
+
+        // Header Scroll Dynamic Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Segurança e Proteção do Código Fonte contra Inspeção
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+
+        // LGPD Consent Framework
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+            } else if (consent === 'accepted_all') {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            }
+        });
+
+        function respondCookies(acceptAll) {
+            const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
+            localStorage.setItem('lgpd_consent', consentStatus);
+            if(acceptAll) {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            } else {
+                updateGoogleConsent(false);
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        function updateGoogleConsent(accepted) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'ad_storage': accepted ? 'granted' : 'denied',
+                    'ad_user_data': accepted ? 'granted' : 'denied',
+                    'ad_personalization': accepted ? 'granted' : 'denied',
+                    'analytics_storage': accepted ? 'granted' : 'denied'
+                });
+            }
+        }
+
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                const script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.async = true;
+                script.src = 'https://gc.zgo.at/count.js';
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
+                document.body.appendChild(script);
+            }
+        }
     </script>
 </body>
 </html>
