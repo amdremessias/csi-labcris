@@ -1,372 +1,570 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
+        });
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Aceite Digital - Assinatura Eletrônica e Gestão de Documentos</title>
+    <meta name="description" content="Novo Aceite Digital - Assinatura Eletrônica e Gestão Descentralizada de Documentos com Validade Jurídica e Segurança Avançada.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Novo Aceite Digital - Assinatura Eletrônica Profissional</title>
+    
     <style>
         :root {
-            --primary-green: #25D366;
-            --dark-green: #075E54;
-            --dark-blue: #0A1C2E;
-            --white: #FFFFFF;
-            --light-gray: #F4F6F9;
-            --text-dark: #333333;
-            --accent-blue: #007bff;
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4);
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-gray);
-            color: var(--text-dark);
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- Global Sections --- */
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        
-        .section-title {
-            font-size: 2.2em;
-            color: var(--dark-blue);
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        hr { border: 0; height: 1px; background: #ddd; margin: 40px 0; }
-
-        /* --- Header --- */
-        header {
-            background-color: var(--dark-blue);
-            padding: 1.5rem 0;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            color: var(--white);
-        }
-        .logo {
-            font-size: 2.2em;
-            font-weight: 700;
-            color: var(--primary-green);
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 15px;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-        nav ul li a:hover {
-            color: var(--primary-green);
-        }
-
-        /* --- Hero Section --- */
-        .hero-section {
-            padding: 80px 20px;
-            background: linear-gradient(rgba(10, 28, 46, 0.85), rgba(10, 28, 46, 0.85)), url('https://images.unsplash.com/photo-1562564055-71e051d33c19?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
-            color: var(--white);
-            text-align: center;
-        }
-        .hero-section h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .hero-section .subtitle {
-            font-size: 1.5em;
-            font-weight: 300;
-            margin-bottom: 40px;
-        }
-
-        /* --- Video Section Feature --- */
-        .video-container {
-            max-width: 800px;
-            margin: 40px auto;
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .video-container iframe {
-            position: absolute;
+        /* --- BACKGROUND DINÂMICO --- */
+        .bg-wrapper {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: 0;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 50% 30%, rgba(0, 255, 102, 0.03) 0%, transparent 60%),
+                radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.04) 0%, transparent 40%);
         }
 
-        /* --- Info Sections --- */
-        .info-card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+        /* --- HEADER PREMIUM --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .info-card {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-            text-align: left;
-            transition: transform 0.3s ease;
+
+        header.scrolled {
+            background: rgba(2, 2, 2, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
         }
-        .info-card:hover {
-            transform: translateY(-5px);
-        }
-        .info-card h3 {
-            font-size: 1.4em;
-            color: var(--dark-blue);
-            margin-top: 0;
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            padding: 0 2rem;
         }
-        .info-card h3 span {
-            font-size: 1.5em;
-            margin-right: 10px;
-            color: var(--primary-green);
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
-        
-        /* --- Pricing Grid --- */
-        .pricing-grid {
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        /* --- CONTAINER PRINCIPAL --- */
+        main {
+            padding-top: 140px;
+        }
+
+        section {
+            padding: 40px 1.5rem 80px;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .section-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            letter-spacing: -1.5px;
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+        }
+
+        .section-header h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-dim);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- GRID DE PLANOS --- */
+        .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
         }
-        .price-card {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            text-align: left;
+
+        .plan-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 3rem 2.5rem;
+            border-radius: 28px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
-        }
-        .price-card.highlight {
-            border: 3px solid var(--primary-green);
-            transform: scale(1.03);
-        }
-        .price-card h3 {
-            font-size: 1.8em;
-            color: var(--dark-blue);
-            margin-bottom: 5px;
-            text-align: center;
-        }
-        .plan-tag {
-            font-size: 0.9em;
-            color: var(--primary-green);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        .price-value {
-            font-size: 2.5em;
-            font-weight: 700;
-            color: var(--dark-green);
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .price-value span { font-size: 0.4em; color: var(--text-dark); font-weight: 400; }
-        .setup-fee { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--dark-blue); }
-
-        .price-list {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
-            flex-grow: 1;
-        }
-        .price-list li {
-            font-size: 1em;
-            margin-bottom: 12px;
             position: relative;
-            padding-left: 25px;
         }
-        .price-list li::before {
-            content: 'L';
-            transform: scaleX(-1) rotate(-35deg);
-            display: inline-block;
-            color: var(--primary-green);
-            font-weight: bold;
+
+        .plan-card.featured {
+            border-color: rgba(0, 255, 102, 0.3);
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(0,255,102,0.01) 100%);
+        }
+
+        .plan-card.featured::before {
+            content: "RECOMENDADO CORPORATIVO";
             position: absolute;
-            left: 0;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.3rem 1.2rem;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
-        /* --- Buttons --- */
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-green);
-            color: var(--white);
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-size: 1.1em;
+        .plan-card:hover {
+            transform: translateY(-6px);
+            background: var(--surface-bright);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(0, 255, 102, 0.04);
+        }
+
+        .plan-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-badge {
+            color: var(--accent);
+            font-size: 0.85rem;
             font-weight: 700;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .cta-button:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
 
+        .plan-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.5rem;
+        }
+
+        .plan-features li {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* --- BENEFÍCIOS JURÍDICOS E ADICIONAIS --- */
+        .legal-overview {
+            margin-top: 6rem;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 4rem 3rem;
+        }
+
+        .legal-overview h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .legal-overview h2 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .legal-panel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .legal-item h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legal-item p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* --- BOTÕES E CTA --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .btn-accent:hover {
+            background: #00CC55;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 102, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: var(--surface);
+            border-color: var(--text);
+        }
+
+        .cta-box {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,255,102,0.01) 100%);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 6rem auto 2rem;
+        }
+
+        .cta-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- FOOTER --- */
         footer {
-            background-color: var(--dark-blue);
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--white);
-            margin-top: 50px;
+            padding: 80px 1.5rem 40px;
+            background: #000;
+            border-top: 1px solid var(--border);
         }
-        .footer-logo { max-width: 150px; margin-bottom: 15px; }
 
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand img {
+            max-width: 160px;
+            margin-bottom: 1.5rem;
+            filter: brightness(1.2);
+        }
+
+        .footer-brand p { 
+            color: var(--text-dim); 
+            max-width: 350px;
+            font-size: 0.95rem; 
+        }
+
+        .footer-col h4 { 
+            margin-bottom: 1.2rem; 
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff; 
+        }
+        
+        .footer-col ul { 
+            list-style: none;
+        }
+        
+        .footer-col ul li { 
+            margin-bottom: 0.6rem;
+        }
+        
+        .footer-col ul a { 
+            color: var(--text-dim); 
+            text-decoration: none; 
+            transition: 0.3s; 
+            font-size: 0.9rem;
+        }
+        
+        .footer-col ul a:hover { 
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* --- COOKIE BANNER --- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 20px;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            transform: translateY(200%);
+            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .cookie-banner.active { transform: translateY(0); }
+
+        /* --- RESPONSIVIDADE --- */
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2.2em; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            nav ul li { display: block; margin: 10px 0; }
+            header { padding: 1rem 0; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            main { padding-top: 100px; }
+            
+            section { padding: 40px 1.5rem 40px; }
+            .section-header { margin-bottom: 3rem; }
+            
+            .plans-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .plan-card { padding: 2.5rem 1.5rem; }
+            .legal-overview { padding: 2.5rem 1.5rem; margin-top: 3rem; }
+            
+            .cta-box { padding: 2.5rem 1.5rem; margin-top: 3rem; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+            
+            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
+            .cookie-banner .btn { width: 100%; }
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
-    <header>
+    <div class="bg-wrapper"></div>
+
+    <header id="mainHeader">
         <nav>
-            <div class="logo">NOVO ACEITE DIGITAL</div>
-            <ul>
-                <li><a href="#beneficios">Benefícios</a></li>
-                <li><a href="#recursos">Recursos</a></li>
-                <li><a href="#planos">Planos e Preços</a></li>
-                <li><a href="#contato">Contato</a></li>
+            <div class="logo-text">MC INFRA TI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanvul.html">Power Scan</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="easypoint.html">Ponto Facil</a></li>
+                <li><a href="criacao_sites.html">Criar Site</a></li>
+                <li><a href="contactmcinfra.html">Contato</a></li>
+                <li><a href="portf.html">Sobre</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="hero-section">
-            <h1 style="color: var(--primary-green);">Assine Documentos com Validade Jurídica em Segundos</h1>
-            <p class="subtitle">A plataforma definitiva para envio, gestão e assinatura digital de documentos. Simples, seguro e onde você estiver.</p>
-            <a href="#planos" class="cta-button">Ver Planos de Hospedagem</a>
-        </section>
-
-        <!-- Seção de Vídeo Adicionada -->
-        <section class="container">
-            <h2 class="section-title">Como Funciona</h2>
-            <div class="video-container">
-                <iframe 
-                    src="https://odysee.com/$/embed/@MCinfraTI:d/aceiteonline:f" 
-                    allowfullscreen>
-                </iframe>
+        <section id="aceite-digital-section">
+            <div class="section-header">
+                <h1>Novo <span>Aceite Digital</span></h1>
+                <p>Assine documentos, contratos e ordens de serviço eletronicamente com total validade jurídica. Elimine a burocracia do papel e acelere o fluxo de fechamento do seu negócio.</p>
             </div>
-        </section>
 
-        <section id="beneficios" class="container">
-            <h2 class="section-title">Por que escolher o Novo Aceite Digital?</h2>
-            <p>Sua empresa ganha agilidade eliminando a burocracia do papel. Nossa plataforma permite que você envie contratos, termos e aceites para assinatura de forma totalmente digital.</p>
-            
-            <div class="info-card-grid">
-                <div class="info-card">
-                    <h3><span>🔐</span> Segurança Máxima</h3>
-                    <p>Documentos criptografados e trilha de auditoria completa para garantir a integridade de cada assinatura.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span>⚡</span> Agilidade no Processo</h3>
-                    <p>Reduza o tempo de fechamento de negócios de dias para minutos. Assinaturas via e-mail ou link direto.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span>📱</span> Mobile Friendly</h3>
-                    <p>Seus clientes podem assinar de qualquer lugar, seja pelo smartphone, tablet ou computador.</p>
-                </div>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="recursos" class="container">
-            <h2 class="section-title">Recursos da Plataforma</h2>
-            <div class="info-card-grid">
-                <div class="info-card">
-                    <h3><span>📄</span> Gestão de Documentos</h3>
-                    <p>Painel administrativo para acompanhar quem já assinou e quem ainda está pendente.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span>☁️</span> Opções de Hospedagem</h3>
-                    <p>Escolha entre usar nossa infraestrutura ou manter os dados dentro do servidor da sua empresa.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span>🛠️</span> Suporte Especializado</h3>
-                    <p>Conte com nossa equipe para garantir que sua plataforma esteja sempre operando 24h por dia.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="planos" class="container">
-            <h2 class="section-title">Escolha o modelo ideal para seu negócio</h2>
-            <p class="subtitle">Oferecemos flexibilidade total para a instalação do serviço.</p>
-
-            <div class="pricing-grid">
-                <article class="price-card">
-                    <div>
-                        <h3>Sua Infraestrutura</h3>
-                        <p class="plan-tag">Instalação em seu Servidor ou VPS</p>
-                        <p class="setup-fee">Taxa de Deploy: R$ 1.080,00 <span>(Único)</span></p>
-                        <p class="price-value">R$ 70,00 <span>/mês</span></p>
-                        <ul class="price-list">
-                            <li>Configuração completa no seu servidor</li>
-                            <li>Suporte mensal (24h inclusas)</li>
-                            <li>Privacidade total dos dados</li>
-                            <li>Atualizações de segurança</li>
-                            <li>Customização de domínio</li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Contratar Deploy</a>
+            <div class="plans-grid">
+                
+                <article class="plan-card">
+                    <span class="plan-badge">Profissionais Autônomos</span>
+                    <h3>Plano Start</h3>
+                    <p>Ideal para profissionais independentes e pequenas empresas que precisam formalizar orçamentos e termos de serviço de forma ágil.</p>
+                    <ul class="plan-features">
+                        <li>Assinaturas eletrônicas ilimitadas</li>
+                        <li>Validação via e-mail e IP</li>
+                        <li>Armazenamento seguro em nuvem</li>
+                        <li>Notificações automáticas aos clientes</li>
+                        <li>Suporte via chat padrão</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-outline">Começar no Start</a>
                 </article>
 
-                <article class="price-card highlight">
-                    <div>
-                        <h3>Nossa Infraestrutura</h3>
-                        <p class="plan-tag">Hospedagem em Nuvem Gerenciada</p>
-                        <p class="setup-fee">Taxa de Ativação: 980,00 <span>(Único)</span></p>
-                        <p class="price-value">R$ 100,00 <span>/mês</span></p>
-                        <ul class="price-list">
-                            <li>Hospedagem inclusa (Cloud)</li>
-                            <li>Setup rápido e prioritario</li>
-                            <li>Backups automáticos</li>
-                            <li>Suporte técnico prioritário</li>
-                            <li>Alta disponibilidade (Uptime 99.9%)</li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="cta-button">Começar Agora</a>
+                <article class="plan-card featured">
+                    <span class="plan-badge">Empresas e Equipes</span>
+                    <h3>Plano Pro Enterprise</h3>
+                    <p>A solução corporativa definitiva. Inclui recursos avançados de hospedagem resiliente e prioridade absoluta no fluxo de dados de contratos.</p>
+                    <ul class="plan-features">
+                        <li>Hospedagem Cloud dedicada inclusa</li>
+                        <li>Setup e implantação prioritária</li>
+                        <li>Backups redundantes automatizados</li>
+                        <li>Suporte técnico Nível 3 prioritário</li>
+                        <li>Alta disponibilidade operacional (Uptime 99.9%)</li>
+                        <li>Personalização de marca própria (White-label)</li>
+                    </ul>
+                    <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-accent">Implantar Agora</a>
                 </article>
-            </div>
-        </section>
 
-        <section id="contato" class="container">
-            <hr>
-            <h2>Pronto para digitalizar seus processos?</h2>
-            <p class="subtitle">Fale com nossa equipe técnica para tirar dúvidas sobre a implantação.</p>
-            <div style="margin-top: 30px;">
-                <a href="https://wa.me/5514997135218" target="_blank" class="cta-button" style="background-color: #25D366;">
+            </div>
+
+            <div class="legal-overview">
+                <h2>Segurança e conformidade <span>técnico-jurídica</span></h2>
+                <div class="legal-panel-grid">
+                    <div class="legal-item">
+                        <h4>⚖️ Validade Legal</h4>
+                        <p>Totalmente respaldado em conformidade com as legislações vigentes e diretrizes da ICP-Brasil para assinaturas eletrônicas.</p>
+                    </div>
+                    <div class="legal-item">
+                        <h4>🛡️ Proteção de Dados</h4>
+                        <p>Infraestrutura blindada em nuvem com criptografia de ponta a ponta, alinhada aos requisitos estritos da LGPD.</p>
+                    </div>
+                    <div class="legal-item">
+                        <h4>🌱 Redução de Custos</h4>
+                        <p>Eliminação completa de impressões, motoboys e armazenamento físico de papéis. Processos 100% digitais.</p>
+                    </div>
+                    <div class="legal-item">
+                        <h4>⏱️ Fechamento em Minutos</h4>
+                        <p>O cliente recebe o link seguro via WhatsApp ou e-mail e assina de qualquer dispositivo móvel em instantes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h2>Pronto para digitalizar seus processos e contratos?</h2>
+                <p>Evite perder vendas por lentidão burocrática. Fale diretamente com a nossa equipe técnica, tire todas as suas dúvidas sobre a implantação e comece a coletar aceites hoje mesmo.</p>
+                <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-accent" style="max-width: 400px; margin: 0 auto;">
                     Chamar no WhatsApp 📞
                 </a>
             </div>
@@ -374,10 +572,104 @@
     </main>
 
     <footer>
-        <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/sentinela-logo.png" alt="MC Infra TI" class="footer-logo">
-        <p>&copy; 2026 Novo Aceite Digital by MC Infra TI | Todos os direitos reservados.</p>
-        <p><small>A implantação em VPS do cliente depende de requisitos mínimos de sistema.</small></p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a href="termos.html">Termos de Uso</a></li>
+                    <li><a href="cookies.html">Política de Cookies</a></li>
+                    <li><a href="titulares.html">Direitos do Titular</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato Urgente</h4>
+                <ul>
+                    <li>messias.consultoria@yahoo.com</li>
+                    <li>NOC operacional ativo</li>
+                    <li>Suporte Nível 3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        </div>
     </footer>
 
+    <div id="cookieBanner" class="cookie-banner">
+        <p style="font-size: 0.85rem; color: var(--text-dim);">
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        </p>
+        <div style="display: flex; gap: 0.8rem;">
+            <button class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(false)">Recusar</button>
+            <button class="btn btn-accent" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Segurança contra inspeção básica de código (F12, Ctrl+Shift+I, Ctrl+U)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+
+        // LGPD Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+            } else if (consent === 'accepted_all') {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            }
+        });
+
+        function respondCookies(acceptAll) {
+            const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
+            localStorage.setItem('lgpd_consent', consentStatus);
+            if(acceptAll) {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            } else {
+                updateGoogleConsent(false);
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        function updateGoogleConsent(accepted) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'ad_storage': accepted ? 'granted' : 'denied',
+                    'ad_user_data': accepted ? 'granted' : 'denied',
+                    'ad_personalization': accepted ? 'granted' : 'denied',
+                    'analytics_storage': accepted ? 'granted' : 'denied'
+                });
+            }
+        }
+
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                const script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.async = true;
+                script.src = 'https://gc.zgo.at/count.js';
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
+                document.body.appendChild(script);
+            }
+        }
+    </script>
 </body>
 </html>
