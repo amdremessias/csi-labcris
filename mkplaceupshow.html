@@ -97,7 +97,7 @@
                 radial-gradient(circle at 10% 80%, rgba(0, 204, 255, 0.03) 0%, transparent 50%);
         }
 
-        /* --- HEADER PREMIUM --- */
+        /* --- HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -163,7 +163,6 @@
             padding: 40px 1.5rem 20px;
             max-width: 1300px;
             margin: 0 auto;
-            /* Injeção da Animação CSS solicitada */
             animation: heroEntrance 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }
 
@@ -178,7 +177,7 @@
             text-align: center;
         }
 
-        .section-header h1, .section-header h2 {
+        .section-header h1 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(2.2rem, 5vw, 3.8rem);
             letter-spacing: -1.5px;
@@ -186,7 +185,7 @@
             line-height: 1.1;
         }
 
-        .section-header h1 span, .section-header h2 span {
+        .section-header h1 span {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -302,7 +301,6 @@
             animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        /* Cascata de delay nos cards */
         .service-card:nth-child(1) { animation-delay: 0.1s; }
         .service-card:nth-child(2) { animation-delay: 0.2s; }
         .service-card:nth-child(3) { animation-delay: 0.3s; }
@@ -317,7 +315,6 @@
             box-shadow: 0 12px 30px rgba(0, 255, 102, 0.05);
         }
 
-        /* Estilização dos Ícones Novos */
         .card-icon {
             width: 48px;
             height: 48px;
@@ -372,7 +369,7 @@
         .btn-outline { background: transparent; color: #fff; border: 1px solid var(--border); }
         .btn-outline:hover { background: var(--surface); border-color: var(--text); }
 
-        /* --- POPUP OTMIZADO MOBILE (iOS/ANDROID) --- */
+        /* --- POPUP POPUP OPTMIZADO --- */
         .swal2-container { padding: 10px !important; }
         .custom-swal-popup { background: #0a0a0a !important; border: 1px solid rgba(255, 255, 255, 0.15) !important; border-radius: 24px !important; padding: 2rem 1.5rem !important; width: 100% !important; max-width: 450px !important; }
         .custom-swal-title { color: #fff !important; font-family: 'Space Grotesk', sans-serif !important; font-size: 1.5rem !important; font-weight: 700 !important; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
@@ -382,8 +379,7 @@
             width: 100% !important; height: 50px !important; margin: 0 !important; 
             background: rgba(255, 255, 255, 0.04) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; 
             color: #fff !important; border-radius: 12px !important; font-family: 'Plus Jakarta Sans', sans-serif !important; 
-            font-size: 16px !important; /* Evita o zoom forçado do Safari no iOS */
-            padding: 0 1rem !important; box-sizing: border-box !important; outline: none !important; transition: 0.3s; cursor: text !important; 
+            font-size: 16px !important; padding: 0 1rem !important; box-sizing: border-box !important; outline: none !important; transition: 0.3s; cursor: text !important; 
         }
         .custom-swal-input:focus { border-color: var(--accent) !important; background: rgba(255, 255, 255, 0.08) !important; box-shadow: 0 0 10px rgba(0, 255, 102, 0.2) !important; }
         
@@ -413,7 +409,7 @@
         .cookie-banner { position: fixed; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; background: rgba(15, 15, 15, 0.9); backdrop-filter: blur(20px); border: 1px solid var(--border); padding: 1.5rem; border-radius: 20px; z-index: 9999; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; transform: translateY(200%); transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .cookie-banner.active { transform: translateY(0); }
 
-        /* --- RESPONSIVIDADE COMPLETA --- */
+        /* --- RESPONSIVIDADE --- */
         @media (max-width: 992px) { .capture-banner { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 2rem; } }
         @media (max-width: 768px) {
             header { padding: 1rem 0; } nav { padding: 0 1.5rem; } .nav-links { display: none; } main { padding-top: 100px; }
@@ -464,7 +460,7 @@
             <div class="capture-banner">
                 <div class="capture-text">
                     <h2>Sua empresa não pode parar por <span>falhas de TI</span></h2>
-                    <p>Ficar esperando por técnicos autônomos ou lidar com lentidão crônica na rede destrói a produtividade do seu negócio. O ecossistema <strong>TecWork</strong> centraliza os melhores especialistas de TI do mercado.</p>
+                    <p>Ficar esperando por técnicos autônomos ou lidar com lentidão crônica na rede destrei a produtividade do seu negócio. O ecossistema <strong>TecWork</strong> centraliza os melhores especialistas de TI do mercado.</p>
                     <p>Garantimos atendimento padronizado, ágil e com segurança operacional máxima para que você foque apenas no crescimento da sua empresa.</p>
                 </div>
                 <div class="capture-stats">
@@ -625,7 +621,6 @@
             // Webhook do n8n original preservado intocado
             const _u = 'https://n8n.wtichet.online/webhook/dfc1b3f6-4be9-4bc7-95ca-9a3d6fcf4aee';
 
-            // Parâmetro descPredefinida inserido para atender aos planos
             window.solicitarDados = async function(servico, descPredefinida = '') {
                 const { value: f } = await Swal.fire({
                     title: 'Solicitar Atendimento',
@@ -639,7 +634,6 @@
                     color: '#fff',
                     html:
                         '<input id="swal-n" class="custom-swal-input" placeholder="Seu Nome">' +
-                        // Input focado em conter puramente os números sanitizados via regex no input
                         '<input id="swal-w" class="custom-swal-input" type="tel" maxlength="11" placeholder="WhatsApp (DDD + Número sem espaços)" oninput="this.value = this.value.replace(/[^0-9]/g, \'\')">' +
                         '<input id="swal-c" class="custom-swal-input" placeholder="Sua Cidade">' +
                         '<textarea id="swal-p" class="custom-swal-textarea" placeholder="Descreva brevemente sua infraestrutura ou problema técnico..."></textarea>',
@@ -650,7 +644,6 @@
                     confirmButtonText: 'Enviar Solicitação',
                     cancelButtonText: 'Cancelar',
                     didOpen: () => {
-                        // Injeta o texto padrão caso seja selecionado a partir dos cartões de planos
                         if(descPredefinida) {
                             document.getElementById('swal-p').value = descPredefinida;
                         }
@@ -665,7 +658,6 @@
                             Swal.showValidationMessage('Preencha os campos obrigatórios: Nome, WhatsApp e Cidade!'); 
                             return false; 
                         }
-                        // Validação estrita de 11 dígitos requerida
                         if(whats.length !== 11) { 
                             Swal.showValidationMessage('O número deve conter exatamente 11 dígitos numéricos (Ex: 14997135218)!'); 
                             return false; 
@@ -676,33 +668,38 @@
 
                 if (f) {
                     Swal.fire({ 
-                        title: 'Processando...', 
-                        text: 'Conectando com os servidores de automação da MC Infra TI.',
-                        background: '#0a0a0a',
-                        color: '#fff',
+                        title: 'Enviando...', 
                         allowOutsideClick: false, 
                         didOpen: () => Swal.showLoading() 
                     });
                     
                     try {
-                        // Payload enviado perfeitamente contendo o respectivo serviço mapeado e descrição textual
+                        // Envio Primário: Post Assíncrono para o Webhook do n8n
                         await fetch(_u, { 
                             method: 'POST', 
                             headers: {'Content-Type': 'application/json'}, 
                             body: JSON.stringify({...f, servico}) 
                         });
+
+                        // Resgate da Lógica Original de Transbordo Secundário para WhatsApp Direct Link
+                        const textoWpp = `Serviço Solicitado: ${servico}\nNome Cliente: ${f.nome}\nTelefone Wpp: ${f.whats}\ Cidade: ${f.cidade}\nDescrição Solicitação: ${f.desc}`;
+                        const linkWpp = `https://wa.me/5514997135218?text=${encodeURIComponent(textoWpp)}`;
+                        
                         Swal.fire({
-                            title: 'Enviado!',
-                            text: 'Sua requisição foi processada e disparada para os nossos analistas via n8n.',
+                            title: 'Sucesso!',
+                            text: 'Seu pedido foi enviado para nossa central. Redirecionando para o WhatsApp...',
                             icon: 'success',
                             background: '#0a0a0a',
                             color: '#fff',
                             confirmButtonColor: '#00FF66'
+                        }).then(() => {
+                            window.open(linkWpp, '_blank');
                         });
+
                     } catch(e) { 
                         Swal.fire({
-                            title: 'Falha na Automação',
-                            text: 'Não foi possível estabelecer comunicação com o gateway do webhook.',
+                            title: 'Ops!',
+                            text: 'Houve um problema na conexão.',
                             icon: 'error',
                             background: '#0a0a0a',
                             color: '#fff',
@@ -725,7 +722,7 @@
             else header.classList.remove('scrolled');
         });
 
-        // Segurança do Código Fonte
+        // Bloqueio Preventivo de Inspecionar
         document.onkeydown = function(e) {
             if(e.keyCode == 123) return false;
             if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
