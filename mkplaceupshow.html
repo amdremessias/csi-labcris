@@ -347,7 +347,7 @@
         .btn-outline { background: transparent; color: #fff; border: 1px solid var(--border); }
         .btn-outline:hover { background: var(--surface); border-color: var(--text); }
 
-        /* --- POPUP OPTIMIZADO --- */
+        /* --- POPUP OTMIZADO DO SWAL --- */
         .swal2-container { padding: 10px !important; }
         .custom-swal-popup { background: #0a0a0a !important; border: 1px solid rgba(255, 255, 255, 0.15) !important; border-radius: 24px !important; padding: 2rem 1.5rem !important; width: 100% !important; max-width: 450px !important; }
         .custom-swal-title { color: #fff !important; font-family: 'Space Grotesk', sans-serif !important; font-size: 1.4rem !important; font-weight: 700 !important; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; line-height: 1.3 !important; }
@@ -597,7 +597,7 @@
 
             window.solicitarDados = async function(servico, descPredefinida = '') {
                 const { value: f } = await Swal.fire({
-                    // CORREÇÃO IMAGEM 1: Altera dinamicamente o título incluindo o nome do serviço
+                    // Título Dinâmico Corrigido (Imagem 1)
                     title: `Solicitar Atendimento para o ${servico}`,
                     customClass: {
                         popup: 'custom-swal-popup',
@@ -647,19 +647,27 @@
                         didOpen: () => Swal.showLoading() 
                     });
                     
-                    // Estrutura de texto e link direto estruturada estritamente conforme exigido
+                    // Estrutura de texto e link do WhatsApp
                     const textoWpp = `Serviço Solicitado: ${servico}\nNome Cliente: ${f.nome}\nTelefone Wpp: ${f.whats}\nCidade: ${f.cidade}\nDescrição Solicitação: ${f.desc}`;
                     const linkWpp = `https://wa.me/5514997135218?text=${encodeURIComponent(textoWpp)}`;
 
                     try {
-                        // Envio Primário: Post Assíncrono para o Webhook do n8n
-                        await fetch(_u, { 
+                        // Envio Seguro com Chave de Autenticação embutida no Header
+                        const response = await fetch(_u, { 
                             method: 'POST', 
-                            headers: {'Content-Type': 'application/json'}, 
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-Webhook-Token': 'MinhaChaveSecretaTecWork2026!'
+                            }, 
                             body: JSON.stringify({...f, servico}) 
                         });
 
-                        // Caso de sucesso na conexão com o n8n
+                        // Se o n8n retornar um status de erro (como 401 não autorizado por token errado), joga pro catch
+                        if (!response.ok) {
+                            throw new Error('Falha na resposta do servidor');
+                        }
+
+                        // Fluxo de Sucesso normal
                         Swal.fire({
                             title: 'Sucesso!',
                             text: 'Seu pedido foi registrado em nossa central. Redirecionando para validação no WhatsApp...',
@@ -672,7 +680,7 @@
                         });
 
                     } catch(e) { 
-                        // CORREÇÃO IMAGEM 2: Central de Contingência ativa se falhar a comunicação com o n8n
+                        // Contingência Resiliente (Imagem 2) - Ativa se o n8n falhar ou o token for inválido
                         Swal.fire({
                             title: 'Central de Contingência',
                             text: 'Detectamos uma oscilação temporária em nosso servidor principal. Clique no botão abaixo para concluir o envio direto via WhatsApp sem perder os seus dados!',
@@ -706,7 +714,7 @@
             else header.classList.remove('scrolled');
         });
 
-        // Bloqueio Preventivo de Engenharia Reversa / Ferramentas Dev
+        // Bloqueio de Engenharia Reversa
         document.onkeydown = function(e) {
             if(e.keyCode == 123) return false;
             if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
