@@ -21,7 +21,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
+        
+        // Configuração dinâmica para evitar erro de domínio em sufixos públicos como netlify.app
+        gtag('config', 'G-XXXXXXXXXX', {
+            'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
+        });
     </script>
     
     <meta charset="UTF-8">
