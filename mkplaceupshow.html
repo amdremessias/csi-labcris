@@ -587,7 +587,7 @@
         </p>
         <div style="display: flex; gap: 0.8rem;">
             <button class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(false)">Recusar</button>
-            <button class="btn btn-accent" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(true)">Aceitar Tudo</button>
+            <button class="btn btn-accent" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(true)">Acceptar Tudo</button>
         </div>
     </div>
 
@@ -597,7 +597,6 @@
 
             window.solicitarDados = async function(servico, descPredefinida = '') {
                 const { value: f } = await Swal.fire({
-                    // Título Dinâmico Corrigido (Imagem 1)
                     title: `Solicitar Atendimento para o ${servico}`,
                     customClass: {
                         popup: 'custom-swal-popup',
@@ -647,12 +646,10 @@
                         didOpen: () => Swal.showLoading() 
                     });
                     
-                    // Estrutura de texto e link do WhatsApp
                     const textoWpp = `Serviço Solicitado: ${servico}\nNome Cliente: ${f.nome}\nTelefone Wpp: ${f.whats}\nCidade: ${f.cidade}\nDescrição Solicitação: ${f.desc}`;
                     const linkWpp = `https://wa.me/5514997135218?text=${encodeURIComponent(textoWpp)}`;
 
                     try {
-                        // Envio Seguro com Chave de Autenticação embutida no Header
                         const response = await fetch(_u, { 
                             method: 'POST', 
                             headers: {
@@ -662,15 +659,14 @@
                             body: JSON.stringify({...f, servico}) 
                         });
 
-                        // Se o n8n retornar um status de erro (como 401 não autorizado por token errado), joga pro catch
                         if (!response.ok) {
-                            throw new Error('Falha na resposta do servidor');
+                            throw new Error('Falha na resposta do servidor principal');
                         }
 
-                        // Fluxo de Sucesso normal
+                        // [CENÁRIO 1] Automação bem sucedida: Apenas exibe sucesso sem botão de contingência
                         Swal.fire({
                             title: 'Sucesso!',
-                            text: 'Seu pedido foi registrado em nossa central. Redirecionando para validação no WhatsApp...',
+                            text: 'Seu pedido foi registrado em nossa central. Clique em OK para abrir a validação do seu atendimento...',
                             icon: 'success',
                             background: '#0a0a0a',
                             color: '#fff',
@@ -680,7 +676,7 @@
                         });
 
                     } catch(e) { 
-                        // Contingência Resiliente (Imagem 2) - Ativa se o n8n falhar ou o token for inválido
+                        // [CENÁRIO 2] TRANSBORDO: Se o n8n der erro ou cair, aciona a Central de Contingência Manual
                         Swal.fire({
                             title: 'Central de Contingência',
                             text: 'Detectamos uma oscilação temporária em nosso servidor principal. Clique no botão abaixo para concluir o envio direto via WhatsApp sem perder os seus dados!',
