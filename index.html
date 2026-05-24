@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W2WXH4J7');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Consent Mode (Padrão: Negado em conformidade com a LGPD) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Define o consentimento inicial como negado para proteção de dados
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <!-- Google Tag (gtag.js) - Google Analytics -->
+    <!-- IMPORTANTE: Substitua o G-XXXXXXXXXX abaixo pelo seu ID de Métrica real do GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -477,10 +492,7 @@
 </head>
 <body oncontextmenu="return false;">
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2WXH4J7"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+
 
     <div class="bg-wrapper">
         <div class="bg-image"></div>
@@ -716,14 +728,33 @@
             if (!consent) {
                 setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
             } else if (consent === 'accepted_all') {
+                updateGoogleConsent(true);
                 loadTrackingScripts();
             }
         });
 
         function respondCookies(acceptAll) {
-            localStorage.setItem('lgpd_consent', acceptAll ? 'accepted_all' : 'rejected');
-            if(acceptAll) loadTrackingScripts();
+            const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
+            localStorage.setItem('lgpd_consent', consentStatus);
+            if(acceptAll) {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            } else {
+                updateGoogleConsent(false);
+            }
             document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        // Função para atualizar o consentimento do Google
+        function updateGoogleConsent(accepted) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'ad_storage': accepted ? 'granted' : 'denied',
+                    'ad_user_data': accepted ? 'granted' : 'denied',
+                    'ad_personalization': accepted ? 'granted' : 'denied',
+                    'analytics_storage': accepted ? 'granted' : 'denied'
+                });
+            }
         }
 
         function loadTrackingScripts() {
