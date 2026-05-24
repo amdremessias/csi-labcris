@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Pi4dnjhnRPMvNDbqfTpIpGFEtkdpM8Z3z1nN28qlO4-m03WS1Fcc1wUvvrG2bXcEQOlWB2I8l7j-n3h7jhmBIG91kmOMrH-EW4jNQooC-y4RAnlyFYRAEb2hT8NnS_W5AEw6yz2qPo_mRuYnqMLCb_lFW_vMXt7KjBFWT7Cegs5LSnsNXI655-RJaSndoqaySI84bZTDPg3PjgIB4XIZj6HLbt81nnKLUxVFjUJpd5mqwWE8jNcQWlWCE4SYHmYP94a4X_jI0X1_DBimCpJ1k4NQ2gt7GkDOCn2RO3bwh0srVSMP7k8RM35T1myT3nBv" charset="UTF-8"></script><script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
+        });
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Contratar Compliance LGPD - Auditoria automatizada do seu site no padrão ANPD com entrega de relatórios executivos.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <title>Contratar Compliance LGPD | MC Services</title>
+    
+    <style>
+        :root {
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4);
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+            --warning: #FFCC00;
+        }
+
+        @keyframes heroEntrance {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(0, 255, 102, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 204, 255, 0.02) 0%, transparent 50%);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(2, 2, 2, 0.5);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        main { 
+            padding: 140px 1.5rem 80px; 
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: heroEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .split-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .info-panel h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -1.5px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .info-panel h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: rgba(0, 255, 102, 0.06);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 2.5rem;
+        }
+
+        .price-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            margin-bottom: 0.3rem;
+        }
+
+        .price-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .deliverables {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .deliv-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex: 1;
+        }
+
+        .deliv-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .deliv-card.pdf .deliv-icon { color: #FF3B30; background: rgba(255, 59, 48, 0.1); border: 1px solid rgba(255, 59, 48, 0.2); }
+        .deliv-card.xlsx .deliv-icon { color: #34C759; background: rgba(52, 199, 89, 0.1); border: 1px solid rgba(52, 199, 89, 0.2); }
+
+        .deliv-text h4 { font-size: 0.95rem; font-weight: 600; }
+        .deliv-text p { font-size: 0.8rem; color: var(--text-dim); }
+
+        .tools-section {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        .tools-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.2rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .tool-item {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .tool-item::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Painel do Formulário de Intake */
+        .form-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-panel h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 0.8rem;
+        }
+
+        .intake-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .input-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-radius: 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            padding: 0 1.2rem;
+            outline: none;
+            transition: 0.3s;
+            cursor: text;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+        }
+
+        select.form-input {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23B0B0B0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.2rem center;
+            background-size: 1.1rem;
+        }
+
+        .deadline-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .deadline-title { font-size: 0.85rem; color: var(--text-dim); }
+        .deadline-value { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--accent); }
+
+        .btn-submit {
+            width: 100%;
+            height: 55px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background: #00CC55;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 102, 0.2);
+        }
+
+        /* Custom Swal Popup (Estilo idêntico) */
+        .custom-swal-popup { background: #0a0a0a !important; border: 1px solid rgba(255, 255, 255, 0.15) !important; border-radius: 24px !important; padding: 2rem 1.5rem !important; }
+        .custom-swal-title { color: #fff !important; font-family: 'Space Grotesk', sans-serif !important; font-size: 1.4rem !important; }
+
+        footer { padding: 80px 1.5rem 40px; background: #000; border-top: 1px solid var(--border); margin-top: 6rem; }
+        .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 4rem; }
+        .footer-brand img { max-width: 160px; margin-bottom: 1.5rem; filter: brightness(1.2); }
+        .footer-brand p { color: var(--text-dim); max-width: 350px; font-size: 0.95rem; }
+        .footer-col h4 { margin-bottom: 1.2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .footer-col ul a:hover { color: var(--accent); }
+        .footer-bottom { max-width: 1300px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-dim); font-size: 0.85rem; flex-wrap: wrap; gap: 1rem; }
+
+        @media (max-width: 992px) {
+            .split-container { grid-template-columns: 1fr; gap: 3rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            main { padding-top: 110px; }
+            .form-panel { padding: 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="bg-wrapper"></div>
+
+    <header id="mainHeader">
+        <nav>
+            <div class="logo-text">MC INFRA TI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanvul.html">Power Scan</a></li>
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="easypoint.html">Ponto Facil</a></li>
+                <li><a href="criacao_sites.html">Criar Site</a></li>
+                <li><a href="contactmcinfra.html">Contato</a></li>
+                <li><a href="portf.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="split-container">
+            
+            <!-- Painel Informativo Lateral -->
+            <div class="info-panel">
+                <h1>Contratar <span>Compliance LGPD</span></h1>
+                <p class="subtitle">Preencha o formulário de intake para iniciar o checkout seguro no Stripe. Após a confirmação do pagamento, nossa esteira automatizada executa varreduras perimetrais completas baseadas em diretrizes da ANPD.</p>
+                
+                <div class="price-badge">
+                    <div class="price-label">Investimento Operacional</div>
+                    <div class="price-value">R$ 790,00</div>
+                </div>
+
+                <div class="deliverables">
+                    <div class="deliv-card pdf">
+                        <div class="deliv-icon">PDF</div>
+                        <div class="deliv-text">
+                            <h4>Relatório Executivo</h4>
+                            <p>Análise consolidada e plano de ação</p>
+                        </div>
+                    </div>
+                    <div class="deliv-card xlsx">
+                        <div class="deliv-icon">XLSX</div>
+                        <div class="deliv-text">
+                            <h4>Planilha Técnica</h4>
+                            <p>Mapeamento de riscos e bases legais</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-section">
+                    <div class="tools-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--accent);"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        Ferramentas Open Source Utilizadas
+                    </div>
+                    <div class="tools-grid">
+                        <div class="tool-item">LGPD-Auditor</div>
+                        <div class="tool-item">curl</div>
+                        <div class="tool-item">OpenSSL</div>
+                        <div class="tool-item">nmap</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painel do Formulário de Intake -->
+            <div class="form-panel">
+                <h3>Dados do Escopo & Faturamento</h3>
+                <form id="intakeForm" class="intake-form" onsubmit="processarFormulario(event)">
+                    
+                    <div class="input-group">
+                        <label for="intake-name">Nome do Responsável *</label>
+                        <input type="text" id="intake-name" class="form-input" placeholder="Ex: André Luiz Messias" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="intake-company">Razão Social / Empresa *</label>
+                        <input type="text" id="intake-company" class="form-input" placeholder="Ex: MC Infra TI Ltda" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="intake-target">URL do Site para Auditoria *</label>
+                        <input type="url" id="intake-target" class="form-input" placeholder="Ex: https://seusite.com.br" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="intake-whats">WhatsApp de Contato *</label>
+                        <input type="tel" id="intake-whats" class="form-input" placeholder="Ex: (14) 99713-5218" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="intake-priority">Nível de Prioridade *</label>
+                        <select id="intake-priority" class="form-input" onchange="atualizarPrazo(this.value)">
+                            <option value="normal" selected>Normal — até 3 dias úteis</option>
+                            <option value="baixa">Baixa — até 7 dias úteis</option>
+                            <option value="alta">Alta — até 24 horas</option>
+                            <option value="critica">Crítica — imediato (Fila de Emergência)</option>
+                        </select>
+                    </div>
+
+                    <div class="deadline-box">
+                        <span class="deadline-title">Prazo Estimado de Entrega:</span>
+                        <span id="deadlineTarget" class="deadline-value">até 3 dias úteis</span>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        Pagar R$ 790,00 e receber relatórios
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a href="termos.html">Termos de Uso</a></li>
+                    <li><a href="cookies.html">Política de Cookies</a></li>
+                    <li><a href="titulares.html">Direitos do Titular</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato Urgente</h4>
+                <ul>
+                    <li>messias.consultoria@yahoo.com</li>
+                    <li>NOC operacional ativo</li>
+                    <li>Suporte Nível 3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // URL do webhook do n8n para a esteira LGPD
+            const _u = 'https://app-n8n.duckdns.org/webhook/mcinframk';
+            
+            // [MECANISMO DE OFUSCAÇÃO] Chave convertida em vetor ASCII dinâmico
+            const _gT = () => [77,105,110,104,97,67,104,97,118,101,83,101,99,114,101,116,97,84,101,99,87,111,114,107,50,48,50,54,33].map(c => String.fromCharCode(c)).join('');
+
+            // [MÁSCARA EM TEMPO REAL]
+            function aplicarMascaraTelefone(input) {
+                let v = input.value.replace(/\D/g, "");
+                if (v.length > 11) v = v.substring(0, 11);
+                if (v.length > 6) {
+                    v = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
+                } else if (v.length > 2) {
+                    v = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+                } else if (v.length > 0) {
+                    v = `(${v}`;
+                }
+                input.value = v;
+            }
+
+            // [ATUALIZAÇÃO DINÂMICA DE PRAZO]
+            window.atualizarPrazo = function(valor) {
+                const target = document.getElementById('deadlineTarget');
+                const mapas = {
+                    'baixa': 'até 7 dias úteis',
+                    'normal': 'até 3 dias úteis',
+                    'alta': 'até 24 horas',
+                    'critica': 'imediato'
+                };
+                target.innerText = mapas[valor] || 'até 3 dias úteis';
+            };
+
+            // [LOCALSTORAGE & EVENTOS]
+            window.addEventListener('DOMContentLoaded', () => {
+                const inputName = document.getElementById('intake-name');
+                const inputCompany = document.getElementById('intake-company');
+                const inputTarget = document.getElementById('intake-target');
+                const inputWhats = document.getElementById('intake-whats');
+                const selectPriority = document.getElementById('intake-priority');
+
+                // Carrega rascunho de cache
+                if (localStorage.getItem('lgpd_name')) inputName.value = localStorage.getItem('lgpd_name');
+                if (localStorage.getItem('lgpd_company')) inputCompany.value = localStorage.getItem('lgpd_company');
+                if (localStorage.getItem('lgpd_target')) inputTarget.value = localStorage.getItem('lgpd_target');
+                if (localStorage.getItem('lgpd_whats')) {
+                    inputWhats.value = localStorage.getItem('lgpd_whats');
+                    aplicarMascaraTelefone(inputWhats);
+                }
+                if (localStorage.getItem('lgpd_priority')) {
+                    selectPriority.value = localStorage.getItem('lgpd_priority');
+                    atualizarPrazo(selectPriority.value);
+                }
+
+                // Salva rascunho em tempo real
+                inputName.addEventListener('input', (e) => localStorage.setItem('lgpd_name', e.target.value.trim()));
+                inputCompany.addEventListener('input', (e) => localStorage.setItem('lgpd_company', e.target.value.trim()));
+                inputTarget.addEventListener('input', (e) => localStorage.setItem('lgpd_target', e.target.value.trim()));
+                inputWhats.addEventListener('input', (e) => {
+                    aplicarMascaraTelefone(e.target);
+                    localStorage.setItem('lgpd_whats', e.target.value.replace(/\D/g, ""));
+                });
+                selectPriority.addEventListener('change', (e) => localStorage.setItem('lgpd_priority', e.target.value));
+            });
+
+            // [PROCESSAMENTO E DISPARO DA ESTEIRA]
+            window.processarFormulario = async function(event) {
+                event.preventDefault();
+
+                const nome = document.getElementById('intake-name').value.trim();
+                const empresa = document.getElementById('intake-company').value.trim();
+                const targetUrl = document.getElementById('intake-target').value.trim();
+                const whatsNumeros = document.getElementById('intake-whats').value.replace(/\D/g, "");
+                const prioridade = document.getElementById('intake-priority').value;
+                const prazo = document.getElementById('deadlineTarget').innerText;
+
+                if (whatsNumeros.length !== 11) {
+                    Swal.fire({
+                        title: 'Erro no Contato',
+                        text: 'Por favor, insira um WhatsApp válido com DDD contendo 11 dígitos.',
+                        icon: 'error',
+                        background: '#0a0a0a',
+                        color: '#fff',
+                        confirmButtonColor: '#d33'
+                    });
+                    return;
+                }
+
+                Swal.fire({ 
+                    title: 'Iniciando checkout...', 
+                    text: 'Conectando à esteira automatizada...',
+                    allowOutsideClick: false, 
+                    didOpen: () => Swal.showLoading() 
+                });
+
+                const payload = {
+                    servico: 'Compliance LGPD',
+                    nome: nome,
+                    empresa: empresa,
+                    targetUrl: targetUrl,
+                    whats: whatsNumeros,
+                    prioridade: prioridade,
+                    prazo: prazo,
+                    valor: 'R$ 790,00'
+                };
+
+                // Link alternativo de transbordo
+                const textoWpp = `Contratação: Compliance LGPD\nResponsável: ${nome}\nEmpresa: ${empresa}\nSite Alvo: ${targetUrl}\nWhatsApp: ${whatsNumeros}\nPrioridade: ${prioridade} (${prazo})\nValor: R$ 790,00`;
+                const linkWppContingencia = `https://wa.me/5514997135218?text=${encodeURIComponent(textoWpp)}`;
+
+                try {
+                    const response = await fetch(_u, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Webhook-Token': _gT()
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error('Servidor indisponível');
+
+                    // Limpa rascunhos após post de sucesso
+                    localStorage.removeItem('lgpd_name');
+                    localStorage.removeItem('lgpd_company');
+                    localStorage.removeItem('lgpd_target');
+                    localStorage.removeItem('lgpd_whats');
+                    localStorage.removeItem('lgpd_priority');
+
+                    Swal.fire({
+                        title: 'Esteira Conectada!',
+                        text: 'Dados de intake recebidos. Redirecionando para a tela de pagamento seguro do Stripe para gerar seus relatórios.',
+                        icon: 'success',
+                        background: '#0a0a0a',
+                        color: '#fff',
+                        confirmButtonColor: '#00FF66'
+                    });
+
+                } catch (e) {
+                    // Transbordo ativado (Chaos engineering / Contingência ativa)
+                    Swal.fire({
+                        title: 'Central de Contingência',
+                        text: 'Nossos servidores de automação estão passando por uma manutenção rápida. Finalize sua contratação diretamente via WhatsApp sem perder as informações preenchidas!',
+                        icon: 'warning',
+                        background: '#0a0a0a',
+                        color: '#fff',
+                        showCancelButton: true,
+                        confirmButtonColor: '#25D366',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Finalizar via WhatsApp 📞',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.open(linkWppContingencia, '_blank');
+                        }
+                    });
+                }
+            };
+        })();
+
+        // Bloqueio Básico de Engenharia Reversa
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+    </script>
+</body>
+</html>
