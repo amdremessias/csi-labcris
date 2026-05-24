@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Google Consent Mode (Padrão: Negado em conformidade com a LGPD) -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -16,12 +15,9 @@
         });
     </script>
 
-    <!-- Google Tag (gtag.js) - Google Analytics -->
-    <!-- IMPORTANTE: Substitua o G-XXXXXXXXXX abaixo pelo seu ID de Métrica real do GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         gtag('js', new Date());
-        
         // Configuração dinâmica para evitar erro de domínio em sufixos públicos como netlify.app
         gtag('config', 'G-XXXXXXXXXX', {
             'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
@@ -394,6 +390,59 @@
             100% { transform: translateX(calc(-320px * 7)); }
         }
 
+        /* --- ESTILOS DA SEÇÃO DE PUBLICIDADE/CONSCIENTIZAÇÃO --- */
+        .pub-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .pub-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        .pub-text p {
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        .pub-text p strong {
+            color: var(--text);
+        }
+        .pub-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .pub-item {
+            display: flex;
+            gap: 1rem;
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        .pub-item:hover {
+            border-color: var(--accent);
+            background: var(--surface-bright);
+        }
+        .pub-item-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+        .pub-item-info h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        .pub-item-info p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
         /* --- FOOTER --- */
         footer {
             padding: 80px 1.5rem 40px;
@@ -479,6 +528,9 @@
             .flow-container { grid-template-columns: 1fr; }
             .flow-card { padding: 1.5rem; }
             
+            .pub-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .pub-text h3 { font-size: 1.8rem; text-align: center; }
+            
             .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
             .footer-brand p { margin: 0 auto; }
             .footer-bottom { justify-content: center; text-align: center; }
@@ -496,8 +548,6 @@
 </head>
 <body oncontextmenu="return false;">
 
-
-
     <div class="bg-wrapper">
         <div class="bg-image"></div>
     </div>
@@ -511,6 +561,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="scanvul.html">Power Scan</a></li>
                 <li><a href="services.html">Serviços</a></li>
+                <li><a href="#publicidade">Vantagens</a></li>
                 <li><a href="easypoint.html">Ponto Facil</a></li>
                 <li><a href="criacao_sites.html">Criar Site</a></li>
                 <li><a href="contactmcinfra.html">Contato</a></li>
@@ -533,8 +584,7 @@
             <div class="section-header">
                 <h2>O Que é o <span>Novo Chat?</span></h2>
                 <p style="max-width: 800px; margin: 0 auto; color: var(--text-dim); font-size: 1.1rem;">
-                    O Novo Chat é a solução definitiva para suporte rápido, eficiente e personalizado. 
-                    Resolva problemas com agilidade e fidelize seus clientes com uma plataforma desenhada para o futuro.
+                    O Novo Chat é a solução definitiva para suporte rápido, eficiente e personalizado. Resolva problemas com agilidade e fidelize seus clientes com uma plataforma desenhada para o futuro.
                 </p>
             </div>
             <div style="text-align: center;">
@@ -636,7 +686,7 @@
             </div>
             <div class="slider-wrapper">
                 <div class="slider-track">
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/CFTV_01-1.webp" alt="Segurança CFTV"><div class="slide-overlay"><h3>Video Segurançah3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/CFTV_01-1.webp" alt="Segurança CFTV"><div class="slide-overlay"><h3>Video Segurança</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/Monitoramento-de-Servidores.webp" alt="Monitoramento de Servidores"><div class="slide-overlay"><h3>Monitoramento de Servidores</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass1.jpg" alt="Assinatura Digital"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/barrest.png" alt="Bar e Restaurante"><div class="slide-overlay"><h3>Bar e Restaurante</h3></div></div></div>
@@ -644,7 +694,6 @@
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os1.png" alt="Ordens de Serviços"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/tihomeservice.webp" alt="T I Services"><div class="slide-overlay"><h3>T I Services</h3></div></div></div>                    
-                    <!-- Clones para o Slider Infinito -->
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
@@ -653,7 +702,6 @@
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
-                    <!-- Clones para o Slider Infinito -->                   
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
@@ -662,6 +710,46 @@
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publicidade">
+            <div class="section-header">
+                <h2>Tecnologia que de fato <span>Gera Lucro</span></h2>
+            </div>
+            <div class="pub-grid">
+                <div class="pub-text">
+                    <h3>Sua empresa está perdendo dinheiro com processos lentos e TI amadora?</h3>
+                    <p>No cenário atual, depender de sistemas instáveis, planilhas bagunçadas ou atendimentos manuais demorados é o caminho mais rápido para perder espaço no mercado.</p>
+                    <p>A <strong>MC Infra TI</strong> desenvolve softwares inteligentes e estrutura serviços de TI sob medida para acabar de vez com a ineficiência do seu negócio. Nós não apenas resolvemos problemas técnicos: nós blindamos sua operação e criamos caminhos para sua empresa escalar.</p>
+                    <p>Pare de apagar incêndios e gaste seu tempo com o que realmente importa: <strong>o crescimento da sua empresa.</strong></p>
+                    <div style="margin-top: 2rem;">
+                        <a href="contactmcinfra.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Fazer Diagnóstico Gratuito</a>
+                    </div>
+                </div>
+                <div class="pub-features">
+                    <div class="pub-item">
+                        <div class="pub-item-icon">🚀</div>
+                        <div class="pub-item-info">
+                            <h4>Softwares Sob Medida</h4>
+                            <p>Automações de atendimento, controle de ordens de serviço e plataformas integradas que reduzem erros humanos a zero.</p>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <div class="pub-item-icon">🛡️</div>
+                        <div class="pub-item-info">
+                            <h4>Infraestrutura Inabalável</h4>
+                            <p>Monitoramento preventivo de servidores, varredura rigorosa de vulnerabilidades e backup automatizado para você nunca perder dados vitais.</p>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <div class="pub-item-icon">📊</div>
+                        <div class="pub-item-info">
+                            <h4>Decisões Baseadas em Dados</h4>
+                            <p>Sistemas eficientes de gestão (PDV/ERP) que organizam seu fluxo financeiro e apontam onde estão seus maiores gargalos de lucro.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -691,6 +779,7 @@
                 </ul>
             </div>
         </div>
+       
         <div class="footer-bottom">
             <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
             <p>DPO: Atendimento às diretrizes da ANPD.</p>
@@ -699,8 +788,7 @@
 
     <div id="cookieBanner" class="cookie-banner">
         <p style="font-size: 0.85rem; color: var(--text-dim);">
-            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. 
-            Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
         </p>
         <div style="display: flex; gap: 0.8rem;">
             <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--surface); color: #fff; border: 1px solid var(--border); font-size: 0.8rem;" onclick="respondCookies(false)">Recusar</button>
