@@ -47,6 +47,10 @@
             padding: 0;
             box-sizing: border-box;
             cursor: default;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         body {
@@ -206,6 +210,13 @@
             white-space: nowrap;
         }
 
+        .plan-card:hover {
+            transform: translateY(-6px);
+            background: var(--surface-bright);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(0, 255, 102, 0.04);
+        }
+
         .plan-card h3 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.7rem;
@@ -228,13 +239,19 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .price-value span {
             font-size: 1rem;
             color: var(--text-dim);
             font-weight: 400;
+        }
+
+        .price-setup {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
         }
 
         .plan-card p.description {
@@ -280,6 +297,8 @@
             font-size: 0.95rem;
             text-align: center;
             width: 100%;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-accent {
@@ -348,6 +367,210 @@
             line-height: 1.6;
         }
 
+        /* --- SEÇÃO DETALHADA DE FUNCIONALIDADES --- */
+        .detailed-features-section {
+            margin-top: 8rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,204,255,0.01) 100%);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 4rem 3rem;
+        }
+
+        .detailed-features-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .detailed-features-section h2 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .detailed-features-section > p {
+            text-align: center;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .feature-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .feature-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-card ul li {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-card ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* --- SEÇÃO PRÓS E CONTRAS --- */
+        .pros-cons-section {
+            margin-top: 8rem;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 4rem 3rem;
+        }
+
+        .pros-cons-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .pros-cons-section h2 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pros-cons-section > p {
+            text-align: center;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .pros-card {
+            background: linear-gradient(180deg, rgba(0,255,102,0.05) 0%, rgba(0,255,102,0.01) 100%);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pros-card:hover {
+            background: linear-gradient(180deg, rgba(0,255,102,0.08) 0%, rgba(0,255,102,0.02) 100%);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .cons-card {
+            background: linear-gradient(180deg, rgba(255,100,100,0.05) 0%, rgba(255,100,100,0.01) 100%);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cons-card:hover {
+            background: linear-gradient(180deg, rgba(255,100,100,0.08) 0%, rgba(255,100,100,0.02) 100%);
+            border-color: #FF6464;
+            transform: translateY(-4px);
+        }
+
+        .pros-cons-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .pros-card h3 {
+            color: var(--accent);
+        }
+
+        .cons-card h3 {
+            color: #FF6464;
+        }
+
+        .pros-cons-card ul {
+            list-style: none;
+        }
+
+        .pros-cons-card ul li {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .pros-card ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .cons-card ul li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #FF6464;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
         .cta-box {
             background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,255,102,0.01) 100%);
             border: 1px solid var(--border);
@@ -371,6 +594,154 @@
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .cta-buttons-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        /* --- MODAL FORMULÁRIO (SEM TRANSPARÊNCIA) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: #020202;
+            border: 2px solid var(--accent);
+            border-radius: 28px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 40px rgba(0, 255, 102, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-error {
+            color: #FF6B6B;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .form-error.active {
+            display: block;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 2rem;
         }
 
         /* --- FOOTER --- */
@@ -475,15 +846,24 @@
             .plans-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .plan-card { padding: 2.5rem 1.5rem; }
             .system-features-overview { padding: 2.5rem 1.5rem; margin-top: 3rem; }
+            .detailed-features-section { padding: 2.5rem 1.5rem; margin-top: 3rem; }
+            .pros-cons-section { padding: 2.5rem 1.5rem; margin-top: 3rem; }
             
             .cta-box { padding: 2.5rem 1.5rem; margin-top: 3rem; }
+            .cta-buttons-group { flex-direction: column; }
             
-            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
-            .footer-brand p { margin: 0 auto; }
-            .footer-bottom { justify-content: center; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
             
-            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
-            .cookie-banner .btn { width: 100%; }
+            .modal-content { padding: 2rem; }
+            .cookie-banner { flex-direction: column; align-items: flex-start; }
+            .pros-cons-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .section-header h1 { font-size: 1.8rem; }
+            .plan-card { padding: 1.5rem; }
+            .btn { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -496,7 +876,7 @@
             <div class="logo-text">MC INFRA TI</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Serviços</a></li>
+                <li><a href="nova-os-techmarket.html">Nova O.S.</a></li>
                 <li><a href="contactmcinfra.html">Contato</a></li>
                 <li><a href="portf.html">Sobre</a></li>
             </ul>
@@ -510,57 +890,300 @@
                 <p>O ecossistema definitivo para emissão e gestão avançada de Ordens de Serviço, controlo rigoroso de stocks, faturação, base de clientes e orçamentos complexos.</p>
             </div>
 
-            <div class="plans-grid">
+            <!-- SEÇÃO DE FUNCIONALIDADES DETALHADAS -->
+            <div class="detailed-features-section">
+                <h2>Funcionalidades Completas para <span>Gestão Total</span></h2>
+                <p>Conheça cada módulo do Nova O.S. e como ele potencia sua operação.</p>
                 
-                <article class="plan-card featured" style="max-width: 600px; margin: 0 auto;">
-                    <span class="plan-badge">Completo & Integrado</span>
-                    <h3>Plano Enterprise Cloud</h3>
-                    <div class="price-value">R$ 180,00 <span>/ mês</span></div>
-                    <p class="description">Sem custos ocultos. Implantação ágil e disponibilização imediata do sistema moldado sobre uma infraestrutura computacional resiliente.</p>
-                    <ul class="plan-features">
-                        <li>Hospedagem Dedicada Cloud MC Infra TI inclusa</li>
-                        <li>Backups diários automatizados e encriptados na nuvem</li>
-                        <li>Certificado de segurança SSL / HTTPS ativo</li>
-                        <li>Ativação imediata em ambiente de produção (Go-Live 24h)</li>
-                        <li>Monitorização proativa de performance e estabilidade 24/7</li>
-                        <li>Gestão completa de OS, Stocks e Orçamentos</li>
-                    </ul>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-accent">Adquirir Sistema Agora</a>
-                </article>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>📋 Gestão de Clientes</h3>
+                        <p>Mantenha um banco de dados centralizado e atualizado de todos os seus clientes com histórico completo de interações, compras e preferências.</p>
+                        <ul>
+                            <li>Cadastro detalhado com múltiplos contatos</li>
+                            <li>Histórico completo de transações</li>
+                            <li>Segmentação por categoria e região</li>
+                            <li>Análise de rentabilidade por cliente</li>
+                        </ul>
+                    </div>
 
+                    <div class="feature-card">
+                        <h3>📦 Gestão de Estoque</h3>
+                        <p>Controle total do seu inventário com alertas automáticos de estoque baixo, rastreamento de movimentações e previsão de demanda.</p>
+                        <ul>
+                            <li>Controle em tempo real de quantidades</li>
+                            <li>Alertas automáticos de reposição</li>
+                            <li>Rastreamento de entrada e saída</li>
+                            <li>Relatórios de rotatividade de produtos</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>🔧 Gestão de Serviços</h3>
+                        <p>Organize e acompanhe todos os serviços oferecidos com tabelas de preços, descrições detalhadas e histórico de execução.</p>
+                        <ul>
+                            <li>Catálogo completo de serviços</li>
+                            <li>Preços e margens configuráveis</li>
+                            <li>Tempo estimado de execução</li>
+                            <li>Histórico de serviços por cliente</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>💰 Gestão de Orçamentos</h3>
+                        <p>Crie orçamentos profissionais e detalhados em segundos, com templates personalizados e envio automático para clientes.</p>
+                        <ul>
+                            <li>Templates personalizáveis</li>
+                            <li>Cálculo automático de totais</li>
+                            <li>Envio por email e WhatsApp</li>
+                            <li>Rastreamento de aprovação</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>📝 Ordens de Serviço</h3>
+                        <p>Emita e gerencie ordens de serviço com rastreamento em tempo real, atribuição de técnicos e controle de progresso.</p>
+                        <ul>
+                            <li>Emissão rápida e automática</li>
+                            <li>Atribuição de técnicos</li>
+                            <li>Rastreamento de status</li>
+                            <li>Integração com estoque e faturação</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>📊 Relatórios e Análises</h3>
+                        <p>Acesse dashboards intuitivos com métricas de desempenho, lucratividade e tendências para tomada de decisão estratégica.</p>
+                        <ul>
+                            <li>Dashboards em tempo real</li>
+                            <li>Análise de lucratividade</li>
+                            <li>Relatórios exportáveis</li>
+                            <li>Previsões e tendências</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <div class="system-features-overview">
-                <h2>Engenharia desenhada para <span>alta performance operacional</span></h2>
-                <div class="features-panel-grid">
-                    <div class="feature-item">
-                        <h4>📋 Ordens de Serviço Rápidas</h4>
-                        <p>Acompanhamento centralizado em tempo real de todas as etapas de atendimento técnico, desde a abertura até à entrega ao cliente.</p>
+            <!-- SEÇÃO PRÓS E CONTRAS -->
+            <div class="pros-cons-section">
+                <h2>Por que escolher o <span>Nova O.S. TechMarket</span></h2>
+                <p>Veja os benefícios reais e como o sistema transforma sua operação.</p>
+                
+                <div class="pros-cons-grid">
+                    <div class="pros-card">
+                        <h3>✓ Vantagens Decisivas</h3>
+                        <ul>
+                            <li><strong>Eficiência Operacional:</strong> Automatize processos e reduza o tempo de execução em até 70%</li>
+                            <li><strong>Aumento de Receita:</strong> Controle melhor de preços e margens resulta em maior lucratividade</li>
+                            <li><strong>Satisfação do Cliente:</strong> Orçamentos rápidos e ordens de serviço transparentes geram confiança</li>
+                            <li><strong>Dados em Tempo Real:</strong> Tome decisões baseadas em informações precisas e atualizadas</li>
+                            <li><strong>Escalabilidade:</strong> Cresça sem preocupações com infraestrutura ou limite de usuários</li>
+                            <li><strong>Segurança Garantida:</strong> Dados encriptados e backups automáticos diários</li>
+                            <li><strong>Suporte Dedicado:</strong> Equipe técnica disponível para orientação e troubleshooting</li>
+                        </ul>
                     </div>
-                    <div class="feature-item">
-                        <h4>📦 Controlo de Stock Crítico</h4>
-                        <p>Evite prejuízos. Faça a baixa automática de peças utilizadas diretamente na Ordem de Serviço com inventário preciso.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>💰 Orçamentos Analíticos</h4>
-                        <p>Gere e envie propostas comerciais detalhadas com facilidade e converta mais leads com notificações eficientes.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h4>🔒 Dados Protegidos</h4>
-                        <p>Arquitetura baseada em contentores isolados e seguros, garantindo a integridade dos dados e a privacidade total corporativa.</p>
+
+                    <div class="cons-card">
+                        <h3>✗ Custos de Não Adotar</h3>
+                        <ul>
+                            <li><strong>Perda de Produtividade:</strong> Processos manuais consomem horas que poderiam ser investidas em crescimento</li>
+                            <li><strong>Erros Operacionais:</strong> Planilhas desorganizadas levam a duplicação de trabalho e retrabalho</li>
+                            <li><strong>Falta de Visibilidade:</strong> Sem dados centralizados, é impossível tomar decisões estratégicas</li>
+                            <li><strong>Clientes Insatisfeitos:</strong> Orçamentos lentos e falta de rastreamento prejudicam a reputação</li>
+                            <li><strong>Vazamento de Dados:</strong> Informações dispersas em emails e planilhas são vulneráveis</li>
+                            <li><strong>Impossibilidade de Escalar:</strong> Sem sistema, crescer significa multiplicar erros e custos</li>
+                            <li><strong>Perda de Competitividade:</strong> Concorrentes com sistemas modernos entregam mais rápido e melhor</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
             <div class="cta-box">
-                <h2>Dúvidas sobre a arquitetura ou implantação do sistema?</h2>
-                <p>Fale diretamente com o A L Messias, especialista em Infraestrutura e Segurança da Informação. Alinhe os fluxos operacionais da sua empresa às melhores práticas de tecnologia.</p>
-                <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-accent" style="max-width: 450px; margin: 0 auto;">
-                    Falar com Especialista Técnico 📞
-                </a>
+                <h2>Pronto para revolucionar sua gestão?</h2>
+                <p>Implemente o Nova O.S. TechMarket hoje mesmo e comece a ver resultados em 24 horas. Infraestrutura dedicada, suporte completo e garantia de satisfação.</p>
+                <div class="cta-buttons-group">
+                    <button class="btn btn-accent" onclick="openWhatsAppFormModal()">Conversar no WhatsApp 💬</button>
+                    <button class="btn btn-outline" onclick="openContactFormModal()">Solicitar Demonstração</button>
+                </div>
             </div>
+
+            <!-- SEÇÃO DE PLANOS (ÚLTIMA DA PÁGINA) -->
+            <div style="margin-top: 8rem;">
+                <div class="section-header">
+                    <h1>Escolha seu <span>Plano Ideal</span></h1>
+                    <p>Duas opções de implementação com suporte completo e infraestrutura dedicada.</p>
+                </div>
+
+                <div class="plans-grid">
+                    
+                    <!-- PLANO INICIAL -->
+                    <article class="plan-card">
+                        <span class="plan-badge">Início Rápido</span>
+                        <h3>🚀 Plano Inicial</h3>
+                        <p class="description">Para empresas que querem começar rápido com funcionalidades essenciais.</p>
+                        <div class="price-value">R$ 890,00 <span>setup</span></div>
+                        <div class="price-setup">+ R$ 150,00 mensalidade</div>
+                        <ul class="plan-features">
+                            <li>Gestão de Clientes Completa</li>
+                            <li>Gestão de Estoque Básica</li>
+                            <li>Gestão de Serviços</li>
+                            <li>Emissão de Orçamentos</li>
+                            <li>Ordens de Serviço Simples</li>
+                            <li>Relatórios Básicos</li>
+                            <li>Hospedagem Cloud Dedicada</li>
+                            <li>Backups Diários Automáticos</li>
+                            <li>Certificado SSL/HTTPS</li>
+                            <li>Suporte por Email</li>
+                            <li>Go-Live em 24h</li>
+                        </ul>
+                        <button class="btn btn-outline" onclick="openFormModal('Plano Inicial - R$ 890,00 + R$ 150,00/mês')">Solicitar Plano</button>
+                    </article>
+
+                    <!-- PLANO ENTERPRISE -->
+                    <article class="plan-card featured">
+                        <span class="plan-badge">Completo & Integrado</span>
+                        <h3>⚡ Plano Enterprise</h3>
+                        <p class="description">Solução completa com todas as funcionalidades e prioridade máxima.</p>
+                        <div class="price-value">R$ 1.290,00 <span>setup</span></div>
+                        <div class="price-setup">+ R$ 250,00 mensalidade</div>
+                        <ul class="plan-features">
+                            <li>Gestão de Clientes Avançada</li>
+                            <li>Gestão de Estoque Completa</li>
+                            <li>Gestão de Serviços Premium</li>
+                            <li>Orçamentos com Templates Personalizados</li>
+                            <li>Ordens de Serviço Avançadas</li>
+                            <li>Relatórios Analíticos Completos</li>
+                            <li>Faturação Integrada</li>
+                            <li>Hospedagem Cloud Dedicada</li>
+                            <li>Backups Horários + Redundância</li>
+                            <li>Certificado SSL/HTTPS Premium</li>
+                            <li>Suporte Prioritário 24/7</li>
+                            <li>Monitorização Proativa</li>
+                            <li>Go-Live em 24h</li>
+                            <li>Treinamento Completo da Equipe</li>
+                        </ul>
+                        <button class="btn btn-accent" onclick="openFormModal('Plano Enterprise - R$ 1.290,00 + R$ 250,00/mês')">Adquirir Enterprise</button>
+                    </article>
+
+                </div>
+            </div>
+
         </section>
     </main>
+
+    <!-- MODAL FORMULÁRIO PARA PLANOS -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeFormModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Solicitar Plano</h2>
+                <p id="planSelected">Plano selecionado</p>
+            </div>
+            <form id="serviceForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="clientName">Nome Completo *</label>
+                    <input type="text" id="clientName" name="name" required>
+                    <div class="form-error" id="nameError">Por favor, informe seu nome completo.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientPhone">WhatsApp (com DDD) *</label>
+                    <input type="tel" id="clientPhone" name="phone" placeholder="(11) 99999-9999" required>
+                    <div class="form-error" id="phoneError">Por favor, informe um WhatsApp válido com DDD e 9 dígitos.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientCity">Cidade *</label>
+                    <input type="text" id="clientCity" name="city" required>
+                    <div class="form-error" id="cityError">Por favor, informe sua cidade.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientDescription">Descrição do Projeto *</label>
+                    <textarea id="clientDescription" name="description" placeholder="Descreva brevemente o que você precisa..." required></textarea>
+                    <div class="form-error" id="descriptionError">Por favor, descreva seu projeto.</div>
+                </div>
+
+                <button type="submit" class="btn btn-accent form-submit">Enviar para WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL FORMULÁRIO PARA WHATSAPP GERAL -->
+    <div id="whatsappFormModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeWhatsAppFormModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Conversar no WhatsApp</h2>
+                <p>Preencha seus dados para iniciar uma conversa</p>
+            </div>
+            <form id="whatsappForm" onsubmit="handleWhatsAppFormSubmit(event)">
+                <div class="form-group">
+                    <label for="whatsappName">Nome Completo *</label>
+                    <input type="text" id="whatsappName" name="name" required>
+                    <div class="form-error" id="whatsappNameError">Por favor, informe seu nome completo.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappPhone">WhatsApp (com DDD) *</label>
+                    <input type="tel" id="whatsappPhone" name="phone" placeholder="(11) 99999-9999" required>
+                    <div class="form-error" id="whatsappPhoneError">Por favor, informe um WhatsApp válido com DDD e 9 dígitos.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappCity">Cidade *</label>
+                    <input type="text" id="whatsappCity" name="city" required>
+                    <div class="form-error" id="whatsappCityError">Por favor, informe sua cidade.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappDescription">Descrição do Projeto *</label>
+                    <textarea id="whatsappDescription" name="description" placeholder="Descreva brevemente o que você precisa..." required></textarea>
+                    <div class="form-error" id="whatsappDescriptionError">Por favor, descreva seu projeto.</div>
+                </div>
+
+                <button type="submit" class="btn btn-accent form-submit">Enviar para WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL FORMULÁRIO DE CONTATO -->
+    <div id="contactFormModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeContactFormModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Solicitar Demonstração</h2>
+                <p>Agende uma demonstração personalizada do Nova O.S.</p>
+            </div>
+            <form id="contactForm" onsubmit="handleContactFormSubmit(event)">
+                <div class="form-group">
+                    <label for="contactName">Nome Completo *</label>
+                    <input type="text" id="contactName" name="name" required>
+                    <div class="form-error" id="contactNameError">Por favor, informe seu nome completo.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactPhone">WhatsApp (com DDD) *</label>
+                    <input type="tel" id="contactPhone" name="phone" placeholder="(11) 99999-9999" required>
+                    <div class="form-error" id="contactPhoneError">Por favor, informe um WhatsApp válido com DDD e 9 dígitos.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactCity">Cidade *</label>
+                    <input type="text" id="contactCity" name="city" required>
+                    <div class="form-error" id="contactCityError">Por favor, informe sua cidade.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactDescription">Qual é seu principal desafio operacional? *</label>
+                    <textarea id="contactDescription" name="description" placeholder="Descreva seus desafios..." required></textarea>
+                    <div class="form-error" id="contactDescriptionError">Por favor, descreva seus desafios.</div>
+                </div>
+
+                <button type="submit" class="btn btn-accent form-submit">Agendar Demonstração</button>
+            </form>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-grid">
@@ -610,12 +1233,21 @@
             else header.classList.remove('scrolled');
         });
 
-        // Segurança contra inspeção básica de código (F12, Ctrl+Shift+I, Ctrl+U)
+        // SEGURANÇA REFORÇADA - Bloqueio de F12, Ctrl+Shift+I, Ctrl+U, Ctrl+C (Copiar)
         document.onkeydown = function(e) {
             if(e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
             if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) return false;
         }
+
+        // Bloqueio adicional de cópia
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            return false;
+        });
 
         // LGPD Logic
         window.addEventListener('DOMContentLoaded', () => {
@@ -660,6 +1292,194 @@
                 script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
                 document.body.appendChild(script);
             }
+        }
+
+        // MODAIS E FORMULÁRIOS
+        function openFormModal(plan) {
+            document.getElementById('formModal').classList.add('active');
+            document.getElementById('planSelected').textContent = 'Plano: ' + plan;
+            document.getElementById('serviceForm').reset();
+            clearFormErrors();
+        }
+
+        function closeFormModal() {
+            document.getElementById('formModal').classList.remove('active');
+        }
+
+        function openWhatsAppFormModal() {
+            document.getElementById('whatsappFormModal').classList.add('active');
+            document.getElementById('whatsappForm').reset();
+            clearWhatsAppFormErrors();
+        }
+
+        function closeWhatsAppFormModal() {
+            document.getElementById('whatsappFormModal').classList.remove('active');
+        }
+
+        function openContactFormModal() {
+            document.getElementById('contactFormModal').classList.add('active');
+            document.getElementById('contactForm').reset();
+            clearContactFormErrors();
+        }
+
+        function closeContactFormModal() {
+            document.getElementById('contactFormModal').classList.remove('active');
+        }
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            const formModal = document.getElementById('formModal');
+            const whatsappModal = document.getElementById('whatsappFormModal');
+            const contactModal = document.getElementById('contactFormModal');
+            if (event.target == formModal) formModal.classList.remove('active');
+            if (event.target == whatsappModal) whatsappModal.classList.remove('active');
+            if (event.target == contactModal) contactModal.classList.remove('active');
+        }
+
+        // Formatação de telefone - PLANOS
+        document.getElementById('clientPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 2) value = '(' + value;
+                else if (value.length <= 6) value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+                else value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+            }
+            e.target.value = value;
+        });
+
+        // Formatação de telefone - WHATSAPP
+        document.getElementById('whatsappPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 2) value = '(' + value;
+                else if (value.length <= 6) value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+                else value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+            }
+            e.target.value = value;
+        });
+
+        // Formatação de telefone - CONTATO
+        document.getElementById('contactPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 2) value = '(' + value;
+                else if (value.length <= 6) value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+                else value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+            }
+            e.target.value = value;
+        });
+
+        function clearFormErrors() {
+            document.querySelectorAll('#serviceForm .form-error').forEach(el => el.classList.remove('active'));
+        }
+
+        function clearWhatsAppFormErrors() {
+            document.querySelectorAll('#whatsappForm .form-error').forEach(el => el.classList.remove('active'));
+        }
+
+        function clearContactFormErrors() {
+            document.querySelectorAll('#contactForm .form-error').forEach(el => el.classList.remove('active'));
+        }
+
+        // FORMULÁRIO PLANOS
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            clearFormErrors();
+
+            const name = document.getElementById('clientName').value.trim();
+            const rawPhone = document.getElementById('clientPhone').value.replace(/\D/g, "");
+            const city = document.getElementById('clientCity').value.trim();
+            const description = document.getElementById('clientDescription').value.trim();
+            const plan = document.getElementById('planSelected').textContent.replace('Plano: ', '');
+
+            let isValid = true;
+
+            if (!name) { document.getElementById('nameError').classList.add('active'); isValid = false; }
+            if (rawPhone.length !== 11) { document.getElementById('phoneError').classList.add('active'); isValid = false; }
+            if (!city) { document.getElementById('cityError').classList.add('active'); isValid = false; }
+            if (!description) { document.getElementById('descriptionError').classList.add('active'); isValid = false; }
+
+            if (!isValid) return;
+
+            const text = `*SOLICITAÇÃO NOVA O.S.* 🚀\n\n` +
+                         `📦 *Plano:* ${plan}\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Descrição:* ${description}`;
+
+            const whatsappNumber = '5514997135218';
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeFormModal();
+        }
+
+        // FORMULÁRIO WHATSAPP GERAL
+        function handleWhatsAppFormSubmit(e) {
+            e.preventDefault();
+            clearWhatsAppFormErrors();
+
+            const name = document.getElementById('whatsappName').value.trim();
+            const rawPhone = document.getElementById('whatsappPhone').value.replace(/\D/g, "");
+            const city = document.getElementById('whatsappCity').value.trim();
+            const description = document.getElementById('whatsappDescription').value.trim();
+
+            let isValid = true;
+
+            if (!name) { document.getElementById('whatsappNameError').classList.add('active'); isValid = false; }
+            if (rawPhone.length !== 11) { document.getElementById('whatsappPhoneError').classList.add('active'); isValid = false; }
+            if (!city) { document.getElementById('whatsappCityError').classList.add('active'); isValid = false; }
+            if (!description) { document.getElementById('whatsappDescriptionError').classList.add('active'); isValid = false; }
+
+            if (!isValid) return;
+
+            const text = `*CONSULTA NOVA O.S.* 💬\n\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Mensagem:* ${description}`;
+
+            const whatsappNumber = '5514997135218';
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeWhatsAppFormModal();
+        }
+
+        // FORMULÁRIO CONTATO
+        function handleContactFormSubmit(e) {
+            e.preventDefault();
+            clearContactFormErrors();
+
+            const name = document.getElementById('contactName').value.trim();
+            const rawPhone = document.getElementById('contactPhone').value.replace(/\D/g, "");
+            const city = document.getElementById('contactCity').value.trim();
+            const description = document.getElementById('contactDescription').value.trim();
+
+            let isValid = true;
+
+            if (!name) { document.getElementById('contactNameError').classList.add('active'); isValid = false; }
+            if (rawPhone.length !== 11) { document.getElementById('contactPhoneError').classList.add('active'); isValid = false; }
+            if (!city) { document.getElementById('contactCityError').classList.add('active'); isValid = false; }
+            if (!description) { document.getElementById('contactDescriptionError').classList.add('active'); isValid = false; }
+
+            if (!isValid) return;
+
+            const text = `*SOLICITAÇÃO DE DEMONSTRAÇÃO* 📊\n\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `🎯 *Desafio Principal:* ${description}`;
+
+            const whatsappNumber = '5514997135218';
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeContactFormModal();
         }
     </script>
 </body>
