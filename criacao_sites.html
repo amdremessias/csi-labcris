@@ -47,6 +47,10 @@
             padding: 0;
             box-sizing: border-box;
             cursor: default;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         body {
@@ -139,9 +143,110 @@
             background: var(--surface);
         }
 
+        /* --- HERO SECTION COM ANIMAÇÃO --- */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-background-animation {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Gradient Dots Animation */
+        @keyframes gradientDotsMove {
+            0% {
+                background-position: 0px 0px, 5px 8.66px, 0% 0%, 0% 0%, 0% 0px, 0% 0%;
+            }
+            100% {
+                background-position: 0px 0px, 5px 8.66px, 800% 400%, 1000% -400%, -1200% -600%, 400% 8.66px;
+            }
+        }
+
+        @keyframes colorCycle {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .hero-background-animation {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 50% 50%, transparent 1.5px, var(--bg) 0 8px, transparent 8px),
+                radial-gradient(circle at 50% 50%, transparent 1.5px, var(--bg) 0 8px, transparent 8px),
+                radial-gradient(circle at 50% 50%, #f00, transparent 60%),
+                radial-gradient(circle at 50% 50%, #ff0, transparent 60%),
+                radial-gradient(circle at 50% 50%, #0f0, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, #00f, transparent 60%);
+            background-size: 
+                10px 17.32px,
+                10px 17.32px,
+                200% 200%,
+                200% 200%,
+                200% 200%,
+                200% 17.32px;
+            background-position: 
+                0px 0px, 5px 8.66px, 0% 0%, 0% 0%, 0% 0px, 0% 0%;
+            animation: gradientDotsMove 30s linear infinite, colorCycle 6s linear infinite;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .hero-content h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         /* --- CONTAINER PRINCIPAL --- */
         main {
-            padding-top: 140px;
+            position: relative;
+            z-index: 5;
         }
 
         section {
@@ -241,6 +346,20 @@
             display: inline-block;
         }
 
+        .plan-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price-installment {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+        }
+
         .plan-card p {
             color: var(--text-dim);
             font-size: 0.95rem;
@@ -315,6 +434,96 @@
             line-height: 1.6;
         }
 
+        /* --- SEÇÕES INFORMATIVAS --- */
+        .info-section {
+            margin-top: 8rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,204,255,0.01) 100%);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 4rem 3rem;
+        }
+
+        .info-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .info-section h2 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-section > p {
+            text-align: center;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .info-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .info-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .info-card ul li {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-card ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
         /* --- BOTÕES E CTA --- */
         .btn {
             display: inline-flex;
@@ -328,6 +537,8 @@
             font-size: 0.95rem;
             text-align: center;
             width: 100%;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-accent {
@@ -383,6 +594,186 @@
             justify-content: center;
             max-width: 500px;
             margin: 0 auto;
+        }
+
+        /* --- MODAL FORMULÁRIO (SEM TRANSPARÊNCIA) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: #020202;
+            border: 2px solid var(--accent);
+            border-radius: 28px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 40px rgba(0, 255, 102, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-error {
+            color: #FF6B6B;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .form-error.active {
+            display: block;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        /* --- GOOGLE FORMS CONTAINER (OCULTO POR PADRÃO) --- */
+        .google-form-container {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .google-form-container.active {
+            display: block;
+            animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .google-form-container h2 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .google-form-container iframe {
+            max-width: 100%;
+            width: 100%;
+            height: 1590px;
+            border: none;
+            border-radius: 10px;
         }
 
         /* --- FOOTER --- */
@@ -479,24 +870,48 @@
             header { padding: 1rem 0; }
             nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
-            main { padding-top: 100px; }
-            
-            section { padding: 40px 1.5rem 40px; }
-            .section-header { margin-bottom: 3rem; }
-            
-            .plans-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .plan-card { padding: 2.5rem 1.5rem; }
-            .features-overview { padding: 2.5rem 1.5rem; margin-top: 3rem; }
-            
-            .cta-box { padding: 2.5rem 1.5rem; margin-top: 3rem; }
-            .cta-buttons-group { flex-direction: column; gap: 0.8rem; }
-            
-            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
-            .footer-brand p { margin: 0 auto; }
-            .footer-bottom { justify-content: center; text-align: center; }
-            
-            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
-            .cookie-banner .btn { width: 100%; }
+
+            .hero-section {
+                min-height: 80vh;
+                padding-top: 60px;
+            }
+
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            .hero-buttons { flex-direction: column; }
+            .hero-buttons .btn { width: 100%; }
+
+            .section-header h1 { font-size: 1.8rem; }
+            .plans-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .cta-buttons-group { flex-direction: column; }
+            .modal-content { padding: 2rem; }
+            .cookie-banner { flex-direction: column; align-items: flex-start; }
+            .info-grid { grid-template-columns: 1fr; }
+
+            .google-form-container iframe {
+                height: 1200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -519,59 +934,20 @@
     </header>
 
     <main>
-        <section id="web-development-portfolio">
-            <div class="section-header">
-                <h1>Criação de Sites de <span>Alta Performance</span></h1>
+        <!-- HERO SECTION COM ANIMAÇÃO -->
+        <section class="hero-section">
+            <div class="hero-background-animation"></div>
+            <div class="hero-content">
+                <h1>Transforme seu negócio com <span>presença digital</span></h1>
                 <p>Desenvolvemos plataformas web modernas, velozes e estrategicamente focadas na conversão de leads. Garanta a presença digital que destaca a autoridade do seu negócio no Google.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-accent" onclick="openWhatsAppFormModal()">Conversar no WhatsApp 💬</button>
+                    <button class="btn btn-outline" onclick="openGoogleFormModal()">Preencher Formulário</button>
+                </div>
             </div>
+        </section>
 
-            <div class="plans-grid">
-                
-                <article class="plan-card">
-                    <span class="plan-badge">Vendas Rápidas</span>
-                    <h3>Landing Page Premium</h3>
-                    <p>Estrutura de página única de alta conversão, projetada milimetricamente para campanhas de tráfego pago (Google Ads, Facebook Ads e Instagram).</p>
-                    <ul class="plan-features">
-                        <li>Design 100% Responsivo e Exclusivo</li>
-                        <li>Foco em Conversão e Captura de Leads</li>
-                        <li>Integração direta com botão de WhatsApp</li>
-                        <li>Otimização Avançada de Velocidade (SEO Local)</li>
-                        <li>Formulários de contato inteligentes</li>
-                    </ul>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-outline">Solicitar Orçamento</a>
-                </article>
-
-                <article class="plan-card featured">
-                    <span class="plan-badge">Autoridade de Marca</span>
-                    <h3>Site Corporativo Completo</h3>
-                    <p>Arquitetura ideal para empresas consolidadas que necessitam apresentar múltiplos serviços, história corporativa e blog para posicionamento orgânico.</p>
-                    <ul class="plan-features">
-                        <li>Múltiplas páginas personalizadas (Até 5 seções)</li>
-                        <li>Painel de Gerenciamento de Conteúdo integrado</li>
-                        <li>SEO Estrutural Completo para mecanismos de busca</li>
-                        <li>Segurança Avançada (Configuração de SSL/HTTPS)</li>
-                        <li>Entrega ágil em até 7 dias úteis</li>
-                        <li>Suporte dedicado pós-implantação</li>
-                    </ul>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-accent">Falar com a Equipe</a>
-                </article>
-
-                <article class="plan-card">
-                    <span class="plan-badge">Sistemas Sob Medida</span>
-                    <h3>Catálogos & Aplicações</h3>
-                    <p>Plataformas sob demanda para exibição dinâmica de portfólio de produtos, sistemas com integrações API ou portais corporativos complexos.</p>
-                    <ul class="plan-features">
-                        <li>Desenho arquitetural personalizado do ecossistema</li>
-                        <li>Catálogo interativo estruturado sem carrinho</li>
-                        <li>Integração nativa com bancos de dados seguros</li>
-                        <li>Arquitetura limpa com foco em escalabilidade</li>
-                        <li>Painel administrativo de controle total</li>
-                    </ul>
-                    <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-outline">Agendar Consultoria</a>
-                </article>
-
-            </div>
-
+        <section id="web-development-portfolio">
             <div class="features-overview">
                 <h2>Tudo o que o seu projeto <span>precisa para triunfar</span></h2>
                 <div class="features-panel-grid">
@@ -594,16 +970,248 @@
                 </div>
             </div>
 
-            <div class="cta-box">
-                <h2>Ainda tem dúvidas sobre qual estrutura escolher?</h2>
-                <p>Nossa equipe de engenharia web está pronta para analisar o cenário do seu nicho de atuação e recomendar o modelo ideal. Não perca clientes para a concorrência por falta de um ambiente web moderno.</p>
-                <div class="cta-buttons-group">
-                    <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-accent">Conversar no WhatsApp 💬</a>
-                    <a href="contactmcinfra.html" class="btn btn-outline">Preencher Formulário</a>
+            <!-- SEÇÃO: VANTAGENS DE TER UM SITE -->
+            <div class="info-section">
+                <h2>Por que investir em um <span>site profissional?</span></h2>
+                <p>Descubra como um site de alta performance pode transformar seu negócio e gerar resultados reais.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>💰 Aumento de Vendas</h3>
+                        <p>Um site bem estruturado funciona como seu vendedor 24/7, capturando leads qualificados enquanto você dorme. Empresas com presença digital geram até 3x mais vendas que seus concorrentes.</p>
+                        <ul>
+                            <li>Conversão contínua de visitantes em clientes</li>
+                            <li>Redução de custos de aquisição</li>
+                            <li>Automatização de primeiros contatos</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>🎯 Autoridade no Mercado</h3>
+                        <p>Aparecer no Google é credibilidade. Clientes buscam empresas online antes de comprar. Um site otimizado para SEO coloca você na frente da concorrência e estabelece sua marca como referência.</p>
+                        <ul>
+                            <li>Ranqueamento em primeiras posições do Google</li>
+                            <li>Construção de marca profissional</li>
+                            <li>Confiança do cliente aumentada</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 Dados e Inteligência</h3>
+                        <p>Entenda seu cliente. Com analytics integrado, você acompanha cada clique, cada comportamento. Dados reais para decisões inteligentes e estratégias que realmente funcionam.</p>
+                        <ul>
+                            <li>Análise completa de comportamento do visitante</li>
+                            <li>Identificação de oportunidades de melhoria</li>
+                            <li>ROI mensurável e comprovado</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
+            <!-- SEÇÃO: DESVANTAGENS DE NÃO TER UM SITE -->
+            <div class="info-section">
+                <h2>O custo de <span>não ter um site</span></h2>
+                <p>Seus concorrentes já estão online. Veja o que você está perdendo todos os dias.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>❌ Perda de Oportunidades</h3>
+                        <p>Sem presença online, você perde 70% dos clientes em potencial que buscam seus serviços no Google. Enquanto você dorme, seus concorrentes capturam seus clientes.</p>
+                        <ul>
+                            <li>Clientes procuram concorrentes online</li>
+                            <li>Falta de credibilidade digital</li>
+                            <li>Impossibilidade de capturar leads 24/7</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>💸 Custos Mais Altos</h3>
+                        <p>Sem um site, você depende de publicidade cara e boca a boca. Um site profissional reduz custos de marketing em até 60% enquanto multiplica seus resultados.</p>
+                        <ul>
+                            <li>Publicidade cara sem retorno garantido</li>
+                            <li>Dependência de intermediários</li>
+                            <li>Falta de controle sobre sua marca</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📉 Invisibilidade no Mercado</h3>
+                        <p>Sem um site, você não existe para 80% dos seus clientes em potencial. A concorrência domina o espaço digital enquanto você fica para trás, perdendo market share constantemente.</p>
+                        <ul>
+                            <li>Invisibilidade total no Google</li>
+                            <li>Perda de mercado para concorrentes</li>
+                            <li>Impossibilidade de escalar o negócio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h2>Pronto para transformar seu negócio?</h2>
+                <p>Não deixe mais oportunidades escaparem. Escolha seu plano agora e comece a capturar clientes qualificados. Entrega em 24h para planos Legacy.</p>
+                <div class="cta-buttons-group">
+                    <button class="btn btn-accent" onclick="openWhatsAppFormModal()">Conversar no WhatsApp 💬</button>
+                    <button class="btn btn-outline" onclick="openGoogleFormModal()">Preencher Formulário</button>
+                </div>
+            </div>
+
+            <!-- GOOGLE FORMS SECTION (OCULTO POR PADRÃO) -->
+            <div id="googleFormSection" class="google-form-container">
+                <h2>Envie sua Mensagem</h2>
+                <p>Por favor, preencha o formulário detalhado abaixo para nos ajudar a entender melhor suas necessidades.</p>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOIIut6LhrSCLThXnxBr7p5lV6OUw277cyij9ZsbHxM6qryg/viewform?embedded=true" width="640" height="1590" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+            </div>
+
+            <!-- SEÇÃO DE PLANOS (ÚLTIMA DA PÁGINA) -->
+            <div style="margin-top: 8rem;">
+                <div class="section-header">
+                    <h1>Escolha seu <span>Plano Ideal</span></h1>
+                    <p>Três opções de sites de alta performance, todas com entrega rápida e suporte completo.</p>
+                </div>
+
+                <div class="plans-grid">
+                    
+                    <!-- LEGACY START -->
+                    <article class="plan-card">
+                        <span class="plan-badge">Início Rápido</span>
+                        <h3>🚀 Legacy Start</h3>
+                        <p>Para quem precisa de um site básico, rápido e direto.</p>
+                        <div class="plan-price">R$ 560,00</div>
+                        <div class="plan-price-installment">ou R$ 600,00 em até 6x no cartão</div>
+                        <ul class="plan-features">
+                            <li>Site One-Page de Alta Conversão</li>
+                            <li>Design Responsivo Moderno</li>
+                            <li>Carregamento Ultrarrápido</li>
+                            <li>Segurança Certificado SSL</li>
+                            <li>Botão WhatsApp Flutuante</li>
+                            <li>SEO básico para o Google</li>
+                            <li>Adequação LGPD</li>
+                            <li>Google Analytics, Pixel Meta e Google Ads</li>
+                            <li>Cadastro no Google Perfil da Empresa</li>
+                            <li>Entrega Expressa em 24h</li>
+                        </ul>
+                        <button class="btn btn-outline" onclick="openFormModal('Legacy Start - R$ 560,00')">Quero este plano</button>
+                    </article>
+
+                    <!-- LEGACY VISION (FEATURED) -->
+                    <article class="plan-card featured">
+                        <span class="plan-badge">Mais Indicado</span>
+                        <h3>⚡ Legacy Vision</h3>
+                        <p>Intermediário, equilibrando performance e inteligência de negócios.</p>
+                        <div class="plan-price">R$ 680,00</div>
+                        <div class="plan-price-installment">ou R$ 730,00 em até 7x no cartão</div>
+                        <ul class="plan-features">
+                            <li>Site One-Page de Alta Conversão</li>
+                            <li>Design Responsivo Moderno</li>
+                            <li>Carregamento Ultrarrápido</li>
+                            <li>Segurança Certificado SSL</li>
+                            <li>Botão WhatsApp Flutuante</li>
+                            <li>SEO básico para o Google</li>
+                            <li>Adequação LGPD</li>
+                            <li>Google Analytics, Pixel Meta e Google Ads</li>
+                            <li>Cadastro no Google Perfil da Empresa</li>
+                            <li>Entrega Expressa em 24h</li>
+                        </ul>
+                        <button class="btn btn-accent" onclick="openFormModal('Legacy Vision - R$ 680,00')">Quero o mais indicado</button>
+                    </article>
+
+                    <!-- LEGACY PLATINUM -->
+                    <article class="plan-card">
+                        <span class="plan-badge">Premium</span>
+                        <h3>✨ Legacy Platinum</h3>
+                        <p>Autoridade local máxima e prioridade absoluta.</p>
+                        <div class="plan-price">R$ 840,00</div>
+                        <div class="plan-price-installment">ou R$ 900,00 em até 10x no cartão</div>
+                        <ul class="plan-features">
+                            <li>Site One-Page de Alta Conversão</li>
+                            <li>Design Responsivo Moderno</li>
+                            <li>Carregamento Ultrarrápido</li>
+                            <li>Segurança Certificado SSL</li>
+                            <li>Botão WhatsApp Flutuante</li>
+                            <li>SEO básico para o Google</li>
+                            <li>Adequação LGPD</li>
+                            <li>Google Analytics, Pixel Meta e Google Ads</li>
+                            <li>Cadastro no Google Perfil da Empresa</li>
+                            <li>Entrega Expressa em 24h</li>
+                        </ul>
+                        <button class="btn btn-outline" onclick="openFormModal('Legacy Platinum - R$ 840,00')">Quero este plano</button>
+                    </article>
+
+                </div>
+            </div>
+
         </section>
     </main>
+
+    <!-- MODAL FORMULÁRIO PARA PLANOS (SEM TRANSPARÊNCIA) -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeFormModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Solicitar Serviço</h2>
+                <p id="planSelected">Plano selecionado</p>
+            </div>
+            <form id="serviceForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="clientName">Nome Completo *</label>
+                    <input type="text" id="clientName" name="name" required>
+                    <div class="form-error" id="nameError">Por favor, informe seu nome completo.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientPhone">WhatsApp (com DDD) *</label>
+                    <input type="tel" id="clientPhone" name="phone" placeholder="(11) 99999-9999" required>
+                    <div class="form-error" id="phoneError">Por favor, informe um WhatsApp válido com DDD e 9 dígitos.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientCity">Cidade *</label>
+                    <input type="text" id="clientCity" name="city" required>
+                    <div class="form-error" id="cityError">Por favor, informe sua cidade.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientDescription">Descrição do Projeto *</label>
+                    <textarea id="clientDescription" name="description" placeholder="Descreva brevemente o que você precisa..." required></textarea>
+                    <div class="form-error" id="descriptionError">Por favor, descreva seu projeto.</div>
+                </div>
+
+                <button type="submit" class="btn btn-accent form-submit">Enviar para WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL FORMULÁRIO PARA WHATSAPP GERAL -->
+    <div id="whatsappFormModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeWhatsAppFormModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Conversar no WhatsApp</h2>
+                <p>Preencha seus dados para iniciar uma conversa</p>
+            </div>
+            <form id="whatsappForm" onsubmit="handleWhatsAppFormSubmit(event)">
+                <div class="form-group">
+                    <label for="whatsappName">Nome Completo *</label>
+                    <input type="text" id="whatsappName" name="name" required>
+                    <div class="form-error" id="whatsappNameError">Por favor, informe seu nome completo.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappPhone">WhatsApp (com DDD) *</label>
+                    <input type="tel" id="whatsappPhone" name="phone" placeholder="(11) 99999-9999" required>
+                    <div class="form-error" id="whatsappPhoneError">Por favor, informe um WhatsApp válido com DDD e 9 dígitos.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappCity">Cidade *</label>
+                    <input type="text" id="whatsappCity" name="city" required>
+                    <div class="form-error" id="whatsappCityError">Por favor, informe sua cidade.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappDescription">Descrição do Projeto *</label>
+                    <textarea id="whatsappDescription" name="description" placeholder="Descreva brevemente o que você precisa..." required></textarea>
+                    <div class="form-error" id="whatsappDescriptionError">Por favor, descreva seu projeto.</div>
+                </div>
+
+                <button type="submit" class="btn btn-accent form-submit">Enviar para WhatsApp</button>
+            </form>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-grid">
@@ -653,12 +1261,27 @@
             else header.classList.remove('scrolled');
         });
 
-        // Segurança contra inspeção básica de código (F12, Ctrl+Shift+I, Ctrl+U)
+        // SEGURANÇA REFORÇADA - Bloqueio de F12, Ctrl+Shift+I, Ctrl+U, Ctrl+C (Copiar)
         document.onkeydown = function(e) {
+            // F12
             if(e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            // Ctrl+Shift+I (DevTools)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            // Ctrl+Shift+C (Inspect)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            // Ctrl+Shift+J (Console)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            // Ctrl+U (View Source)
             if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            // Ctrl+C (Copy)
+            if(e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) return false;
         }
+
+        // Bloqueio adicional de cópia
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            return false;
+        });
 
         // LGPD Logic
         window.addEventListener('DOMContentLoaded', () => {
@@ -703,6 +1326,190 @@
                 script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
                 document.body.appendChild(script);
             }
+        }
+
+        // MODAL E FORMULÁRIO PARA PLANOS
+        function openFormModal(plan) {
+            document.getElementById('formModal').classList.add('active');
+            document.getElementById('planSelected').textContent = 'Plano: ' + plan;
+            document.getElementById('serviceForm').reset();
+            clearFormErrors();
+        }
+
+        function closeFormModal() {
+            document.getElementById('formModal').classList.remove('active');
+        }
+
+        // MODAL E FORMULÁRIO PARA WHATSAPP GERAL
+        function openWhatsAppFormModal() {
+            document.getElementById('whatsappFormModal').classList.add('active');
+            document.getElementById('whatsappForm').reset();
+            clearWhatsAppFormErrors();
+        }
+
+        function closeWhatsAppFormModal() {
+            document.getElementById('whatsappFormModal').classList.remove('active');
+        }
+
+        // GOOGLE FORMS - MOSTRAR/OCULTAR
+        function openGoogleFormModal() {
+            const section = document.getElementById('googleFormSection');
+            section.classList.toggle('active');
+            if (section.classList.contains('active')) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            const formModal = document.getElementById('formModal');
+            const whatsappModal = document.getElementById('whatsappFormModal');
+            if (event.target == formModal) {
+                formModal.classList.remove('active');
+            }
+            if (event.target == whatsappModal) {
+                whatsappModal.classList.remove('active');
+            }
+        }
+
+        // Formatação de telefone - PLANOS
+        document.getElementById('clientPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 2) {
+                    value = '(' + value;
+                } else if (value.length <= 6) {
+                    value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+                } else {
+                    value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+                }
+            }
+            e.target.value = value;
+        });
+
+        // Formatação de telefone - WHATSAPP
+        document.getElementById('whatsappPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 2) {
+                    value = '(' + value;
+                } else if (value.length <= 6) {
+                    value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+                } else {
+                    value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+                }
+            }
+            e.target.value = value;
+        });
+
+        function clearFormErrors() {
+            document.querySelectorAll('#serviceForm .form-error').forEach(el => {
+                el.classList.remove('active');
+            });
+        }
+
+        function clearWhatsAppFormErrors() {
+            document.querySelectorAll('#whatsappForm .form-error').forEach(el => {
+                el.classList.remove('active');
+            });
+        }
+
+        // FORMULÁRIO PLANOS
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            clearFormErrors();
+
+            const name = document.getElementById('clientName').value.trim();
+            const rawPhone = document.getElementById('clientPhone').value.replace(/\D/g, "");
+            const city = document.getElementById('clientCity').value.trim();
+            const description = document.getElementById('clientDescription').value.trim();
+            const plan = document.getElementById('planSelected').textContent.replace('Plano: ', '');
+
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById('nameError').classList.add('active');
+                isValid = false;
+            }
+
+            if (rawPhone.length !== 11) {
+                document.getElementById('phoneError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!city) {
+                document.getElementById('cityError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!description) {
+                document.getElementById('descriptionError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const text = `*NOVA SOLICITAÇÃO DE SERVIÇO* 🛡️\n\n` +
+                         `📦 *Plano:* ${plan}\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Descrição:* ${description}`;
+
+            const whatsappNumber = '5514997135218';
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeFormModal();
+        }
+
+        // FORMULÁRIO WHATSAPP GERAL
+        function handleWhatsAppFormSubmit(e) {
+            e.preventDefault();
+            clearWhatsAppFormErrors();
+
+            const name = document.getElementById('whatsappName').value.trim();
+            const rawPhone = document.getElementById('whatsappPhone').value.replace(/\D/g, "");
+            const city = document.getElementById('whatsappCity').value.trim();
+            const description = document.getElementById('whatsappDescription').value.trim();
+
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById('whatsappNameError').classList.add('active');
+                isValid = false;
+            }
+
+            if (rawPhone.length !== 11) {
+                document.getElementById('whatsappPhoneError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!city) {
+                document.getElementById('whatsappCityError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!description) {
+                document.getElementById('whatsappDescriptionError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const text = `*NOVA CONSULTA* 💬\n\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Mensagem:* ${description}`;
+
+            const whatsappNumber = '5514997135218';
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeWhatsAppFormModal();
         }
     </script>
 </body>
