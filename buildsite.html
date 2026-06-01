@@ -634,7 +634,7 @@
             margin-top: 2rem;
         }
 
-        /* --- GOOGLE FORMS CONTAINER --- */
+        /* --- GOOGLE FORMS CONTAINER (OCULTO POR PADRÃO) --- */
         .google-form-container {
             text-align: center;
             margin-top: 30px;
@@ -642,6 +642,23 @@
             background: rgba(255, 255, 255, 0.01);
             border-radius: 10px;
             border: 1px solid var(--border);
+            display: none;
+        }
+
+        .google-form-container.active {
+            display: block;
+            animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .google-form-container h2 {
@@ -786,78 +803,8 @@
     <main>
         <section id="web-development-portfolio">
             <div class="section-header">
-                <h1>Planos de Sites de <span>Alta Performance</span></h1>
+                <h1>Transforme seu negócio com <span>presença digital</span></h1>
                 <p>Desenvolvemos plataformas web modernas, velozes e estrategicamente focadas na conversão de leads. Garanta a presença digital que destaca a autoridade do seu negócio no Google.</p>
-            </div>
-
-            <div class="plans-grid">
-                
-                <!-- LEGACY START -->
-                <article class="plan-card">
-                    <span class="plan-badge">Início Rápido</span>
-                    <h3>🚀 Legacy Start</h3>
-                    <p>Para quem precisa de um site básico, rápido e direto.</p>
-                    <div class="plan-price">R$ 560,00</div>
-                    <div class="plan-price-installment">ou R$ 600,00 em até 6x no cartão</div>
-                    <ul class="plan-features">
-                        <li>Site One-Page de Alta Conversão</li>
-                        <li>Design Responsivo Moderno</li>
-                        <li>Carregamento Ultrarrápido</li>
-                        <li>Segurança Certificado SSL</li>
-                        <li>Botão WhatsApp Flutuante</li>
-                        <li>SEO básico para o Google</li>
-                        <li>Adequação LGPD</li>
-                        <li>Google Analytics, Pixel Meta e Google Ads</li>
-                        <li>Cadastro no Google Perfil da Empresa</li>
-                        <li>Entrega Expressa em 24h</li>
-                    </ul>
-                    <button class="btn btn-outline" onclick="openFormModal('Legacy Start - R$ 560,00')">Quero este plano</button>
-                </article>
-
-                <!-- LEGACY VISION (FEATURED) -->
-                <article class="plan-card featured">
-                    <span class="plan-badge">Mais Indicado</span>
-                    <h3>⚡ Legacy Vision</h3>
-                    <p>Intermediário, equilibrando performance e inteligência de negócios.</p>
-                    <div class="plan-price">R$ 680,00</div>
-                    <div class="plan-price-installment">ou R$ 730,00 em até 7x no cartão</div>
-                    <ul class="plan-features">
-                        <li>Site One-Page de Alta Conversão</li>
-                        <li>Design Responsivo Moderno</li>
-                        <li>Carregamento Ultrarrápido</li>
-                        <li>Segurança Certificado SSL</li>
-                        <li>Botão WhatsApp Flutuante</li>
-                        <li>SEO básico para o Google</li>
-                        <li>Adequação LGPD</li>
-                        <li>Google Analytics, Pixel Meta e Google Ads</li>
-                        <li>Cadastro no Google Perfil da Empresa</li>
-                        <li>Entrega Expressa em 24h</li>
-                    </ul>
-                    <button class="btn btn-accent" onclick="openFormModal('Legacy Vision - R$ 680,00')">Quero o mais indicado</button>
-                </article>
-
-                <!-- LEGACY PLATINUM -->
-                <article class="plan-card">
-                    <span class="plan-badge">Premium</span>
-                    <h3>✨ Legacy Platinum</h3>
-                    <p>Autoridade local máxima e prioridade absoluta.</p>
-                    <div class="plan-price">R$ 840,00</div>
-                    <div class="plan-price-installment">ou R$ 900,00 em até 10x no cartão</div>
-                    <ul class="plan-features">
-                        <li>Site One-Page de Alta Conversão</li>
-                        <li>Design Responsivo Moderno</li>
-                        <li>Carregamento Ultrarrápido</li>
-                        <li>Segurança Certificado SSL</li>
-                        <li>Botão WhatsApp Flutuante</li>
-                        <li>SEO básico para o Google</li>
-                        <li>Adequação LGPD</li>
-                        <li>Google Analytics, Pixel Meta e Google Ads</li>
-                        <li>Cadastro no Google Perfil da Empresa</li>
-                        <li>Entrega Expressa em 24h</li>
-                    </ul>
-                    <button class="btn btn-outline" onclick="openFormModal('Legacy Platinum - R$ 840,00')">Quero este plano</button>
-                </article>
-
             </div>
 
             <div class="features-overview">
@@ -956,23 +903,100 @@
                 <h2>Pronto para transformar seu negócio?</h2>
                 <p>Não deixe mais oportunidades escaparem. Escolha seu plano agora e comece a capturar clientes qualificados. Entrega em 24h para planos Legacy.</p>
                 <div class="cta-buttons-group">
-                    <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-accent">Conversar no WhatsApp 💬</a>
+                    <button class="btn btn-accent" onclick="openWhatsAppFormModal()">Conversar no WhatsApp 💬</button>
                     <button class="btn btn-outline" onclick="openGoogleFormModal()">Preencher Formulário</button>
                 </div>
             </div>
 
-            <!-- GOOGLE FORMS SECTION -->
-            <div id="googleFormSection" style="display: none;">
-                <div class="google-form-container">
-                    <h2>Envie sua Mensagem</h2>
-                    <p>Por favor, preencha o formulário detalhado abaixo para nos ajudar a entender melhor suas necessidades.</p>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOIIut6LhrSCLThXnxBr7p5lV6OUw277cyij9ZsbHxM6qryg/viewform?embedded=true" width="640" height="1590" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+            <!-- GOOGLE FORMS SECTION (OCULTO POR PADRÃO) -->
+            <div id="googleFormSection" class="google-form-container">
+                <h2>Envie sua Mensagem</h2>
+                <p>Por favor, preencha o formulário detalhado abaixo para nos ajudar a entender melhor suas necessidades.</p>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOIIut6LhrSCLThXnxBr7p5lV6OUw277cyij9ZsbHxM6qryg/viewform?embedded=true" width="640" height="1590" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+            </div>
+
+            <!-- SEÇÃO DE PLANOS (ÚLTIMA DA PÁGINA) -->
+            <div style="margin-top: 8rem;">
+                <div class="section-header">
+                    <h1>Escolha seu <span>Plano Ideal</span></h1>
+                    <p>Três opções de sites de alta performance, todas com entrega rápida e suporte completo.</p>
+                </div>
+
+                <div class="plans-grid">
+                    
+                    <!-- LEGACY START -->
+                    <article class="plan-card">
+                        <span class="plan-badge">Início Rápido</span>
+                        <h3>🚀 Legacy Start</h3>
+                        <p>Para quem precisa de um site básico, rápido e direto.</p>
+                        <div class="plan-price">R$ 560,00</div>
+                        <div class="plan-price-installment">ou R$ 600,00 em até 6x no cartão</div>
+                        <ul class="plan-features">
+                            <li>Site One-Page de Alta Conversão</li>
+                            <li>Design Responsivo Moderno</li>
+                            <li>Carregamento Ultrarrápido</li>
+                            <li>Segurança Certificado SSL</li>
+                            <li>Botão WhatsApp Flutuante</li>
+                            <li>SEO básico para o Google</li>
+                            <li>Adequação LGPD</li>
+                            <li>Entrega Expressa em 24h</li>
+                        </ul>
+                        <button class="btn btn-outline" onclick="openFormModal('Legacy Start - R$ 560,00')">Quero este plano</button>
+                    </article>
+
+                    <!-- LEGACY VISION (FEATURED) -->
+                    <article class="plan-card featured">
+                        <span class="plan-badge">Mais Indicado</span>
+                        <h3>⚡ Legacy Vision</h3>
+                        <p>Intermediário, equilibrando performance e inteligência de negócios.</p>
+                        <div class="plan-price">R$ 680,00</div>
+                        <div class="plan-price-installment">ou R$ 730,00 em até 7x no cartão</div>
+                        <ul class="plan-features">
+                            <li>Site One-Page de Alta Conversão</li>
+                            <li>Design Responsivo Moderno</li>
+                            <li>Carregamento Ultrarrápido</li>
+                            <li>Segurança Certificado SSL</li>
+                            <li>Botão WhatsApp Flutuante</li>
+                            <li>SEO básico para o Google</li>
+                            <li>Dominio Personalisado R$20,00 Primeiro ano</li>
+                            <li>Adequação LGPD</li>
+                            <li>Google Analytics, Pixel Meta e Google Ads</li>
+                            <li>Cadastro no Google Perfil da Empresa</li>
+                            <li>Entrega Expressa em 24h</li>
+                        </ul>
+                        <button class="btn btn-accent" onclick="openFormModal('Legacy Vision - R$ 680,00')">Quero o mais indicado</button>
+                    </article>
+
+                    <!-- LEGACY PLATINUM -->
+                    <article class="plan-card">
+                        <span class="plan-badge">Premium</span>
+                        <h3>✨ Legacy Platinum</h3>
+                        <p>Autoridade local máxima e prioridade absoluta.</p>
+                        <div class="plan-price">R$ 840,00</div>
+                        <div class="plan-price-installment">ou R$ 900,00 em até 10x no cartão</div>
+                        <ul class="plan-features">
+                            <li>Site One-Page de Alta Conversão</li>
+                            <li>Design Responsivo Moderno</li>
+                            <li>Carregamento Ultrarrápido</li>
+                            <li>Segurança Certificado SSL</li>
+                            <li>Botão WhatsApp Flutuante</li>
+                            <li>SEO básico para o Google</li>
+                            <li>Dominio Personalisado R$20,00 Primeiro ano</li>
+                            <li>Adequação LGPD</li>
+                            <li>Google Analytics, Pixel Meta e Google Ads</li>
+                            <li>Cadastro no Google Perfil da Empresa</li>
+                            <li>Entrega Expressa em 24h</li>
+                        </ul>
+                        <button class="btn btn-outline" onclick="openFormModal('Legacy Platinum - R$ 840,00')">Quero este plano</button>
+                    </article>
+
                 </div>
             </div>
+
         </section>
     </main>
 
-    <!-- MODAL FORMULÁRIO (SEM TRANSPARÊNCIA) -->
+    <!-- MODAL FORMULÁRIO PARA PLANOS (SEM TRANSPARÊNCIA) -->
     <div id="formModal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeFormModal()">&times;</button>
@@ -1003,6 +1027,44 @@
                     <label for="clientDescription">Descrição do Projeto *</label>
                     <textarea id="clientDescription" name="description" placeholder="Descreva brevemente o que você precisa..." required></textarea>
                     <div class="form-error" id="descriptionError">Por favor, descreva seu projeto.</div>
+                </div>
+
+                <button type="submit" class="btn btn-accent form-submit">Enviar para WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL FORMULÁRIO PARA WHATSAPP GERAL -->
+    <div id="whatsappFormModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeWhatsAppFormModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Conversar no WhatsApp</h2>
+                <p>Preencha seus dados para iniciar uma conversa</p>
+            </div>
+            <form id="whatsappForm" onsubmit="handleWhatsAppFormSubmit(event)">
+                <div class="form-group">
+                    <label for="whatsappName">Nome Completo *</label>
+                    <input type="text" id="whatsappName" name="name" required>
+                    <div class="form-error" id="whatsappNameError">Por favor, informe seu nome completo.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappPhone">WhatsApp (com DDD) *</label>
+                    <input type="tel" id="whatsappPhone" name="phone" placeholder="(11) 99999-9999" required>
+                    <div class="form-error" id="whatsappPhoneError">Por favor, informe um WhatsApp válido com DDD e 9 dígitos.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappCity">Cidade *</label>
+                    <input type="text" id="whatsappCity" name="city" required>
+                    <div class="form-error" id="whatsappCityError">Por favor, informe sua cidade.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsappDescription">Descrição do Projeto *</label>
+                    <textarea id="whatsappDescription" name="description" placeholder="Descreva brevemente o que você precisa..." required></textarea>
+                    <div class="form-error" id="whatsappDescriptionError">Por favor, descreva seu projeto.</div>
                 </div>
 
                 <button type="submit" class="btn btn-accent form-submit">Enviar para WhatsApp</button>
@@ -1125,7 +1187,7 @@
             }
         }
 
-        // MODAL E FORMULÁRIO
+        // MODAL E FORMULÁRIO PARA PLANOS
         function openFormModal(plan) {
             document.getElementById('formModal').classList.add('active');
             document.getElementById('planSelected').textContent = 'Plano: ' + plan;
@@ -1137,21 +1199,39 @@
             document.getElementById('formModal').classList.remove('active');
         }
 
+        // MODAL E FORMULÁRIO PARA WHATSAPP GERAL
+        function openWhatsAppFormModal() {
+            document.getElementById('whatsappFormModal').classList.add('active');
+            document.getElementById('whatsappForm').reset();
+            clearWhatsAppFormErrors();
+        }
+
+        function closeWhatsAppFormModal() {
+            document.getElementById('whatsappFormModal').classList.remove('active');
+        }
+
+        // GOOGLE FORMS - MOSTRAR/OCULTAR
         function openGoogleFormModal() {
             const section = document.getElementById('googleFormSection');
-            section.style.display = 'block';
-            section.scrollIntoView({ behavior: 'smooth' });
+            section.classList.toggle('active');
+            if (section.classList.contains('active')) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         // Fechar modal ao clicar fora
         window.onclick = function(event) {
-            const modal = document.getElementById('formModal');
-            if (event.target == modal) {
-                modal.classList.remove('active');
+            const formModal = document.getElementById('formModal');
+            const whatsappModal = document.getElementById('whatsappFormModal');
+            if (event.target == formModal) {
+                formModal.classList.remove('active');
+            }
+            if (event.target == whatsappModal) {
+                whatsappModal.classList.remove('active');
             }
         }
 
-        // Formatação de telefone
+        // Formatação de telefone - PLANOS
         document.getElementById('clientPhone').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 0) {
@@ -1166,12 +1246,34 @@
             e.target.value = value;
         });
 
+        // Formatação de telefone - WHATSAPP
+        document.getElementById('whatsappPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 2) {
+                    value = '(' + value;
+                } else if (value.length <= 6) {
+                    value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+                } else {
+                    value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+                }
+            }
+            e.target.value = value;
+        });
+
         function clearFormErrors() {
-            document.querySelectorAll('.form-error').forEach(el => {
+            document.querySelectorAll('#serviceForm .form-error').forEach(el => {
                 el.classList.remove('active');
             });
         }
 
+        function clearWhatsAppFormErrors() {
+            document.querySelectorAll('#whatsappForm .form-error').forEach(el => {
+                el.classList.remove('active');
+            });
+        }
+
+        // FORMULÁRIO PLANOS
         function handleFormSubmit(e) {
             e.preventDefault();
             clearFormErrors();
@@ -1184,7 +1286,6 @@
 
             let isValid = true;
 
-            // Validações
             if (!name) {
                 document.getElementById('nameError').classList.add('active');
                 isValid = false;
@@ -1207,7 +1308,6 @@
 
             if (!isValid) return;
 
-            // Formatar mensagem para WhatsApp
             const text = `*NOVA SOLICITAÇÃO DE SERVIÇO* 🛡️\n\n` +
                          `📦 *Plano:* ${plan}\n` +
                          `👤 *Nome:* ${name}\n` +
@@ -1215,16 +1315,60 @@
                          `📍 *Cidade:* ${city}\n\n` +
                          `📝 *Descrição:* ${description}`;
 
-            // Número do WhatsApp (substitua pelo seu)
             const whatsappNumber = '5514997135218';
             const encodedText = encodeURIComponent(text);
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
 
-            // Abrir WhatsApp
             window.open(whatsappUrl, '_blank');
-
-            // Fechar modal
             closeFormModal();
+        }
+
+        // FORMULÁRIO WHATSAPP GERAL
+        function handleWhatsAppFormSubmit(e) {
+            e.preventDefault();
+            clearWhatsAppFormErrors();
+
+            const name = document.getElementById('whatsappName').value.trim();
+            const rawPhone = document.getElementById('whatsappPhone').value.replace(/\D/g, "");
+            const city = document.getElementById('whatsappCity').value.trim();
+            const description = document.getElementById('whatsappDescription').value.trim();
+
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById('whatsappNameError').classList.add('active');
+                isValid = false;
+            }
+
+            if (rawPhone.length !== 11) {
+                document.getElementById('whatsappPhoneError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!city) {
+                document.getElementById('whatsappCityError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!description) {
+                document.getElementById('whatsappDescriptionError').classList.add('active');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const text = `*NOVA CONSULTA* 💬\n\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Mensagem:* ${description}`;
+
+            const whatsappNumber = '5514997135218';
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeWhatsAppFormModal();
         }
     </script>
 </body>
