@@ -47,6 +47,10 @@
             padding: 0;
             box-sizing: border-box;
             cursor: default;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         body {
@@ -329,6 +333,96 @@
             line-height: 1.6;
         }
 
+        /* --- SEÇÕES INFORMATIVAS --- */
+        .info-section {
+            margin-top: 8rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,204,255,0.01) 100%);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 4rem 3rem;
+        }
+
+        .info-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .info-section h2 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-section > p {
+            text-align: center;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .info-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .info-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .info-card ul li {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-card ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
         /* --- BOTÕES E CTA --- */
         .btn {
             display: inline-flex;
@@ -401,7 +495,7 @@
             margin: 0 auto;
         }
 
-        /* --- MODAL FORMULÁRIO --- */
+        /* --- MODAL FORMULÁRIO (SEM TRANSPARÊNCIA) --- */
         .modal {
             display: none;
             position: fixed;
@@ -410,7 +504,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.95);
             animation: fadeIn 0.3s ease-in;
         }
 
@@ -426,14 +520,15 @@
         }
 
         .modal-content {
-            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(0,255,102,0.01) 100%);
-            border: 1px solid var(--border);
+            background: #020202;
+            border: 2px solid var(--accent);
             border-radius: 28px;
             padding: 3rem;
             max-width: 500px;
             width: 90%;
             position: relative;
             animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 40px rgba(0, 255, 102, 0.2);
         }
 
         @keyframes slideUp {
@@ -539,6 +634,30 @@
             margin-top: 2rem;
         }
 
+        /* --- GOOGLE FORMS CONTAINER --- */
+        .google-form-container {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .google-form-container h2 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .google-form-container iframe {
+            max-width: 100%;
+            width: 100%;
+            height: 1590px;
+            border: none;
+            border-radius: 10px;
+        }
+
         /* --- FOOTER --- */
         footer {
             padding: 80px 1.5rem 40px;
@@ -642,6 +761,7 @@
             .cta-buttons-group { flex-direction: column; }
             .modal-content { padding: 2rem; }
             .cookie-banner { flex-direction: column; align-items: flex-start; }
+            .info-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -762,18 +882,97 @@
                 </div>
             </div>
 
+            <!-- SEÇÃO: VANTAGENS DE TER UM SITE -->
+            <div class="info-section">
+                <h2>Por que investir em um <span>site profissional?</span></h2>
+                <p>Descubra como um site de alta performance pode transformar seu negócio e gerar resultados reais.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>💰 Aumento de Vendas</h3>
+                        <p>Um site bem estruturado funciona como seu vendedor 24/7, capturando leads qualificados enquanto você dorme. Empresas com presença digital geram até 3x mais vendas que seus concorrentes.</p>
+                        <ul>
+                            <li>Conversão contínua de visitantes em clientes</li>
+                            <li>Redução de custos de aquisição</li>
+                            <li>Automatização de primeiros contatos</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>🎯 Autoridade no Mercado</h3>
+                        <p>Aparecer no Google é credibilidade. Clientes buscam empresas online antes de comprar. Um site otimizado para SEO coloca você na frente da concorrência e estabelece sua marca como referência.</p>
+                        <ul>
+                            <li>Ranqueamento em primeiras posições do Google</li>
+                            <li>Construção de marca profissional</li>
+                            <li>Confiança do cliente aumentada</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 Dados e Inteligência</h3>
+                        <p>Entenda seu cliente. Com analytics integrado, você acompanha cada clique, cada comportamento. Dados reais para decisões inteligentes e estratégias que realmente funcionam.</p>
+                        <ul>
+                            <li>Análise completa de comportamento do visitante</li>
+                            <li>Identificação de oportunidades de melhoria</li>
+                            <li>ROI mensurável e comprovado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO: DESVANTAGENS DE NÃO TER UM SITE -->
+            <div class="info-section">
+                <h2>O custo de <span>não ter um site</span></h2>
+                <p>Seus concorrentes já estão online. Veja o que você está perdendo todos os dias.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>❌ Perda de Oportunidades</h3>
+                        <p>Sem presença online, você perde 70% dos clientes em potencial que buscam seus serviços no Google. Enquanto você dorme, seus concorrentes capturam seus clientes.</p>
+                        <ul>
+                            <li>Clientes procuram concorrentes online</li>
+                            <li>Falta de credibilidade digital</li>
+                            <li>Impossibilidade de capturar leads 24/7</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>💸 Custos Mais Altos</h3>
+                        <p>Sem um site, você depende de publicidade cara e boca a boca. Um site profissional reduz custos de marketing em até 60% enquanto multiplica seus resultados.</p>
+                        <ul>
+                            <li>Publicidade cara sem retorno garantido</li>
+                            <li>Dependência de intermediários</li>
+                            <li>Falta de controle sobre sua marca</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>📉 Invisibilidade no Mercado</h3>
+                        <p>Sem um site, você não existe para 80% dos seus clientes em potencial. A concorrência domina o espaço digital enquanto você fica para trás, perdendo market share constantemente.</p>
+                        <ul>
+                            <li>Invisibilidade total no Google</li>
+                            <li>Perda de mercado para concorrentes</li>
+                            <li>Impossibilidade de escalar o negócio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <div class="cta-box">
-                <h2>Ainda tem dúvidas sobre qual estrutura escolher?</h2>
-                <p>Nossa equipe de engenharia web está pronta para analisar o cenário do seu nicho de atuação e recomendar o modelo ideal. Não perca clientes para a concorrência por falta de um ambiente web moderno.</p>
+                <h2>Pronto para transformar seu negócio?</h2>
+                <p>Não deixe mais oportunidades escaparem. Escolha seu plano agora e comece a capturar clientes qualificados. Entrega em 24h para planos Legacy.</p>
                 <div class="cta-buttons-group">
                     <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-accent">Conversar no WhatsApp 💬</a>
-                    <button class="btn btn-outline" onclick="openFormModal('Consulta Geral')">Preencher Formulário</button>
+                    <button class="btn btn-outline" onclick="openGoogleFormModal()">Preencher Formulário</button>
+                </div>
+            </div>
+
+            <!-- GOOGLE FORMS SECTION -->
+            <div id="googleFormSection" style="display: none;">
+                <div class="google-form-container">
+                    <h2>Envie sua Mensagem</h2>
+                    <p>Por favor, preencha o formulário detalhado abaixo para nos ajudar a entender melhor suas necessidades.</p>
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOIIut6LhrSCLThXnxBr7p5lV6OUw277cyij9ZsbHxM6qryg/viewform?embedded=true" width="640" height="1590" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- MODAL FORMULÁRIO -->
+    <!-- MODAL FORMULÁRIO (SEM TRANSPARÊNCIA) -->
     <div id="formModal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeFormModal()">&times;</button>
@@ -859,12 +1058,27 @@
             else header.classList.remove('scrolled');
         });
 
-        // Segurança contra inspeção básica de código (F12, Ctrl+Shift+I, Ctrl+U)
+        // SEGURANÇA REFORÇADA - Bloqueio de F12, Ctrl+Shift+I, Ctrl+U, Ctrl+C (Copiar)
         document.onkeydown = function(e) {
+            // F12
             if(e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            // Ctrl+Shift+I (DevTools)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            // Ctrl+Shift+C (Inspect)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            // Ctrl+Shift+J (Console)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            // Ctrl+U (View Source)
             if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            // Ctrl+C (Copy)
+            if(e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) return false;
         }
+
+        // Bloqueio adicional de cópia
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            return false;
+        });
 
         // LGPD Logic
         window.addEventListener('DOMContentLoaded', () => {
@@ -921,6 +1135,12 @@
 
         function closeFormModal() {
             document.getElementById('formModal').classList.remove('active');
+        }
+
+        function openGoogleFormModal() {
+            const section = document.getElementById('googleFormSection');
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth' });
         }
 
         // Fechar modal ao clicar fora
