@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
+        });
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Artigos, Tutoriais e Insights de TI - MC Infra TI">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <title>Blog & Tutoriais | MC Infra TI</title>
+    
+    <style>
+        :root {
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4);
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+        }
+
+        a, button, .card-blog {
+            cursor: pointer !important;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND DINÂMICO --- */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.05) 0%, transparent 40%);
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg') center/cover no-repeat;
+            opacity: 0.15;
+            filter: saturate(0.5) brightness(0.5);
+        }
+
+        /* --- ANIMAÇÃO DE PARTÍCULAS --- */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.2;
+            filter: blur(1px);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(110vh) translateX(0); opacity: 0; }
+            50% { opacity: 0.4; }
+            to { transform: translateY(-10vh) translateX(100px); opacity: 0; }
+        }
+
+        /* --- HEADER PREMIUM --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(2, 2, 2, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        header.scrolled {
+            background: rgba(2, 2, 2, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        /* --- HERO BLOG --- */
+        #hero-blog {
+            padding: 160px 1.5rem 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        #hero-blog h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        #hero-blog h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero-blog p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-dim);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* --- GRID DE ARTIGOS --- */
+        #blog-content {
+            padding: 40px 1.5rem 100px;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-blog {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-blog:hover {
+            transform: translateY(-10px);
+            background: var(--surface-bright);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.05);
+        }
+
+        .card-top {
+            margin-bottom: 2rem;
+        }
+
+        .article-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .card-blog h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.3;
+            color: var(--text);
+        }
+
+        .card-blog p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            transition: 0.3s;
+            margin-top: 1.5rem;
+        }
+
+        .card-blog:hover .read-more {
+            color: var(--accent);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 1.5rem 40px;
+            background: #000;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p { color: var(--text-dim); max-width: 350px; font-size: 0.95rem; }
+        .footer-col h4 { margin-bottom: 1.2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .footer-col ul a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 0; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            #hero-blog { padding-top: 120px; }
+            #hero-blog h1 { font-size: 2.5rem; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
+    </div>
+
+    <div class="particles" id="particleContainer"></div>
+
+    <header id="mainHeader">
+        <nav>
+            <a href="index.html" class="logo-text">MC INFRA TI</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="index.html#services">Serviços</a></li>
+                <li><a href="contactmcinfra.html">Contato</a></li>
+                <li><a href="portf.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero-blog">
+            <span class="badge">Knowledge Hub</span>
+            <h1>Artigos e <span>Tutoriais</span> Práticos</h1>
+            <p>Guias técnicos detalhados sobre automação, self-hosting, infraestrutura de redes e desenvolvimento moderno de software.</p>
+        </section>
+
+        <section id="blog-content">
+            <div class="blog-grid">
+                
+                <a href="ngix-pm-duckdns.html" class="card-blog">
+                    <div class="card-top">
+                        <span class="article-tag">Infraestrutura / DevOps</span>
+                        <span class="card-icon">🌐</span>
+                        <h3>Nginx Proxy Manager + DuckDNS</h3>
+                        <p>Aprenda a estruturar o seu próprio Proxy Reverso local para gerenciar múltiplos subdomínios, configurar certificados SSL automáticos com Let's Encrypt e expor suas aplicações self-hosted de maneira segura.</p>
+                    </div>
+                    <div class="read-more">Acessar Tutorial ➔</div>
+                </a>
+
+                <a href="webscrepin.html" class="card-blog">
+                    <div class="card-top">
+                        <span class="article-tag">Automação / Dados</span>
+                        <span class="card-icon">🕷️</span>
+                        <h3>Web Scraping Avançado na Prática</h3>
+                        <p>Descubra como construir scripts eficientes para mineração de dados, raspagem de páginas web dinâmicas e extração inteligente de informações estruturadas respeitando as boas práticas de requisições.</p>
+                    </div>
+                    <div class="read-more">Acessar Tutorial ➔</div>
+                </a>
+
+                <a href="jslearning.html" class="card-blog">
+                    <div class="card-top">
+                        <span class="article-tag">Desenvolvimento</span>
+                        <span class="card-icon">⚡</span>
+                        <h3>Dominando JavaScript Moderno</h3>
+                        <p>Um guia completo abordando os fundamentos cruciais do JS. Entenda a manipulação assíncrona profunda (Promises, Async/Await), controle otimizado da DOM e conceitos consolidados para turbinar suas aplicações backend e frontend.</p>
+                    </div>
+                    <div class="read-more">Acessar Tutorial ➔</div>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo-text" style="margin-bottom: 1.5rem;">MC INFRA TI</div>
+                <p>Soluções tecnológicas de alta performance, desenvolvimento SaaS e infraestrutura resiliente para o seu negócio.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contactmcinfra.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Conteúdo</h4>
+                <ul>
+                    <li><a href="ngix-pm-duckdns.html">Nginx Proxy Manager</a></li>
+                    <li><a href="webscrepin.html">Web Scraping</a></li>
+                    <li><a href="jslearning.html">JavaScript Moderno</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>Desenvolvido com foco em Performance & Segurança</p>
+        </div>
+    </footer>
+
+    <script>
+        // Efeito de scroll no Header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Script simples de injeção dinâmica de partículas da sua Home
+        const container = document.getElementById('particleContainer');
+        const particleCount = 15;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Configurações aleatórias para as partículas float
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            particle.style.animationDelay = `${Math.random() * -20}s`;
+            
+            container.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
