@@ -254,12 +254,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .plan-price-installment {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-bottom: 1.5rem;
-        }
-
         .plan-card p {
             color: var(--text-dim);
             font-size: 0.95rem;
@@ -290,53 +284,9 @@
             font-weight: bold;
         }
 
-        /* --- SEÇÃO DE BENEFÍCIOS ADICIONAIS --- */
-        .features-overview {
-            margin-top: 6rem;
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid var(--border);
-            border-radius: 32px;
-            padding: 4rem 3rem;
-        }
-
-        .features-overview h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .features-overview h2 span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .features-panel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .feature-panel-item h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.15rem;
-            color: #fff;
-            margin-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .feature-panel-item p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
         /* --- SEÇÕES INFORMATIVAS --- */
         .info-section {
-            margin-top: 8rem;
+            margin-top: 6rem;
             background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,204,255,0.01) 100%);
             border: 1px solid var(--border);
             border-radius: 32px;
@@ -714,8 +664,8 @@
             <div class="logo-text">MC INFRA TI</div>
             <ul class="nav-links">
                 <li><a href="#hero">Início</a></li>
-                <li><a href="#como-funciona">Como Funciona</a></li>
-                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#central-24h">Monitoramento</a></li>
+                <li><a href="#backup-video">Backup</a></li>
                 <li><a href="#planos">Planos</a></li>
                 <li><a href="contactmcinfra.html">Contato</a></li>
             </ul>
@@ -749,6 +699,46 @@
                         <h4>🔒 Controle Total Remoto</h4>
                         <p>Arme e desarme seu sistema de qualquer lugar com uma simples mensagem. Simplicidade e poder.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: CENTRAL DE MONITORAMENTO 24H (NOVA) -->
+        <section id="central-24h" class="info-section">
+            <h2>Central de Monitoramento <span>24h Proativa</span></h2>
+            <p>Nossa equipe recebe alertas e imagens em tempo real, tomando ações imediatas para garantir sua segurança.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🚨 Resposta Imediata</h3>
+                    <p>Em caso de intrusão, acionamos o COPOM e deslocamos equipes para o local, garantindo uma resposta física rápida e coordenada.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🛠️ Manutenção Preventiva</h3>
+                    <p>Monitoramos falhas em sensores, câmeras e HDs. Se algo falhar, agimos proativamente para reparar ou substituir a peça.</p>
+                </div>
+                <div class="info-card">
+                    <h3>👨‍✈️ Equipe Especialista</h3>
+                    <p>Técnicos especialistas em segurança eletrônica patrimonial garantem a qualidade e o profissionalismo de toda a operação.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: BACKUP DE VÍDEO (NOVA) -->
+        <section id="backup-video" class="info-section">
+            <h2>Backup de Vídeo <span>Inteligente e Seguro</span></h2>
+            <p>Garantimos que suas gravações críticas nunca sejam perdidas com replicação em nuvem e retenção flexível.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>☁️ Replicação em Nuvem</h3>
+                    <p>Armazenamos seus vídeos por 30 dias com replicação automática para nossa nuvem ou para o drive do cliente.</p>
+                </div>
+                <div class="info-card">
+                    <h3>💾 Proteção Contra Perdas</h3>
+                    <p>Mesmo que o equipamento local sofra danos, suas imagens estarão seguras e acessíveis remotamente na nuvem.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📂 Plano de Drive Adicional</h3>
+                    <p>Precisa de mais tempo? Oferecemos planos de drive adicionais para expandir o armazenamento conforme sua necessidade.</p>
                 </div>
             </div>
         </section>
@@ -819,7 +809,7 @@
                         <li>Até 2 câmeras monitoradas</li>
                         <li>Alertas via Telegram</li>
                         <li>Zonas de detecção básicas</li>
-                        <li>Suporte via WhatsApp</li>
+                        <li>Backup em nuvem (7 dias)</li>
                     </ul>
                     <button class="btn btn-outline" onclick="openFormModal('Essencial')">Solicitar Agora</button>
                 </div>
@@ -834,8 +824,8 @@
                         <li>Até 6 câmeras monitoradas</li>
                         <li>Alertas Telegram & WhatsApp</li>
                         <li>IA de detecção de pessoas</li>
-                        <li>Integração Home Assistant</li>
-                        <li>Suporte Prioritário Nível 2</li>
+                        <li>Backup em nuvem (30 dias)</li>
+                        <li>Central 24h Proativa</li>
                     </ul>
                     <button class="btn btn-accent" onclick="openFormModal('Pro')">Solicitar Agora</button>
                 </div>
@@ -848,9 +838,9 @@
                     <p>Segurança robusta para empresas e comércios com alta demanda de monitoramento.</p>
                     <ul class="plan-features">
                         <li>Até 15 câmeras monitoradas</li>
-                        <li>Relatórios de eventos semanais</li>
                         <li>IA avançada (veículos/objetos)</li>
-                        <li>Armazenamento em nuvem 7 dias</li>
+                        <li>Backup em nuvem (30 dias)</li>
+                        <li>Drive Adicional Disponível</li>
                         <li>NOC operacional 24/7</li>
                     </ul>
                     <button class="btn btn-outline" onclick="openFormModal('Business')">Solicitar Agora</button>
