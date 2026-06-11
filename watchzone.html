@@ -28,6 +28,10 @@
     <meta name="description" content="WatchZone - Monitoramento Inteligente por Vídeo com IA e Integração Home Assistant - MC Infra TI.">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    
+    <!-- Biblioteca SweetAlert2 para Popups -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <title>WatchZone - Monitoramento Inteligente - MC Infra TI</title>
     
     <style>
@@ -92,7 +96,7 @@
             filter: grayscale(1) brightness(0.3);
         }
 
-        /* NOVA ANIMAÇÃO: PARTÍCULAS (DA PÁGINA PRINCIPAL) */
+        /* ANIMAÇÃO: PARTÍCULAS */
         .particles {
             position: fixed;
             top: 0;
@@ -299,16 +303,31 @@
         .btn-outline { background: transparent; color: #fff; border: 1px solid var(--border); }
         .btn-outline:hover { background: var(--surface); border-color: #fff; }
 
+        /* --- POPUP OTIMIZADO DO SWAL --- */
+        .custom-swal-popup { background: #0a0a0a !important; border: 1px solid rgba(255, 255, 255, 0.15) !important; border-radius: 24px !important; padding: 2rem 1.5rem !important; width: 100% !important; max-width: 450px !important; }
+        .custom-swal-title { color: #fff !important; font-family: 'Space Grotesk', sans-serif !important; font-size: 1.4rem !important; font-weight: 700 !important; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; line-height: 1.3 !important; }
+        .custom-swal-html { margin: 1.5rem 0 0 0 !important; display: flex; flex-direction: column; gap: 0.8rem; }
+        
+        .custom-swal-input { 
+            width: 100% !important; height: 50px !important; margin: 0 !important; 
+            background: rgba(255, 255, 255, 0.04) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+            color: #fff !important; border-radius: 12px !important; font-family: 'Plus Jakarta Sans', sans-serif !important; 
+            font-size: 16px !important; padding: 0 1rem !important; box-sizing: border-box !important; outline: none !important; transition: 0.3s; cursor: text !important; 
+        }
+        .custom-swal-input:focus { border-color: var(--accent) !important; background: rgba(255, 255, 255, 0.08) !important; box-shadow: 0 0 10px rgba(0, 255, 102, 0.2) !important; }
+        
+        .custom-swal-textarea { 
+            width: 100% !important; height: 90px !important; margin: 0 !important; 
+            background: rgba(255, 255, 255, 0.04) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+            color: #fff !important; border-radius: 12px !important; font-family: 'Plus Jakarta Sans', sans-serif !important; 
+            font-size: 16px !important; padding: 0.8rem 1rem !important; box-sizing: border-box !important; outline: none !important; resize: none !important; transition: 0.3s; cursor: text !important; 
+        }
+        .custom-swal-textarea:focus { border-color: var(--accent) !important; background: rgba(255, 255, 255, 0.08) !important; box-shadow: 0 0 10px rgba(0, 255, 102, 0.2) !important; }
+
         footer { padding: 100px 1.5rem 50px; background: #000; border-top: 1px solid var(--border); }
         .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
         .cookie-banner { position: fixed; bottom: 2rem; left: 2rem; right: 2rem; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); border: 1px solid var(--border); padding: 2rem; border-radius: 24px; z-index: 9999; display: flex; justify-content: space-between; align-items: center; gap: 2rem; transform: translateY(200%); transition: 0.8s; }
         .cookie-banner.active { transform: translateY(0); }
-
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.98); }
-        .modal.active { display: flex; align-items: center; justify-content: center; }
-        .modal-content { background: #050505; border: 1px solid var(--accent); border-radius: 32px; padding: 4rem; max-width: 550px; width: 90%; position: relative; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group input, .form-group textarea { width: 100%; padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 16px; color: #fff; font-family: inherit; }
 
         @media (max-width: 992px) { .plan-card.featured { transform: none; } .plan-card.featured:hover { transform: translateY(-10px); } .footer-grid { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2.8rem; } .cookie-banner { flex-direction: column; text-align: center; } }
@@ -320,7 +339,7 @@
         <div class="bg-image"></div>
     </div>
 
-    <!-- NOVA ANIMAÇÃO: PARTÍCULAS -->
+    <!-- ANIMAÇÃO: PARTÍCULAS -->
     <div class="particles" id="particleContainer"></div>
 
     <header id="mainHeader">
@@ -475,7 +494,7 @@
                         <li style="margin-bottom: 0.8rem;">✓ Backup em nuvem (7 dias)</li>
                         <li style="margin-bottom: 0.8rem;">✓ Suporte via WhatsApp</li>
                     </ul>
-                    <button class="btn btn-outline" onclick="openFormModal('Essencial')">Solicitar Agora</button>
+                    <button class="btn btn-outline" onclick="solicitarDados('WatchZone - Plano Essencial (R$ 49,90)', 'Gostaria de solicitar o Plano Essencial do WatchZone para monitoramento inteligente.')">Solicitar Agora</button>
                 </div>
 
                 <div class="plan-card featured">
@@ -488,7 +507,7 @@
                         <li style="margin-bottom: 0.8rem;">✓ Backup em nuvem (30 dias)</li>
                         <li style="margin-bottom: 0.8rem;">✓ Central 24h Proativa</li>
                     </ul>
-                    <button class="btn btn-accent" onclick="openFormModal('Pro')">Solicitar Agora</button>
+                    <button class="btn btn-accent" onclick="solicitarDados('WatchZone - Plano PRO (R$ 89,90)', 'Solicito a ativação do Plano PRO do WatchZone com monitoramento proativo e IA avançada.')">Solicitar Agora</button>
                 </div>
 
                 <div class="plan-card">
@@ -501,26 +520,11 @@
                         <li style="margin-bottom: 0.8rem;">✓ Drive Adicional Disponível</li>
                         <li style="margin-bottom: 0.8rem;">✓ NOC operacional 24/7</li>
                     </ul>
-                    <button class="btn btn-outline" onclick="openFormModal('Business')">Solicitar Agora</button>
+                    <button class="btn btn-outline" onclick="solicitarDados('WatchZone - Plano Business (R$ 149,90)', 'Tenho interesse no Plano Business para minha empresa, com monitoramento de alta performance.')">Solicitar Agora</button>
                 </div>
             </div>
         </section>
     </main>
-
-    <div id="formModal" class="modal">
-        <div class="modal-content">
-            <button style="position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer;" onclick="closeFormModal()">&times;</button>
-            <h2 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: 0.5rem;">Solicitar WatchZone</h2>
-            <p id="planSelected" style="color: var(--accent); font-weight: 700; margin-bottom: 2rem;">Plano selecionado</p>
-            <form id="serviceForm" onsubmit="handleFormSubmit(event)">
-                <div class="form-group"><input type="text" id="clientName" placeholder="Nome Completo" required></div>
-                <div class="form-group"><input type="tel" id="clientPhone" placeholder="WhatsApp (com DDD)" required></div>
-                <div class="form-group"><input type="text" id="clientCity" placeholder="Cidade" required></div>
-                <div class="form-group"><textarea id="clientDescription" placeholder="Sua mensagem..." required></textarea></div>
-                <button type="submit" class="btn btn-accent">Enviar para WhatsApp</button>
-            </form>
-        </div>
-    </div>
 
     <footer>
         <div class="footer-grid">
@@ -572,7 +576,7 @@ NOC Operacional Ativo</p>
             else header.classList.remove('scrolled');
         });
 
-        // NOVA ANIMAÇÃO: SISTEMA DE PARTÍCULAS
+        // ANIMAÇÃO: SISTEMA DE PARTÍCULAS
         const container = document.getElementById('particleContainer');
         for (let i = 0; i < 20; i++) {
             const p = document.createElement('div');
@@ -586,20 +590,142 @@ NOC Operacional Ativo</p>
             container.appendChild(p);
         }
 
+        // Lógica de Automação n8n e WhatsApp
+        (function() {
+            const _u = 'https://app-n8n.duckdns.org/webhook/mcinframk';
+            const _gT = ( ) => [77,105,110,104,97,67,104,97,118,101,83,101,99,114,101,116,97,84,101,99,87,111,114,107,50,48,50,54,33].map(c => String.fromCharCode(c)).join('');
+
+            function aplicarMascaraTelefone(input) {
+                let v = input.value.replace(/\D/g, "");
+                if (v.length > 11) v = v.substring(0, 11);
+                if (v.length > 6) {
+                    v = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
+                } else if (v.length > 2) {
+                    v = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+                } else if (v.length > 0) {
+                    v = `(${v}`;
+                }
+                input.value = v;
+            }
+
+            window.solicitarDados = async function(servico, descPredefinida = '') {
+                const cacheNome = localStorage.getItem('tw_draft_nome') || '';
+                const cacheWhats = localStorage.getItem('tw_draft_whats') || '';
+                const cacheCidade = localStorage.getItem('tw_draft_cidade') || '';
+                const cacheDesc = descPredefinida || localStorage.getItem('tw_draft_desc') || '';
+
+                const { value: f } = await Swal.fire({
+                    title: `Solicitar ${servico}`,
+                    customClass: {
+                        popup: 'custom-swal-popup',
+                        title: 'custom-swal-title',
+                        htmlContainer: 'custom-swal-html'
+                    },
+                    background: '#0a0a0a',
+                    color: '#fff',
+                    html:
+                        `<input id="swal-n" class="custom-swal-input" placeholder="Seu Nome" value="${cacheNome}">` +
+                        `<input id="swal-w" class="custom-swal-input" type="tel" placeholder="WhatsApp (DDD + Número)" value="${cacheWhats}">` +
+                        `<input id="swal-c" class="custom-swal-input" placeholder="Sua Cidade" value="${cacheCidade}">` +
+                        `<textarea id="swal-p" class="custom-swal-textarea" placeholder="Alguma observação adicional?">${cacheDesc}</textarea>`,
+                    focusConfirm: false,
+                    showCancelButton: true,
+                    confirmButtonColor: '#00FF66',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Enviar Solicitação',
+                    cancelButtonText: 'Cancelar',
+                    didOpen: () => {
+                        const inputWhats = document.getElementById('swal-w');
+                        const inputNome = document.getElementById('swal-n');
+                        const inputCidade = document.getElementById('swal-c');
+                        const inputDesc = document.getElementById('swal-p');
+
+                        if(inputWhats.value) aplicarMascaraTelefone(inputWhats);
+
+                        inputWhats.addEventListener('input', (e) => {
+                            aplicarMascaraTelefone(e.target);
+                            localStorage.setItem('tw_draft_whats', e.target.value.replace(/\D/g, ""));
+                        });
+
+                        inputNome.addEventListener('input', (e) => localStorage.setItem('tw_draft_nome', e.target.value.trim()));
+                        inputCidade.addEventListener('input', (e) => localStorage.setItem('tw_draft_cidade', e.target.value.trim()));
+                        inputDesc.addEventListener('input', (e) => localStorage.setItem('tw_draft_desc', e.target.value.trim()));
+                    },
+                    preConfirm: () => {
+                        const nome = document.getElementById('swal-n').value.trim();
+                        const whatsMascarado = document.getElementById('swal-w').value.trim();
+                        const whats = whatsMascarado.replace(/\D/g, "");
+                        const cidade = document.getElementById('swal-c').value.trim();
+                        const desc = document.getElementById('swal-p').value.trim();
+                        
+                        if(!nome || !whats || !cidade) { 
+                            Swal.showValidationMessage('Preencha os campos obrigatórios: Nome, WhatsApp e Cidade!'); 
+                            return false; 
+                        }
+                        if(whats.length !== 11) { 
+                            Swal.showValidationMessage('O número deve conter exatamente 11 dígitos com o DDD!'); 
+                            return false; 
+                        }
+                        return { nome, whats, cidade, desc };
+                    }
+                });
+
+                if (f) {
+                    Swal.fire({ title: 'Enviando...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+                    
+                    const textoWpp = `Serviço: ${servico}\nNome: ${f.nome}\nWhatsApp: ${f.whats}\nCidade: ${f.cidade}\nMensagem: ${f.desc}`;
+                    const linkWpp = `https://wa.me/5514997135218?text=${encodeURIComponent(textoWpp )}`;
+
+                    try {
+                        const response = await fetch(_u, { 
+                            method: 'POST', 
+                            headers: { 'Content-Type': 'application/json', 'X-Webhook-Token': _gT() }, 
+                            body: JSON.stringify({ ...f, servico, origem: 'WatchZone' }) 
+                        });
+
+                        if (!response.ok) throw new Error('Erro no servidor');
+
+                        localStorage.removeItem('tw_draft_nome');
+                        localStorage.removeItem('tw_draft_whats');
+                        localStorage.removeItem('tw_draft_cidade');
+                        localStorage.removeItem('tw_draft_desc');
+
+                        Swal.fire({
+                            title: 'Sucesso!',
+                            text: 'Sua solicitação foi registrada com sucesso. Nossa equipe entrará em contato em breve!',
+                            icon: 'success',
+                            background: '#0a0a0a',
+                            color: '#fff',
+                            confirmButtonColor: '#00FF66'
+                        });
+
+                    } catch(e) { 
+                        Swal.fire({
+                            title: 'Servidor em Manutenção',
+                            text: 'Detectamos uma oscilação. Clique abaixo para concluir o envio direto via WhatsApp sem perder seus dados!',
+                            icon: 'warning',
+                            background: '#0a0a0a',
+                            color: '#fff',
+                            showCancelButton: true,
+                            confirmButtonColor: '#25D366',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Enviar via WhatsApp 📞',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) window.open(linkWpp, '_blank');
+                        });
+                    }
+                }
+            };
+        })();
+
         document.onkeydown = (e) => { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 67))) return false; }
         document.addEventListener('copy', (e) => { e.preventDefault(); return false; });
         window.addEventListener('DOMContentLoaded', () => {
             if (!localStorage.getItem('lgpd_consent')) setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
             reveal();
         });
-        function respondCookies(accept) { localStorage.setItem('lgpd_consent', accept ? 'accepted' : 'rejected'); document.getElementById('cookieBanner').classList.remove('active'); }
-        function openFormModal(plan) { document.getElementById('formModal').classList.add('active'); document.getElementById('planSelected').textContent = 'Plano: ' + plan; }
-        function closeFormModal() { document.getElementById('formModal').classList.remove('active'); }
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const text = `*SOLICITAÇÃO WATCHZONE*\n\n*${document.getElementById('planSelected').textContent}*\n👤 Nome: ${document.getElementById('clientName').value}\n📱 WhatsApp: ${document.getElementById('clientPhone').value}\n📍 Cidade: ${document.getElementById('clientCity').value}\n💬 Mensagem: ${document.getElementById('clientDescription').value}`;
-            window.open(`https://wa.me/5514997135218?text=${encodeURIComponent(text )}`, '_blank');
-        }
+        function respondCookies(accept) { localStorage.setItem('lgpd_consent', accept ? 'accepted_all' : 'rejected'); document.getElementById('cookieBanner').classList.remove('active'); }
     </script>
 </body>
 </html>
