@@ -13,15 +13,15 @@
             'analytics_storage': 'denied',
             'wait_for_update': 500
         });
-<!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-QXH6T9RBGR');
-  </script>
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag( ){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QXH6T9RBGR');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +33,7 @@
     <style>
         :root {
             --accent: #00FF66;
-            --accent-glow: rgba(0, 255, 102, 0.4);
+            --accent-glow: rgba(0, 255, 102, 0.4 );
             --bg: #020202;
             --surface: rgba(255, 255, 255, 0.03);
             --surface-bright: rgba(255, 255, 255, 0.08);
@@ -78,35 +78,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg') center/cover no-repeat;
+            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg' ) center/cover no-repeat;
             opacity: 0.15;
             filter: saturate(0.5) brightness(0.5);
         }
 
-        /* --- ANIMAÇÃO DE PARTÍCULAS --- */
-        .particles {
+        /* NOVA ANIMAÇÃO: DATA STREAM (MATRIX) */
+        canvas#dataStream {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            opacity: 0.12;
             pointer-events: none;
             z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--gradient);
-            border-radius: 50%;
-            opacity: 0.2;
-            filter: blur(1px);
-            animation: float linear infinite;
-        }
-
-        @keyframes float {
-            from { transform: translateY(110vh) translateX(0); opacity: 0; }
-            50% { opacity: 0.4; }
-            to { transform: translateY(-10vh) translateX(100px); opacity: 0; }
         }
 
         /* --- HEADER PREMIUM --- */
@@ -486,16 +472,15 @@
             gap: 1rem;
         }
 
-        /* --- COOKIE BANNER --- */
         .cookie-banner {
             position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            right: 1.5rem;
-            background: rgba(15, 15, 15, 0.9);
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border);
-            padding: 1.5rem;
+            padding: 1.5rem 2rem;
             border-radius: 20px;
             z-index: 9999;
             display: flex;
@@ -551,7 +536,8 @@
         <div class="bg-image"></div>
     </div>
 
-    <div class="particles" id="particleContainer"></div>
+    <!-- NOVA ANIMAÇÃO: DATA STREAM -->
+    <canvas id="dataStream"></canvas>
 
     <header id="mainHeader">
         <nav>
@@ -703,14 +689,6 @@
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
                     <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp2.jpeg" alt="Backup Server"><div class="slide-overlay"><h3>Backup Server</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/buildsite.jpg" alt="Construir Site"><div class="slide-overlay"><h3>Construir Site</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
                 </div>
             </div>
         </section>
@@ -726,7 +704,7 @@
                     <p>A <strong>MC Infra TI</strong> desenvolve softwares inteligentes e estrutura serviços de TI sob medida para acabar de vez com a ineficiência do seu negócio. Nós não apenas resolvemos problemas técnicos: nós blindamos sua operação e criamos caminhos para sua empresa escalar.</p>
                     <p>Pare de apagar incêndios e gaste seu tempo com o que realmente importa: <strong>o crescimento da sua empresa.</strong></p>
                     <div style="margin-top: 2rem;">
-                        <a href="contactmcinfra.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Fazer Diagnóstico Gratuito</a>
+                        <a href="contactmcinfra.html" class="btn btn-primary" style="background: var(--accent ); color: #000;">Fazer Diagnóstico Gratuito</a>
                     </div>
                 </div>
                 <div class="pub-features">
@@ -788,7 +766,7 @@
     </footer>
 
     <div id="cookieBanner" class="cookie-banner">
-        <p style="font-size: 0.85rem; color: var(--text-dim);">
+        <p style="font-size: 0.85rem; color: var(--text-dim );">
             Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
         </p>
         <div style="display: flex; gap: 0.8rem;">
@@ -805,19 +783,46 @@
             else header.classList.remove('scrolled');
         });
 
-        // Particle System
-        const container = document.getElementById('particleContainer');
-        for (let i = 0; i < 15; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            const size = Math.random() * 3 + 1;
-            p.style.width = size + 'px';
-            p.style.height = size + 'px';
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.animationDuration = (Math.random() * 10 + 5) + 's';
-            p.style.animationDelay = (Math.random() * 5) + 's';
-            container.appendChild(p);
+        // NOVA ANIMAÇÃO: DATA STREAM (MATRIX)
+        const canvas = document.getElementById('dataStream');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const characters = '01';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(2, 2, 2, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FF66';
+            ctx.font = fontSize + 'px Space Grotesk';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
 
         // Proteção de código
         document.onkeydown = function(e) {
@@ -867,7 +872,7 @@
                 script.id = 'goatcounter-script';
                 script.async = true;
                 script.src = 'https://gc.zgo.at/count.js';
-                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count' );
                 document.body.appendChild(script);
             }
         }
