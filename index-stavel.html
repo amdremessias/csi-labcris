@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Define o consentimento inicial como negado para proteção de dados
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QXH6T9RBGR');
+  </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Softwares e Serviços de TI da MC Infra TI - Soluções Tecnológicas de Alta Performance">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <title>MC infra TI</title>
+    
+    <style>
+        :root {
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4);
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND DINÂMICO --- */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.05) 0%, transparent 40%);
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg') center/cover no-repeat;
+            opacity: 0.15;
+            filter: saturate(0.5) brightness(0.5);
+        }
+
+        /* --- ANIMAÇÃO DE PARTÍCULAS --- */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.2;
+            filter: blur(1px);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(110vh) translateX(0); opacity: 0; }
+            50% { opacity: 0.4; }
+            to { transform: translateY(-10vh) translateX(100px); opacity: 0; }
+        }
+
+        /* --- HEADER PREMIUM --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(2, 2, 2, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 1.5rem 60px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        #hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        #hero h1 span {
+            display: block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-dim);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* --- BOTÕES --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- SEÇÕES --- */
+        section {
+            padding: 100px 1.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: -1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 span {
+            color: var(--accent);
+        }
+
+        /* --- GRID DE SERVIÇOS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: var(--surface-bright);
+            border-color: var(--accent);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .card h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        /* --- FLUXO DE TRABALHO --- */
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .flow-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .flow-card:hover {
+            border-color: var(--accent);
+        }
+
+        .flow-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.4;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* --- SLIDER PREMIUM --- */
+        .slider-wrapper {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(320px * 14);
+            animation: scroll 40s linear infinite;
+        }
+
+        .slide {
+            width: 320px;
+            padding: 0 0.8rem;
+        }
+
+        .slide-inner {
+            height: 400px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .slide-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-320px * 7)); }
+        }
+
+        /* --- ESTILOS DA SEÇÃO DE PUBLICIDADE/CONSCIENTIZAÇÃO --- */
+        .pub-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .pub-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        .pub-text p {
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        .pub-text p strong {
+            color: var(--text);
+        }
+        .pub-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .pub-item {
+            display: flex;
+            gap: 1rem;
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        .pub-item:hover {
+            border-color: var(--accent);
+            background: var(--surface-bright);
+        }
+        .pub-item-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+        .pub-item-info h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        .pub-item-info p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 1.5rem 40px;
+            background: #000;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand img {
+            max-width: 160px;
+            margin-bottom: 1.5rem;
+            filter: brightness(1.2);
+        }
+
+        .footer-brand p { color: var(--text-dim); max-width: 350px; font-size: 0.95rem; }
+
+        .footer-col h4 { margin-bottom: 1.2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .footer-col ul a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* --- COOKIE BANNER --- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 20px;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            transform: translateY(200%);
+            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .cookie-banner.active { transform: translateY(0); }
+
+        /* --- RESPONSIVIDADE SMARTPHONE --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 0; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            
+            #hero { padding-top: 100px; }
+            #hero h1 { font-size: 3rem; }
+            #hero p { font-size: 1rem; margin-bottom: 2rem; }
+            
+            section { padding: 60px 1.5rem; }
+            .section-header { margin-bottom: 2.5rem; }
+            
+            .services-grid { grid-template-columns: 1fr; }
+            .card { padding: 2rem; }
+            
+            .flow-container { grid-template-columns: 1fr; }
+            .flow-card { padding: 1.5rem; }
+            
+            .pub-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .pub-text h3 { font-size: 1.8rem; text-align: center; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+            
+            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
+            .cookie-banner .btn { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            #hero h1 { font-size: 2.5rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .btn { padding: 0.8rem 2rem; width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
+    </div>
+
+    <div class="particles" id="particleContainer"></div>
+
+    <header id="mainHeader">
+        <nav>
+            <div class="logo-text">MC INFRA TI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#publicidade">Vantagens</a></li>
+                <li><a href="contactmcinfra.html">Contato</a></li>
+                <li><a href="portf.html">Sobre</a></li>
+                <li><a href="blog.html">Blog</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <span class="badge">Inovação em TI</span>
+                <h1>Atendimento <span>Turbinado</span> no WhatsApp</h1>
+                <p>Transforme a comunicação da sua empresa com o Novo Chat. Suporte rápido, eficiente e totalmente personalizado para o seu negócio.</p>
+                <a href="#about" class="btn btn-primary">Começar Agora</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-header">
+                <h2>O Que é o <span>Novo Chat?</span></h2>
+                <p style="max-width: 800px; margin: 0 auto; color: var(--text-dim); font-size: 1.1rem;">
+                    O Novo Chat é a solução definitiva para suporte rápido, eficiente e personalizado. Resolva problemas com agilidade e fidelize seus clientes com uma plataforma desenhada para o futuro.
+                </p>
+            </div>
+            <div style="text-align: center;">
+                <a href="chatnew.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Conhecer Solução</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="section-header">
+                <h2>Nossos <span>Serviços</span></h2>
+            </div>
+            <div class="services-grid">
+                <article class="card">
+                    <span class="card-icon">💬</span>
+                    <h3><a href="chatnew.html">Novo Chat</a></h3>
+                    <p>Centralize seu atendimento via WhatsApp com inteligência e automação de ponta.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">📅</span>
+                    <h3><a href="scrumlab.html">Quadro Scrum</a></h3>
+                    <p>Quadro de Tarefas Colaborativo Uma solução completa para organizar tarefas, otimizar fluxos de trabalho e impulsionar a colaboração da sua equipe.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🖥️</span>
+                    <h3><a href="itservices.html">Serviços de TI</a></h3>
+                    <p>Serviços de TI para Computadores Notebook e Servidores Garantimos a performance e segurança da sua infraestrutura tecnológica com suporte especializado.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">👁️</span>
+                    <h3><a href="thesentinel.html">Sentinela CFTV</a></h3>
+                    <p>Solução de Vigilância por vídeo, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real Proteja sua empresa e residência com tecnologia de ponta em monitoramento inteligente e backup em nuvem.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">✍️</span>
+                    <h3><a href="aceiteaprove.html">Assine Digital</a></h3>
+                    <p>Assinatura Digital para documentos, Rapido, Seguro e eficiente Assine Documentos com Validade Jurídica em Segundos A plataforma definitiva para envio. Simples, seguro e onde você estiver.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🛠️</span>
+                    <h3><a href="novaos.html">Nova OS</a></h3>
+                    <p>Gerencie Ordens de Serviços, Clientes e Orçamentos, Base de dados centralizada com histórico de serviços Venda direta de balcão integrada ao estoque. Gerencie vendas de produtos junto aos serviços de mão de obra.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🔐</span>
+                    <h3><a href="cofre.html">Cofre de Senhas</a></h3>
+                    <p>Mantenha suas senhas de acessos protegidas em um cofre de acesso Restrito, compartilhe acessos de maneira segura para membros da sua empresa</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">📈</span>
+                    <h3><a href="cofre.html">ERP-PDV</a></h3>
+                    <p>Gestão para Bares e Restaurantes Gerencie suas vendas com facilidade e precisão, obtenha relatório de caixa e movimentações.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🌍</span>
+                    <h3><a href="criacao_sites.html">Criar Site</a></h3>
+                    <p>Simplificamos a criação do seu site, Pare de perder tempo e dinheiro com soluções que não funcionam. Nós da MC Infra TI simplificamos a criação do seu site, entregando uma presença online profissional, rápida e acessível — sem burocracia ou complicações.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🛡️</span>
+                    <h3><a href="scanvul.html">Power Scan</a></h3>
+                    <p>Identifique falhas em servidores Linux e Windows com análise de CVES e saneamento completo.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">💾</span>
+                    <h3><a href="backupservice.html">Backup Server</a></h3>
+                    <p>Servidor Pessoal Seguro e Confiavel Sincronize automaticamente fotos e vídeos do seu Android ou iOS em seu próprio servidor de backup privado.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">⚡</span>
+                    <h3><a href="mkplaceupshow.html">Serviço Certo</a></h3>
+                    <p>Encontre Operador Técnico ideal para cada problema, Qualidade é a nossa prioridade.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🚨</span>
+                    <h3><a href="watchzone.html">Watch-Zone</a></h3>
+                    <p>Proteja o que mais importa com o WatchZone Monitoramento disparo por imagem instantâneo.</p>
+                </article>
+            </div>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="services.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Conhecer mais Soluções</a>
+            </div>
+        </section>
+
+        <section id="fluxo">
+            <div class="section-header">
+                <h2>Fluxo <span>Inteligente</span></h2>
+            </div>
+            <div class="flow-container">
+                <div class="flow-card"><span class="flow-num">01</span><h3>Solicitação</h3><p>Encontre o Serviço Ideal.</p></div>
+                <div class="flow-card"><span class="flow-num">02</span><h3>Briefing</h3><p>Reunião de alinhamento via Call Online ou presencial.</p></div>
+                <div class="flow-card"><span class="flow-num">03</span><h3>Orçamento</h3><p>Receba propostas rápidas e claras.</p></div>
+                <div class="flow-card"><span class="flow-num">04</span><h3>Aprovação</h3><p>Analise e aprove a proposta da solução ideal para seu negocio.</p></div>
+                <div class="flow-card"><span class="flow-num">05</span><h3>Finalização</h3><p>Avalie e pague com total segurança, Implantação Prioritaria.</p></div>
+                <div class="flow-card"><span class="flow-num">06</span><h3>Pós-Venda</h3><p>Acompanhamento Técnico dedicado.</p></div>                
+            </div>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="contactmcinfra.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Comece agora mesmo!</a>
+            </div>
+        </section>
+
+        <section id="galeria" style="padding: 100px 0;">
+            <div class="section-header">
+                <h2>Nosso <span>Portfólio</span></h2>
+            </div>
+            <div class="slider-wrapper">
+                <div class="slider-track">
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/CFTV_01-1.webp" alt="Segurança CFTV"><div class="slide-overlay"><h3>Video Segurança</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/Monitoramento-de-Servidores.webp" alt="Monitoramento de Servidores"><div class="slide-overlay"><h3>Monitoramento de Servidores</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass1.jpg" alt="Assinatura Digital"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/barrest.png" alt="Bar e Restaurante"><div class="slide-overlay"><h3>Bar e Restaurante</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp1.jpg" alt="Backups"><div class="slide-overlay"><h3>Backups</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os1.png" alt="Ordens de Serviços"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/tihomeservice.webp" alt="T I Services"><div class="slide-overlay"><h3>T I Services</h3></div></div></div>                    
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp2.jpeg" alt="Backup Server"><div class="slide-overlay"><h3>Backup Server</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/buildsite.jpg" alt="Construir Site"><div class="slide-overlay"><h3>Construir Site</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp2.jpeg" alt="Backup Server"><div class="slide-overlay"><h3>Backup Server</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/buildsite.jpg" alt="Construir Site"><div class="slide-overlay"><h3>Construir Site</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publicidade">
+            <div class="section-header">
+                <h2>Tecnologia que de fato <span>Gera Lucro</span></h2>
+            </div>
+            <div class="pub-grid">
+                <div class="pub-text">
+                    <h3>Sua empresa está perdendo dinheiro com processos lentos e TI amadora?</h3>
+                    <p>No cenário atual, depender de sistemas instáveis, planilhas bagunçadas ou atendimentos manuais demorados é o caminho mais rápido para perder espaço no mercado.</p>
+                    <p>A <strong>MC Infra TI</strong> desenvolve softwares inteligentes e estrutura serviços de TI sob medida para acabar de vez com a ineficiência do seu negócio. Nós não apenas resolvemos problemas técnicos: nós blindamos sua operação e criamos caminhos para sua empresa escalar.</p>
+                    <p>Pare de apagar incêndios e gaste seu tempo com o que realmente importa: <strong>o crescimento da sua empresa.</strong></p>
+                    <div style="margin-top: 2rem;">
+                        <a href="contactmcinfra.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Fazer Diagnóstico Gratuito</a>
+                    </div>
+                </div>
+                <div class="pub-features">
+                    <div class="pub-item">
+                        <div class="pub-item-icon">🚀</div>
+                        <div class="pub-item-info">
+                            <h4>Softwares Sob Medida</h4>
+                            <p>Automações de atendimento, controle de ordens de serviço e plataformas integradas que reduzem erros humanos a zero.</p>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <div class="pub-item-icon">🛡️</div>
+                        <div class="pub-item-info">
+                            <h4>Infraestrutura Inabalável</h4>
+                            <p>Monitoramento preventivo de servidores, varredura rigorosa de vulnerabilidades e backup automatizado para você nunca perder dados vitais.</p>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <div class="pub-item-icon">📊</div>
+                        <div class="pub-item-info">
+                            <h4>Decisões Baseadas em Dados</h4>
+                            <p>Sistemas eficientes de gestão (PDV/ERP) que organizam seu fluxo financeiro e apontam onde estão seus maiores gargalos de lucro.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a href="termos.html">Termos de Uso</a></li>
+                    <li><a href="cookies.html">Política de Cookies</a></li>
+                    <li><a href="titulares.html">Direitos do Titular</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li>messias.consultoria@yahoo.com</li>
+                    <li>Suporte 24/7</li>
+                    <li>Brasil</li>
+                </ul>
+            </div>
+        </div>
+       
+        <div class="footer-bottom">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <p style="font-size: 0.85rem; color: var(--text-dim);">
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        </p>
+        <div style="display: flex; gap: 0.8rem;">
+            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--surface); color: #fff; border: 1px solid var(--border); font-size: 0.8rem;" onclick="respondCookies(false)">Recusar</button>
+            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--accent); color: #000; font-size: 0.8rem;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Particle System
+        const container = document.getElementById('particleContainer');
+        for (let i = 0; i < 15; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 1;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            p.style.animationDelay = (Math.random() * 5) + 's';
+            container.appendChild(p);
+        }
+
+        // Proteção de código
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+
+        // LGPD Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+            } else if (consent === 'accepted_all') {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            }
+        });
+
+        function respondCookies(acceptAll) {
+            const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
+            localStorage.setItem('lgpd_consent', consentStatus);
+            if(acceptAll) {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            } else {
+                updateGoogleConsent(false);
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        // Função para atualizar o consentimento do Google
+        function updateGoogleConsent(accepted) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'ad_storage': accepted ? 'granted' : 'denied',
+                    'ad_user_data': accepted ? 'granted' : 'denied',
+                    'ad_personalization': accepted ? 'granted' : 'denied',
+                    'analytics_storage': accepted ? 'granted' : 'denied'
+                });
+            }
+        }
+
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                const script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.async = true;
+                script.src = 'https://gc.zgo.at/count.js';
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
+                document.body.appendChild(script);
+            }
+        }
+    </script>
+</body>
+</html>
