@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WatchZone - Monitoramento Inteligente por Vídeo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="#0066FF"/>
+                        <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="16" cy="16" r="3" fill="white"/>
+                    </svg>
+                </span>
+                <span class="logo-text">Watch<span class="accent">Zone</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#como-funciona">Como Funciona</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <a href="#planos" class="nav-cta">Assinar Agora</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="grid-overlay"></div>
+            <div class="floating-particles" id="particles"></div>
+            <div class="pulse-ring ring-1"></div>
+            <div class="pulse-ring ring-2"></div>
+            <div class="pulse-ring ring-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge animate-fade-up">
+                <span class="badge-dot"></span>
+                Central de Alarme Inteligente com IA
+            </div>
+            <h1 class="hero-title animate-fade-up delay-1">
+                Sua casa protegida por
+                <span class="gradient-text">inteligência visual</span>
+            </h1>
+            <p class="hero-subtitle animate-fade-up delay-2">
+                Monitoramento por vídeo com disparo por imagem. Quando a zona for violada,
+                você recebe o print instantaneamente no Telegram ou WhatsApp.
+                Tudo integrado ao Home Assistant como central de alarme.
+            </p>
+            <div class="hero-cta animate-fade-up delay-3">
+                <a href="#planos" class="btn btn-primary btn-lg">
+                    <span>Ver Planos</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#como-funciona" class="btn btn-ghost btn-lg">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2"/><path d="M8 7L13 10L8 13V7Z" fill="currentColor"/></svg>
+                    <span>Como Funciona</span>
+                </a>
+            </div>
+            <div class="hero-stats animate-fade-up delay-4">
+                <div class="stat">
+                    <span class="stat-number" data-count="99">0</span><span class="stat-suffix">%</span>
+                    <span class="stat-label">Precisão na Detecção</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="2">0</span><span class="stat-suffix">s</span>
+                    <span class="stat-label">Tempo de Alerta</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="24">0</span><span class="stat-suffix">/7</span>
+                    <span class="stat-label">Monitoramento</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual animate-fade-up delay-3">
+            <div class="dashboard-mockup">
+                <div class="mockup-header">
+                    <div class="mockup-dots"><span></span><span></span><span></span></div>
+                    <span class="mockup-title">WatchZone Dashboard</span>
+                </div>
+                <div class="mockup-body">
+                    <div class="mockup-sidebar">
+                        <div class="sidebar-item active"><div class="sidebar-icon"></div><div class="sidebar-line"></div></div>
+                        <div class="sidebar-item"><div class="sidebar-icon"></div><div class="sidebar-line"></div></div>
+                        <div class="sidebar-item"><div class="sidebar-icon"></div><div class="sidebar-line"></div></div>
+                        <div class="sidebar-item"><div class="sidebar-icon"></div><div class="sidebar-line"></div></div>
+                    </div>
+                    <div class="mockup-main">
+                        <div class="camera-feed">
+                            <div class="feed-overlay">
+                                <div class="detection-box">
+                                    <span class="detection-label">Pessoa detectada</span>
+                                </div>
+                            </div>
+                            <div class="feed-status">
+                                <span class="status-dot live"></span> AO VIVO
+                            </div>
+                            <div class="feed-tempo">00:01:23</div>
+                        </div>
+                        <div class="alert-card">
+                            <div class="alert-icon">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 13H2L8 2Z" stroke="#FF3B30" stroke-width="1.5" fill="none"/><path d="M8 6V9M8 10.5V10.5" stroke="#FF3B30" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </div>
+                            <div class="alert-text">
+                                <strong>Zona violada!</strong>
+                                <span>Print enviado via Telegram</span>
+                            </div>
+                            <div class="alert-time">Agora</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COMO FUNCIONA ========== -->
+    <section class="section como-funciona" id="como-funciona">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Como Funciona</span>
+                <h2 class="section-title">Proteção em <span class="gradient-text">3 passos</span> simples</h2>
+                <p class="section-subtitle">Configure em minutos e tenha uma central de alarme inteligente funcionando 24/7</p>
+            </div>
+            <div class="steps">
+                <div class="step-card animate-on-scroll delay-1">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <rect x="4" y="8" width="20" height="24" rx="3" stroke="#0066FF" stroke-width="2"/>
+                            <path d="M30 16L36 12V28L30 24" stroke="#0066FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="14" cy="20" r="4" stroke="#0066FF" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Conecte suas Câmeras</h3>
+                    <p>Adicione as câmeras que deseja monitorar. Compatível com qualquer câmera IP, RTSP ou integração via Home Assistant.</p>
+                </div>
+                <div class="step-connector"><div class="connector-line"></div></div>
+                <div class="step-card animate-on-scroll delay-2">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 4L4 12V20C4 28 10 34 20 38C30 34 36 28 36 20V12L20 4Z" stroke="#0066FF" stroke-width="2"/>
+                            <path d="M14 20L18 24L26 16" stroke="#0066FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Defina as Zonas</h3>
+                    <p>Desenhe áreas de monitoramento nas imagens. O sistema detecta movimento apenas nas zonas que você configurar.</p>
+                </div>
+                <div class="step-connector"><div class="connector-line"></div></div>
+                <div class="step-card animate-on-scroll delay-3">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M6 10L20 4L34 10V18C34 28 28 34 20 38C12 34 6 28 6 18V10Z" stroke="#0066FF" stroke-width="2"/>
+                            <path d="M14 20L18 24L26 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Receba os Alertas</h3>
+                    <p>Quando uma zona for violada, você recebe o print instantaneamente no Telegram ou WhatsApp. Arme e desarme por mensagem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RECURSOS ========== -->
+    <section class="section recursos" id="recursos">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Recursos</span>
+                <h2 class="section-title">Tudo que você precisa para <span class="gradient-text">proteger seu patrimônio</span></h2>
+                <p class="section-subtitle">Recursos poderosos integrados ao Home Assistant como central de alarme</p>
+            </div>
+            <div class="recursos-grid">
+                <div class="recurso-card animate-on-scroll delay-1">
+                    <div class="recurso-icon blue">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2"/><path d="M14 8V14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="14" r="2" fill="currentColor"/></svg>
+                    </div>
+                    <h3>Disparo por Imagem</h3>
+                    <p>Detecção inteligente por análise de imagem, não apenas movimento. Reduz falsos positivos drasticamente.</p>
+                </div>
+                <div class="recurso-card animate-on-scroll delay-2">
+                    <div class="recurso-icon green">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/><path d="M9 14L12 17L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Zonas Configuráveis</h3>
+                    <p>Desenhe múltiplas zonas de monitoramento com sensibilidade individual por câmera.</p>
+                </div>
+                <div class="recurso-card animate-on-scroll delay-3">
+                    <div class="recurso-icon purple">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 6H24V20H8L4 24V6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11H18M10 15H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Alertas Telegram & WhatsApp</h3>
+                    <p>Receba prints instantâneos e notificações em tempo real nos seus canais favoritos.</p>
+                </div>
+                <div class="recurso-card animate-on-scroll delay-1">
+                    <div class="recurso-icon orange">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4V24M4 14H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <h3>Armar/Desarme Remoto</h3>
+                    <p>Arme e desarme o sistema enviando mensagem pelo Telegram ou WhatsApp. Simples e rápido.</p>
+                </div>
+                <div class="recurso-card animate-on-scroll delay-2">
+                    <div class="recurso-icon red">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M5 23V7C5 5 6 3 9 3H19C22 3 23 5 23 7V23H5Z" stroke="currentColor" stroke-width="2"/><path d="M5 23L23 23" stroke="currentColor" stroke-width="2"/><path d="M10 11H18M10 15H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Relatórios Completos</h3>
+                    <p>Relatórios de todos os eventos com prints, horários e status. Salve tudo na nuvem ou local.</p>
+                </div>
+                <div class="recurso-card animate-on-scroll delay-3">
+                    <div class="recurso-icon cyan">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 2L2 7L14 12L26 7L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 7V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 10V17C6 19 10 21 14 21C18 21 22 19 22 17V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Home Assistant Integration</h3>
+                    <p>Integração nativa com Home Assistant como central de alarme. Automatize toda sua casa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PLANOS ========== -->
+    <section class="section planos" id="planos">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Planos</span>
+                <h2 class="section-title">Escolha o plano ideal para <span class="gradient-text">sua segurança</span></h2>
+                <p class="section-subtitle">Todos os planos incluem instalação, configuração e suporte técnico</p>
+            </div>
+            <div class="planos-grid">
+                <!-- Plano Básico -->
+                <div class="plano-card animate-on-scroll delay-1">
+                    <div class="plano-header">
+                        <h3 class="plano-nome">Básico</h3>
+                        <p class="plano-desc">Para residências pequenas</p>
+                        <div class="plano-preco">
+                            <span class="moeda">R$</span>
+                            <span class="valor" data-price="49">49</span>
+                            <span class="periodo">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="plano-features">
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Até <strong>2 câmeras</strong>
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <strong>3 zonas</strong> por câmera
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Alertas via <strong>Telegram</strong>
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Armar/Desarme por mensagem
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Relatórios de eventos
+                        </li>
+                        <li class="excluded">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5" stroke="#666" stroke-width="2" stroke-linecap="round"/></svg>
+                            Armazenamento na nuvem
+                        </li>
+                        <li class="excluded">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5" stroke="#666" stroke-width="2" stroke-linecap="round"/></svg>
+                            Suporte prioritário
+                        </li>
+                    </ul>
+                    <a href="#contato" class="btn btn-outline btn-full">Começar Agora</a>
+                </div>
+
+                <!-- Plano Profissional -->
+                <div class="plano-card destaque animate-on-scroll delay-2">
+                    <div class="plano-badge">Mais Popular</div>
+                    <div class="plano-header">
+                        <h3 class="plano-nome">Profissional</h3>
+                        <p class="plano-desc">Para residências e comércios</p>
+                        <div class="plano-preco">
+                            <span class="moeda">R$</span>
+                            <span class="valor" data-price="99">99</span>
+                            <span class="periodo">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="plano-features">
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Até <strong>5 câmeras</strong>
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <strong>10 zonas</strong> por câmera
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Alertas <strong>Telegram + WhatsApp</strong>
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Armar/Desarme por mensagem
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Relatórios + prints salvos
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <strong>30 dias</strong> de gravação na nuvem
+                        </li>
+                        <li class="excluded">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5" stroke="#666" stroke-width="2" stroke-linecap="round"/></svg>
+                            Suporte prioritário 24/7
+                        </li>
+                    </ul>
+                    <a href="#contato" class="btn btn-primary btn-full">Começar Agora</a>
+                </div>
+
+                <!-- Plano Enterprise -->
+                <div class="plano-card animate-on-scroll delay-3">
+                    <div class="plano-header">
+                        <h3 class="plano-nome">Enterprise</h3>
+                        <p class="plano-desc">Para condomínios e empresas</p>
+                        <div class="plano-preco">
+                            <span class="moeda">R$</span>
+                            <span class="valor" data-price="199">199</span>
+                            <span class="periodo">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="plano-features">
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <strong>20 câmeras</strong>
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <strong>Zonas ilimitadas</strong>
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Alertas <strong>Telegram + WhatsApp</strong>
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Armar/Desarme por mensagem
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Relatórios avançados + API
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <strong>90 dias</strong> de gravação na nuvem
+                        </li>
+                        <li class="included">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Suporte <strong>prioritário 24/7</strong>
+                        </li>
+                    </ul>
+                    <a href="#contato" class="btn btn-outline btn-full">Falar com Vendas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="section cta-section" id="contato">
+        <div class="container">
+            <div class="cta-box animate-on-scroll">
+                <div class="cta-content">
+                    <h2>Pronto para proteger o que <span class="gradient-text">importa para você?</span></h2>
+                    <p>Comece agora mesmo. Instalação e configuração incluídas em todos os planos.</p>
+                    <div class="cta-buttons">
+                        <a href="https://wa.me/5500000000000?text=Olá! Tenho interesse no WatchZone." target="_blank" class="btn btn-whatsapp btn-lg">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            WhatsApp
+                        </a>
+                        <a href="https://t.me/" target="_blank" class="btn btn-telegram btn-lg">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                            Telegram
+                        </a>
+                    </div>
+                </div>
+                <div class="cta-visual">
+                    <div class="cta-shield">
+                        <svg width="120" height="140" viewBox="0 0 120 140" fill="none">
+                            <path d="M60 4L8 28V68C8 96 30 118 60 132C90 118 112 96 112 68V28L60 4Z" fill="url(#shieldGrad)" fill-opacity="0.1" stroke="url(#shieldGrad)" stroke-width="2"/>
+                            <path d="M40 70L52 82L80 54" stroke="url(#shieldGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="shieldGrad" x1="8" y1="4" x2="112" y2="132">
+                                    <stop stop-color="#0066FF"/>
+                                    <stop offset="1" stop-color="#00C6FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">
+                            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                                <rect width="32" height="32" rx="8" fill="#0066FF"/>
+                                <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+                                <circle cx="16" cy="16" r="3" fill="white"/>
+                            </svg>
+                        </span>
+                        <span class="logo-text">Watch<span class="accent">Zone</span></span>
+                    </a>
+                    <p>Monitoramento inteligente por vídeo com disparo por imagem. Integração com Home Assistant para proteção 24/7.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Produto</h4>
+                    <ul>
+                        <li><a href="#como-funciona">Como Funciona</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                        <li><a href="#planos">Planos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#">Documentação</a></li>
+                        <li><a href="#">Home Assistant</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WatchZone. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
