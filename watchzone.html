@@ -17,7 +17,7 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
-        gtag('js', new Date());
+        gtag('js', new Date( ));
         gtag('config', 'G-XXXXXXXXXX', {
             'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
         });
@@ -33,7 +33,7 @@
     <style>
         :root {
             --accent: #00FF66;
-            --accent-glow: rgba(0, 255, 102, 0.4);
+            --accent-glow: rgba(0, 255, 102, 0.4 );
             --bg: #020202;
             --surface: rgba(255, 255, 255, 0.03);
             --surface-bright: rgba(255, 255, 255, 0.08);
@@ -67,7 +67,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- BACKGROUND DINÂMICO E METEOROS --- */
+        /* --- BACKGROUND DINÂMICO --- */
         .bg-wrapper {
             position: fixed;
             top: 0;
@@ -87,58 +87,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/OIP-2934084681.jpg') center/cover no-repeat;
+            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/OIP-2934084681.jpg' ) center/cover no-repeat;
             opacity: 0.07;
             filter: grayscale(1) brightness(0.3);
         }
 
-        /* ANIMAÇÃO DE METEOROS */
-        .star {
+        /* NOVA ANIMAÇÃO: DATA STREAM (MATRIX STYLE) */
+        canvas#dataStream {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 2px;
-            height: 2px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 1);
-            animation: animate 3s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
         }
-
-        .star::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 300px;
-            height: 1px;
-            background: linear-gradient(90deg, #fff, transparent);
-        }
-
-        @keyframes animate {
-            0% {
-                transform: rotate(315deg) translateX(0);
-                opacity: 1;
-            }
-            70% {
-                opacity: 1;
-            }
-            100% {
-                transform: rotate(315deg) translateX(-1000px);
-                opacity: 0;
-            }
-        }
-
-        .star:nth-child(1) { top: 0; right: 0; left: initial; animation-delay: 0s; animation-duration: 1s; }
-        .star:nth-child(2) { top: 0; right: 80px; left: initial; animation-delay: 0.2s; animation-duration: 3s; }
-        .star:nth-child(3) { top: 80px; right: 0px; left: initial; animation-delay: 0.4s; animation-duration: 2s; }
-        .star:nth-child(4) { top: 0; right: 180px; left: initial; animation-delay: 0.6s; animation-duration: 1.5s; }
-        .star:nth-child(5) { top: 0; right: 400px; left: initial; animation-delay: 0.8s; animation-duration: 2.5s; }
-        .star:nth-child(6) { top: 0; right: 600px; left: initial; animation-delay: 1s; animation-duration: 3s; }
-        .star:nth-child(7) { top: 300px; right: 0px; left: initial; animation-delay: 1.2s; animation-duration: 1.75s; }
-        .star:nth-child(8) { top: 0px; right: 700px; left: initial; animation-delay: 1.4s; animation-duration: 1.25s; }
-        .star:nth-child(9) { top: 0px; right: 1000px; left: initial; animation-delay: 0.75s; animation-duration: 2.25s; }
-        .star:nth-child(10) { top: 0px; right: 450px; left: initial; animation-delay: 2.75s; animation-duration: 2.25s; }
 
         /* --- ANIMAÇÕES DE REVEAL --- */
         @keyframes fadeInUp {
@@ -303,6 +265,11 @@
         .info-card ul li { margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; color: var(--text-dim); font-size: 0.95rem; }
         .info-card ul li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
 
+        /* COMO FUNCIONA */
+        .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .step-card { text-align: center; padding: 2rem; }
+        .step-number { width: 50px; height: 50px; background: var(--gradient); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.5rem; margin: 0 auto 1.5rem; }
+
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
         .plan-card { background: var(--surface); border: 1px solid var(--border); padding: 4rem 3rem; border-radius: 40px; text-align: center; transition: 0.4s; display: flex; flex-direction: column; }
         .plan-card.featured { border-color: rgba(0, 255, 102, 0.4); background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(0,255,102,0.01) 100%); transform: scale(1.05); z-index: 2; }
@@ -335,17 +302,8 @@
 
     <div class="bg-wrapper">
         <div class="bg-image"></div>
-        <!-- ELEMENTOS DA CHUVA DE METEOROS -->
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
+        <!-- NOVA ANIMAÇÃO TECNOLÓGICA -->
+        <canvas id="dataStream"></canvas>
     </div>
 
     <header id="mainHeader">
@@ -354,6 +312,7 @@
             <ul class="nav-links">
                 <li><a href="#hero">Início</a></li>
                 <li><a href="#monitoramento">Monitoramento</a></li>
+                <li><a href="#tecnologia">Tecnologia</a></li>
                 <li><a href="#backup">Backup</a></li>
                 <li><a href="#planos">Planos</a></li>
                 <li><a href="contactmcinfra.html">Contato</a></li>
@@ -362,6 +321,7 @@
     </header>
 
     <main>
+        <!-- HERO SECTION -->
         <section class="hero" id="hero">
             <h1>Sua casa protegida por <span>inteligência visual</span></h1>
             <p>Proteja o que mais importa com o WatchZone. Monitoramento por vídeo com IA e disparo por imagem instantâneo no seu WhatsApp ou Telegram.</p>
@@ -386,6 +346,37 @@
             </div>
         </section>
 
+        <!-- COMO FUNCIONA -->
+        <section id="como-funciona" class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Como o <span>WatchZone</span> funciona?</h2>
+                <p>Simplicidade e tecnologia trabalhando juntas para sua segurança.</p>
+            </div>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>Detecção</h4>
+                    <p style="color: var(--text-dim);">Nossa IA analisa o vídeo em tempo real procurando por padrões suspeitos.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>Validação</h4>
+                    <p style="color: var(--text-dim);">O sistema confirma se é uma pessoa ou veículo, descartando animais ou sombras.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>Notificação</h4>
+                    <p style="color: var(--text-dim);">Você recebe um print da imagem instantaneamente no seu celular.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>Ação</h4>
+                    <p style="color: var(--text-dim);">Nossa central proativa age conforme o protocolo de segurança escolhido.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MONITORAMENTO -->
         <section id="monitoramento" class="reveal">
             <div class="section-title-wrapper">
                 <h2>Central de Monitoramento <span>24h Proativa</span></h2>
@@ -407,6 +398,29 @@
             </div>
         </section>
 
+        <!-- TECNOLOGIA -->
+        <section id="tecnologia" class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Tecnologia de <span>Ponta</span></h2>
+                <p>Utilizamos o que há de mais moderno em infraestrutura de segurança.</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🧠 Deep Learning</h3>
+                    <p>Redes neurais treinadas para identificar comportamentos anômalos e padrões de invasão com alta precisão.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🛡️ Criptografia Militar</h3>
+                    <p>Todos os dados e fluxos de vídeo são protegidos por criptografia de ponta a ponta, garantindo sua privacidade.</p>
+                </div>
+                <div class="info-card">
+                    <h3>⚡ Low Latency</h3>
+                    <p>Protocolos otimizados para que você veja o que está acontecendo sem atrasos, mesmo em conexões instáveis.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BACKUP -->
         <section id="backup" class="reveal">
             <div class="section-title-wrapper">
                 <h2>Backup de Vídeo <span>Inteligente</span></h2>
@@ -428,6 +442,7 @@
             </div>
         </section>
 
+        <!-- PLANOS -->
         <section id="planos" class="reveal">
             <div class="section-title-wrapper">
                 <h2>Escolha sua <span>Tranquilidade</span></h2>
@@ -437,11 +452,11 @@
                 <div class="plan-card">
                     <span style="color: var(--accent); font-weight: 800; letter-spacing: 2px;">ESSENCIAL</span>
                     <div class="plan-price">R$ 49,90<span style="font-size: 1rem; color: var(--text-dim);">/mês</span></div>
-                    <ul class="plan-features">
-                        <li>Até 2 câmeras monitoradas</li>
-                        <li>Alertas via Telegram</li>
-                        <li>Backup em nuvem (7 dias)</li>
-                        <li>Suporte via WhatsApp</li>
+                    <ul class="plan-features" style="list-style: none; margin: 2rem 0; text-align: left; color: var(--text-dim);">
+                        <li style="margin-bottom: 0.8rem;">✓ Até 2 câmeras monitoradas</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Alertas via Telegram</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Backup em nuvem (7 dias)</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Suporte via WhatsApp</li>
                     </ul>
                     <button class="btn btn-outline" onclick="openFormModal('Essencial')">Solicitar Agora</button>
                 </div>
@@ -449,12 +464,12 @@
                 <div class="plan-card featured">
                     <span style="color: var(--accent); font-weight: 800; letter-spacing: 2px;">PRO</span>
                     <div class="plan-price">R$ 89,90<span style="font-size: 1rem; color: var(--text-dim);">/mês</span></div>
-                    <ul class="plan-features">
-                        <li>Até 6 câmeras monitoradas</li>
-                        <li>Alertas Telegram & WhatsApp</li>
-                        <li>IA de detecção de pessoas</li>
-                        <li>Backup em nuvem (30 dias)</li>
-                        <li>Central 24h Proativa</li>
+                    <ul class="plan-features" style="list-style: none; margin: 2rem 0; text-align: left; color: var(--text-dim);">
+                        <li style="margin-bottom: 0.8rem;">✓ Até 6 câmeras monitoradas</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Alertas Telegram & WhatsApp</li>
+                        <li style="margin-bottom: 0.8rem;">✓ IA de detecção de pessoas</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Backup em nuvem (30 dias)</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Central 24h Proativa</li>
                     </ul>
                     <button class="btn btn-accent" onclick="openFormModal('Pro')">Solicitar Agora</button>
                 </div>
@@ -462,12 +477,12 @@
                 <div class="plan-card">
                     <span style="color: var(--accent); font-weight: 800; letter-spacing: 2px;">BUSINESS</span>
                     <div class="plan-price">R$ 149,90<span style="font-size: 1rem; color: var(--text-dim);">/mês</span></div>
-                    <ul class="plan-features">
-                        <li>Até 15 câmeras monitoradas</li>
-                        <li>IA avançada (veículos/objetos)</li>
-                        <li>Backup em nuvem (30 dias)</li>
-                        <li>Drive Adicional Disponível</li>
-                        <li>NOC operacional 24/7</li>
+                    <ul class="plan-features" style="list-style: none; margin: 2rem 0; text-align: left; color: var(--text-dim);">
+                        <li style="margin-bottom: 0.8rem;">✓ Até 15 câmeras monitoradas</li>
+                        <li style="margin-bottom: 0.8rem;">✓ IA avançada (veículos/objetos)</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Backup em nuvem (30 dias)</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Drive Adicional Disponível</li>
+                        <li style="margin-bottom: 0.8rem;">✓ NOC operacional 24/7</li>
                     </ul>
                     <button class="btn btn-outline" onclick="openFormModal('Business')">Solicitar Agora</button>
                 </div>
@@ -494,7 +509,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" style="max-width: 180px; margin-bottom: 1.5rem;">
-                <p style="color: var(--text-dim);">Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+                <p style="color: var(--text-dim );">Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
             </div>
             <div class="footer-col">
                 <h4 style="color: #fff; margin-bottom: 1.5rem;">Links Úteis</h4>
@@ -506,7 +521,8 @@
             </div>
             <div class="footer-col">
                 <h4 style="color: #fff; margin-bottom: 1.5rem;">Contato</h4>
-                <p style="color: var(--text-dim); font-size: 0.9rem;">messias.consultoria@yahoo.com<br>NOC Operacional Ativo</p>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">messias.consultoria@yahoo.com  
+NOC Operacional Ativo</p>
             </div>
         </div>
         <div style="text-align: center; padding-top: 3rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.85rem;">
@@ -523,6 +539,48 @@
     </div>
 
     <script>
+        // Animação Data Stream (Matrix)
+        const canvas = document.getElementById('dataStream');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const characters = '01';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(2, 2, 2, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FF66';
+            ctx.font = fontSize + 'px Space Grotesk';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
+
+        // Funções de Reveal e Scroll
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -549,7 +607,7 @@
         function handleFormSubmit(e) {
             e.preventDefault();
             const text = `*SOLICITAÇÃO WATCHZONE*\n\n*${document.getElementById('planSelected').textContent}*\n👤 Nome: ${document.getElementById('clientName').value}\n📱 WhatsApp: ${document.getElementById('clientPhone').value}\n📍 Cidade: ${document.getElementById('clientCity').value}\n💬 Mensagem: ${document.getElementById('clientDescription').value}`;
-            window.open(`https://wa.me/55XXXXXXXXXXX?text=${encodeURIComponent(text)}`, '_blank');
+            window.open(`https://wa.me/55XXXXXXXXXXX?text=${encodeURIComponent(text )}`, '_blank');
         }
     </script>
 </body>
