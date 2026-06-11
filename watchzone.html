@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Scripts de Consentimento e Analytics (Mantidos do Site Principal) -->
+    <!-- Scripts de Consentimento e Analytics -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -25,7 +25,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="WatchZone - Monitoramento Inteligente por Vídeo com IA e Integração Home Assistant - MC Infra TI. Proteja seu patrimônio com tecnologia de ponta.">
+    <meta name="description" content="WatchZone - Monitoramento Inteligente por Vídeo com IA e Integração Home Assistant - MC Infra TI.">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <title>WatchZone - Monitoramento Inteligente - MC Infra TI</title>
@@ -54,6 +54,10 @@
             -ms-user-select: none;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
@@ -61,6 +65,29 @@
             line-height: 1.5;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- BACKGROUND DINÂMICO --- */
@@ -87,7 +114,7 @@
             filter: grayscale(1) brightness(0.3);
         }
 
-        /* --- HEADER PREMIUM --- */
+        /* --- HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -144,178 +171,118 @@
             background: var(--surface);
         }
 
-        /* --- CONTAINER PRINCIPAL --- */
-        main {
-            padding-top: 140px;
-        }
-
-        section {
-            padding: 40px 1.5rem 80px;
-            max-width: 1300px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .section-header {
-            margin-bottom: 5rem;
+        /* --- HERO SECTION (CENTRALIZADA) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 140px 1.5rem 80px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .section-header h1 {
+        .hero h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            letter-spacing: -1.5px;
-            margin-bottom: 1.2rem;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
             line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .section-header h1 span {
+        .hero h1 span {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .section-header p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--text-dim);
-            max-width: 750px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
         }
 
-        /* --- CARDS DE PLANOS --- */
-        .plans-grid {
+        /* --- FEATURE GRID (HERO) --- */
+        .hero-features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-bottom: 4rem;
-            align-items: stretch;
+            width: 100%;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            opacity: 0;
         }
 
-        .plan-card {
+        .hero-feature-item {
+            text-align: left;
             background: var(--surface);
             border: 1px solid var(--border);
-            padding: 3rem 2.5rem;
-            border-radius: 28px;
+            padding: 2rem;
+            border-radius: 24px;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            position: relative;
         }
 
-        .plan-card.featured {
-            border-color: rgba(0, 255, 102, 0.3);
-            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(0,255,102,0.01) 100%);
-        }
-
-        .plan-card.featured::before {
-            content: "MAIS RECOMENDADO";
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient);
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 0.3rem 1.2rem;
-            border-radius: 100px;
-            letter-spacing: 0.5px;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-6px);
-            background: var(--surface-bright);
+        .hero-feature-item:hover {
             border-color: var(--accent);
-            box-shadow: 0 15px 35px rgba(0, 255, 102, 0.04);
+            background: var(--surface-bright);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.05);
         }
 
-        .plan-card h3 {
+        .hero-feature-item h4 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.6rem;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-badge {
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-
-        .plan-price {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-card p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .plan-features {
-            list-style: none;
-            margin-bottom: 2.5rem;
-            flex-grow: 1;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 1.5rem;
-        }
-
-        .plan-features li {
-            font-size: 0.9rem;
-            color: var(--text-dim);
+            font-size: 1.2rem;
             margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
             gap: 0.6rem;
         }
 
-        .plan-features li::before {
-            content: "✓";
-            color: var(--accent);
-            font-weight: bold;
+        .hero-feature-item p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 0;
+            line-height: 1.6;
         }
 
-        /* --- SEÇÕES INFORMATIVAS --- */
-        .info-section {
-            margin-top: 6rem;
-            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,204,255,0.01) 100%);
-            border: 1px solid var(--border);
-            border-radius: 32px;
-            padding: 4rem 3rem;
+        /* --- SEÇÕES PADRÃO --- */
+        section {
+            padding: 100px 1.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
-        .info-section h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+        .section-title-wrapper {
             text-align: center;
+            margin-bottom: 5rem;
         }
 
-        .info-section h2 span {
+        .section-title-wrapper h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-title-wrapper h2 span {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .info-section > p {
-            text-align: center;
+        .section-title-wrapper p {
             color: var(--text-dim);
-            margin-bottom: 3rem;
-            font-size: 1.05rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
+        /* --- CARDS E GRIDS --- */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -323,24 +290,42 @@
         }
 
         .info-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(0, 255, 102, 0.2);
-            border-radius: 20px;
-            padding: 2.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 3rem 2.5rem;
+            border-radius: 32px;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 102, 0.02), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .info-card:hover::after {
+            transform: translateX(100%);
         }
 
         .info-card:hover {
-            background: rgba(255, 255, 255, 0.04);
             border-color: var(--accent);
-            transform: translateY(-4px);
+            background: var(--surface-bright);
+            transform: translateY(-8px);
         }
 
         .info-card h3 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -348,22 +333,21 @@
 
         .info-card p {
             color: var(--text-dim);
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.8;
-            margin-bottom: 1rem;
         }
 
         .info-card ul {
             list-style: none;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
 
         .info-card ul li {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
             padding-left: 1.5rem;
             position: relative;
+            color: var(--text-dim);
+            font-size: 0.95rem;
         }
 
         .info-card ul li::before {
@@ -374,21 +358,61 @@
             font-weight: bold;
         }
 
-        /* --- BOTÕES E CTA --- */
+        /* --- PLANOS --- */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .plan-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 4rem 3rem;
+            border-radius: 40px;
+            text-align: center;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-card.featured {
+            border-color: rgba(0, 255, 102, 0.4);
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(0,255,102,0.01) 100%);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .plan-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .plan-card.featured:hover {
+            transform: translateY(-10px) scale(1.07);
+        }
+
+        .plan-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 1.5rem 0;
+        }
+
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             border-radius: 100px;
             font-weight: 700;
             text-decoration: none;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.95rem;
-            text-align: center;
-            width: 100%;
+            transition: 0.4s;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
+            width: 100%;
         }
 
         .btn-accent {
@@ -398,8 +422,7 @@
 
         .btn-accent:hover {
             background: #00CC55;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 255, 102, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 255, 102, 0.3);
         }
 
         .btn-outline {
@@ -410,146 +433,12 @@
 
         .btn-outline:hover {
             background: var(--surface);
-            border-color: var(--text);
-        }
-
-        /* --- MODAIS --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background: #020202;
-            border: 2px solid var(--accent);
-            border-radius: 28px;
-            padding: 3rem;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 40px rgba(0, 255, 102, 0.2);
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--text-dim);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .modal-close:hover {
-            color: var(--text);
-        }
-
-        .modal-header {
-            margin-bottom: 2rem;
-        }
-
-        .modal-header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-header p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-error {
-            color: #FF6B6B;
-            font-size: 0.8rem;
-            margin-top: 0.3rem;
-            display: none;
-        }
-
-        .form-error.active {
-            display: block;
-        }
-
-        .form-submit {
-            width: 100%;
-            margin-top: 2rem;
+            border-color: #fff;
         }
 
         /* --- FOOTER --- */
         footer {
-            padding: 80px 1.5rem 40px;
+            padding: 100px 1.5rem 50px;
             background: #000;
             border-top: 1px solid var(--border);
         }
@@ -559,97 +448,92 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             margin-bottom: 4rem;
-        }
-
-        .footer-brand img {
-            max-width: 160px;
-            margin-bottom: 1.5rem;
-            filter: brightness(1.2);
-        }
-
-        .footer-brand p { 
-            color: var(--text-dim); 
-            max-width: 350px;
-            font-size: 0.95rem; 
-        }
-
-        .footer-col h4 { 
-            margin-bottom: 1.2rem; 
-            font-family: 'Space Grotesk', sans-serif;
-            color: #fff; 
-        }
-        
-        .footer-col ul { 
-            list-style: none;
-        }
-        
-        .footer-col ul li { 
-            margin-bottom: 0.6rem;
-        }
-        
-        .footer-col ul a { 
-            color: var(--text-dim); 
-            text-decoration: none; 
-            transition: 0.3s; 
-            font-size: 0.9rem;
-        }
-        
-        .footer-col ul a:hover { 
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
         /* --- COOKIE BANNER --- */
         .cookie-banner {
             position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            right: 1.5rem;
-            background: rgba(15, 15, 15, 0.9);
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 20px;
+            padding: 2rem;
+            border-radius: 24px;
             z-index: 9999;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
             transform: translateY(200%);
-            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .cookie-banner.active { transform: translateY(0); }
 
-        /* --- RESPONSIVIDADE --- */
-        @media (max-width: 768px) {
-            header { padding: 1rem 0; }
-            nav { padding: 0 1.5rem; }
-            .nav-links { display: none; }
-            main { padding-top: 100px; }
+        /* --- MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.98);
+        }
 
-            .section-header h1 { font-size: 1.8rem; }
-            .plans-grid { grid-template-columns: 1fr; }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #050505;
+            border: 1px solid var(--accent);
+            border-radius: 32px;
+            padding: 4rem;
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 255, 102, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .plan-card.featured { transform: none; }
+            .plan-card.featured:hover { transform: translateY(-10px); }
             .footer-grid { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-            .modal-content { padding: 2rem; }
-            .cookie-banner { flex-direction: column; align-items: flex-start; }
-            .info-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .cookie-banner { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -664,8 +548,8 @@
             <div class="logo-text">MC INFRA TI</div>
             <ul class="nav-links">
                 <li><a href="#hero">Início</a></li>
-                <li><a href="#central-24h">Monitoramento</a></li>
-                <li><a href="#backup-video">Backup</a></li>
+                <li><a href="#monitoramento">Monitoramento</a></li>
+                <li><a href="#backup">Backup</a></li>
                 <li><a href="#planos">Planos</a></li>
                 <li><a href="contactmcinfra.html">Contato</a></li>
             </ul>
@@ -673,153 +557,127 @@
     </header>
 
     <main>
-        <!-- HERO SECTION COMERCIAL -->
-        <section id="hero">
-            <div class="section-header">
-                <h1>Sua casa protegida por <span>inteligência visual</span></h1>
-                <p>Proteja o que mais importa com o WatchZone. Monitoramento por vídeo com IA e disparo por imagem instantâneo no seu WhatsApp ou Telegram.</p>
-            </div>
+        <!-- HERO SECTION CENTRALIZADA -->
+        <section class="hero" id="hero">
+            <h1>Sua casa protegida por <span>inteligência visual</span></h1>
+            <p>Proteja o que mais importa com o WatchZone. Monitoramento por vídeo com IA e disparo por imagem instantâneo no seu WhatsApp ou Telegram.</p>
             
-            <div class="features-overview">
-                <h2>O WatchZone é a <span>evolução da sua segurança</span></h2>
-                <div class="features-panel-grid">
-                    <div class="feature-panel-item">
-                        <h4>🤖 IA com Disparo por Imagem</h4>
-                        <p>Detecção inteligente que diferencia ameaças reais de movimentos irrelevantes, reduzindo falsos positivos.</p>
-                    </div>
-                    <div class="feature-panel-item">
-                        <h4>📱 Alertas Instantâneos</h4>
-                        <p>Receba o print da ocorrência no WhatsApp ou Telegram em segundos, com evidências visuais claras.</p>
-                    </div>
-                    <div class="feature-panel-item">
-                        <h4>🏠 Integração Home Assistant</h4>
-                        <p>Transforme sua automação residencial em uma central de alarme proativa e totalmente conectada.</p>
-                    </div>
-                    <div class="feature-panel-item">
-                        <h4>🔒 Controle Total Remoto</h4>
-                        <p>Arme e desarme seu sistema de qualquer lugar com uma simples mensagem. Simplicidade e poder.</p>
-                    </div>
+            <div class="hero-features">
+                <div class="hero-feature-item">
+                    <h4>🤖 IA com Disparo por Imagem</h4>
+                    <p>Detecção inteligente que diferencia ameaças reais de movimentos irrelevantes, reduzindo falsos positivos.</p>
+                </div>
+                <div class="hero-feature-item">
+                    <h4>📱 Alertas Instantâneos</h4>
+                    <p>Receba o print da ocorrência no WhatsApp ou Telegram em segundos, com evidências visuais claras.</p>
+                </div>
+                <div class="hero-feature-item">
+                    <h4>🏠 Integração Home Assistant</h4>
+                    <p>Transforme sua automação residencial em uma central de alarme proativa e totalmente conectada.</p>
+                </div>
+                <div class="hero-feature-item">
+                    <h4>🔒 Controle Total Remoto</h4>
+                    <p>Arme e desarme seu sistema de qualquer lugar com uma simples mensagem. Simplicidade e poder.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO: CENTRAL DE MONITORAMENTO 24H (NOVA) -->
-        <section id="central-24h" class="info-section">
-            <h2>Central de Monitoramento <span>24h Proativa</span></h2>
-            <p>Nossa equipe recebe alertas e imagens em tempo real, tomando ações imediatas para garantir sua segurança.</p>
+        <!-- MONITORAMENTO PROATIVO -->
+        <section id="monitoramento" class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Central de Monitoramento <span>24h Proativa</span></h2>
+                <p>Nossa inteligência aliada a uma equipe pronta para agir garante que você nunca esteja desamparado.</p>
+            </div>
             <div class="info-grid">
                 <div class="info-card">
                     <h3>🚨 Resposta Imediata</h3>
-                    <p>Em caso de intrusão, acionamos o COPOM e deslocamos equipes para o local, garantindo uma resposta física rápida e coordenada.</p>
+                    <p>Ao detectar uma intrusão real, nossa central aciona o COPOM e desloca equipes de apoio tático para o local em tempo recorde.</p>
                 </div>
                 <div class="info-card">
-                    <h3>🛠️ Manutenção Preventiva</h3>
-                    <p>Monitoramos falhas em sensores, câmeras e HDs. Se algo falhar, agimos proativamente para reparar ou substituir a peça.</p>
+                    <h3>🛠️ Saúde do Sistema</h3>
+                    <p>Monitoramos falhas em sensores, câmeras e HDs. Se algo falhar, nossa equipe técnica age antes mesmo de você perceber.</p>
                 </div>
                 <div class="info-card">
-                    <h3>👨‍✈️ Equipe Especialista</h3>
-                    <p>Técnicos especialistas em segurança eletrônica patrimonial garantem a qualidade e o profissionalismo de toda a operação.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO: BACKUP DE VÍDEO (NOVA) -->
-        <section id="backup-video" class="info-section">
-            <h2>Backup de Vídeo <span>Inteligente e Seguro</span></h2>
-            <p>Garantimos que suas gravações críticas nunca sejam perdidas com replicação em nuvem e retenção flexível.</p>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>☁️ Replicação em Nuvem</h3>
-                    <p>Armazenamos seus vídeos por 30 dias com replicação automática para nossa nuvem ou para o drive do cliente.</p>
-                </div>
-                <div class="info-card">
-                    <h3>💾 Proteção Contra Perdas</h3>
-                    <p>Mesmo que o equipamento local sofra danos, suas imagens estarão seguras e acessíveis remotamente na nuvem.</p>
-                </div>
-                <div class="info-card">
-                    <h3>📂 Plano de Drive Adicional</h3>
-                    <p>Precisa de mais tempo? Oferecemos planos de drive adicionais para expandir o armazenamento conforme sua necessidade.</p>
+                    <h3>👨‍✈️ Especialistas</h3>
+                    <p>Técnicos certificados em segurança eletrônica patrimonial cuidam de cada detalhe da sua operação com total profissionalismo.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO: COMO FUNCIONA -->
-        <section id="como-funciona" class="info-section">
-            <h2>Proteção em <span>3 passos simples</span></h2>
-            <p>Configure em minutos e tenha uma central de alarme inteligente funcionando 24/7.</p>
+        <!-- BACKUP E NUVEM -->
+        <section id="backup" class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Backup de Vídeo <span>Inteligente</span></h2>
+                <p>Suas evidências protegidas contra danos físicos e acessíveis de qualquer lugar do mundo.</p>
+            </div>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>01. Conecte Câmeras</h3>
-                    <p>Adicione suas câmeras IP ou RTSP. Compatibilidade total com qualquer dispositivo integrado ao Home Assistant.</p>
+                    <h3>☁️ Replicação Automática</h3>
+                    <p>Seus vídeos são armazenados por 30 dias com replicação instantânea para nossa nuvem ou para o seu drive pessoal.</p>
                 </div>
                 <div class="info-card">
-                    <h3>02. Defina Zonas</h3>
-                    <p>Desenhe áreas de monitoramento nas imagens. O sistema detecta movimento apenas nas zonas configuradas.</p>
+                    <h3>💾 Proteção Total</h3>
+                    <p>Mesmo em caso de furto ou vandalismo do equipamento local, suas imagens estarão seguras e criptografadas na nuvem.</p>
                 </div>
                 <div class="info-card">
-                    <h3>03. Receba Alertas</h3>
-                    <p>Quando uma zona for violada, você recebe o print instantaneamente. Segurança na palma da mão.</p>
+                    <h3>📂 Retenção Flexível</h3>
+                    <p>Oferecemos planos de drive adicionais para clientes que necessitam de histórico de gravações por períodos prolongados.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO: PRÓS E CONTRAS -->
-        <section id="pros-contras" class="info-section">
-            <h2>Por que escolher o <span>WatchZone?</span></h2>
-            <p>Compare as vantagens de ter nossa inteligência ao seu lado contra os riscos de sistemas obsoletos.</p>
+        <!-- VANTAGENS COMPARATIVAS -->
+        <section class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Por que escolher o <span>WatchZone?</span></h2>
+                <p>Compare a tecnologia de ponta da MC Infra TI com os sistemas de segurança tradicionais.</p>
+            </div>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>✅ Vantagens do WatchZone</h3>
-                    <p>Segurança proativa focada em ameaças reais, minimizando estresse e garantindo respostas rápidas.</p>
+                    <h3>✅ Com WatchZone</h3>
+                    <p>Segurança inteligente focada em resultados e tranquilidade absoluta para sua família ou negócio.</p>
                     <ul>
-                        <li>Alertas confiáveis com evidência visual</li>
-                        <li>Integração total com casa inteligente</li>
-                        <li>Controle remoto simplificado via chat</li>
-                        <li>Redução drástica de falsos positivos</li>
+                        <li>Alertas visuais instantâneos (Prints)</li>
+                        <li>IA que ignora animais e sombras</li>
+                        <li>Integração com automação residencial</li>
+                        <li>Controle total via WhatsApp/Telegram</li>
                     </ul>
                 </div>
                 <div class="info-card">
-                    <h3>❌ Riscos de Não Ter (ou Tradicional)</h3>
-                    <p>Sistemas antigos ou a ausência de monitoramento deixam seu patrimônio vulnerável e você no escuro.</p>
+                    <h3>❌ Sem WatchZone</h3>
+                    <p>A dependência de sistemas obsoletos pode custar caro no momento em que você mais precisar.</p>
                     <ul>
-                        <li>Vulnerabilidade a invasões sem aviso</li>
-                        <li>Falsos alarmes que causam transtorno</li>
-                        <li>Respostas lentas sem provas visuais</li>
-                        <li>Falta de controle em tempo real</li>
+                        <li>Vulnerabilidade a invasões silenciosas</li>
+                        <li>Falsos alarmes que causam estresse</li>
+                        <li>Falta de provas visuais em tempo real</li>
+                        <li>Dependência de monitoramento manual</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO: PLANOS -->
-        <section id="planos">
-            <div class="section-header">
-                <h2>Escolha o plano ideal para <span>sua segurança</span></h2>
-                <p>Todos os planos incluem instalação, configuração e suporte técnico especializado da MC Infra TI.</p>
+        <!-- PLANOS -->
+        <section id="planos" class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Escolha sua <span>Tranquilidade</span></h2>
+                <p>Planos flexíveis que se adaptam ao tamanho da sua necessidade.</p>
             </div>
-            
             <div class="plans-grid">
-                <!-- Plano Essencial -->
                 <div class="plan-card">
-                    <span class="plan-badge">Residencial</span>
-                    <h3>Plano Essencial</h3>
+                    <span style="color: var(--accent); font-weight: 800; letter-spacing: 2px;">ESSENCIAL</span>
                     <div class="plan-price">R$ 49,90<span style="font-size: 1rem; color: var(--text-dim);">/mês</span></div>
-                    <p>Ideal para casas e pequenos apartamentos que precisam de vigilância básica e eficiente.</p>
                     <ul class="plan-features">
                         <li>Até 2 câmeras monitoradas</li>
                         <li>Alertas via Telegram</li>
-                        <li>Zonas de detecção básicas</li>
                         <li>Backup em nuvem (7 dias)</li>
+                        <li>Suporte via WhatsApp</li>
                     </ul>
                     <button class="btn btn-outline" onclick="openFormModal('Essencial')">Solicitar Agora</button>
                 </div>
 
-                <!-- Plano Pro -->
                 <div class="plan-card featured">
-                    <span class="plan-badge">Avançado</span>
-                    <h3>Plano Pro</h3>
+                    <span style="color: var(--accent); font-weight: 800; letter-spacing: 2px;">PRO</span>
                     <div class="plan-price">R$ 89,90<span style="font-size: 1rem; color: var(--text-dim);">/mês</span></div>
-                    <p>A solução completa para quem busca integração total e monitoramento de múltiplos pontos.</p>
                     <ul class="plan-features">
                         <li>Até 6 câmeras monitoradas</li>
                         <li>Alertas Telegram & WhatsApp</li>
@@ -830,12 +688,9 @@
                     <button class="btn btn-accent" onclick="openFormModal('Pro')">Solicitar Agora</button>
                 </div>
 
-                <!-- Plano Business -->
                 <div class="plan-card">
-                    <span class="plan-badge">Corporativo</span>
-                    <h3>Plano Business</h3>
+                    <span style="color: var(--accent); font-weight: 800; letter-spacing: 2px;">BUSINESS</span>
                     <div class="plan-price">R$ 149,90<span style="font-size: 1rem; color: var(--text-dim);">/mês</span></div>
-                    <p>Segurança robusta para empresas e comércios com alta demanda de monitoramento.</p>
                     <ul class="plan-features">
                         <li>Até 15 câmeras monitoradas</li>
                         <li>IA avançada (veículos/objetos)</li>
@@ -852,37 +707,15 @@
     <!-- MODAL FORMULÁRIO -->
     <div id="formModal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeFormModal()">&times;</button>
-            <div class="modal-header">
-                <h2>Solicitar WatchZone</h2>
-                <p id="planSelected">Plano selecionado</p>
-            </div>
+            <button style="position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer;" onclick="closeFormModal()">&times;</button>
+            <h2 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: 0.5rem;">Solicitar WatchZone</h2>
+            <p id="planSelected" style="color: var(--accent); font-weight: 700; margin-bottom: 2rem;">Plano selecionado</p>
             <form id="serviceForm" onsubmit="handleFormSubmit(event)">
-                <div class="form-group">
-                    <label for="clientName">Nome Completo *</label>
-                    <input type="text" id="clientName" name="name" required>
-                    <div class="form-error" id="nameError">Por favor, informe seu nome completo.</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="clientPhone">WhatsApp (com DDD) *</label>
-                    <input type="tel" id="clientPhone" name="phone" placeholder="(11) 99999-9999" required>
-                    <div class="form-error" id="phoneError">Por favor, informe um WhatsApp válido.</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="clientCity">Cidade *</label>
-                    <input type="text" id="clientCity" name="city" required>
-                    <div class="form-error" id="cityError">Por favor, informe sua cidade.</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="clientDescription">Mensagem *</label>
-                    <textarea id="clientDescription" name="description" placeholder="Olá, gostaria de saber mais sobre o WatchZone..." required></textarea>
-                    <div class="form-error" id="descriptionError">Por favor, descreva sua necessidade.</div>
-                </div>
-
-                <button type="submit" class="btn btn-accent form-submit">Enviar para WhatsApp</button>
+                <div class="form-group"><input type="text" id="clientName" placeholder="Nome Completo" required></div>
+                <div class="form-group"><input type="tel" id="clientPhone" placeholder="WhatsApp (com DDD)" required></div>
+                <div class="form-group"><input type="text" id="clientCity" placeholder="Cidade" required></div>
+                <div class="form-group"><textarea id="clientDescription" placeholder="Sua mensagem..." required></textarea></div>
+                <button type="submit" class="btn btn-accent">Enviar para WhatsApp</button>
             </form>
         </div>
     </div>
@@ -890,126 +723,97 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
-                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
-                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI" style="max-width: 180px; margin-bottom: 1.5rem;">
+                <p style="color: var(--text-dim);">Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
             </div>
             <div class="footer-col">
-                <h4>Links Úteis</h4>
-                <ul>
-                    <li><a href="privacidade.html">Política de Privacidade</a></li>
-                    <li><a href="termos.html">Termos de Uso</a></li>
-                    <li><a href="cookies.html">Política de Cookies</a></li>
+                <h4 style="color: #fff; margin-bottom: 1.5rem;">Links Úteis</h4>
+                <ul style="list-style: none;">
+                    <li><a href="privacidade.html" style="color: var(--text-dim); text-decoration: none;">Privacidade</a></li>
+                    <li><a href="termos.html" style="color: var(--text-dim); text-decoration: none;">Termos de Uso</a></li>
+                    <li><a href="cookies.html" style="color: var(--text-dim); text-decoration: none;">Cookies</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contato Urgente</h4>
-                <ul>
-                    <li>messias.consultoria@yahoo.com</li>
-                    <li>NOC operacional ativo</li>
-                    <li>Suporte Nível 3</li>
-                </ul>
+                <h4 style="color: #fff; margin-bottom: 1.5rem;">Contato</h4>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">messias.consultoria@yahoo.com<br>NOC Operacional Ativo</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
-            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        <div style="text-align: center; padding-top: 3rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.85rem;">
+            &copy; 2026 MC Infra TI. Todos os direitos reservados.
         </div>
     </footer>
 
-    <!-- COOKIE BANNER LGPD -->
+    <!-- COOKIE BANNER -->
     <div id="cookieBanner" class="cookie-banner">
-        <p style="font-size: 0.85rem; color: var(--text-dim);">
-            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        <p style="font-size: 0.9rem; color: var(--text-dim);">
+            Utilizamos cookies para melhorar sua experiência conforme a <strong>LGPD</strong>.
         </p>
-        <div style="display: flex; gap: 0.8rem;">
-            <button class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(false)">Recusar</button>
-            <button class="btn btn-accent" style="padding: 0.6rem 1.5rem; font-size: 0.8rem; width: auto;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        <div style="display: flex; gap: 1rem;">
+            <button class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: auto;" onclick="respondCookies(false)">Recusar</button>
+            <button class="btn btn-accent" style="padding: 0.8rem 1.5rem; width: auto;" onclick="respondCookies(true)">Aceitar</button>
         </div>
     </div>
 
     <script>
-        // Header Scroll Effect
+        // Reveal on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+
+        // Header Effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
             if (window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
 
-        // SEGURANÇA REFORÇADA - Bloqueio de F12, Ctrl+Shift+I, Ctrl+U, Ctrl+C
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+        // Security
+        document.onkeydown = (e) => {
+            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 67))) return false;
         }
+        document.addEventListener('copy', (e) => { e.preventDefault(); return false; });
 
-        document.addEventListener('copy', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // LGPD Logic
+        // LGPD
         window.addEventListener('DOMContentLoaded', () => {
-            const consent = localStorage.getItem('lgpd_consent');
-            if (!consent) {
+            if (!localStorage.getItem('lgpd_consent')) {
                 setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
             }
+            reveal();
         });
 
-        function respondCookies(acceptAll) {
-            localStorage.setItem('lgpd_consent', acceptAll ? 'accepted_all' : 'rejected');
-            if(acceptAll && typeof gtag === 'function') {
-                gtag('consent', 'update', {
-                    'ad_storage': 'granted',
-                    'ad_user_data': 'granted',
-                    'ad_personalization': 'granted',
-                    'analytics_storage': 'granted'
-                });
-            }
+        function respondCookies(accept) {
+            localStorage.setItem('lgpd_consent', accept ? 'accepted' : 'rejected');
             document.getElementById('cookieBanner').classList.remove('active');
         }
 
-        // MODAL LOGIC
+        // Modal
         function openFormModal(plan) {
             document.getElementById('formModal').classList.add('active');
             document.getElementById('planSelected').textContent = 'Plano: ' + plan;
         }
+        function closeFormModal() { document.getElementById('formModal').classList.remove('active'); }
 
-        function closeFormModal() {
-            document.getElementById('formModal').classList.remove('active');
-        }
-
-        // Phone Mask
-        document.getElementById('clientPhone').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 0) {
-                if (value.length <= 2) value = '(' + value;
-                else if (value.length <= 6) value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
-                else value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
-            }
-            e.target.value = value;
-        });
-
-        // FORM SUBMISSION TO WHATSAPP
+        // WhatsApp Form
         function handleFormSubmit(e) {
             e.preventDefault();
-            const name = document.getElementById('clientName').value.trim();
+            const name = document.getElementById('clientName').value;
             const phone = document.getElementById('clientPhone').value;
-            const city = document.getElementById('clientCity').value.trim();
-            const description = document.getElementById('clientDescription').value.trim();
-            const plan = document.getElementById('planSelected').textContent.replace('Plano: ', '');
-
-            const message = `*NOVA SOLICITAÇÃO WATCHZONE* 🛡️\n\n` +
-                            `📦 *Plano:* ${plan}\n` +
-                            `👤 *Nome:* ${name}\n` +
-                            `📱 *WhatsApp:* ${phone}\n` +
-                            `📍 *Cidade:* ${city}\n` +
-                            `💬 *Mensagem:* ${description}`;
-
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/55XXXXXXXXXXX?text=${encodedMessage}`, '_blank');
+            const city = document.getElementById('clientCity').value;
+            const msg = document.getElementById('clientDescription').value;
+            const plan = document.getElementById('planSelected').textContent;
+            
+            const text = `*SOLICITAÇÃO WATCHZONE*\n\n*${plan}*\n👤 Nome: ${name}\n📱 WhatsApp: ${phone}\n📍 Cidade: ${city}\n💬 Mensagem: ${msg}`;
+            window.open(`https://wa.me/55XXXXXXXXXXX?text=${encodeURIComponent(text)}`, '_blank');
         }
     </script>
 </body>
