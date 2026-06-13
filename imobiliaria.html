@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imobiliária - Conectando você ao seu novo lar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <div class="bg-slate-900 text-white text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4">
+                <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i> (14) 3322-1810</span>
+                <span><i class="fa-brands fa-whatsapp text-green-400 mr-1"></i> (14) 99650-4140</span>
+            </div>
+            <div>
+                <span class="bg-slate-800 px-2 py-1 rounded text-gray-400">CRECI: 00000-J</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-slate-800 tracking-wide">
+                IMOBILIÁRIA <span class="text-blue-600">SHALOM</span>
+            </a>
+            <nav class="hidden md:flex space-x-6 font-medium text-gray-600">
+                <a href="#" class="hover:text-blue-600 transition">Início</a>
+                <a href="#catalogo" class="hover:text-blue-600 transition">Imóveis</a>
+                <a href="#sobre" class="hover:text-blue-600 transition">Quem Somos</a>
+                <a href="#contato" class="hover:text-blue-600 transition">Contato</a>
+            </nav>
+            <a href="#contato" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition font-medium text-sm">
+                Anunciar Imóvel
+            </a>
+        </div>
+    </header>
+
+    <section class="relative bg-slate-800 text-white py-20 px-4 bg-cover bg-center" style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80');">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Certeza de bons negócios</h1>
+            <p class="text-gray-300 mb-8 md:text-lg">Encontre o imóvel que você procura na região.</p>
+            
+            <div class="bg-white p-4 rounded-xl shadow-lg text-gray-800 max-w-3xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-3">
+                    <select id="filtro-contrato" class="w-full md:w-1/4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="todos">Todos</option>
+                        <option value="aluga">Alugar</option>
+                        <option value="venda">Comprar</option>
+                    </select>
+                    <input id="busca-texto" type="text" placeholder="Buscar por bairro, cidade ou código..." class="w-full md:flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button onclick="filtrarImoveis()" class="w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-medium flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 py-16">
+        <div class="flex justify-between items-center mb-8 border-b pb-4">
+            <h2 class="text-2xl font-bold text-slate-800">Imóveis em Destaque</h2>
+            <span class="text-sm text-gray-500 font-medium">Mostrando ofertas recentes</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition flex flex-col border border-gray-100">
+                <div class="relative h-56 bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600&q=80" alt="Casa Vila Soares" class="w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-bold px-2.5 py-1 rounded">ALUGA-SE</span>
+                    <span class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white px-3 py-1 rounded font-bold text-sm">R$ 1.700,00</span>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-900 uppercase">Casa Padrão - Vila Soares</h3>
+                        <p class="text-gray-500 text-sm mt-1 mb-4"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Ourinhos - SP</p>
+                        <p class="text-gray-600 text-sm line-clamp-3">02 quartos, sala, cozinha planejada, lavanderia, WC, área gourmet com churrasqueira/forno/fogão e garagem coberta.</p>
+                    </div>
+                    
+                    <div class="flex justify-between items-center pt-5 mt-4 border-t border-gray-100 text-gray-600 text-sm">
+                        <span><i class="fa-solid fa-bed text-blue-500 mr-1"></i> 2 Qts</span>
+                        <span><i class="fa-solid fa-bath text-blue-500 mr-1"></i> 1 Ban</span>
+                        <span><i class="fa-solid fa-car text-blue-500 mr-1"></i> 1 Vaga</span>
+                    </div>
+                    <button class="w-full mt-4 bg-gray-100 text-slate-700 py-2.5 rounded-lg font-medium text-sm hover:bg-blue-600 hover:text-white transition">
+                        Ver mais detalhes
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition flex flex-col border border-gray-100">
+                <div class="relative h-56 bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Apartamento Florença" class="w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-green-600 text-white text-xs font-bold px-2.5 py-1 rounded">ALUGA-SE</span>
+                    <span class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white px-3 py-1 rounded font-bold text-sm">R$ 5.500,00</span>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-900 uppercase">Edifício Florença</h3>
+                        <p class="text-gray-500 text-sm mt-1 mb-4"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Jardim Ouro Verde - Ourinhos</p>
+                        <p class="text-gray-600 text-sm line-clamp-3">03 suítes (uma com armários e closet), ampla sala, cozinha planejada, lavabo, área de serviços. Edifício com academia, piscina e quadras.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-5 mt-4 border-t border-gray-100 text-gray-600 text-sm">
+                        <span><i class="fa-solid fa-bed text-blue-500 mr-1"></i> 3 Suítes</span>
+                        <span><i class="fa-solid fa-bath text-blue-500 mr-1"></i> 4 Ban</span>
+                        <span><i class="fa-solid fa-car text-blue-500 mr-1"></i> 2 Vagas</span>
+                    </div>
+                    <button class="w-full mt-4 bg-gray-100 text-slate-700 py-2.5 rounded-lg font-medium text-sm hover:bg-blue-600 hover:text-white transition">
+                        Ver mais detalhes
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition flex flex-col border border-gray-100">
+                <div class="relative h-56 bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Terreno Nova Alcântara" class="w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded">VENDE-SE</span>
+                    <span class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white px-3 py-1 rounded font-bold text-sm">R$ 237.000,00</span>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-900 uppercase">Terreno Condomínio Nova Alcântara</h3>
+                        <p class="text-gray-500 text-sm mt-1 mb-4"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Nova Alcântara - Ourinhos</p>
+                        <p class="text-gray-600 text-sm line-clamp-3">Terreno plano medindo 276,00 m², excelente localização interna no condomínio fechado de alto padrão.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-5 mt-4 border-t border-gray-100 text-gray-600 text-sm">
+                        <span><i class="fa-solid fa-ruler-combined text-blue-500 mr-1"></i> 276 m²</span>
+                        <span><i class="fa-solid fa-shield-halved text-blue-500 mr-1"></i> Portaria</span>
+                        <span><i class="fa-solid fa-tree text-blue-500 mr-1"></i> Lazer</span>
+                    </div>
+                    <button class="w-full mt-4 bg-gray-100 text-slate-700 py-2.5 rounded-lg font-medium text-sm hover:bg-blue-600 hover:text-white transition">
+                        Ver mais detalhes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="contato" class="bg-slate-900 text-gray-400 pt-12 pb-6 border-t-4 border-blue-600">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Imobiliária Shalom</h4>
+                <p class="text-sm leading-relaxed">Tradição e idoneidade na compra, venda e locação de imóveis. Encontre profissionais qualificados para fechar o melhor negócio.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Nossos Contatos</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><i class="fa-solid fa-envelope mr-2 text-blue-400"></i> imobiliariashalom@yahoo.com.br</li>
+                    <li><i class="fa-solid fa-phone mr-2 text-blue-400"></i> (14) 3322-1810</li>
+                    <li><i class="fa-brands fa-whatsapp mr-2 text-green-400"></i> (14) 99650-4140</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Localização</h4>
+                <p class="text-sm"><i class="fa-solid fa-map-marker-alt mr-2 text-red-400"></i> Rua Expedicionário, nº 312<br>Centro - Ourinhos - SP<br>CEP: 19900-041</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 pt-6 border-t border-slate-800 text-center text-xs">
+            <p>&copy; 2026 Imobiliária Shalom. Todos os direitos reservados. Creci 36424 J.</p>
+        </div>
+    </footer>
+
+    <script>
+        function filtrarImoveis() {
+            const tipo = document.getElementById('filtro-contrato').value;
+            const busca = document.getElementById('busca-texto').value.toLowerCase();
+            alert(`Simulação de busca ativa!\nContrato: ${tipo}\nTermo digitado: ${busca}\n\nDica: Integre esta função com sua API ou banco de dados.`);
+        }
+    </script>
+</body>
+</html>
