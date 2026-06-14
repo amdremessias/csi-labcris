@@ -48,14 +48,10 @@
             box-sizing: border-box;
             cursor: default;
             /* --- SEGURANÇA: Bloqueia a seleção de texto e elementos em todos os navegadores --- */
-            -webkit-user-select: none;
-            /* Safari */
-            -moz-user-select: none;
-            /* Firefox */
-            -ms-user-select: none;
-            /* IE10+/Edge */
-            user-select: none;
-            /* Padrão */
+            -webkit-user-select: none;  /* Safari */
+            -moz-user-select: none;     /* Firefox */
+            -ms-user-select: none;      /* IE10+/Edge */
+            user-select: none;          /* Padrão */
         }
 
         body {
@@ -439,53 +435,32 @@
         /* --- FOOTER --- */
         footer {
             padding: 80px 1.5rem 40px;
-            background: linear-gradient(to top, rgba(0,255,102,0.02), transparent);
+            background: #000;
             border-top: 1px solid var(--border);
         }
 
-        .footer-content {
+        .footer-grid {
             max-width: 1300px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr repeat(3, 1fr);
-            gap: 4rem;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
             margin-bottom: 4rem;
         }
 
-        .footer-brand p {
-            color: var(--text-dim);
-            margin-top: 1rem;
-            max-width: 320px;
-            font-size: 0.95rem;
-        }
-
-        .footer-links h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
+        .footer-brand img {
+            max-width: 160px;
             margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            filter: brightness(1.2);
         }
 
-        .footer-links ul {
-            list-style: none;
-        }
+        .footer-brand p { color: var(--text-dim); max-width: 350px; font-size: 0.95rem; }
 
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
+        .footer-col h4 { margin-bottom: 1.2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .footer-col ul a:hover { color: var(--accent); }
 
         .footer-bottom {
             max-width: 1300px;
@@ -515,150 +490,67 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            pointer-events: none;
-            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            max-width: 1300px;
-            margin: 0 auto;
+            gap: 1.5rem;
+            transform: translateY(200%);
+            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .cookie-banner.active {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
+        .cookie-banner.active { transform: translateY(0); }
 
-        .cookie-text {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            line-height: 1.6;
-        }
-
-        .cookie-text a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .cookie-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-shrink: 0;
-        }
-
-        /* --- RESPONSIVIDADE --- */
-        @media (max-width: 968px) {
-            .pub-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .footer-content { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; padding: 1.5rem; }
-            .cookie-buttons { width: 100%; justify-content: center; }
-        }
-
+        /* --- RESPONSIVIDADE SMARTPHONE --- */
         @media (max-width: 768px) {
-            nav { padding: 0 1rem; }
+            header { padding: 1rem 0; }
+            nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
-            .footer-content { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; text-align: center; }
+            
+            #hero { padding-top: 100px; }
+            #hero h1 { font-size: 3rem; }
+            #hero p { font-size: 1rem; margin-bottom: 2rem; }
+            
+            section { padding: 60px 1.5rem; }
+            .section-header { margin-bottom: 2.5rem; }
+            
+            .services-grid { grid-template-columns: 1fr; }
+            .card { padding: 2rem; }
+            
+            .flow-container { grid-template-columns: 1fr; }
+            .flow-card { padding: 1.5rem; }
+            
+            .pub-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .pub-text h3 { font-size: 1.8rem; text-align: center; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+            
+            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
+            .cookie-banner .btn { width: 100%; justify-content: center; }
         }
 
-        /* ==========================================================================
-           ESTILOS EXCLUSIVOS DO POPUP DE CAPTURA (SEM IMPACTO NO RESTANTE DA PÁGINA)
-           ========================================================================== */
-        #leadModal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 2, 2, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-        #leadModal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .modal-box {
-            background: #0a0a0a;
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 24px;
-            max-width: 450px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            transform: translateY(-20px);
-            transition: transform 0.4s ease;
-        }
-        #leadModal.active .modal-box {
-            transform: translateY(0);
-        }
-        .modal-close {
-            position: absolute;
-            top: 1.2rem; right: 1.2rem;
-            background: none; border: none;
-            color: var(--text-dim); font-size: 1.5rem;
-            cursor: pointer; transition: 0.3s;
-        }
-        .modal-close:hover { color: var(--accent); }
-        .modal-box h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem; margin-bottom: 0.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .modal-box p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1.5rem; }
-        .form-group { margin-bottom: 1.2rem; text-align: left; }
-        .form-group label {
-            display: block; font-size: 0.8rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px;
-            margin-bottom: 0.5rem; color: var(--text-dim);
-        }
-        .form-group input {
-            width: 100%; padding: 0.8rem 1.2rem;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            border-radius: 8px; color: #fff;
-            font-family: inherit; font-size: 0.95rem;
-            transition: 0.3s; cursor: text;
-        }
-        .form-group input:focus {
-            border-color: var(--accent); outline: none;
-            background: rgba(255,255,255,0.05);
-        }
-        .modal-btn {
-            width: 100%; padding: 1rem;
-            border-radius: 100px; border: none;
-            font-weight: 700; font-size: 0.95rem;
-            background: var(--text); color: var(--bg);
-            cursor: pointer; transition: 0.3s; margin-top: 0.5rem;
-        }
-        .modal-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+        @media (max-width: 480px) {
+            #hero h1 { font-size: 2.5rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .btn { padding: 0.8rem 2rem; width: 100%; justify-content: center; }
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
 
     <div class="bg-wrapper">
         <div class="bg-image"></div>
     </div>
-    
+
     <canvas id="dataStream"></canvas>
 
     <header id="mainHeader">
         <nav>
-            <div class="logo-text">MC infra TI</div>
+            <div class="logo-text">MC INFRA TI</div>
             <ul class="nav-links">
-                <li><a href="#hero">Início</a></li>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="https://m3ss14s.goatcounter.com/" target="_blank">Analytics</a></li>
-                <li><a href="https://blog.m3ss14s.cloud" target="_blank">Blog</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#publicidade">Vantagens</a></li>
+                <li><a data-umami-event="Clique-Contato-top" href="contactmcinfra.html">Contato</a></li>
+                <li><a data-umami-event="Clique-Sobre-top" href="portf.html">Sobre</a></li>
+                <li><a data-umami-event="Clique-Blog-top" href="blog.html">Blog</a></li> 
             </ul>
         </nav>
     </header>
@@ -666,21 +558,18 @@
     <main>
         <section id="hero">
             <div class="hero-content">
-                <span class="badge">Intelligence & Security</span>
-                <h1>Modernize sua Infraestrutura <span>Soluções Inteligentes</span></h1>
-                <p>Desenvolvimento de Softwares de Alta Performance, Consultoria em TI e Segurança Cibernética sob medida para impulsionar seu negócio.</p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#" class="btn btn-primary trigger-lead-modal">Começar Agora</a>
-                </div>
+                <span class="badge">Inovação em TI</span>
+                <h1>Atendimento <span>Turbinado</span> no WhatsApp</h1>
+                <p>Transforme a comunicação da sua empresa com o Novo Chat. Suporte rápido, eficiente e totalmente personalizado para o seu negócio.</p>
+                <a href="#about" class="btn btn-primary">Começar Agora</a>
             </div>
         </section>
 
-        <section id="nowchat" style="padding: 40px 1.5rem; background: linear-gradient(135deg, rgba(0, 255, 102, 0.05) 0%, rgba(0, 204, 255, 0.05) 100%); border: 1px solid var(--border); border-radius: 30px; margin-top: 40px; margin-bottom: 40px;">
-            <div class="section-header" style="margin-bottom: 2rem;">
-                <span class="badge" style="background: var(--accent); color: #000; font-weight: 800;">Lançamento</span>
-                <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem);">Plataforma <span>Novo Chat</span></h2>
-                <p style="margin: 10px auto 0; max-width: 700px; color: var(--text-dim);">
-                    Conecte múltiplos atendentes em um único número de WhatsApp, crie chatbots inteligentes e centralize a comunicação da sua empresa com total controle e relatórios em tempo real. Automatize processos e fidelize seus clientes com uma plataforma desenhada para o futuro.
+        <section id="about">
+            <div class="section-header">
+                <h2>O Que é o <span>Novo Chat?</span></h2>
+                <p style="max-width: 800px; margin: 0 auto; color: var(--text-dim); font-size: 1.1rem;">
+                    O Novo Chat é a solução definitiva para suporte rápido, eficiente e personalizado. Resolva problemas com agilidade e fidelize seus clientes com uma plataforma desenhada para o futuro.
                 </p>
             </div>
             <div style="text-align: center;">
@@ -690,7 +579,7 @@
 
         <section id="services">
             <div class="section-header">
-                <h2>Nossos <span>Serviços</span></h2>
+                 <h2>Nossos <span>Serviços</span></h2>
             </div>
             <div class="services-grid">
                 <article class="card">
@@ -698,131 +587,114 @@
                     <h3><a data-umami-event="Clique-NovoChat-Service" href="chatnew.html">Novo Chat</a></h3>
                     <p>Centralize seu atendimento via WhatsApp com inteligência e automação de ponta.</p>
                 </article>
-
                 <article class="card">
                     <span class="card-icon">📅</span>
                     <h3><a data-umami-event="Clique-Scrum" href="scrumlab.html">Quadro Scrum</a></h3>
                     <p>Quadro de Tarefas Colaborativo Uma solução completa para organizar tarefas, otimizar fluxos de trabalho e impulsionar a colaboração da sua equipe.</p>
                 </article>
-
                 <article class="card">
                     <span class="card-icon">🖥️</span>
-                    <h3><a data-umami-event="Clique-Service-IT" href="itsmlab.html">Noc / Itsm</a></h3>
-                    <p>Gestão de Ativos e Monitoramento Centralizado, Obtenha Visibilidade de toda sua Infraestrutura de TI.</p>
+                     <h3><a data-umami-event="Clique-Service-IT" href="itservices.html">Serviços de TI</a></h3>
+                    <p>Serviços de TI para Computadores Notebook e Servidores Garantimos a performance e segurança da sua infraestrutura tecnológica com suporte especializado.</p>
                 </article>
-
                 <article class="card">
-                    <span class="card-icon">🔒</span>
-                    <h3><a data-umami-event="Clique-Security-Service" href="cybersecurity.html">Cyber Security</a></h3>
-                    <p>Análise de Vulnerabilidade, Correção de Brechas de segurança em Sistemas e redes locais, mitigação de falhas severas de segurança, relatórios de CVES e saneamento completo.</p>
+                     <span class="card-icon">👁️</span>
+                    <h3><a data-umami-event="Clique-Sentinela" href="thesentinel.html">Sentinela CFTV</a></h3>
+                    <p>Solução de Vigilância por vídeo, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real Proteja sua empresa e residência com tecnologia de ponta em monitoramento inteligente e backup em nuvem.</p>
+               </article>
+                <article class="card">
+                    <span class="card-icon">✍️</span>
+                    <h3><a data-umami-event="Clique-Aceite-Service" href="aceiteaprove.html">Assine Digital</a></h3>
+                    <p>Assinatura Digital para documents, Rapido, Seguro e eficiente Assine Documentos com Validade Jurídica em Segundos A plataforma definitiva para envio. Simples, seguro e onde você estiver.</p>
                 </article>
-
+                <article class="card">
+                    <span class="card-icon">🛠️</span>
+                    <h3><a href="novaos.html">Nova OS</a></h3>
+                    <p>Gerencie Ordens de Serviços, Clientes e Orçamentos, Base de dados centralizada com histórico de serviços Venda direta de balcão integrada ao estoque. Gerencie vendas de produtos junto aos serviços de mão de obra.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🔐</span>
+                    <h3><a data-umami-event="Clique-Cofre" href="cofre.html">Cofre de Senhas</a></h3>
+                    <p>Mantenha suas senhas de acessos protegidas em um cofre de acesso Restrito, compartilhe acessos de maneira segura para membros da sua empresa</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">📈</span>
+                    <h3><a href="cofre.html">ERP-PDV</a></h3>
+                    <p>Gestão para Bares e Restaurantes Gerencie suas vendas com facilidade e precisão, obtenha relatório de caixa e movimentações.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🌍</span>
+                    <h3><a data-umami-event="Clique-Build-Site" href="buildsite.html">Criar Site</a></h3>
+                    <p>Simplificamos a criação do seu site, Pare de perder tempo e dinheiro com soluções que não funcionam. Nós da MC Infra TI simplificamos a criação do seu site, entregando uma presença online profissional, rápida e acessível — sem burocracia ou complicações.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🛡️</span>
+                    <h3><a data-umami-event="Clique-ScabVul" href="scanvul.html">Power Scan</a></h3>
+                    <p>Identifique falhas em servidores Linux e Windows com análise de CVES e saneamento completo.</p>
+                </article>
                 <article class="card">
                     <span class="card-icon">💾</span>
                     <h3><a data-umami-event="Clique-BKP-Service" href="backupservice.html">Backup Server</a></h3>
                     <p>Servidor Pessoal Seguro e Confiavel Sincronize automaticamente fotos e vídeos do seu Android ou iOS em seu próprio servidor de backup privado.</p>
                 </article>
-
                 <article class="card">
-                    <span class="card-icon">⚡</span>
+                     <span class="card-icon">⚡</span>
                     <h3><a data-umami-event="Clique-Service-MK" href="mkplaceupshow.html">Serviço Certo</a></h3>
                     <p>Encontre Operador Técnico ideal para cada problema, Qualidade é a nossa prioridade.</p>
                 </article>
-
                 <article class="card">
-                    <span class="card-icon">🚨</span>
+                     <span class="card-icon">🚨</span>
                     <h3><a data-umami-event="Service-Watch-Zone" href="watchzone.html">Watch-Zone</a></h3>
                     <p>Proteja o que mais importa com o WatchZone Monitoramento disparo por imagem instantâneo.</p>
                 </article>
             </div>
-            
-            <div style="text-align: center; margin-top: 2.5rem;">
+             <div style="text-align: center; margin-top: 2.5rem;">
                 <a data-umami-event="Conhecer-Mais-Solucoes" href="services.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Conhecer mais Soluções</a>
             </div>
         </section>
 
-        <section id="flow">
+        <section id="fluxo">
             <div class="section-header">
-                <h2>Como <span>Trabalhamos</span></h2>
+                <h2>Fluxo <span>Inteligente</span></h2>
             </div>
             <div class="flow-container">
-                <div class="flow-card">
-                    <span class="flow-num">01</span>
-                    <h4>Diagnóstico</h4>
-                </div>
-                <div class="flow-card">
-                    <span class="flow-num">02</span>
-                    <h4>Estratégia</h4>
-                </div>
-                <div class="flow-card">
-                    <span class="flow-num">03</span>
-                    <h4>Execução</h4>
-                </div>
-                <div class="flow-card">
-                    <span class="flow-num">04</span>
-                    <h4>Suporte</h4>
-                </div>
+                <div class="flow-card"><span class="flow-num">01</span><h3>Solicitação</h3><p>Encontre o Serviço Ideal.</p></div>
+                <div class="flow-card"><span class="flow-num">02</span><h3>Briefing</h3><p>Reunião de alinhamento via Call Online ou presencial.</p></div>
+                <div class="flow-card"><span class="flow-num">03</span><h3>Orçamento</h3><p>Receba propostas rápidas e claras.</p></div>
+                <div class="flow-card"><span class="flow-num">04</span><h3>Aprovação</h3><p>Analise e aprove a proposta da solução ideal para seu negocio.</p></div>
+                <div class="flow-card"><span class="flow-num">05</span><h3>Finalização</h3><p>Avalie e pague com total segurança, Implantação Prioritaria.</p></div>
+                <div class="flow-card"><span class="flow-num">06</span><h3>Pós-Venda</h3><p>Acompanhamento Técnico dedicado.</p></div>                
+            </div>
+            <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="contactmcinfra.html" data-umami-event="Botao-Comecar-Agora" class="btn btn-primary" style="background: var(--accent); color: #000;">Comece agora mesmo!</a>
             </div>
         </section>
 
-        <section id="portfolio" style="padding-bottom: 40px;">
+        <section id="galeria" style="padding: 100px 0;">
             <div class="section-header">
-                <h2>Nossos <span>Labs</span></h2>
+                <h2>Nosso <span>Portfólio</span></h2>
             </div>
             <div class="slider-wrapper">
                 <div class="slider-track">
-                    <div class="slide">
-                        <div class="slide-inner">
-                            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide1.jpg" alt="Lab 1">
-                            <div class="slide-overlay"><h4>Datacenter Monitoring</h4></div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-inner">
-                            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide2.jpg" alt="Lab 2">
-                            <div class="slide-overlay"><h4>Cybersecurity Lab</h4></div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-inner">
-                            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide3.jpg" alt="Lab 3">
-                            <div class="slide-overlay"><h4>Cloud Infrastructure</h4></div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-inner">
-                            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide4.jpg" alt="Lab 4">
-                            <div class="slide-overlay"><h4>DevOps & Automation</h4></div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-inner">
-                            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide5.jpg" alt="Lab 5">
-                            <div class="slide-overlay"><h4>Network Operations</h4></div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-inner">
-                            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide6.jpg" alt="Lab 6">
-                            <div class="slide-overlay"><h4>Virtualization Cluster</h4></div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="slide-inner">
-                            <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide7.jpg" alt="Lab 7">
-                            <div class="slide-overlay"><h4>AI & Data Science</h4></div>
-                        </div>
-                    </div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide1.jpg" alt="Lab 1"><div class="slide-overlay"><h4>Datacenter Monitoring</h4></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide2.jpg" alt="Lab 2"><div class="slide-overlay"><h4>Cybersecurity Lab</h4></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide3.jpg" alt="Lab 3"><div class="slide-overlay"><h4>Cloud Infrastructure</h4></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide4.jpg" alt="Lab 4"><div class="slide-overlay"><h4>DevOps & Automation</h4></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide5.jpg" alt="Lab 5"><div class="slide-overlay"><h4>Network Operations</h4></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide6.jpg" alt="Lab 6"><div class="slide-overlay"><h4>Virtualization Cluster</h4></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/Slide7.jpg" alt="Lab 7"><div class="slide-overlay"><h4>AI & Data Science</h4></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/CFTV_01-1.webp" alt="Segurança CFTV" ondragstart="return false;"><div class="slide-overlay"><h3>Video Segurança</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/Monitoramento-de-Servidores.webp" alt="Monitoramento de Servidores" ondragstart="return false;"><div class="slide-overlay"><h3>Monitoramento de Servidores</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass1.jpg" alt="Assinatura Digital" ondragstart="return false;"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/barrest.png" alt="Bar e Restaurante" ondragstart="return false;"><div class="slide-overlay"><h3>Bar e Restaurante</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp1.jpg" alt="Backups" ondragstart="return false;"><div class="slide-overlay"><h3>Backups</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software" ondragstart="return false;"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os1.png" alt="Ordens de Serviços" ondragstart="return false;"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/tihomeservice.webp" alt="T I Services" ondragstart="return false;"><div class="slide-overlay"><h3>T I Services</h3></div></div></div>                    
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento" ondragstart="return false;"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat" ondragstart="return false;"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S" ondragstart="return false;"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp2.jpeg" alt="Backup Server" ondragstart="return false;"><div class="slide-overlay"><h3>Backup Server</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/buildsite.jpg" alt="Construir Site" ondragstart="return false;"><div class="slide-overlay"><h3>Construir Site</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas" ondragstart="return false;"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal" ondragstart="return false;"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software" ondragstart="return false;"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
                 </div>
             </div>
-        </section>
+      </section>
 
         <section id="publicidade">
             <div class="section-header">
@@ -833,29 +705,31 @@
                     <h3>Sua empresa está perdendo dinheiro com processos lentos e TI amadora?</h3>
                     <p>No cenário atual, depender de sistemas instáveis, planilhas bagunçadas ou atendimentos manuais demorados é o caminho mais rápido para perder espaço no mercado.</p>
                     <p>A <strong>MC Infra TI</strong> desenvolve softwares inteligentes e estrutura serviços de TI sob medida para acabar de vez com a ineficiência do seu negócio. Nós não apenas resolvemos problemas técnicos: nós blindamos sua operação e criamos caminhos para sua empresa escalar.</p>
-                    <p>Pare de apagar incêndios e gaste seu tempo com o que realmente importa: o crescimento do seu negócio.</p>
-                    <a href="#" class="btn btn-primary trigger-lead-modal" style="margin-top: 1rem;">Pedir Orçamento Grátis</a>
+                    <p>Pare de apagar incêndios e gaste seu tempo com o que realmente importa: <strong>o crescimento da sua empresa.</strong></p>
+                    <div style="margin-top: 2rem;">
+                        <a href="contactmcinfra.html" data-umami-event="Contato-Button" class="btn btn-primary" style="background: var(--accent ); color: #000;">Fazer Diagnóstico Gratuito</a>
+                    </div>
                 </div>
                 <div class="pub-features">
                     <div class="pub-item">
-                        <div class="pub-item-icon">📈</div>
+                        <div class="pub-item-icon">🚀</div>
                         <div class="pub-item-info">
-                            <h4>Redução de Custos Operacionais</h4>
-                            <p>Automatize tarefas repetitivas e elimine gargalos que drenam os recursos e a produtividade da sua equipe.</p>
-                        </div>
-                    </div>
-                    <div class="pub-item">
-                        <div class="pub-item-icon">⚡</div>
-                        <div class="pub-item-info">
-                            <h4>Sistemas de Alta Disponibilidade</h4>
-                            <p>Sua operação ativa 24/7. Menos interrupções significam mais vendas e clientes sempre satisfeitos.</p>
+                            <h4>Softwares Sob Medida</h4>
+                            <p>Automações de atendimento, controle de ordens de serviço e plataformas integradas que reduzem erros humanos a zero.</p>
                         </div>
                     </div>
                     <div class="pub-item">
                         <div class="pub-item-icon">🛡️</div>
                         <div class="pub-item-info">
-                            <h4>Segurança Corporativa Blindada</h4>
-                            <p>Proteja os dados estratégicos da sua empresa e dos seus clientes contra acessos não autorizados e sequestros digitais (Ransomware).</p>
+                            <h4>Infraestrutura Inabalável</h4>
+                            <p>Monitoramento preventivo de servidores, varredura rigorosa de vulnerabilidades e backup automatizado para você nunca perder dados vitais.</p>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <div class="pub-item-icon">📊</div>
+                        <div class="pub-item-info">
+                            <h4>Decisões Baseadas em Dados</h4>
+                            <p>Sistemas eficientes de gestão (PDV/ERP) que organizam seu fluxo financeiro e apontam onde estão seus maiores gargalos de lucro.</p>
                         </div>
                     </div>
                 </div>
@@ -864,73 +738,43 @@
     </main>
 
     <footer>
-        <div class="footer-content">
+        <div class="footer-grid">
             <div class="footer-brand">
-                <div class="logo-text">MC infra TI</div>
-                <p>Soluções tecnológicas premium de alta performance, monitoramento avançado e segurança cibernética corporativa.</p>
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
             </div>
-            <div class="footer-links">
-                <h4>Navegação</h4>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
                 <ul>
-                    <li><a href="#hero">Início</a></li>
-                    <li><a href="#services">Serviços</a></li>
-                    <li><a href="#flow">Fluxo</a></li>
-                    <li><a href="#portfolio">Labs</a></li>
+                    <li><a data-umami-event="Clique-Privacidade" data-umami-event-posicao="Rodape" href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a data-umami-event="Clique-Termos" data-umami-event-posicao="Rodape" href="termos.html">Termos de Uso</a></li>
+                    <li><a data-umami-event="Clique-Cookies" data-umami-event-posicao="Rodape" href="cookiesone.html">Política de Cookies</a></li>
+                    <li><a data-umami-event="Clique-Titulares" data-umami-event-posicao="Rodape" href="titulares.html">Direitos do Titular</a></li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <h4>Serviços Úteis</h4>
-                <ul>
-                    <li><a href="scrumlab.html">Quadro Scrum</a></li>
-                    <li><a href="itsmlab.html">Noc / Itsm</a></li>
-                    <li><a href="cybersecurity.html">Cyber Security</a></li>
-                    <li><a href="backupservice.html">Backup Server</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
+            <div class="footer-col">
                 <h4>Contato</h4>
                 <ul>
-                    <li><a href="https://wa.me/5514997135218" target="_blank">WhatsApp Comercial</a></li>
-                    <li><a href="mailto:contato@mcinfrati.com.br">contato@mcinfrati.com.br</a></li>
+                    <li>messias.consultoria@yahoo.com</li>
+                    <li>Suporte 24/7</li>
+                    <li>Brasil</li>
                 </ul>
             </div>
         </div>
+       
         <div class="footer-bottom">
-            <p>&copy; 2026 MC infra TI. Todos os direitos reservados. Proteção e Performance Garantidas.</p>
-            <p>Desenvolvido com foco em Segurança & Estabilidade.</p>
+             <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
         </div>
     </footer>
 
     <div id="cookieBanner" class="cookie-banner">
-        <div class="cookie-text">
-            Nós utilizamos cookies e tecnologias semelhantes para melhorar a sua experiência, analisar o tráfego do site e personalizar conteúdo de acordo com a nossa <a href="privacy.html">Política de Privacidade</a>. Ao clicar em "Aceitar Tudo", você concorda com esse processamento em conformidade com a LGPD.
-        </div>
-        <div class="cookie-buttons">
-            <button class="btn" style="padding: 0.6rem 1.5rem; background: transparent; border: 1px solid var(--border); color: var(--text); font-size: 0.8rem;" onclick="respondCookies(false)">Recusar</button>
+        <p style="font-size: 0.85rem; color: var(--text-dim );">
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        </p>
+        <div style="display: flex; gap: 0.8rem;">
+            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--surface); color: #fff; border: 1px solid var(--border); font-size: 0.8rem;" onclick="respondCookies(false)">Recusar</button>
             <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--accent); color: #000; font-size: 0.8rem;" onclick="respondCookies(true)">Aceitar Tudo</button>
-        </div>
-    </div>
-
-    <div id="leadModal">
-        <div class="modal-box">
-            <button class="modal-close" id="closeModalBtn">&times;</button>
-            <h3>Fale com um Especialista</h3>
-            <p>Insira seus dados abaixo para prosseguir com o atendimento.</p>
-            <form id="leadForm">
-                <div class="form-group">
-                    <label for="leadName">Nome Completo</label>
-                    <input type="text" id="leadName" required placeholder="Ex: André Luiz">
-                </div>
-                <div class="form-group">
-                    <label for="leadPhone">WhatsApp / Telefone</label>
-                    <input type="tel" id="leadPhone" required placeholder="Ex: (14) 99713-5218">
-                </div>
-                <div class="form-group">
-                    <label for="leadEmail">E-mail Corporativo</label>
-                    <input type="email" id="leadEmail" required placeholder="Ex: nome@empresa.com">
-                </div>
-                <button type="submit" class="modal-btn">Enviar Dados</button>
-            </form>
         </div>
     </div>
 
@@ -938,14 +782,11 @@
         // Header Scroll Effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
         });
 
-        // DATA STREAM ANIMAÇÃO (MATRIX ORIGINAL)
+        // NOVA ANIMAÇÃO: DATA STREAM (MATRIX)
         const canvas = document.getElementById('dataStream');
         const ctx = canvas.getContext('2d');
 
@@ -953,28 +794,26 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        resizeCanvas();
+
         window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ' ;
+        const characters = '01';
         const fontSize = 14;
-        let columns = canvas.width / fontSize;
-        let drops = Array(Math.floor(columns)).fill(1);
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
 
-        window.addEventListener('resize', () => {
-            columns = canvas.width / fontSize;
-            drops = Array(Math.floor(columns)).fill(1);
-        });
-
-        function drawMatrix() {
+        function draw() {
             ctx.fillStyle = 'rgba(2, 2, 2, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = '#00FF66';
-            ctx.font = fontSize + 'px monospace';
-
+            ctx.font = fontSize + 'px Space Grotesk';
             for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
@@ -983,16 +822,29 @@
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 33);
 
-        // BANNER DE COOKIES / LGPD CONTROLS
+        setInterval(draw, 50);
+
+        // Proteção de código
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            /* --- SEGURANÇA EXTRA: Bloqueia Ctrl+C, Ctrl+X e Ctrl+A --- */
+            if(e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'X'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) return false;
+        }
+
+        /* --- SEGURANÇA EXTRA: Intercepta e cancela a ação nativa de cópia/recorte via Teclado/Mouse --- */
+        document.addEventListener('copy', (e) => { e.preventDefault(); });
+        document.addEventListener('cut', (e) => { e.preventDefault(); });
+
+        // LGPD Logic
         window.addEventListener('DOMContentLoaded', () => {
             const consent = localStorage.getItem('lgpd_consent');
             if (!consent) {
-                setTimeout(() => {
-                    document.getElementById('cookieBanner').classList.add('active');
-                }, 1000);
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
             } else if (consent === 'accepted_all') {
+                updateGoogleConsent(true);
                 loadTrackingScripts();
             }
         });
@@ -1009,13 +861,14 @@
             document.getElementById('cookieBanner').classList.remove('active');
         }
 
+        // Função para atualizar o consentimento do Google
         function updateGoogleConsent(accepted) {
             if (typeof gtag === 'function') {
                 gtag('consent', 'update', {
-                    'ad_storage': 'accepted' ? 'granted' : 'denied',
-                    'ad_user_data': 'accepted' ? 'granted' : 'denied',
-                    'ad_personalization': 'accepted' ? 'granted' : 'denied',
-                    'analytics_storage': 'accepted' ? 'granted' : 'denied'
+                    'ad_storage': accepted ? 'granted' : 'denied',
+                    'ad_user_data': accepted ? 'granted' : 'denied',
+                    'ad_personalization': accepted ? 'granted' : 'denied',
+                    'analytics_storage': accepted ? 'granted' : 'denied'
                 });
             }
         }
@@ -1030,62 +883,6 @@
                 document.body.appendChild(script);
             }
         }
-
-        /* ==========================================================================
-           LOGICA EXCLUSIVA E SEGURA DO POPUP DE CAPTURA
-           ========================================================================== */
-        const modal = document.getElementById('leadModal');
-        const closeBtn = document.getElementById('closeModalBtn');
-        const leadForm = document.getElementById('leadForm');
-        const webhookUrl = 'https://n8n.wtech.solutions/webhook/mcinfrati-lead';
-
-        // Mapeia e adiciona o evento de abertura estritamente nos botões desejados
-        document.querySelectorAll('.trigger-lead-modal').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.classList.add('active');
-            });
-        });
-
-        // Fechar o modal
-        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
-
-        // Envio do formulário com fallback automático para o WhatsApp correto
-        leadForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const payload = {
-                nome: document.getElementById('leadName').value,
-                whatsapp: document.getElementById('leadPhone').value,
-                email: document.getElementById('leadEmail').value,
-                data_envio: new Date().toISOString()
-            };
-
-            const msgWpp = `Olá André! Deixei meus dados no site:\n\n*Nome:* ${payload.nome}\n*WhatsApp:* ${payload.whatsapp}\n*E-mail:* ${payload.email}`;
-
-            try {
-                const response = await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    alert('Dados enviados com sucesso! Entraremos em contato em breve.');
-                    leadForm.reset();
-                    modal.classList.remove('active');
-                } else {
-                    // Se o webhook falhar (status fora de 200-299), aciona o fallback do WhatsApp
-                    window.open(`https://api.whatsapp.com/send?phone=5514997135218&text=${encodeURIComponent(msgWpp)}`, '_blank');
-                    modal.classList.remove('active');
-                }
-            } catch (error) {
-                // Erro de rede ou indisponibilidade joga direto para o WhatsApp correto
-                window.open(`https://api.whatsapp.com/send?phone=5514997135218&text=${encodeURIComponent(msgWpp)}`, '_blank');
-                modal.classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
