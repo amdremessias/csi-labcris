@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Google Consent Mode (Padrão: Negado em conformidade com a LGPD) -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -16,12 +15,9 @@
         });
     </script>
 
-    <!-- Google Tag (gtag.js) - Google Analytics -->
-    <!-- IMPORTANTE: Substitua o G-XXXXXXXXXX abaixo pelo seu ID de Métrica real do GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         gtag('js', new Date());
-        
         // Configuração dinâmica para evitar erro de domínio em sufixos públicos como netlify.app
         gtag('config', 'G-XXXXXXXXXX', {
             'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
@@ -284,7 +280,6 @@
             padding-right: 3rem;
         }
 
-        /* Estilizando as options para navegadores que as renderizam */
         select option {
             background-color: #0c0c0c;
             color: var(--text);
@@ -480,7 +475,6 @@
         <section id="contact-section">
             <div class="contact-container" id="formWrapper">
                 
-                <!-- Tela do Formulário -->
                 <div id="contactFormState">
                     <div class="contact-header">
                         <h1>Fale <span>Conosco</span></h1>
@@ -528,27 +522,27 @@
                     </form>
                 </div>
 
-                <!-- Tela de Sucesso -->
                 <div class="status-screen" id="successState">
                     <span class="status-icon">🚀</span>
                     <h2>Mensagem Enviada!</h2>
                     <p>
-                        Agradecemos o contato. Nossa equipe já recebeu seus dados e entrará em contato em breve via WhatsApp ou E-mail.
+                        Agradecemos o contato.<br>
+                        Nossa equipe já recebeu seus dados e entrará em contato em breve via WhatsApp ou E-mail.
                     </p>
                     <a href="index.html" class="btn" style="border: 1px solid var(--border); padding: 0.8rem 2rem; border-radius: 100px; color: #fff; text-decoration: none; display: inline-block;">Voltar para Home</a>
                 </div>
 
-                <!-- Tela de Erro / Fallback WhatsApp -->
                 <div class="status-screen" id="errorState">
                     <span class="status-icon" style="color: var(--error);">⚠️</span>
-                    <h2>Ops! Algo deu errado.</h2>
+                    <h2>Central de Contingência</h2>
                     <p id="errorMsg">
-                        Não conseguimos enviar seus dados para o nosso servidor. Sem problemas, você pode iniciar um atendimento direto no nosso WhatsApp de suporte!
+                        Detectamos uma oscilação temporária em nosso servidor principal.<br>
+                        Clique no botão abaixo para concluir o envio direto via WhatsApp sem perder os seus dados!
                     </p>
                     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                         <button class="btn" onclick="retryForm()" style="background: var(--surface); border: 1px solid var(--border); padding: 0.8rem 2rem; border-radius: 100px; color: #fff; cursor: pointer;">Tentar Novamente</button>
                         <a id="whatsappFallbackBtn" href="#" target="_blank" class="btn" style="background: var(--accent); color: #000; padding: 0.8rem 2rem; border-radius: 100px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 0.5rem;">
-                            Falar no WhatsApp
+                            Enviar via WhatsApp 📞
                         </a>
                     </div>
                 </div>
@@ -561,7 +555,7 @@
         <div class="footer-content">
             <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
             <p>
-                <a href="privacidade.html">Privacidade</a> | 
+                <a href="privacidade.html">Privacidade</a> |
                 <a href="termos.html">Termos</a>
             </p>
         </div>
@@ -569,7 +563,7 @@
 
     <div id="cookieBanner" class="cookie-banner">
         <p style="font-size: 0.85rem; color: var(--text-dim);">
-            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. 
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>.
             Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
         </p>
         <div style="display: flex; gap: 0.8rem;">
@@ -579,9 +573,12 @@
     </div>
 
     <script>
-        // Configuração do n8n e WhatsApp de Transbordo
-        const N8N_WEBHOOK_URL = "https://app-n8n.duckdns.org/webhook/contato-mcinfrati"; // Substitua ou use o mesmo endpoint configurado no n8n
-        const WHATSAPP_NUMERO = "5514997911398"; // Número de transbordo caso n8n caia
+        // Configurações Globais Encapsuladas
+        const N8N_WEBHOOK_URL = "https://app-n8n.duckdns.org/webhook/mcinframk";
+        const WHATSAPP_NUMERO = "5514997135218";
+
+        // [MELHORIA 5 - OFUSCAÇÃO] Reconstrução do Token a partir de array decimal ASCII em tempo de execução
+        const _gT = () => [77,105,110,104,97,67,104,97,118,101,83,101,99,114,101,116,97,84,101,99,87,111,114,107,50,48,50,54,33].map(c => String.fromCharCode(c)).join('');
 
         // Efeito do Header no Scroll
         window.addEventListener('scroll', () => {
@@ -604,33 +601,54 @@
             container.appendChild(p);
         }
 
-        // Proteção de código
+        // Proteção de código (F12, Inspect, Ctrl+U)
         document.onkeydown = function(e) {
             if(e.keyCode == 123) return false;
             if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
             if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
         }
 
-        // Máscara do WhatsApp (formato nacional brasileiro)
+        // --- LÓGICA DE INPUTS E CAPTURA DE RASCUNHOS (LOCALSTORAGE) ---
+        const nameInput = document.getElementById('name');
         const whatsInput = document.getElementById('whats');
-        whatsInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não é número
-            
-            if (value.length > 11) value = value.substring(0, 11);
-            
-            if (value.length > 10) {
-                value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7, 11)}`;
-            } else if (value.length > 5) {
-                value = `(${value.substring(0, 2)}) ${value.substring(2, 6)}-${value.substring(6, 10)}`;
-            } else if (value.length > 2) {
-                value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
-            } else if (value.length > 0) {
-                value = `(${value}`;
+        const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+
+        // [MELHORIA 2 - MÁSCARA] Função utilitária para aplicar máscara visual de telefone em tempo real
+        function aplicarMascaraTelefone(input) {
+            let v = input.value.replace(/\D/g, "");
+            if (v.length > 11) v = v.substring(0, 11);
+            if (v.length > 6) {
+                v = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
+            } else if (v.length > 2) {
+                v = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+            } else if (v.length > 0) {
+                v = `(${v}`;
             }
-            e.target.value = value;
+            input.value = v;
+        }
+
+        // Ouvintes de evento para aplicar máscara e alimentar rascunhos locais
+        whatsInput.addEventListener('input', (e) => {
+            aplicarMascaraTelefone(e.target);
+            localStorage.setItem('tw_draft_whats', e.target.value);
         });
 
-        // Submissão do Formulário via AJAX para o n8n
+        nameInput.addEventListener('input', (e) => localStorage.setItem('tw_draft_nome', e.target.value.trim()));
+        emailInput.addEventListener('input', (e) => localStorage.setItem('tw_draft_email', e.target.value.trim()));
+
+        // Carrega rascunhos persistidos se existirem na abertura da página
+        window.addEventListener('DOMContentLoaded', () => {
+            if(localStorage.getItem('tw_draft_nome')) nameInput.value = localStorage.getItem('tw_draft_nome');
+            if(localStorage.getItem('tw_draft_whats')) {
+                whatsInput.value = localStorage.getItem('tw_draft_whats');
+                aplicarMascaraTelefone(whatsInput);
+            }
+            if(localStorage.getItem('tw_draft_email')) emailInput.value = localStorage.getItem('tw_draft_email');
+        });
+
+        // --- SUBMISSÃO E CONTINGÊNCIA ---
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const btnSpinner = document.getElementById('btnSpinner');
@@ -639,24 +657,24 @@
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Ativa carregamento no botão
+            // Ativa visual de carregamento
             submitBtn.disabled = true;
             btnSpinner.style.display = 'inline-block';
             btnText.textContent = 'Enviando...';
 
-            // Coleta dados
-            const nome = document.getElementById('name').value.trim();
-            const whatsapp = whatsInput.value.replace(/\D/g, ""); // Apenas números
-            const email = document.getElementById('email').value.trim();
-            const assunto = document.getElementById('subject').value;
-            const mensagem = document.getElementById('message').value.trim();
+            // Coleta e trata os dados finais
+            const nome = nameInput.value.trim();
+            const whatsappPuro = whatsInput.value.replace(/\D/g, ""); // Remove máscara visual para a API
+            const email = emailInput.value.trim();
+            const assunto = subjectInput.value;
+            const mensagem = messageInput.value.trim();
 
             const payload = {
                 nome,
-                whatsapp,
+                whats: whatsappPuro,
                 email,
                 assunto,
-                mensagem,
+                desc: mensagem,
                 origem: "Contato_Web",
                 data: new Date().toLocaleString('pt-BR')
             };
@@ -665,7 +683,8 @@
                 const response = await fetch(N8N_WEBHOOK_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'X-Webhook-Token': _gT() // Injeta dinamicamente o Token reconstruído
                     },
                     body: JSON.stringify(payload)
                 });
@@ -674,21 +693,25 @@
                     throw new Error('Falha na resposta do servidor n8n');
                 }
 
-                // Sucesso
+                // Limpa o cache local em caso de sucesso absoluto
+                localStorage.removeItem('tw_draft_nome');
+                localStorage.removeItem('tw_draft_whats');
+                localStorage.removeItem('tw_draft_email');
+
                 showState('successState');
+
             } catch (err) {
-                console.error("Erro no envio:", err);
-                
-                // Configura link do WhatsApp para fallback
-                const textoWhats = `Olá! Tentei contato pelo site, meu nome é ${nome}. Assunto: *${assunto}*.\n\nMensagem: ${mensagem}`;
+                console.error("Erro no envio principal. Acionando contingência:", err);
+
+                // Reconstrução de texto estruturado para transbordo via WhatsApp
+                const textoWhats = `Serviço/Assunto Solicitado: *${assunto}*\nNome Cliente: ${nome}\nTelefone Wpp: ${whatsappPuro}\nE-mail: ${email}\nDescrição Solicitação: ${mensagem}`;
                 const urlWhats = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(textoWhats)}`;
-                document.getElementById('whatsappFallbackBtn').href = urlWhats;
                 
+                document.getElementById('whatsappFallbackBtn').href = urlWhats;
                 showState('errorState');
             }
         });
 
-        // Altera estados do card de formulário
         function showState(stateId) {
             document.getElementById('contactFormState').style.display = 'none';
             document.getElementById('successState').style.display = 'none';
@@ -697,17 +720,14 @@
             document.getElementById(stateId).style.display = 'block';
         }
 
-        // Volta ao formulário em caso de erro
         function retryForm() {
-            // Restaura o botão
             submitBtn.disabled = false;
             btnSpinner.style.display = 'none';
             btnText.textContent = 'Enviar Mensagem';
-
             showState('contactFormState');
         }
 
-        // --- LGPD Logic ---
+        // --- LGPD / COOKIES CONFIG ---
         window.addEventListener('DOMContentLoaded', () => {
             const consent = localStorage.getItem('lgpd_consent');
             if (!consent) {
