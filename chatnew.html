@@ -47,6 +47,12 @@
             padding: 0;
             box-sizing: border-box;
             cursor: default;
+            /* Proteção contra cópia e arrastamento via CSS */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
         body {
@@ -295,7 +301,7 @@
             text-decoration: none;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 0.95rem;
-            cursor: default;
+            cursor: pointer; /* Alterado para indicar clicável nos botões reais */
         }
 
         .btn-primary {
@@ -331,7 +337,7 @@
             border-color: #fff;
         }
 
-        /* --- OBSERVações --- */
+        /* --- OBSERVAÇÕES --- */
         .info-box {
             background: rgba(255, 255, 255, 0.01);
             border: 1px solid var(--border);
@@ -368,13 +374,13 @@
         }
 
         .footer-brand p { 
-            color: var(--text-dim); 
+            color: var(--text-dim);
             max-width: 350px;
             font-size: 0.95rem; 
         }
 
         .footer-col h4 { 
-            margin-bottom: 1.2rem; 
+            margin-bottom: 1.2rem;
             font-family: 'Space Grotesk', sans-serif;
             color: #fff; 
         }
@@ -388,10 +394,11 @@
         }
         
         .footer-col ul a { 
-            color: var(--text-dim); 
+            color: var(--text-dim);
             text-decoration: none; 
             transition: 0.3s; 
             font-size: 0.9rem;
+            cursor: pointer;
         }
         
         .footer-col ul a:hover { 
@@ -440,24 +447,20 @@
             nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
             main { padding-top: 100px; }
-            
             section { padding: 40px 1.5rem 40px; }
             .section-header { margin-bottom: 2.5rem; }
             .subtitle { margin-top: -1.5rem; margin-bottom: 2.5rem; }
-            
             .pricing-grid, .features-grid { grid-template-columns: 1fr; }
             .card { padding: 2rem 1.5rem; }
-            
             .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
             .footer-brand p { margin: 0 auto; }
             .footer-bottom { justify-content: center; text-align: center; }
-            
             .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
             .cookie-banner .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
 
     <div class="bg-wrapper"></div>
 
@@ -548,7 +551,7 @@
                         <li>Suporte Dedicado 24/7</li>
                         <li>Campanhas e Disparos Ilimitados</li>
                         <li>Chatbot Avançado com Integrações</li>
-                        <li>API de Integração Externa</li>
+                        <li>Integrações de API Advanced</li>
                     </ul>
                     <a href="https://wa.me/5514997135218" target="_blank" class="btn btn-primary">Contratar Premium</a>
                 </div>
@@ -556,8 +559,8 @@
 
             <div class="info-box">
                 <p>
-                    * Os valores de implantação e hospedagem técnica (se aplicáveis ao projeto) são cobrados de forma única no ato da assinatura. <br>
-                    * A partir do segundo mês consecutivo, cobra-se estritamente o valor da recorrência mensal fixa do plano selecionado. <br><br>
+                    * Os valores de implantação e hospedagem técnica (se aplicáveis ao projeto) são cobrados de forma única no ato da assinatura.<br>
+                    * A partir do segundo mês consecutivo, cobra-se estritamente o valor da recorrência mensal fixa do plano selecionado.<br><br>
                     <strong>Nota informativa:</strong> Este documento web visa apresentar planos comerciais de maneira clara, objetiva e prática, não substituindo ou possuindo validade de contrato de prestação de serviços formal.
                 </p>
             </div>
@@ -623,12 +626,35 @@
             else header.classList.remove('scrolled');
         });
 
-        // Proteção de código (Bloqueio F12 / Atalhos de inspeção)
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-        }
+        // --- BLINDAGEM CONTRA CLONAGEM E COPIA/COLA ---
+        
+        // Bloqueio Avançado de Teclas e Atalhos
+        document.addEventListener('keydown', function(e) {
+            // F12
+            if (e.keyCode === 123) { e.preventDefault(); return false; }
+            // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) { e.preventDefault(); return false; }
+            // Ctrl+U (Ver Código Fonte)
+            if (e.ctrlKey && e.keyCode === 85) { e.preventDefault(); return false; }
+            // Ctrl+S (Salvar Página)
+            if (e.ctrlKey && e.keyCode === 83) { e.preventDefault(); return false; }
+            // Ctrl+P (Imprimir)
+            if (e.ctrlKey && e.keyCode === 80) { e.preventDefault(); return false; }
+        });
+
+        // Anti-DevTools Dinâmico (Debugger Loop)
+        // Trava a execução do browser caso o espertinho consiga abrir o inspecionar elemento
+        setInterval(function() {
+            const startTime = +new Date();
+            debugger;
+            const endTime = +new Date();
+            if (endTime - startTime > 100) {
+                document.body.innerHTML = '<h1 style="color:white; text-align:center; margin-top:20%;">Acesso protegido. Proteção de propriedade intelectual ativa.</h1>';
+            }
+        }, 100);
+
+        // Bloqueio Extra de Arrastar Elementos via JS
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); });
 
         // LGPD Logic
         window.addEventListener('DOMContentLoaded', () => {
