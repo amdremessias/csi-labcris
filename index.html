@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang=\"pt-BR\">
 <head>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         
         // Define o consentimento inicial como negado para proteção de dados
-        gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'analytics_storage': 'denied',
-            'wait_for_update': 500
+        gtag('consent', 'default', {\
+            'ad_storage': 'denied',\
+            'ad_user_data': 'denied',\
+            'ad_personalization': 'denied',\
+            'analytics_storage': 'denied',\
+            'wait_for_update': 500\
         });
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR"></script>
+    <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR\"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag( ){dataLayer.push(arguments);}
@@ -22,834 +22,641 @@
         gtag('config', 'G-QXH6T9RBGR');
     </script>
     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Softwares e Serviços de TI da MC Infra TI - Soluções Tecnológicas de Alta Performance">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
-    <title>MC infra TI</title>
-    <script defer src="https://umami-lab.duckdns.org/script.js" data-website-id="a5d990bb-dfec-4465-b08f-07f8343e17f9"></script>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <meta name=\"description\" content=\"Softwares e Serviços de TI da MC Infra TI - Soluções Tecnológicas de Alta Performance\">
+    <link href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap\" rel=\"stylesheet\">
+    
+    <title>MC Infra TI - Soluções em TI</title>
+    
     <style>
         :root {
-            --accent: #00FF66;
-            --accent-glow: rgba(0, 255, 102, 0.4 );
-            --bg: #020202;
-            --surface: rgba(255, 255, 255, 0.03);
-            --surface-bright: rgba(255, 255, 255, 0.08);
-            --text: #FFFFFF;
-            --text-dim: #B0B0B0;
-            --border: rgba(255, 255, 255, 0.1);
-            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+            --bg-primary: #0b0f19;
+            --bg-secondary: #111827;
+            --accent-blue: #2563eb;
+            --accent-purple: #7c3aed;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --glow-blue: rgba(37, 99, 235, 0.2);
+            --glow-purple: rgba(124, 58, 237, 0.2);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: default;
-            /* --- SEGURANÇA: Bloqueia a seleção de texto e elementos em todos os navegadores --- */
-            -webkit-user-select: none;  /* Safari */
-            -moz-user-select: none;     /* Firefox */
-            -ms-user-select: none;      /* IE10+/Edge */
-            user-select: none;          /* Padrão */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.5;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
-        /* --- BACKGROUND DINÂMICO --- */
-        .bg-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.05) 0%, transparent 40%);
-        }
-
-        .bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg' ) center/cover no-repeat;
-            opacity: 0.15;
-            filter: saturate(0.5) brightness(0.5);
-        }
-
-        /* NOVA ANIMAÇÃO: DATA STREAM (MATRIX) */
-        canvas#dataStream {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.12;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* --- HEADER PREMIUM --- */
+        /* Header e Navegação */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 0;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             z-index: 1000;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
 
-        header.scrolled {
-            background: rgba(2, 2, 2, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav {
-            max-width: 1300px;
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
-        .logo-text {
+        .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            background: var(--gradient);
+            background: linear-gradient(135deg, #fff 30%, var(--text-muted) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
         }
 
         .nav-links {
             display: flex;
-            gap: 0.5rem;
-            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-dim);
+            color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            transition: 0.3s;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--text);
-            background: var(--surface);
+            color: var(--text-main);
         }
 
-        /* --- HERO SECTION --- */
-        #hero {
+        /* Botões */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--glow-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
             position: relative;
-            padding: 120px 1.5rem 60px;
+            padding: 8rem 2rem 4rem 2rem;
+            background: radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 10% 90%, rgba(124, 58, 237, 0.05) 0%, transparent 40%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
         }
 
         .hero-content {
-            text-align: center;
-            max-width: 1000px;
-            z-index: 1;
+            max-width: 700px;
         }
 
         .badge {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            color: #60a5fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
         }
 
-        #hero h1 {
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(59, 130, 246, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-size: 4rem;
+            line-height: 1.1;
             font-weight: 700;
-            line-height: 1;
+            letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
-
-        #hero h1 span {
-            display: block;
-            background: var(--gradient);
+            background: linear-gradient(135deg, #fff 40%, #9ca3af 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        #hero p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            color: var(--text-dim);
-            max-width: 650px;
-            margin: 0 auto 2.5rem;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 540px;
         }
 
-        /* --- BOTÕES --- */
-        .btn {
-            display: inline-flex;
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
             align-items: center;
-            padding: 1rem 2.5rem;
-            border-radius: 100px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Hero Graphic */
+        .hero-graphic {
             position: relative;
-            overflow: hidden;
-            font-size: 0.95rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .btn-primary {
-            background: var(--text);
-            color: var(--bg);
+        .tech-stack-circle {
+            width: 380px;
+            height: 380px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: rotate 60s linear infinite;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        /* --- SEÇÕES --- */
-        section {
-            padding: 100px 1.5rem;
-            max-width: 1300px;
+        .center-glow {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--accent-blue);
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .tech-node {
+            position: absolute;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            animation: counter-rotate 60s linear infinite;
+        }
+
+        @keyframes counter-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        /* Posicionamento dos nós tecnológios */
+        .node-1 { top: -20px; left: 50%; transform: translateX(-50%); }
+        .node-2 { right: -20px; top: 50%; transform: translateY(-50%); }
+        .node-3 { bottom: -20px; left: 50%; transform: translateX(-50%); }
+        .node-4 { left: -20px; top: 50%; transform: translateY(-50%); }
+
+        .tech-node svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-muted);
+        }
+
+        /* Seção de Serviços / Soluções */
+        .services {
+            padding: 8rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
         }
 
         .section-header {
-            margin-bottom: 4rem;
             text-align: center;
+            max-width: 600px;
+            margin: 0 auto 5rem auto;
         }
 
         .section-header h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            letter-spacing: -1.5px;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .section-header h2 span {
-            color: var(--accent);
-        }
-
-        /* --- GRID DE SERVIÇOS --- */
-        .services-grid {
+        .grid-services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+        .service-card {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 2.5rem;
-            border-radius: 24px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            background: var(--surface-bright);
-            border-color: var(--accent);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .card h3 a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .card p {
-            color: var(--text-dim);
-            font-size: 1rem;
-        }
-
-        /* --- FLUXO DE TRABALHO --- */
-        .flow-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-
-        .flow-card {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: 0.3s;
-        }
-
-        .flow-card:hover {
-            border-color: var(--accent);
-        }
-
-        .flow-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            opacity: 0.4;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        /* --- SLIDER PREMIUM --- */
-        .slider-wrapper {
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            overflow: hidden;
-            padding: 2rem 0;
-        }
-
-        .slider-track {
-            display: flex;
-            width: calc(320px * 14);
-            animation: scroll 40s linear infinite;
-        }
-
-        .slide {
-            width: 320px;
-            padding: 0 0.8rem;
-        }
-
-        .slide-inner {
-            height: 400px;
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid var(--border);
-        }
-
-        .slide-inner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slide-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-320px * 7)); }
-        }
-
-        /* --- ESTILOS DA SEÇÃO DE PUBLICIDADE/CONSCIENTIZAÇÃO --- */
-        .pub-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .pub-text h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-        }
-        .pub-text p {
-            color: var(--text-dim);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-        .pub-text p strong {
-            color: var(--text);
-        }
-        .pub-features {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .pub-item {
-            display: flex;
-            gap: 1rem;
-            background: var(--surface);
-            padding: 1.5rem;
             border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
-        .pub-item:hover {
-            border-color: var(--accent);
-            background: var(--surface-bright);
+
+        .service-card:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .pub-item-icon {
-            font-size: 1.8rem;
-            line-height: 1;
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue);
         }
-        .pub-item-info h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
-        .pub-item-info p {
-            color: var(--text-dim);
+
+        .service-card p {
+            color: var(--text-muted);
             font-size: 0.95rem;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            padding: 80px 1.5rem 40px;
-            background: #000;
-            border-top: 1px solid var(--border);
+        /* Banner de Diagnóstico */
+        .diagnostico-banner {
+            margin: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(11, 15, 25, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .footer-grid {
-            max-width: 1300px;
+        .diagnostico-container {
+            max-width: 1100px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .footer-brand img {
-            max-width: 160px;
-            margin-bottom: 1.5rem;
-            filter: brightness(1.2);
-        }
-
-        .footer-brand p { color: var(--text-dim); max-width: 350px; font-size: 0.95rem; }
-
-        .footer-col h4 { margin-bottom: 1.2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 0.6rem; }
-        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
-        .footer-col ul a:hover { color: var(--accent); }
-
-        .footer-bottom {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
         }
 
+        .diagnostico-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .diagnostico-text p {
+            color: var(--text-muted);
+            max-width: 600px;
+        }
+
+        .diagnostico-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-purple);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 4rem 2rem;
+            background: #080c14;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            h1 { font-size: 3rem; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-subtitle { margin-left: auto; margin-right: auto; }
+            .hero-cta { justify-content: center; }
+            .hero-graphic { display: none; }
+            .diagnostico-container { flex-direction: column; text-align: center; gap: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .diagnostico-banner { padding: 2.5rem; }
+            h1 { font-size: 2.5rem; }
+        }
+
+        /* Estilos do Banner de Cookies */
         .cookie-banner {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            right: 2rem;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            padding: 1.5rem 2rem;
-            border-radius: 20px;
-            z-index: 9999;
+            bottom: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 10000;
+            transition: bottom 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cookie-banner.active {
+            bottom: 24px;
+        }
+
+        .cookie-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 1.5rem;
-            transform: translateY(200%);
-            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            gap: 0.5rem;
         }
 
-        .cookie-banner.active { transform: translateY(0); }
-
-        /* --- RESPONSIVIDADE SMARTPHONE --- */
-        @media (max-width: 768px) {
-            header { padding: 1rem 0; }
-            nav { padding: 0 1.5rem; }
-            .nav-links { display: none; }
-            
-            #hero { padding-top: 100px; }
-            #hero h1 { font-size: 3rem; }
-            #hero p { font-size: 1rem; margin-bottom: 2rem; }
-            
-            section { padding: 60px 1.5rem; }
-            .section-header { margin-bottom: 2.5rem; }
-            
-            .services-grid { grid-template-columns: 1fr; }
-            .card { padding: 2rem; }
-            
-            .flow-container { grid-template-columns: 1fr; }
-            .flow-card { padding: 1.5rem; }
-            
-            .pub-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .pub-text h3 { font-size: 1.8rem; text-align: center; }
-            
-            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
-            .footer-brand p { margin: 0 auto; }
-            .footer-bottom { justify-content: center; text-align: center; }
-            
-            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
-            .cookie-banner .btn { width: 100%; justify-content: center; }
+        .cookie-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
         }
 
-        @media (max-width: 480px) {
-            #hero h1 { font-size: 2.5rem; }
-            .section-header h2 { font-size: 1.8rem; }
-            .btn { padding: 0.8rem 2rem; width: 100%; justify-content: center; }
+        .cookie-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .cookie-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cookie-accept {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+        }
+
+        .cookie-accept:hover {
+            background: #1d4ed8;
+        }
+
+        .cookie-reject {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cookie-reject:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
         }
     </style>
 </head>
-<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
+<body>
 
-    <div class="bg-wrapper">
-        <div class="bg-image"></div>
-    </div>
-
-    <canvas id="dataStream"></canvas>
-
-    <header id="mainHeader">
-        <nav>
-            <div class="logo-text">MC INFRA TI</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#publicidade">Vantagens</a></li>
-                <li><a data-umami-event="Clique-Contato-top" href="contactmcinfra.html">Contato</a></li>
-                <li><a data-umami-event="Clique-Sobre-top" href="portf.html">Sobre</a></li>
-                <li><a data-umami-event="Clique-Blog-top" href="blog.html">Blog</a></li> 
-            </ul>
-        </nav>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                MC Infra <span>TI</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#solucoes">Soluções</a>
+                <a href="#diagnostico">Diagnóstico</a>
+                <a href="https://m3ss14s.goatcounter.com" target="_blank">Analytics</a>
+            </nav>
+            <button id="btn-comece-agora-nav" class="btn-primary">
+                Comece Agora
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
     </header>
 
-    <main>
-        <section id="hero">
+    <section class="hero">
+        <div class="hero-container">
             <div class="hero-content">
-                <span class="badge">Inovação em TI</span>
-                <h1>Atendimento <span>Turbinado</span> no WhatsApp</h1>
-                <p>Transforme a comunicação da sua empresa com o Novo Chat. Suporte rápido, eficiente e totalmente personalizado para o seu negócio.</p>
-                <a href="#about" class="btn btn-primary">Começar Agora</a>
-            </div>
-        </section>
-
-        <section id="about">
-            <div class="section-header">
-                <h2>O Que é o <span>Novo Chat?</span></h2>
-                <p style="max-width: 800px; margin: 0 auto; color: var(--text-dim); font-size: 1.1rem;">
-                    O Novo Chat é a solução definitiva para suporte rápido, eficiente e personalizado. Resolva problemas com agilidade e fidelize seus clientes com uma plataforma desenhada para o futuro.
-                </p>
-            </div>
-            <div style="text-align: center;">
-                <a href="chatnew.html" data-umami-event="NovoChat-Conhecer" class="btn btn-primary" style="background: var(--accent); color: #000;">Conhecer Solução</a>
-            </div>
-        </section>
-
-        <section id="services">
-            <div class="section-header">
-                 <h2>Nossos <span>Serviços</span></h2>
-            </div>
-            <div class="services-grid">
-                <article class="card">
-                    <span class="card-icon">💬</span>
-                    <h3><a data-umami-event="Clique-NovoChat-Service" href="chatnew.html">Novo Chat</a></h3>
-                    <p>Centralize seu atendimento via WhatsApp com inteligência e automação de ponta.</p>
-                </article>
-                <article class="card">
-                    <span class="card-icon">📅</span>
-                    <h3><a data-umami-event="Clique-Scrum" href="scrumlab.html">Quadro Scrum</a></h3>
-                    <p>Quadro de Tarefas Colaborativo Uma solução completa para organizar tarefas, otimizar fluxos de trabalho e impulsionar a colaboração da sua equipe.</p>
-                </article>
-                <article class="card">
-                    <span class="card-icon">🖥️</span>
-                     <h3><a data-umami-event="Clique-Service-IT" href="itservices.html">Serviços de TI</a></h3>
-                    <p>Serviços de TI para Computadores Notebook e Servidores Garantimos a performance e segurança da sua infraestrutura tecnológica com suporte especializado.</p>
-                </article>
-                <article class="card">
-                     <span class="card-icon">👁️</span>
-                    <h3><a data-umami-event="Clique-Sentinela" href="thesentinel.html">Sentinela CFTV</a></h3>
-                    <p>Solução de Vigilância por vídeo, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real Proteja sua empresa e residência com tecnologia de ponta em monitoramento inteligente e backup em nuvem.</p>
-               </article>
-                <article class="card">
-                    <span class="card-icon">✍️</span>
-                    <h3><a data-umami-event="Clique-Aceite-Service" href="aceiteaprove.html">Assine Digital</a></h3>
-                    <p>Assinatura Digital para documents, Rapido, Seguro e eficiente Assine Documentos com Validade Jurídica em Segundos A plataforma definitiva para envio. Simples, seguro e onde você estiver.</p>
-                </article>
-                <article class="card">
-                    <span class="card-icon">🛠️</span>
-                    <h3><a href="novaos.html">Nova OS</a></h3>
-                    <p>Gerencie Ordens de Serviços, Clientes e Orçamentos, Base de dados centralizada com histórico de serviços Venda direta de balcão integrada ao estoque. Gerencie vendas de produtos junto aos serviços de mão de obra.</p>
-                </article>
-                <article class="card">
-                    <span class="card-icon">🔐</span>
-                    <h3><a data-umami-event="Clique-Cofre" href="cofre.html">Cofre de Senhas</a></h3>
-                    <p>Mantenha suas senhas de acessos protegidas em um cofre de acesso Restrito, compartilhe acessos de maneira segura para membros da sua empresa</p>
-                </article>
-                <article class="card">
-                    <span class="card-icon">📈</span>
-                    <h3><a href="cofre.html">ERP-PDV</a></h3>
-                    <p>Gestão para Bares e Restaurantes Gerencie suas vendas com facilidade e precisão, obtenha relatório de caixa e movimentações.</p>
-                </article>
-                <article class="card">
-                    <span class="card-icon">🌍</span>
-                    <h3><a data-umami-event="Clique-Build-Site" href="buildsite.html">Criar Site</a></h3>
-                    <p>Simplificamos a criação do seu site, Pare de perder tempo e dinheiro com soluções que não funcionam. Nós da MC Infra TI simplificamos a criação do seu site, entregando uma presença online profissional, rápida e acessível — sem burocracia ou complicações.</p>
-                </article>
-                <article class="card">
-                    <span class="card-icon">🛡️</span>
-                    <h3><a data-umami-event="Clique-ScabVul" href="scanvul.html">Power Scan</a></h3>
-                    <p>Identifique falhas em servidores Linux e Windows com análise de CVES e saneamento completo.</p>
-                </article>
-                <article class="card">
-                    <span class="card-icon">💾</span>
-                    <h3><a data-umami-event="Clique-BKP-Service" href="backupservice.html">Backup Server</a></h3>
-                    <p>Servidor Pessoal Seguro e Confiavel Sincronize automaticamente fotos e vídeos do seu Android ou iOS em seu próprio servidor de backup privado.</p>
-                </article>
-                <article class="card">
-                     <span class="card-icon">⚡</span>
-                    <h3><a data-umami-event="Clique-Service-MK" href="mkplaceupshow.html">Serviço Certo</a></h3>
-                    <p>Encontre Operador Técnico ideal para cada problema, Qualidade é a nossa prioridade.</p>
-                </article>
-                <article class="card">
-                     <span class="card-icon">🚨</span>
-                    <h3><a data-umami-event="Service-Watch-Zone" href="watchzone.html">Watch-Zone</a></h3>
-                    <p>Proteja o que mais importa com o WatchZone Monitoramento disparo por imagem instantâneo.</p>
-                </article>
-            </div>
-             <div style="text-align: center; margin-top: 2.5rem;">
-                <a data-umami-event="Conhecer-Mais-Solucoes" href="services.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Conhecer mais Soluções</a>
-            </div>
-        </section>
-
-        <section id="fluxo">
-            <div class="section-header">
-                <h2>Fluxo <span>Inteligente</span></h2>
-            </div>
-            <div class="flow-container">
-                <div class="flow-card"><span class="flow-num">01</span><h3>Solicitação</h3><p>Encontre o Serviço Ideal.</p></div>
-                <div class="flow-card"><span class="flow-num">02</span><h3>Briefing</h3><p>Reunião de alinhamento via Call Online ou presencial.</p></div>
-                <div class="flow-card"><span class="flow-num">03</span><h3>Orçamento</h3><p>Receba propostas rápidas e claras.</p></div>
-                <div class="flow-card"><span class="flow-num">04</span><h3>Aprovação</h3><p>Analise e aprove a proposta da solução ideal para seu negocio.</p></div>
-                <div class="flow-card"><span class="flow-num">05</span><h3>Finalização</h3><p>Avalie e pague com total segurança, Implantação Prioritaria.</p></div>
-                <div class="flow-card"><span class="flow-num">06</span><h3>Pós-Venda</h3><p>Acompanhamento Técnico dedicado.</p></div>                
-            </div>
-            <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="contactmcinfra.html" data-umami-event="Botao-Comecar-Agora" class="btn btn-primary" style="background: var(--accent); color: #000;">Comece agora mesmo!</a>
-            </div>
-        </section>
-
-        <section id="galeria" style="padding: 100px 0;">
-            <div class="section-header">
-                <h2>Nosso <span>Portfólio</span></h2>
-            </div>
-            <div class="slider-wrapper">
-                <div class="slider-track">
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/CFTV_01-1.webp" alt="Segurança CFTV" ondragstart="return false;"><div class="slide-overlay"><h3>Video Segurança</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/Monitoramento-de-Servidores.webp" alt="Monitoramento de Servidores" ondragstart="return false;"><div class="slide-overlay"><h3>Monitoramento de Servidores</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass1.jpg" alt="Assinatura Digital" ondragstart="return false;"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/barrest.png" alt="Bar e Restaurante" ondragstart="return false;"><div class="slide-overlay"><h3>Bar e Restaurante</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp1.jpg" alt="Backups" ondragstart="return false;"><div class="slide-overlay"><h3>Backups</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software" ondragstart="return false;"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os1.png" alt="Ordens de Serviços" ondragstart="return false;"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/tihomeservice.webp" alt="T I Services" ondragstart="return false;"><div class="slide-overlay"><h3>T I Services</h3></div></div></div>                    
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento" ondragstart="return false;"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat" ondragstart="return false;"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S" ondragstart="return false;"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp2.jpeg" alt="Backup Server" ondragstart="return false;"><div class="slide-overlay"><h3>Backup Server</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/buildsite.jpg" alt="Construir Site" ondragstart="return false;"><div class="slide-overlay"><h3>Construir Site</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas" ondragstart="return false;"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal" ondragstart="return false;"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software" ondragstart="return false;"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
+                <div class="badge">
+                    <div class="badge-dot"></div>
+                    Disponibilidade & Performance
+                </div>
+                <h1>Infraestrutura de TI Avançada e Sob Medida.</h1>
+                <p class="hero-subtitle">Desenhamos, implementamos e monitoramos ambientes computacionais de alta performance para manter seu negócio produtivo e seguro.</p>
+                <div class="hero-cta">
+                    <button id="btn-comece-agora-hero" class="btn-primary">
+                        Comece agora mesmo
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <a href="#solucoes" class="btn-secondary">Conhecer Soluções</a>
                 </div>
             </div>
-      </section>
-
-        <section id="publicidade">
-            <div class="section-header">
-                <h2>Tecnologia que de fato <span>Gera Lucro</span></h2>
-            </div>
-            <div class="pub-grid">
-                <div class="pub-text">
-                    <h3>Sua empresa está perdendo dinheiro com processos lentos e TI amadora?</h3>
-                    <p>No cenário atual, depender de sistemas instáveis, planilhas bagunçadas ou atendimentos manuais demorados é o caminho mais rápido para perder espaço no mercado.</p>
-                    <p>A <strong>MC Infra TI</strong> desenvolve softwares inteligentes e estrutura serviços de TI sob medida para acabar de vez com a ineficiência do seu negócio. Nós não apenas resolvemos problemas técnicos: nós blindamos sua operação e criamos caminhos para sua empresa escalar.</p>
-                    <p>Pare de apagar incêndios e gaste seu tempo com o que realmente importa: <strong>o crescimento da sua empresa.</strong></p>
-                    <div style="margin-top: 2rem;">
-                        <a href="contactmcinfra.html" data-umami-event="Contato-Button" class="btn btn-primary" style="background: var(--accent ); color: #000;">Fazer Diagnóstico Gratuito</a>
+            
+            <div class="hero-graphic">
+                <div class="center-glow"></div>
+                <div class="tech-stack-circle">
+                    <div class="tech-node node-1">
+                        <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+                    </div>
+                    <div class="tech-node node-2">
+                        <svg viewBox="0 0 24 24"><path d="M16 6l4 14H4L8 6l4 4z"/></svg>
+                    </div>
+                    <div class="tech-node node-3">
+                        <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+                    </div>
+                    <div class="tech-node node-4">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
                     </div>
                 </div>
-                <div class="pub-features">
-                    <div class="pub-item">
-                        <div class="pub-item-icon">🚀</div>
-                        <div class="pub-item-info">
-                            <h4>Softwares Sob Medida</h4>
-                            <p>Automações de atendimento, controle de ordens de serviço e plataformas integradas que reduzem erros humanos a zero.</p>
-                        </div>
-                    </div>
-                    <div class="pub-item">
-                        <div class="pub-item-icon">🛡️</div>
-                        <div class="pub-item-info">
-                            <h4>Infraestrutura Inabalável</h4>
-                            <p>Monitoramento preventivo de servidores, varredura rigorosa de vulnerabilidades e backup automatizado para você nunca perder dados vitais.</p>
-                        </div>
-                    </div>
-                    <div class="pub-item">
-                        <div class="pub-item-icon">📊</div>
-                        <div class="pub-item-info">
-                            <h4>Decisões Baseadas em Dados</h4>
-                            <p>Sistemas eficientes de gestão (PDV/ERP) que organizam seu fluxo financeiro e apontam onde estão seus maiores gargalos de lucro.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
-                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Links Úteis</h4>
-                <ul>
-                    <li><a data-umami-event="Clique-Privacidade" data-umami-event-posicao="Rodape" href="privacidade.html">Política de Privacidade</a></li>
-                    <li><a data-umami-event="Clique-Termos" data-umami-event-posicao="Rodape" href="termos.html">Termos de Uso</a></li>
-                    <li><a data-umami-event="Clique-Cookies" data-umami-event-posicao="Rodape" href="cookiesone.html">Política de Cookies</a></li>
-                    <li><a data-umami-event="Clique-Titulares" data-umami-event-posicao="Rodape" href="titulares.html">Direitos do Titular</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contato</h4>
-                <ul>
-                    <li>messias.consultoria@yahoo.com</li>
-                    <li>Suporte 24/7</li>
-                    <li>Brasil</li>
-                </ul>
             </div>
         </div>
-       
-        <div class="footer-bottom">
-             <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
-            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+    </section>
+
+    <section id="solucoes" class="services">
+        <div class="section-header">
+            <h2>Nossas Especialidades</h2>
+            <p style="color: var(--text-muted)">Soluções completas baseadas em tecnologias consolidadas do mercado corporativo.</p>
+        </div>
+        
+        <div class="grid-services">
+            <div class="service-card">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M4 12h16M4 17v3h16M12 4v16"/></svg>
+                </div>
+                <h3>Arquitetura de Redes</h3>
+                <p>Projetos estruturados, segmentação de redes corporativas, roteamento dinâmico e VPNs seguras para interconexão de filiais.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                </div>
+                <h3>Virtualização & Cloud</h3>
+                <p>Consolidação de servidores utilizando Proxmox VE e VMware ESXi. Otimização de recursos físicos com máxima tolerância a falhas.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                </div>
+                <h3>Monitoramento Ativo</h3>
+                <p>Implementação de plataformas Zabbix e Grafana para visibilidade em tempo real de ativos de rede, serviços e servidores.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="diagnostico">
+        <div class="diagnostico-banner">
+            <div class="diagnostico-container">
+                <div class="diagnostico-text">
+                    <h3>Sua TI está pronta para crescer?</h3>
+                    <p>Solicite uma análise técnica inicial da sua topologia de rede e servidores sem custos. Identifique gargalos antes que eles virem problemas.</p>
+                </div>
+                <button id="btn-diagnostico-gratuito" class="btn-primary">
+                    Fazer Diagnóstico Gratuito
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>Otimizado para Ambientes de Alta Performance.</p>
         </div>
     </footer>
 
     <div id="cookieBanner" class="cookie-banner">
-        <p style="font-size: 0.85rem; color: var(--text-dim );">
-            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
-        </p>
-        <div style="display: flex; gap: 0.8rem;">
-            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--surface); color: #fff; border: 1px solid var(--border); font-size: 0.8rem;" onclick="respondCookies(false)">Recusar</button>
-            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--accent); color: #000; font-size: 0.8rem;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        <div class="cookie-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10H12V2z" opacity="0.3"/></svg>
+            Privacidade e Cookies
+        </div>
+        <div class="cookie-text">
+            Utilizamos ferramentas de análise analítica para melhorar sua experiência em nosso site. Seus dados de navegação são tratados com total segurança.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="handleConsent(false)">Recusar</button>
+            <button class="cookie-btn cookie-accept" onclick="handleConsent(true)">Aceitar Todos</button>
         </div>
     </div>
 
     <script>
-        // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('mainHeader');
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-
-        // NOVA ANIMAÇÃO: DATA STREAM (MATRIX)
-        const canvas = document.getElementById('dataStream');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const characters = '01';
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = [];
-        for (let i = 0; i < columns; i++) {
-            drops[i] = 1;
-        }
-
-        function draw() {
-            ctx.fillStyle = 'rgba(2, 2, 2, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#00FF66';
-            ctx.font = fontSize + 'px Space Grotesk';
-            for (let i = 0; i < drops.length; i++) {
-                const text = characters.charAt(Math.floor(Math.random() * characters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(draw, 50);
-
-        // Proteção de código
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-            /* --- SEGURANÇA EXTRA: Bloqueia Ctrl+C, Ctrl+X e Ctrl+A --- */
-            if(e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'X'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) return false;
-        }
-
-        /* --- SEGURANÇA EXTRA: Intercepta e cancela a ação nativa de cópia/recorte via Teclado/Mouse --- */
-        document.addEventListener('copy', (e) => { e.preventDefault(); });
-        document.addEventListener('cut', (e) => { e.preventDefault(); });
-
-        // LGPD Logic
-        window.addEventListener('DOMContentLoaded', () => {
+        // Verificação de Consentimento LGPD existente
+        document.addEventListener('DOMContentLoaded', () => {
             const consent = localStorage.getItem('lgpd_consent');
             if (!consent) {
-                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+                setTimeout(() => {
+                    document.getElementById('cookieBanner').classList.add('active');
+                }, 1000);
             } else if (consent === 'accepted_all') {
                 updateGoogleConsent(true);
                 loadTrackingScripts();
             }
         });
 
-        function respondCookies(acceptAll) {
+        function handleConsent(acceptAll) {
             const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
             localStorage.setItem('lgpd_consent', consentStatus);
             if(acceptAll) {
@@ -861,7 +668,6 @@
             document.getElementById('cookieBanner').classList.remove('active');
         }
 
-        // Função para atualizar o consentimento do Google
         function updateGoogleConsent(accepted) {
             if (typeof gtag === 'function') {
                 gtag('consent', 'update', {
@@ -882,6 +688,63 @@
                 script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count' );
                 document.body.appendChild(script);
             }
+        }
+
+        /* ==========================================================================
+           AUTOMAÇÃO N8N & WHATSAPP INTEGRADA (Baseada em MCinfraTI-MkShowUP-Base)
+           ========================================================================== */
+        
+        // Mapeamento dos botões solicitados e suas respectivas ações/contextos
+        const botoesAutomacao = [
+            { id: 'btn-comece-agora-nav', origem: 'Header - Comece Agora' },
+            { id: 'btn-comece-agora-hero', origem: 'Hero - Comece agora mesmo' },
+            { id: 'btn-diagnostico-gratuito', origem: 'Seção Diagnóstico - Fazer Diagnostico Gratuito' }
+        ];
+
+        botoesAutomacao.forEach(botao => {
+            const el = document.getElementById(botao.id);
+            if (el) {
+                el.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dispararAutomacao(botao.origem);
+                });
+            }
+        });
+
+        function dispararAutomacao(origemBotao) {
+            // URL do Webhook do n8n extraído do arquivo base
+            const webhookUrl = 'https://n8n.mcinfrati.com.br/webhook/a5cb04d1-f8ef-4da3-b09a-6663cefa2bf5';
+            
+            // Dados estruturados para o n8n contendo o contexto da página e do botão clicado
+            const payload = {
+                origem: origemBotao,
+                pagina: 'Home Page',
+                timestamp: new Date().toISOString(),
+                url_origem: window.location.href
+            };
+
+            // Envio assíncrono para o n8n usando a mesma estrutura de segurança/cabeçalhos da sua base
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                console.log('Automação registrada com sucesso no n8n.');
+            })
+            .catch(error => {
+                console.error('Erro ao registrar dados no n8n:', error);
+            })
+            .finally(() => {
+                // Redirecionamento instantâneo para o WhatsApp utilizando a API oficial configurada na base
+                const telefoneWpp = '5514997135218';
+                const mensagemTexto = `Olá! Cliquei no botão "${origemBotao}" na sua página e gostaria de entender mais sobre as Soluções de TI de alta performance.`;
+                const urlWhatsapp = `https://api.whatsapp.com/send?phone=${telefoneWpp}&text=${encodeURIComponent(mensagemTexto)}`;
+                
+                window.location.href = urlWhatsapp;
+            });
         }
     </script>
 </body>
