@@ -14,7 +14,6 @@
             'wait_for_update': 500
         });
     </script>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -48,6 +47,11 @@
             padding: 0;
             box-sizing: border-box;
             cursor: default;
+            /* --- SEGURANÇA: Bloqueia a seleção de texto e elementos em todos os navegadores --- */
+            -webkit-user-select: none;  /* Safari */
+            -moz-user-select: none;     /* Firefox */
+            -ms-user-select: none;      /* IE10+/Edge */
+            user-select: none;          /* Padrão */
         }
 
         body {
@@ -530,13 +534,12 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
 
     <div class="bg-wrapper">
         <div class="bg-image"></div>
     </div>
 
-    <!-- NOVA ANIMAÇÃO: DATA STREAM -->
     <canvas id="dataStream"></canvas>
 
     <header id="mainHeader">
@@ -576,7 +579,7 @@
 
         <section id="services">
             <div class="section-header">
-                <h2>Nossos <span>Serviços</span></h2>
+                 <h2>Nossos <span>Serviços</span></h2>
             </div>
             <div class="services-grid">
                 <article class="card">
@@ -591,18 +594,18 @@
                 </article>
                 <article class="card">
                     <span class="card-icon">🖥️</span>
-                    <h3><a data-umami-event="Clique-Service-IT" href="itservices.html">Serviços de TI</a></h3>
+                     <h3><a data-umami-event="Clique-Service-IT" href="itservices.html">Serviços de TI</a></h3>
                     <p>Serviços de TI para Computadores Notebook e Servidores Garantimos a performance e segurança da sua infraestrutura tecnológica com suporte especializado.</p>
                 </article>
                 <article class="card">
-                    <span class="card-icon">👁️</span>
+                     <span class="card-icon">👁️</span>
                     <h3><a data-umami-event="Clique-Sentinela" href="thesentinel.html">Sentinela CFTV</a></h3>
                     <p>Solução de Vigilância por vídeo, com monitoramento avançado, armazenamento em nuvem seguro e acesso remoto em tempo real Proteja sua empresa e residência com tecnologia de ponta em monitoramento inteligente e backup em nuvem.</p>
-                </article>
+               </article>
                 <article class="card">
                     <span class="card-icon">✍️</span>
                     <h3><a data-umami-event="Clique-Aceite-Service" href="aceiteaprove.html">Assine Digital</a></h3>
-                    <p>Assinatura Digital para documentos, Rapido, Seguro e eficiente Assine Documentos com Validade Jurídica em Segundos A plataforma definitiva para envio. Simples, seguro e onde você estiver.</p>
+                    <p>Assinatura Digital para documents, Rapido, Seguro e eficiente Assine Documentos com Validade Jurídica em Segundos A plataforma definitiva para envio. Simples, seguro e onde você estiver.</p>
                 </article>
                 <article class="card">
                     <span class="card-icon">🛠️</span>
@@ -635,17 +638,17 @@
                     <p>Servidor Pessoal Seguro e Confiavel Sincronize automaticamente fotos e vídeos do seu Android ou iOS em seu próprio servidor de backup privado.</p>
                 </article>
                 <article class="card">
-                    <span class="card-icon">⚡</span>
+                     <span class="card-icon">⚡</span>
                     <h3><a data-umami-event="Clique-Service-MK" href="mkplaceupshow.html">Serviço Certo</a></h3>
                     <p>Encontre Operador Técnico ideal para cada problema, Qualidade é a nossa prioridade.</p>
                 </article>
                 <article class="card">
-                    <span class="card-icon">🚨</span>
+                     <span class="card-icon">🚨</span>
                     <h3><a data-umami-event="Service-Watch-Zone" href="watchzone.html">Watch-Zone</a></h3>
                     <p>Proteja o que mais importa com o WatchZone Monitoramento disparo por imagem instantâneo.</p>
                 </article>
             </div>
-            <div style="text-align: center; margin-top: 2.5rem;">
+             <div style="text-align: center; margin-top: 2.5rem;">
                 <a data-umami-event="Conhecer-Mais-Solucoes" href="services.html" class="btn btn-primary" style="background: var(--accent); color: #000;">Conhecer mais Soluções</a>
             </div>
         </section>
@@ -673,25 +676,25 @@
             </div>
             <div class="slider-wrapper">
                 <div class="slider-track">
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/CFTV_01-1.webp" alt="Segurança CFTV"><div class="slide-overlay"><h3>Video Segurança</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/Monitoramento-de-Servidores.webp" alt="Monitoramento de Servidores"><div class="slide-overlay"><h3>Monitoramento de Servidores</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass1.jpg" alt="Assinatura Digital"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/barrest.png" alt="Bar e Restaurante"><div class="slide-overlay"><h3>Bar e Restaurante</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp1.jpg" alt="Backups"><div class="slide-overlay"><h3>Backups</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os1.png" alt="Ordens de Serviços"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/tihomeservice.webp" alt="T I Services"><div class="slide-overlay"><h3>T I Services</h3></div></div></div>                    
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp2.jpeg" alt="Backup Server"><div class="slide-overlay"><h3>Backup Server</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/buildsite.jpg" alt="Construir Site"><div class="slide-overlay"><h3>Construir Site</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
-                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/CFTV_01-1.webp" alt="Segurança CFTV" ondragstart="return false;"><div class="slide-overlay"><h3>Video Segurança</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/Monitoramento-de-Servidores.webp" alt="Monitoramento de Servidores" ondragstart="return false;"><div class="slide-overlay"><h3>Monitoramento de Servidores</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass1.jpg" alt="Assinatura Digital" ondragstart="return false;"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/barrest.png" alt="Bar e Restaurante" ondragstart="return false;"><div class="slide-overlay"><h3>Bar e Restaurante</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp1.jpg" alt="Backups" ondragstart="return false;"><div class="slide-overlay"><h3>Backups</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software" ondragstart="return false;"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os1.png" alt="Ordens de Serviços" ondragstart="return false;"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/tihomeservice.webp" alt="T I Services" ondragstart="return false;"><div class="slide-overlay"><h3>T I Services</h3></div></div></div>                    
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/videomon.jpg" alt="Videomonitoramento" ondragstart="return false;"><div class="slide-overlay"><h3>Videomonitoramento</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/wppauto.png" alt="Novo Chat" ondragstart="return false;"><div class="slide-overlay"><h3>Novo Chat</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/os2.jpg" alt="O.S" ondragstart="return false;"><div class="slide-overlay"><h3>Ordens de Serviços</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/bkp2.jpeg" alt="Backup Server" ondragstart="return false;"><div class="slide-overlay"><h3>Backup Server</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/buildsite.jpg" alt="Construir Site" ondragstart="return false;"><div class="slide-overlay"><h3>Construir Site</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/hackers-and-email-addresses-2-q75-q75.png" alt="Cofre de Senhas" ondragstart="return false;"><div class="slide-overlay"><h3>Cofre de Senhas</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/ass2.webp" alt="Assinatura Digiyal" ondragstart="return false;"><div class="slide-overlay"><h3>Assinatura Digital</h3></div></div></div>
+                    <div class="slide"><div class="slide-inner"><img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/mcinfraimgs/sftRH.jpg" alt="R H Software" ondragstart="return false;"><div class="slide-overlay"><h3>R H Software</h3></div></div></div>
                 </div>
             </div>
-        </section>
+      </section>
 
         <section id="publicidade">
             <div class="section-header">
@@ -760,7 +763,7 @@
         </div>
        
         <div class="footer-bottom">
-            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+             <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
             <p>DPO: Atendimento às diretrizes da ANPD.</p>
         </div>
     </footer>
@@ -799,7 +802,6 @@
         const fontSize = 14;
         const columns = canvas.width / fontSize;
         const drops = [];
-
         for (let i = 0; i < columns; i++) {
             drops[i] = 1;
         }
@@ -810,7 +812,6 @@
 
             ctx.fillStyle = '#00FF66';
             ctx.font = fontSize + 'px Space Grotesk';
-
             for (let i = 0; i < drops.length; i++) {
                 const text = characters.charAt(Math.floor(Math.random() * characters.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -829,7 +830,13 @@
             if(e.keyCode == 123) return false;
             if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
             if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            /* --- SEGURANÇA EXTRA: Bloqueia Ctrl+C, Ctrl+X e Ctrl+A --- */
+            if(e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'X'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) return false;
         }
+
+        /* --- SEGURANÇA EXTRA: Intercepta e cancela a ação nativa de cópia/recorte via Teclado/Mouse --- */
+        document.addEventListener('copy', (e) => { e.preventDefault(); });
+        document.addEventListener('cut', (e) => { e.preventDefault(); });
 
         // LGPD Logic
         window.addEventListener('DOMContentLoaded', () => {
