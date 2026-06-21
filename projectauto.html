@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Define o consentimento inicial como negado para proteção de dados
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag( ){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QXH6T9RBGR');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consultoria e Build de Projetos de Automação com WhatsApp, CRM e ERP - MC Infra TI">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <title>Automação Wpp CRM-ERP | MC Infra TI</title>
+    <script defer src="https://umami-lab.duckdns.org/script.js" data-website-id="a5d990bb-dfec-4465-b08f-07f8343e17f9"></script>
+    <style>
+        :root {
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4 );
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+            -webkit-user-select: none;  
+            -moz-user-select: none;     
+            -ms-user-select: none;      
+            user-select: none;          
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.05) 0%, transparent 40%);
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg' ) center/cover no-repeat;
+            opacity: 0.15;
+            filter: saturate(0.5) brightness(0.5);
+        }
+
+        canvas#dataStream {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(2, 2, 2, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        #hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 140px 1.5rem 60px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        #hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 7vw, 4.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        #hero h1 span {
+            display: block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-dim);
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        section {
+            padding: 80px 1.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            letter-spacing: -1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 span {
+            color: var(--accent);
+        }
+
+        .section-header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: var(--surface-bright);
+            border-color: var(--accent);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .pub-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .pub-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .pub-text p {
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .pub-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .pub-item {
+            display: flex;
+            gap: 1rem;
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .pub-item:hover {
+            border-color: var(--accent);
+            background: var(--surface-bright);
+        }
+
+        .pub-item-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .pub-item-info h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .pub-item-info p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .flow-card {
+            background: var(--surface);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .flow-card:hover {
+            border-color: var(--accent);
+        }
+
+        .flow-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.4;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        footer {
+            padding: 80px 1.5rem 40px;
+            background: #000;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand img {
+            max-width: 160px;
+            margin-bottom: 1.5rem;
+            filter: brightness(1.2);
+        }
+
+        .footer-brand p { color: var(--text-dim); max-width: 350px; font-size: 0.95rem; }
+        .footer-col h4 { margin-bottom: 1.2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .footer-col ul a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            transform: translateY(200%);
+            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .cookie-banner.active { transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 0; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            #hero { padding-top: 120px; }
+            #hero h1 { font-size: 2.5rem; }
+            section { padding: 60px 1.5rem; }
+            .pub-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
+
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
+    </div>
+
+    <canvas id="dataStream"></canvas>
+
+    <header id="mainHeader">
+        <nav>
+            <div class="logo-text">MC INFRA TI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#consultoria">Consultoria</a></li>
+                <li><a href="#integracao">Integrações</a></li>
+                <li><a href="#processo">Como Funciona</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="hero">
+            <div class="hero-content">
+                <span class="badge">Autoatendimento Inteligente</span>
+                <h1>Sua Operação em Escala Comercial com <span>Automação Wpp CRM-ERP</span></h1>
+                <p>Integre fluxos complexos de atendimento ao seu ecossistema de gestão. Construímos bots customizados orientados a projetos que transformam conversas casuais em transações estruturadas diretamente no seu banco de dados.</p>
+                <a data-umami-event="Clique-Form-Automacao" href="https://forms.gle/Q6HYZvKZGvggkkgQ9" target="_blank" class="btn btn-primary" style="background: var(--accent); color: #000;">Iniciar Escopo do Projeto</a>
+            </div>
+        </section>
+
+        <!-- CONSULTORIA EM ANÁLISE -->
+        <section id="consultoria">
+            <div class="section-header">
+                <h2>Consultoria em Análise & <span>Build de Projetos</span></h2>
+                <p>Desenvolvimento focado na infraestrutura técnica e regras de negócio da sua empresa.</p>
+            </div>
+            
+            <div class="grid-features">
+                <div class="card">
+                    <span class="card-icon">🔍</span>
+                    <h3>Análise de Viabilidade</h3>
+                    <p>Mapeamos seus gargalos operacionais atuais e desenhamos a arquitetura de dados ideal para conectar o WhatsApp às suas APIs internas do ERP e CRM.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">⚙️</span>
+                    <h3>Build Customizado</h3>
+                    <p>Estruturação técnica sob demanda. Não utilizamos soluções genéricas travadas; desenvolvemos o fluxo lógico exato que o seu segmento comercial exige.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">📊</span>
+                    <h3>Inteligência de Processos</h3>
+                    <p>Bots preparados para coletar inputs complexos dos clientes, organizar escopos, gerar propostas automáticas e alimentar suas ferramentas nativas em tempo real.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTEGRAÇÕES E SEGMENTOS -->
+        <section id="integracao">
+            <div class="pub-grid">
+                <div class="pub-text">
+                    <h3>Atendimento Automatizado Orientado ao seu <span>Segmento de Negócio</span></h3>
+                    <p>Conectar o WhatsApp às suas plataformas de gestão (CRM/ERP) significa centralizar os dados estratégicos e eliminar tarefas manuais propensas a falhas.</p>
+                    <p>Nossos projetos estruturam um <strong>Autoatendimento Inteligente</strong> capaz de interagir de forma nativa e segura, atualizando o status de vendas, ordens de serviço ou registros financeiros imediatamente.</p>
+                    <div style="margin-top: 2rem;">
+                        <a data-umami-event="Clique-Form-Automacao-Meio" href="https://forms.gle/Q6HYZvKZGvggkkgQ9" target="_blank" class="btn btn-primary">Definir Minhas Demandas</a>
+                    </div>
+                </div>
+                <div class="pub-features">
+                    <div class="pub-item">
+                        <div class="pub-item-icon">🔗</div>
+                        <div class="pub-item-info">
+                            <h4>Integração ERP / CRM Nativa</h4>
+                            <p>Sincronização bidirecional de dados. Dados inseridos na conversa alimentam o faturamento e o pipeline de clientes instantaneamente.</p>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <div class="pub-item-icon">🤖</div>
+                        <div class="pub-item-info">
+                            <h4>Bots Estruturados para Projetos</h4>
+                            <p>Triagem avançada baseada em intenções, permitindo que o cliente formule escopos, anexe documentos e receba retornos validados automaticamente.</p>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <div class="pub-item-icon">🛡️</div>
+                        <div class="pub-item-info">
+                            <h4>Infraestrutura Dedicada & Segura</h4>
+                            <p>Garantia de conformidade, alta disponibilidade do serviço de mensagens e segurança ponta a ponta nas requisições de API.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLUXO DE DESENVOLVIMENTO -->
+        <section id="processo">
+            <div class="section-header">
+                <h2>Nosso Processo de <span>Engenharia</span></h2>
+                <p>Do preenchimento de requisitos até o Go-Live da sua automação.</p>
+            </div>
+            <div class="flow-container">
+                <div class="flow-card"><span class="flow-num">01</span><h3>Requisitos</h3><p>Preenchimento detalhado do formulário de escopo técnico inicial.</p></div>
+                <div class="flow-card"><span class="flow-num">02</span><h3>Arquitetura</h3><p>Desenho da topologia de integração entre Wpp, CRM e ERP.</p></div>
+                <div class="flow-card"><span class="flow-num">03</span><h3>Desenvolvimento</h3><p>Construção da lógica do bot e validação de Webhooks/APIs.</p></div>
+                <div class="flow-card"><span class="flow-num">04</span><h3>Homologação</h3><p>Fase extensiva de testes simulando interações e estresse de carga.</p></div>
+            </div>
+            <div style="text-align: center; margin-top: 4rem;">
+                <a data-umami-event="Clique-Form-Automacao-Final" href="https://forms.gle/Q6HYZvKZGvggkkgQ9" target="_blank" class="btn btn-primary" style="background: var(--accent); color: #000;">Preencher Formulário de Escopo</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a href="termos.html">Termos de Uso</a></li>
+                    <li><a href="cookiesone.html">Política de Cookies</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li>messias.consultoria@yahoo.com</li>
+                    <li>Suporte 24/7</li>
+                    <li>Brasil</li>
+                </ul>
+            </div>
+        </div>
+       
+        <div class="footer-bottom">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <p style="font-size: 0.85rem; color: var(--text-dim );">
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        </p>
+        <div style="display: flex; gap: 0.8rem;">
+            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--surface); color: #fff; border: 1px solid var(--border); font-size: 0.8rem;" onclick="respondCookies(false)">Recusar</button>
+            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--accent); color: #000; font-size: 0.8rem;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // MATRIX DATA STREAM ANIMATION
+        const canvas = document.getElementById('dataStream');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const characters = '01';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) { drops[i] = 1; }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(2, 2, 2, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00FF66';
+            ctx.font = fontSize + 'px Space Grotesk';
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 50);
+
+        // SECURITY RIGID SCRIPTS
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            if(e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'X'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) return false;
+        }
+        document.addEventListener('copy', (e) => { e.preventDefault(); });
+        document.addEventListener('cut', (e) => { e.preventDefault(); });
+
+        // LGPD COMPLIANCE
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+            } else if (consent === 'accepted_all') {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            }
+        });
+
+        function respondCookies(acceptAll) {
+            const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
+            localStorage.setItem('lgpd_consent', consentStatus);
+            if(acceptAll) {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            } else {
+                updateGoogleConsent(false);
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        function updateGoogleConsent(accepted) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'ad_storage': accepted ? 'granted' : 'denied',
+                    'ad_user_data': accepted ? 'granted' : 'denied',
+                    'ad_personalization': accepted ? 'granted' : 'denied',
+                    'analytics_storage': accepted ? 'granted' : 'denied'
+                });
+            }
+        }
+
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                const script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.async = true;
+                script.src = 'https://gc.zgo.at/count.js';
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count' );
+                document.body.appendChild(script);
+            }
+        }
+    </script>
+</body>
+</html>
