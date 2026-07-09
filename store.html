@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Define o consentimento inicial como negado para proteção de dados (LGPD)
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag( ){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QXH6T9RBGR');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de Produtos Parceiros - MC Infra TI">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <title>Catálogo - MC infra TI</title>
+    
+    <!-- Linhas de Rastreio do Umami -->
+    <script defer src="https://umami-lab.duckdns.org/script.js" data-website-id="a5d990bb-dfec-4465-b08f-07f8343e17f9"></script>
+    
+    <style>
+        :root {
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4 );
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+            --ml-color: #fff159;
+            --amazon-color: #ff9900;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+            /* --- SEGURANÇA: Bloqueia a seleção de texto e elementos em todos os navegadores --- */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND DINÂMICO --- */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.05) 0%, transparent 40%);
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg' ) center/cover no-repeat;
+            opacity: 0.15;
+            filter: saturate(0.5) brightness(0.5);
+        }
+
+        canvas#dataStream {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(2, 2, 2, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        /* --- CONTEÚDO PRINCIPAL (CATÁLOGO) --- */
+        .main-container {
+            padding-top: 140px;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .catalog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 0 1.5rem;
+        }
+
+        .catalog-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+
+        .catalog-header h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .catalog-header p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- CATEGORIAS E GRID --- */
+        .categoria-section {
+            padding: 2rem 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .categoria-titulo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .categoria-titulo span {
+            color: var(--accent);
+        }
+
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* --- CARDS DE PRODUTOS --- */
+        .produto-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-5px);
+            background: var(--surface-bright);
+            border-color: var(--accent);
+        }
+
+        .prod-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text);
+        }
+
+        .prod-info p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .botoes-parceiros {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        /* --- BOTÕES PREMIUM DE AFILIADO --- */
+        .btn-afiliado {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-ml {
+            background: var(--ml-color);
+            color: #111;
+        }
+
+        .btn-ml:hover {
+            box-shadow: 0 8px 20px rgba(255, 241, 89, 0.2);
+            transform: scale(1.02);
+        }
+
+        .btn-amazon {
+            background: transparent;
+            color: #fff;
+            border-color: var(--amazon-color);
+        }
+
+        .btn-amazon:hover {
+            background: var(--amazon-color);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(255, 153, 0, 0.3);
+            transform: scale(1.02);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 1.5rem 40px;
+            background: #000;
+            border-top: 1px solid var(--border);
+            margin-top: 5rem;
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand img {
+            max-width: 160px;
+            margin-bottom: 1.5rem;
+            filter: brightness(1.2);
+        }
+
+        .footer-brand p { color: var(--text-dim); max-width: 350px; font-size: 0.95rem; }
+        .footer-col h4 { margin-bottom: 1.2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .footer-col ul a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* --- COOKIE BANNER --- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            transform: translateY(200%);
+            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .cookie-banner.active { transform: translateY(0); }
+
+        .btn-cookie {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 0; }
+            .nav-links { display: none; }
+            .main-container { padding-top: 100px; }
+            .grid-produtos { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
+            .cookie-banner .btn-cookie { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
+
+    <!-- Backgrounds Otimizados -->
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
+    </div>
+    <canvas id="dataStream"></canvas>
+
+    <!-- Header Premium Incorporado -->
+    <header id="mainHeader">
+        <nav>
+            <div class="logo-text">MC INFRA TI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Serviços</a></li>
+                <li><a href="#" class="active">Catálogo</a></li>
+                <li><a data-umami-event="Clique-Contato-top" href="contactmcinfra.html">Contato</a></li>
+                <li><a data-umami-event="Clique-Sobre-top" href="portf.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <header class="catalog-header">
+            <h1>Nosso <span>Catálogo</span> de Recomendações</h1>
+            <p>Uma seleção criteriosa e profissional de hardwares de CFTV, Alarmes e acessórios essenciais de alta performance para a sua infraestrutura.</p>
+        </header>
+
+        <main>
+            <!-- ================= CATEGORIA: CFTV ================= -->
+            <section class="categoria-section">
+                <h2 class="categoria-titulo"><span>👁️</span> CFTV (Vídeo Segurança)</h2>
+                <div class="grid-produtos">
+
+                    <!-- PRODUTO 1 -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Câmera IP Interna Wi-Fi Full HD</h3>
+                            <p>Monitoramento inteligente com visão noturna avançada, detecção de movimento e integração completa.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-CamIP" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-CamIP" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO 2 -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>NVR / DVR Multi-HD 8 Canais</h3>
+                            <p>Gravador digital com compressão H.265+ para otimização de banda de rede e armazenamento.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-DVR" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-DVR" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ================= CATEGORIA: ALARMES ================= -->
+            <section class="categoria-section">
+                <h2 class="categoria-titulo"><span>🚨</span> Sistemas de Alarme</h2>
+                <div class="grid-produtos">
+
+                    <!-- PRODUTO 3 -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Central de Alarme Cloud Monitorada</h3>
+                            <p>Central de segurança com suporte a redundância via chip GSM/Wi-Fi e controle total via app.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Alarme" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Alarme" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ================= CATEGORIA: ACESSÓRIOS ================= -->
+            <section class="categoria-section">
+                <h2 class="categoria-titulo"><span>🛠️</span> Acessórios e Infraestrutura</h2>
+                <div class="grid-produtos">
+
+                    <!-- PRODUTO 4 -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Cabo de Rede Blindado Cat5e / Cat6</h3>
+                            <p>Bobina de alta qualidade estrutural para evitar interferências em redes de vídeo analógicas ou IP.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Cabo" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Cabo" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO 5 -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Fonte Chaveada Colmeia 12V 10A</h3>
+                            <p>Alimentação centralizada e estabilizada com proteção contra surtos para múltiplas câmeras.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Fonte" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Fonte" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer Padrão MC Infra TI -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a data-umami-event="Clique-Privacidade" data-umami-event-posicao="Rodape" href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a data-umami-event="Clique-Termos" data-umami-event-posicao="Rodape" href="termos.html">Termos de Uso</a></li>
+                    <li><a data-umami-event="Clique-Cookies" data-umami-event-posicao="Rodape" href="cookiesone.html">Política de Cookies</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li>messias.consultoria@yahoo.com</li>
+                    <li>Suporte 24/7</li>
+                    <li>Brasil</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        </div>
+    </footer>
+
+    <!-- Banner de Consentimento LGPD -->
+    <div id="cookieBanner" class="cookie-banner">
+        <p style="font-size: 0.85rem; color: var(--text-dim );">
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        </p>
+        <div style="display: flex; gap: 0.8rem;">
+            <button class="btn-cookie" style="background: var(--surface); color: #fff; border: 1px solid var(--border);" onclick="respondCookies(false)">Recusar</button>
+            <button class="btn-cookie" style="background: var(--accent); color: #000;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        </div>
+    </div>
+
+    <script>
+        // Efeito de rolagem do Cabeçalho
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // ANIMAÇÃO MATRIX (DATA STREAM)
+        const canvas = document.getElementById('dataStream');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const characters = '01';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) drops[i] = 1;
+
+        function draw() {
+            ctx.fillStyle = 'rgba(2, 2, 2, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00FF66';
+            ctx.font = fontSize + 'px Space Grotesk';
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 50);
+
+        // --- SCRIPTS DE SEGURANÇA E BLOQUEIO DE CÓDIGO FONTE ---
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // Bloqueia F12
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Bloqueia Ctrl+U
+            if(e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'X'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) return false; // Bloqueia Cópia
+        }
+        document.addEventListener('copy', (e) => { e.preventDefault(); });
+        document.addEventListener('cut', (e) => { e.preventDefault(); });
+
+        // --- SISTEMA DE PRIVACIDADE E REGRA DE COOKIES (LGPD) ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+            } else if (consent === 'accepted_all') {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            }
+        });
+
+        function respondCookies(acceptAll) {
+            const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
+            localStorage.setItem('lgpd_consent', consentStatus);
+            if(acceptAll) {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            } else {
+                updateGoogleConsent(false);
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        function updateGoogleConsent(accepted) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'ad_storage': accepted ? 'granted' : 'denied',
+                    'ad_user_data': accepted ? 'granted' : 'denied',
+                    'ad_personalization': accepted ? 'granted' : 'denied',
+                    'analytics_storage': accepted ? 'granted' : 'denied'
+                });
+            }
+        }
+
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                const script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.async = true;
+                script.src = 'https://gc.zgo.at/count.js';
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count' );
+                document.body.appendChild(script);
+            }
+        }
+    </script>
+</body>
+</html>
