@@ -24,7 +24,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Catálogo de Produtos Parceiros - MC Infra TI">
+    <meta name="description" content="Catálogo de Equipamentos e Produtos de Alta Performance - MC Infra TI">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
     <title>Catálogo - MC infra TI</title>
@@ -103,7 +103,7 @@
             z-index: 0;
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER PREMIUM --- */
         header {
             position: fixed;
             top: 0;
@@ -141,7 +141,7 @@
 
         .nav-links {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.3rem;
             list-style: none;
         }
 
@@ -150,7 +150,7 @@
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.9rem;
             border-radius: 100px;
             transition: 0.3s;
         }
@@ -160,99 +160,122 @@
             background: var(--surface);
         }
 
-        /* --- CONTEÚDO PRINCIPAL (CATÁLOGO) --- */
-        .main-container {
-            padding-top: 140px;
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 140px 1.5rem 40px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        #hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.3rem, 6vw, 4.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        #hero h1 span {
+            display: block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* --- SEÇÕES DE CONTEÚDO --- */
+        .catalog-sections {
             max-width: 1300px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
-        .catalog-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            padding: 0 1.5rem;
-        }
-
-        .catalog-header h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 1rem;
-        }
-
-        .catalog-header h1 span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .catalog-header p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--text-dim);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* --- CATEGORIAS E GRID --- */
         .categoria-section {
-            padding: 2rem 1.5rem;
-            margin-bottom: 3rem;
+            padding: 40px 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .categoria-titulo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            letter-spacing: -1px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 2.2rem;
+            letter-spacing: -1.5px;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
         }
 
         .categoria-titulo span {
             color: var(--accent);
         }
 
+        /* --- GRID E CARDS DE PRODUTOS --- */
         .grid-produtos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        /* --- CARDS DE PRODUTOS --- */
         .produto-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            padding: 2.5rem;
+            padding: 2.2rem;
             border-radius: 24px;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
-            overflow: hidden;
         }
 
         .produto-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             background: var(--surface-bright);
             border-color: var(--accent);
         }
 
         .prod-info h3 {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             margin-bottom: 0.8rem;
             font-family: 'Space Grotesk', sans-serif;
             color: var(--text);
+            line-height: 1.3;
         }
 
         .prod-info p {
             color: var(--text-dim);
             font-size: 0.95rem;
             margin-bottom: 2rem;
+            line-height: 1.5;
         }
 
         .botoes-parceiros {
@@ -261,7 +284,7 @@
             gap: 0.8rem;
         }
 
-        /* --- BOTÕES PREMIUM DE AFILIADO --- */
+        /* --- BOTÕES DE AFILIADOS --- */
         .btn-afiliado {
             display: inline-flex;
             align-items: center;
@@ -304,7 +327,7 @@
             padding: 80px 1.5rem 40px;
             background: #000;
             border-top: 1px solid var(--border);
-            margin-top: 5rem;
+            margin-top: 4rem;
         }
 
         .footer-grid {
@@ -364,25 +387,18 @@
         }
 
         .cookie-banner.active { transform: translateY(0); }
+        .btn-cookie { display: inline-flex; align-items: center; padding: 0.6rem 1.5rem; border-radius: 100px; font-weight: 700; text-decoration: none; font-size: 0.8rem; transition: 0.3s; cursor: pointer; border: none; }
 
-        .btn-cookie {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.6rem 1.5rem;
-            border-radius: 100px;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: 0.3s;
-            cursor: pointer;
-            border: none;
+        /* --- RESPONSIVIDADE SMARTPHONE --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
         }
 
-        /* --- RESPONSIVIDADE --- */
         @media (max-width: 768px) {
             header { padding: 1rem 0; }
-            .nav-links { display: none; }
-            .main-container { padding-top: 100px; }
+            nav { padding: 0 1.5rem; }
+            #hero { padding-top: 120px; min-height: auto; }
+            #hero h1 { font-size: 2.6rem; }
             .grid-produtos { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
             .footer-brand p { margin: 0 auto; }
@@ -394,135 +410,279 @@
 </head>
 <body oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
 
-    <!-- Backgrounds Otimizados -->
     <div class="bg-wrapper">
         <div class="bg-image"></div>
     </div>
+
     <canvas id="dataStream"></canvas>
 
-    <!-- Header Premium Incorporado -->
+    <!-- HEADER INTEGRADO (Menus Superiores Atualizados) -->
     <header id="mainHeader">
         <nav>
             <div class="logo-text">MC INFRA TI</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#services">Serviços</a></li>
+                <li><a href="chatnew.html">Novo Chat</a></li>
+                <li><a href="scrumlab.html">Quadro Scrum</a></li>
+                <li><a href="itservices.html">Serviços de TI</a></li>
+                <li><a href="thesentinel.html">Sentinela CFTV</a></li>
                 <li><a href="#" class="active">Catálogo</a></li>
                 <li><a data-umami-event="Clique-Contato-top" href="contactmcinfra.html">Contato</a></li>
                 <li><a data-umami-event="Clique-Sobre-top" href="portf.html">Sobre</a></li>
+                <li><a data-umami-event="Clique-Blog-top" href="blog.html">Blog</a></li> 
             </ul>
         </nav>
     </header>
 
-    <div class="main-container">
-        <header class="catalog-header">
-            <h1>Nosso <span>Catálogo</span> de Recomendações</h1>
-            <p>Uma seleção criteriosa e profissional de hardwares de CFTV, Alarmes e acessórios essenciais de alta performance para a sua infraestrutura.</p>
-        </header>
+    <main>
+        <!-- HERO SECTION AJUSTADA -->
+        <section id="hero">
+            <div class="hero-content">
+                <span class="badge">Hardware & Infraestrutura</span>
+                <h1>Equipamentos <span>Homologados</span> de Alta Performance</h1>
+                <p>Abaixo você encontra nosso ecossistema de soluções recomendadas de CFTV, Redes e Alarmes. Adquira diretamente através de nossos parceiros de confiança.</p>
+            </div>
+        </section>
 
-        <main>
-            <!-- ================= CATEGORIA: CFTV ================= -->
+        <div class="catalog-sections">
+            
+            <!-- ================= CATEGORIA: CFTV & VÍDEO MONITORAMENTO ================= -->
             <section class="categoria-section">
-                <h2 class="categoria-titulo"><span>👁️</span> CFTV (Vídeo Segurança)</h2>
+                <h2 class="categoria-titulo"><span>👁️</span> CFTV & Segurança Digital</h2>
                 <div class="grid-produtos">
 
-                    <!-- PRODUTO 1 -->
+                    <!-- PRODUTO: Câmeras IP -->
                     <div class="produto-card">
                         <div class="prod-info">
-                            <h3>Câmera IP Interna Wi-Fi Full HD</h3>
-                            <p>Monitoramento inteligente com visão noturna avançada, detecção de movimento e integração completa.</p>
+                            <h3>Câmeras IP Profissionais</h3>
+                            <p>Resolução ultra-HD, compressão inteligente de dados e comunicação estruturada nativa via protocolo IP.</p>
                         </div>
                         <div class="botoes-parceiros">
                             <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-CamIP" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
-                            
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-CameraIP" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
                             <!-- INSIRA O LINK DA AMAZON ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-CamIP" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-CameraIP" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
                         </div>
                     </div>
 
-                    <!-- PRODUTO 2 -->
+                    <!-- PRODUTO: Câmera 360º -->
                     <div class="produto-card">
                         <div class="prod-info">
-                            <h3>NVR / DVR Multi-HD 8 Canais</h3>
-                            <p>Gravador digital com compressão H.265+ para otimização de banda de rede e armazenamento.</p>
+                            <h3>Câmeras IP 360º (PTZ)</h3>
+                            <p>Varredura panorâmica total, rastreamento automático por IA e controle de movimentação horizontal e vertical.</p>
                         </div>
                         <div class="botoes-parceiros">
                             <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-DVR" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
-                            
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Cam360" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
                             <!-- INSIRA O LINK DA AMAZON ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-DVR" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Cam360" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: HDD (Disco Rígido) -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>HDD Especializado para CFTV</h3>
+                            <p>Discos rígidos de nível enterprise projetados para ciclos de gravação contínua 24/7 sem perda de quadros.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-HDD" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-HDD" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Conversor de Mídia HDMI -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Conversor Extensor de Mídia HDMI</h3>
+                            <p>Transmissão de sinal de vídeo digital de gravadores a longas distâncias sem perda de qualidade estrutural.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-ConvHDMI" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-ConvHDMI" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
                         </div>
                     </div>
 
                 </div>
             </section>
 
-            <!-- ================= CATEGORIA: ALARMES ================= -->
+            <!-- ================= CATEGORIA: ALARMES E INTRUSÃO ================= -->
             <section class="categoria-section">
-                <h2 class="categoria-titulo"><span>🚨</span> Sistemas de Alarme</h2>
+                <h2 class="categoria-titulo"><span>🚨</span> Sistemas de Alarme & Perímetro</h2>
                 <div class="grid-produtos">
 
-                    <!-- PRODUTO 3 -->
+                    <!-- PRODUTO: Central de Alarme Smart -->
                     <div class="produto-card">
                         <div class="prod-info">
-                            <h3>Central de Alarme Cloud Monitorada</h3>
-                            <p>Central de segurança com suporte a redundância via chip GSM/Wi-Fi e controle total via app.</p>
+                            <h3>Central de Alarme Smart</h3>
+                            <p>Automação integrada e monitoramento em tempo real, suporte para múltiplos sensores e disparo via nuvem.</p>
                         </div>
                         <div class="botoes-parceiros">
                             <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Alarme" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
-                            
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-AlarmeSmart" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
                             <!-- INSIRA O LINK DA AMAZON ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Alarme" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-AlarmeSmart" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Sensor de Alarme Sem Fio -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Sensor de Alarme Sem Fio</h3>
+                            <p>Sensores de presença infravermelhos (PIR) de longo alcance e transmissão RF de alta imunidade a falhas.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-SensSemFio" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-SensSemFio" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Sensor de Alarme de Teto -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Sensor de Presença 360º de Teto</h3>
+                            <p>Detecção perimetral de teto com cobertura omnidirecional total, otimizando pontos cegos na estrutura.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-SensTeto" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-SensTeto" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Sirene -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Sirene de Alta Potência</h3>
+                            <p>Disparadores sonoros de alta potência em decibéis para sinalização acústica imediata de intrusões.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Sirene" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Sirene" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
                         </div>
                     </div>
 
                 </div>
             </section>
 
-            <!-- ================= CATEGORIA: ACESSÓRIOS ================= -->
+            <!-- ================= CATEGORIA: REDES, LABS & INFRAESTRUTURA ================= -->
             <section class="categoria-section">
-                <h2 class="categoria-titulo"><span>🛠️</span> Acessórios e Infraestrutura</h2>
+                <h2 class="categoria-titulo"><span>🛠外部</span> Redes, Infraestrutura & Laboratórios</h2>
                 <div class="grid-produtos">
 
-                    <!-- PRODUTO 4 -->
+                    <!-- PRODUTO: Switch POE -->
                     <div class="produto-card">
                         <div class="prod-info">
-                            <h3>Cabo de Rede Blindado Cat5e / Cat6</h3>
-                            <p>Bobina de alta qualidade estrutural para evitar interferências em redes de vídeo analógicas ou IP.</p>
+                            <h3>Switches PoE Ativos</h3>
+                            <p>Distribuição inteligente de rede estruturada fornecendo dados e alimentação elétrica simultânea para câmeras IP.</p>
                         </div>
                         <div class="botoes-parceiros">
                             <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Cabo" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
-                            
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-SwitchPOE" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
                             <!-- INSIRA O LINK DA AMAZON ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Cabo" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-SwitchPOE" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
                         </div>
                     </div>
 
-                    <!-- PRODUTO 5 -->
+                    <!-- PRODUTO: Conversor de Mídia Fibra -->
                     <div class="produto-card">
                         <div class="prod-info">
-                            <h3>Fonte Chaveada Colmeia 12V 10A</h3>
-                            <p>Alimentação centralizada e estabilizada com proteção contra surtos para múltiplas câmeras.</p>
+                            <h3>Conversor de Mídia Fibra Óptica</h3>
+                            <p>Transição rápida de sinais Ethernet UTP para infraestrutura óptica monomodo/multimodo de longa distância.</p>
                         </div>
                         <div class="botoes-parceiros">
                             <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Fonte" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
-                            
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-ConvFibra" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
                             <!-- INSIRA O LINK DA AMAZON ABAIXO -->
-                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Fonte" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-ConvFibra" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Caixa Hermética -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Caixas Herméticas de Proteção</h3>
+                            <p>Blindagem física externa IP65/IP66 contra intempéries para acomodação de conectores, fontes e cabos.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Hermetica" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Hermetica" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Placa Raspberry Pi -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Placas Raspberry Pi</h3>
+                            <p>Hardware para micro-servidores locais, automações personalizadas de laboratório IoT e projetos avançados.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-Raspberry" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-Raspberry" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Placa de Vídeo PCI -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Placas de Vídeo PCI-Express</h3>
+                            <p>Aceleração dedicada de hardware para processamento gráfico em estações de monitoramento centrais.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-PlacaVideo" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-PlacaVideo" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Fonte de PC -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Fontes de Alimentação para PC</h3>
+                            <p>Fontes estáveis com certificações de eficiência energética para servidores locais de monitoramento contínuo.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-FontePC" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-FontePC" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
+                        </div>
+                    </div>
+
+                    <!-- PRODUTO: Cabos HDMI e VGA -->
+                    <div class="produto-card">
+                        <div class="prod-info">
+                            <h3>Cabos de Vídeo HDMI & VGA</h3>
+                            <p>Conectividade robusta com alta blindagem interna para conexões de monitores de vídeo corporativos.</p>
+                        </div>
+                        <div class="botoes-parceiros">
+                            <!-- INSIRA O LINK DO MERCADO LIVRE ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DO_MERCADO_LIVRE" data-umami-event="Click-Catalog-ML-CabosVideo" target="_blank" class="btn-afiliado btn-ml">Ver no Mercado Livre</a>
+                            <!-- INSIRA O LINK DA AMAZON ABAIXO -->
+                            <a href="COLE_AQUI_O_LINK_DA_AMAZON" data-umami-event="Click-Catalog-AMZ-CabosVideo" target="_blank" class="btn-afiliado btn-amazon">Ver na Amazon</a>
                         </div>
                     </div>
 
                 </div>
             </section>
-        </main>
-    </div>
+        </div>
+    </main>
 
-    <!-- Footer Padrão MC Infra TI -->
+    <!-- FOOTER DA MARCA -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
@@ -552,7 +712,7 @@
         </div>
     </footer>
 
-    <!-- Banner de Consentimento LGPD -->
+    <!-- BANNER DE COOKIES LGPD -->
     <div id="cookieBanner" class="cookie-banner">
         <p style="font-size: 0.85rem; color: var(--text-dim );">
             Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
@@ -564,21 +724,17 @@
     </div>
 
     <script>
-        // Efeito de rolagem do Cabeçalho
+        // Efeito Header Scrolled
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
             if (window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
 
-        // ANIMAÇÃO MATRIX (DATA STREAM)
+        // CANVAS DATA STREAM (Animação Matrix)
         const canvas = document.getElementById('dataStream');
         const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
@@ -589,10 +745,8 @@
         for (let i = 0; i < columns; i++) drops[i] = 1;
 
         function draw() {
-            ctx.fillStyle = 'rgba(2, 2, 2, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00FF66';
-            ctx.font = fontSize + 'px Space Grotesk';
+            ctx.fillStyle = 'rgba(2, 2, 2, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00FF66'; ctx.font = fontSize + 'px Space Grotesk';
             for (let i = 0; i < drops.length; i++) {
                 const text = characters.charAt(Math.floor(Math.random() * characters.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -602,36 +756,28 @@
         }
         setInterval(draw, 50);
 
-        // --- SCRIPTS DE SEGURANÇA E BLOQUEIO DE CÓDIGO FONTE ---
+        // SCRIPTS DE BLOQUEIO E PROTEÇÃO DE CÓDIGO
         document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false; // Bloqueia F12
+            if(e.keyCode == 123) return false;
             if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Bloqueia Ctrl+U
-            if(e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'X'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) return false; // Bloqueia Cópia
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            if(e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'X'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) return false;
         }
         document.addEventListener('copy', (e) => { e.preventDefault(); });
         document.addEventListener('cut', (e) => { e.preventDefault(); });
 
-        // --- SISTEMA DE PRIVACIDADE E REGRA DE COOKIES (LGPD) ---
+        // SISTEMA DE COOKIES LGPD
         window.addEventListener('DOMContentLoaded', () => {
             const consent = localStorage.getItem('lgpd_consent');
-            if (!consent) {
-                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
-            } else if (consent === 'accepted_all') {
-                updateGoogleConsent(true);
-                loadTrackingScripts();
-            }
+            if (!consent) { setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000); }
+            else if (consent === 'accepted_all') { updateGoogleConsent(true); loadTrackingScripts(); }
         });
 
         function respondCookies(acceptAll) {
             const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
             localStorage.setItem('lgpd_consent', consentStatus);
-            if(acceptAll) {
-                updateGoogleConsent(true);
-                loadTrackingScripts();
-            } else {
-                updateGoogleConsent(false);
-            }
+            if(acceptAll) { updateGoogleConsent(true); loadTrackingScripts(); }
+            else { updateGoogleConsent(false); }
             document.getElementById('cookieBanner').classList.remove('active');
         }
 
@@ -648,11 +794,8 @@
 
         function loadTrackingScripts() {
             if (!document.getElementById('goatcounter-script')) {
-                const script = document.createElement('script');
-                script.id = 'goatcounter-script';
-                script.async = true;
-                script.src = 'https://gc.zgo.at/count.js';
-                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count' );
+                const script = document.createElement('script'); script.id = 'goatcounter-script'; script.async = true;
+                script.src = 'https://gc.zgo.at/count.js'; script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count' );
                 document.body.appendChild(script);
             }
         }
