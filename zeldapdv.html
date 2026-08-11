@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Define o consentimento inicial como negado para proteção de dados
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXH6T9RBGR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag( ){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QXH6T9RBGR');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zelda PDV Food - Sistema de Gestão e Vendas para Bares, Adegas, Lanchonetes, Restaurantes e Tabacarias por MC Infra TI">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/escudoico.png" type="image/png">
+    <title>Zelda PDV Food - MC Infra TI</title>
+    <script defer src="https://umami-lab.duckdns.org/script.js" data-website-id="a5d990bb-dfec-4465-b08f-07f8343e17f9"></script>
+    <style>
+        :root {
+            --accent: #00FF66;
+            --accent-glow: rgba(0, 255, 102, 0.4);
+            --bg: #020202;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-bright: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-dim: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00FF66 0%, #00CCFF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+            /* --- SEGURANÇA: Bloqueia a seleção de texto e elementos em todos os navegadores --- */
+            -webkit-user-select: none;  /* Safari */
+            -moz-user-select: none;     /* Firefox */
+            -ms-user-select: none;      /* IE10+/Edge */
+            user-select: none;          /* Padrão */
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND DINÂMICO --- */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.05) 0%, transparent 40%);
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/bg-home.jpg') center/cover no-repeat;
+            opacity: 0.15;
+            filter: saturate(0.5) brightness(0.5);
+        }
+
+        /* ANIMAÇÃO DATA STREAM (MATRIX) */
+        canvas#dataStream {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- HEADER PREMIUM --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(2, 2, 2, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 1.5rem 60px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        #hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        #hero h1 span {
+            display: block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-dim);
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* --- BOTÕES --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: #fff;
+            border: 1px solid var(--border);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-bright);
+            border-color: var(--accent);
+        }
+
+        /* --- SEÇÕES --- */
+        section {
+            padding: 100px 1.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: -1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 span {
+            color: var(--accent);
+        }
+
+        /* --- GRID DE FUNCIONALIDADES --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: var(--surface-bright);
+            border-color: var(--accent);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        /* --- SEGMENTOS TABELA/CARDS --- */
+        .segment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .segment-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .segment-card:hover {
+            border-color: var(--accent);
+            background: var(--surface-bright);
+        }
+
+        .segment-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 1.5rem 40px;
+            background: #000;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand img {
+            max-width: 160px;
+            margin-bottom: 1.5rem;
+            filter: brightness(1.2);
+        }
+
+        .footer-brand p { color: var(--text-dim); max-width: 350px; font-size: 0.95rem; }
+
+        .footer-col h4 { margin-bottom: 1.2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: var(--text-dim); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .footer-col ul a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            transform: translateY(200%);
+            transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .cookie-banner.active { transform: translateY(0); }
+
+        /* --- RESPONSIVIDADE SMARTPHONE --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 0; }
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            
+            #hero { padding-top: 100px; }
+            #hero h1 { font-size: 3rem; }
+            #hero p { font-size: 1rem; margin-bottom: 2rem; }
+            
+            section { padding: 60px 1.5rem; }
+            .section-header { margin-bottom: 2.5rem; }
+            
+            .features-grid { grid-template-columns: 1fr; }
+            .card { padding: 2rem; }
+            
+            .btn-secondary { margin-left: 0; margin-top: 1rem; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .footer-bottom { justify-content: center; text-align: center; }
+            
+            .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; left: 1rem; right: 1rem; }
+            .cookie-banner .btn { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            #hero h1 { font-size: 2.5rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .btn { padding: 0.8rem 2rem; width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
+
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
+    </div>
+
+    <canvas id="dataStream"></canvas>
+
+    <header id="mainHeader">
+        <nav>
+            <div class="logo-text">MC INFRA TI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a data-umami-event="ZeldaPDV-Nav-Recursos" href="#recursos">Recursos</a></li>
+                <li><a data-umami-event="ZeldaPDV-Nav-Segmentos" href="#segmentos">Segmentos</a></li>
+                <li><a data-umami-event="Clique-Contato-top" href="contactmcinfra.html">Contato</a></li>
+                <li><a data-umami-event="Clique-Sobre-top" href="portf.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="hero">
+            <div class="hero-content">
+                <span class="badge">Automação Comercial de Alta Performance</span>
+                <h1>Zelda <span>PDV Food</span></h1>
+                <p>O Sistema de Gestão e Vendas definitivo para <strong>Bares, Adegas, Lanchonetes, Restaurantes e Tabacarias</strong>. Agilidade no caixa, controle total de mesas/cartões e vendas em carteira em uma única tela inteligente.</p>
+                <div>
+                    <a data-umami-event="ZeldaPDV-Hero-Demonstracao" data-umami-event-posicao="Bt-Hero" href="contactmcinfra.html" class="btn btn-primary">Solicitar Demonstração</a>
+                    <a data-umami-event="ZeldaPDV-Hero-WhatsApp" data-umami-event-posicao="Bt-Hero" href="contactmcinfra.html" class="btn btn-secondary">Falar no WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECURSOS DA PLATAFORMA -->
+        <section id="recursos">
+            <div class="section-header">
+                <h2>Funcionalidades <span>Estratégicas</span></h2>
+                <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto;">Desenvolvido para eliminar filas, impedir fraudes e organizar o caixa do seu negócio com máxima precisão.</p>
+            </div>
+            <div class="features-grid">
+                <article class="card">
+                    <span class="card-icon">⚡</span>
+                    <h3>PDV Rápido & Ágil</h3>
+                    <p>Frente de caixa ultra-rápida. Vendas em poucos cliques com múltiplos meios de pagamento (Pix, Cartão, Dinheiro) e baixo tempo de espera no balcão.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🍽️</span>
+                    <h3>Controle de Mesas e Cartões</h3>
+                    <p>Gerenciamento de consumo por mesa ou cartão/comanda individual em tempo real. Adição rápida de itens, transferência de mesas e fechamento simplificado.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🛵</span>
+                    <h3>Módulo de Delivery</h3>
+                    <p>Centralização completa dos seus pedidos de entrega. Acompanhe todo o fluxo da cozinha até a saída do motoboy sem perder prazos.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">📖</span>
+                    <h3>Venda em Carteira (Fiado)</h3>
+                    <p>Cadastro completo de clientes com histórico de compras, controle de limite de crédito e acompanhamento rigoroso de débitos pendentes.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">📊</span>
+                    <h3>Relatórios Gerenciais</h3>
+                    <p>Relatórios claros de faturamento, fluxo de caixa, margem de lucro, produtos mais vendidos e curva ABC para tomadas de decisão inteligentes.</p>
+                </article>
+                <article class="card">
+                    <span class="card-icon">🛡️</span>
+                    <h3>Segurança e Backup</h3>
+                    <p>Integrado à infraestrutura da MC Infra TI com permissões por operador de caixa e backup automatizado para proteção total de dados.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEGMENTOS ATENDIDOS -->
+        <section id="segmentos">
+            <div class="section-header">
+                <h2>Sob Medida para o <span>Seu Negócio</span></h2>
+            </div>
+            <div class="segment-grid">
+                <div class="segment-card">
+                    <h4>Restaurantes & Bares</h4>
+                    <p>Fechamento de conta sem erros, divisão de consumo por pessoa, transferência de comandas e controle rigoroso do salão.</p>
+                </div>
+                <div class="segment-card">
+                    <h4>Lanchonetes & Adegas</h4>
+                    <p>Atendimento de balcão de altíssima velocidade, integração com balança, código de barras e alta rotatividade no caixa.</p>
+                </div>
+                <div class="segment-card">
+                    <h4>Tabacarias</h4>
+                    <p>Controle preciso de itens fracionados, estoque minucioso e gestão de relacionamento com clientes recorrentes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAMADA FINAL / CTA -->
+        <section id="cta" style="text-align: center;">
+            <div class="card" style="background: linear-gradient(135deg, rgba(0, 255, 102, 0.08) 0%, rgba(0, 204, 255, 0.08) 100%); border-color: var(--accent);">
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; margin-bottom: 1rem;">Pronto para modernizar a gestão do seu estabelecimento?</h2>
+                <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto 2rem;">Aumente seu lucro e economize tempo com o Zelda PDV Food. Agende uma apresentação com nossa equipe técnica.</p>
+                <a data-umami-event="ZeldaPDV-CTA-Demonstracao" href="contactmcinfra.html" class="btn btn-primary">Solicitar Demonstração Gratuita</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://raw.githubusercontent.com/amdremessias/csi-labcris/main/images/logomcinfrati.png" alt="Logo MC Infra TI">
+                <p>Liderando a transformação digital com soluções de infraestrutura e softwares de alta performance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a data-umami-event="Clique-Privacidade" data-umami-event-posicao="Rodape" href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a data-umami-event="Clique-Termos" data-umami-event-posicao="Rodape" href="termos.html">Termos de Uso</a></li>
+                    <li><a data-umami-event="Clique-Cookies" data-umami-event-posicao="Rodape" href="cookiesone.html">Política de Cookies</a></li>
+                    <li><a data-umami-event="Clique-Titulares" data-umami-event-posicao="Rodape" href="titulares.html">Direitos do Titular</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li>messias.consultoria@yahoo.com</li>
+                    <li>Suporte 24/7</li>
+                    <li>Brasil</li>
+                </ul>
+            </div>
+        </div>
+       
+        <div class="footer-bottom">
+             <p>&copy; 2026 MC Infra TI. Todos os direitos reservados.</p>
+            <p>DPO: Atendimento às diretrizes da ANPD.</p>
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <p style="font-size: 0.85rem; color: var(--text-dim);">
+            Utilizamos cookies para melhorar sua experiência e proteger seus dados conforme a <strong>LGPD</strong>. Veja nossa <a href="privacidade.html" style="color: var(--accent);">Política de Privacidade</a>.
+        </p>
+        <div style="display: flex; gap: 0.8rem;">
+            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--surface); color: #fff; border: 1px solid var(--border); font-size: 0.8rem;" onclick="respondCookies(false)">Recusar</button>
+            <button class="btn" style="padding: 0.6rem 1.5rem; background: var(--accent); color: #000; font-size: 0.8rem;" onclick="respondCookies(true)">Aceitar Tudo</button>
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // ANIMAÇÃO DATA STREAM (MATRIX)
+        const canvas = document.getElementById('dataStream');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const characters = '01';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(2, 2, 2, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FF66';
+            ctx.font = fontSize + 'px Space Grotesk';
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
+
+        // Proteção de código
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            /* --- SEGURANÇA EXTRA: Bloqueia Ctrl+C, Ctrl+X e Ctrl+A --- */
+            if(e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'X'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) return false;
+        }
+
+        /* --- SEGURANÇA EXTRA: Intercepta e cancela a ação nativa de cópia/recorte via Teclado/Mouse --- */
+        document.addEventListener('copy', (e) => { e.preventDefault(); });
+        document.addEventListener('cut', (e) => { e.preventDefault(); });
+
+        // LGPD Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('lgpd_consent');
+            if (!consent) {
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+            } else if (consent === 'accepted_all') {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            }
+        });
+
+        function respondCookies(acceptAll) {
+            const consentStatus = acceptAll ? 'accepted_all' : 'rejected';
+            localStorage.setItem('lgpd_consent', consentStatus);
+            if(acceptAll) {
+                updateGoogleConsent(true);
+                loadTrackingScripts();
+            } else {
+                updateGoogleConsent(false);
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        // Função para atualizar o consentimento do Google
+        function updateGoogleConsent(accepted) {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'ad_storage': accepted ? 'granted' : 'denied',
+                    'ad_user_data': accepted ? 'granted' : 'denied',
+                    'ad_personalization': accepted ? 'granted' : 'denied',
+                    'analytics_storage': accepted ? 'granted' : 'denied'
+                });
+            }
+        }
+
+        function loadTrackingScripts() {
+            if (!document.getElementById('goatcounter-script')) {
+                const script = document.createElement('script');
+                script.id = 'goatcounter-script';
+                script.async = true;
+                script.src = 'https://gc.zgo.at/count.js';
+                script.setAttribute('data-goatcounter', 'https://m3ss14s.goatcounter.com/count');
+                document.body.appendChild(script);
+            }
+        }
+    </script>
+</body>
+</html>
