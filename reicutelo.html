@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forge & Lâmina | Cutelaria Artesanal Sob Medida</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        steel: {
+                            800: '#1e232a',
+                            900: '#12161a',
+                            950: '#0b0d0f',
+                        },
+                        bronze: {
+                            400: '#d4af37',
+                            500: '#b8860b',
+                            600: '#996515',
+                        },
+                        leather: {
+                            600: '#8b5a2b',
+                            700: '#633e1a',
+                            800: '#42280e',
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .bg-pattern {
+            background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .border-gradient-gold {
+            border-image: linear-gradient(to right, #b8860b, #d4af37, #633e1a) 1;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0d0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #42280e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8860b;
+        }
+    </style>
+</head>
+<body class="bg-steel-950 text-gray-300 font-sans antialiased bg-pattern selection:bg-bronze-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-steel-950/90 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-bronze-500/50 flex items-center justify-center bg-steel-900 group-hover:border-bronze-400 transition">
+                    <i class="ph-bold ph-sword text-bronze-400 text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-cinzel text-xl font-bold tracking-wider text-white group-hover:text-bronze-400 transition">VULCANUS</span>
+                    <span class="text-[10px] tracking-[0.25em] text-bronze-500 uppercase -mt-1">Cutelaria Sob Medida</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-wider font-medium text-gray-300">
+                <a href="#sobre" class="hover:text-bronze-400 transition duration-200">A Arte</a>
+                <a href="#galeria" class="hover:text-bronze-400 transition duration-200">Acervo Exclusivo</a>
+                <a href="#personalizador" class="hover:text-bronze-400 transition duration-200 text-bronze-400 flex items-center gap-1.5"><i class="ph-bold ph-sparkle"></i> Monte Sua Peça</a>
+                <a href="#depoimentos" class="hover:text-bronze-400 transition duration-200">Colecionadores</a>
+                <a href="#contato" class="hover:text-bronze-400 transition duration-200">Contato</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20consultar%20sobre%20uma%20peça%20customizada." target="_blank" class="px-5 py-2.5 rounded-md bg-gradient-to-r from-bronze-600 to-bronze-500 hover:from-bronze-500 hover:to-bronze-400 text-steel-950 font-bold text-xs uppercase tracking-widest transition duration-300 shadow-lg shadow-bronze-600/20 flex items-center gap-2">
+                    <i class="ph-bold ph-whatsapp-logo text-base"></i> Atendimento VIP
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
+                <i class="ph-bold ph-list text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-steel-900 border-b border-white/10 px-6 py-6 space-y-4">
+            <a href="#sobre" class="block text-gray-300 hover:text-bronze-400 uppercase tracking-wider text-sm">A Arte</a>
+            <a href="#galeria" class="block text-gray-300 hover:text-bronze-400 uppercase tracking-wider text-sm">Acervo Exclusivo</a>
+            <a href="#personalizador" class="block text-bronze-400 uppercase tracking-wider text-sm font-semibold">Monte Sua Peça</a>
+            <a href="#depoimentos" class="block text-gray-300 hover:text-bronze-400 uppercase tracking-wider text-sm">Colecionadores</a>
+            <a href="#contato" class="block text-gray-300 hover:text-bronze-400 uppercase tracking-wider text-sm">Contato</a>
+            <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20consultar%20sobre%20uma%20peça%20customizada." target="_blank" class="block w-full text-center px-4 py-3 rounded-md bg-bronze-500 text-steel-950 font-bold text-xs uppercase tracking-widest mt-4">
+                Falar com Cuteleiro
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        <!-- Background Overlay & Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1595079672139-cee25a1d30f2?auto=format&fit=crop&q=80&w=2000" alt="Ateliê de Cutelaria Forja" class="w-full h-full object-cover object-center opacity-25 scale-105 transform animate-pulse duration-[10000ms]">
+            <div class="absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/80 to-steel-950/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-steel-950 via-transparent to-steel-950"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-bronze-500/10 border border-bronze-500/30 text-bronze-400 text-xs font-semibold uppercase tracking-widest mb-6">
+                <i class="ph-bold ph-fire text-amber-500"></i> Forjado à Mão • Peças Únicas & Vitalícias
+            </div>
+
+            <h1 class="font-cinzel text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
+                Não É Apenas Uma Lâmina.<br>
+                É Uma <span class="text-gradient-gold">História Eterna</span> Em Suas Mãos.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                Facas, adagas e machadinhas customizadas sob medida. Cada dobra de aço, cada grão de madeira nobre e cada detalhe esculpido exclusivamente para a sua essência.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <a href="#personalizador" class="w-full sm:w-auto px-8 py-4 rounded-md bg-gradient-to-r from-bronze-600 via-bronze-500 to-leather-600 hover:from-bronze-500 hover:to-leather-700 text-white font-bold text-sm uppercase tracking-widest transition duration-300 transform hover:-translate-y-0.5 shadow-xl shadow-bronze-600/25 flex items-center justify-center gap-3">
+                    <i class="ph-bold ph-anvil text-lg"></i> Projetar Sua Peça Agora
+                </a>
+                <a href="#galeria" class="w-full sm:w-auto px-8 py-4 rounded-md border border-white/20 hover:border-bronze-400 bg-steel-900/50 hover:bg-steel-800/80 text-white font-bold text-sm uppercase tracking-widest transition duration-300 backdrop-blur-sm flex items-center justify-center gap-2">
+                    Explorar Acervo <i class="ph-bold ph-arrow-down"></i>
+                </a>
+            </div>
+
+            <!-- Stats Badge -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <span class="block font-cinzel text-3xl font-bold text-white">100%</span>
+                    <span class="text-xs text-gray-400 uppercase tracking-wider">Artesanal & Exclusivo</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-cinzel text-3xl font-bold text-bronze-400">Damasceno</span>
+                    <span class="text-xs text-gray-400 uppercase tracking-wider">& Aços Nobres Custom</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-cinzel text-3xl font-bold text-white">Vitalícia</span>
+                    <span class="text-xs text-gray-400 uppercase tracking-wider">Garantia do Master</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-cinzel text-3xl font-bold text-bronze-400">+500</span>
+                    <span class="text-xs text-gray-400 uppercase tracking-wider">Colecionadores Servidos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="sobre" class="py-24 bg-steel-900/60 relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Image Side -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative z-10 rounded-lg overflow-hidden border border-bronze-500/30 shadow-2xl shadow-black">
+                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=1000" alt="Cuteleiro trabalhando o aço rubro na forja" class="w-full h-[500px] object-cover hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-steel-950 via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-6 left-6 right-6 p-4 bg-steel-950/80 backdrop-blur-md rounded border border-white/10">
+                            <p class="font-cinzel text-bronze-400 text-sm font-semibold">Mestre Cuteleiro</p>
+                            <p class="text-xs text-gray-300 mt-1">"Cada martelada transforma aço incandescente em uma herança familiar."</p>
+                        </div>
+                    </div>
+                    <!-- Decorative Element -->
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 border-2 border-bronze-500/20 rounded-lg -z-0 hidden sm:block"></div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-bronze-500/10 blur-2xl rounded-full"></div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 text-bronze-400 font-semibold text-xs tracking-widest uppercase">
+                        <span class="w-8 h-px bg-bronze-400"></span> Tradição & Excelência
+                    </div>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white leading-tight">
+                        A Nobre Arte da Cutelaria Customizada
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed font-light text-base">
+                        No nosso ateliê, o tempo corre de forma diferente. Rejeitamos a produção em massa e as fórmulas industriais. Para nós, criar uma lâmina é um ato quase sagrado, unindo técnicas ancestrais de forjamento a materiais de altíssima performance.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed font-light text-base">
+                        Seja para o churrasco perfeito, para o acampamento de alta exigência ou para enriquecer o acervo de um colecionador criterioso, entendemos quem você é. Ouvimos a sua história, compreendemos suas preferências de empunhadura e peso, e moldamos uma peça verdadeiramente <strong class="text-white font-medium">única e irrepetível</strong>.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-start gap-3 p-4 rounded bg-steel-950/50 border border-white/5">
+                            <i class="ph-bold ph-seal-check text-bronze-400 text-2xl shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Aço de Alta Pureza</h4>
+                                <p class="text-xs text-gray-400 mt-1">Tratamento térmico computadorizado para retenção extrema de fio.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded bg-steel-950/50 border border-white/5">
+                            <i class="ph-bold ph-fingerprint text-bronze-400 text-2xl shrink-0 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Design Exclusivo</h4>
+                                <p class="text-xs text-gray-400 mt-1">Nenhuma peça é idêntica a outra. Numeração de série e certificado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="galeria" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-bronze-400 font-semibold text-xs tracking-widest uppercase block mb-2">Catálogo de Inspiração</span>
+            <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white mb-4">Obras de Arte Recém-Entregues</h2>
+            <p class="text-gray-400 text-sm font-light">
+                Explore algumas de nossas criações sob encomenda. Cada modelo pode ser replicado com variações exclusivas ou servir de base para o seu novo projeto.
+            </p>
+
+            <!-- Category Filters -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mt-8">
+                <button onclick="filterGallery('todos')" class="filter-btn active px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition border border-bronze-500 bg-bronze-500 text-steel-950">
+                    Todas as Peças
+                </button>
+                <button onclick="filterGallery('facas')" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition border border-white/20 text-gray-300 hover:border-bronze-400">
+                    Facas Custom
+                </button>
+                <button onclick="filterGallery('adagas')" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition border border-white/20 text-gray-300 hover:border-bronze-400">
+                    Adagas Nobres
+                </button>
+                <button onclick="filterGallery('machadinhas')" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition border border-white/20 text-gray-300 hover:border-bronze-400">
+                    Machadinhas & Cleavers
+                </button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product Cards will be rendered by JS -->
+        </div>
+    </section>
+
+    <!-- CUSTOMIZER SECTION -->
+    <section id="personalizador" class="py-24 bg-steel-900/90 border-t border-white/10 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-bronze-500/20 text-bronze-400 text-xs font-bold uppercase tracking-widest mb-3">
+                    <i class="ph-bold ph-sliders"></i> Simulador de Projeto Sob Medida
+                </div>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white mb-4">Crie Sua Peça Personalizada</h2>
+                <p class="text-gray-300 text-sm">
+                    Selecione as características desejadas abaixo para estruturar a sua ideia. Ao final, enviará o resumo diretamente para o cuteleiro consultar a viabilidade e orçamento.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Options Panel -->
+                <div class="lg:col-span-8 bg-steel-950 p-6 sm:p-8 rounded-xl border border-white/10 shadow-2xl space-y-8">
+                    
+                    <!-- 1. Tipo de Peça -->
+                    <div>
+                        <label class="block text-xs font-bold text-bronze-400 uppercase tracking-widest mb-3">1. Tipo de Lâmina / Modelo</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button type="button" onclick="selectOption('tipo', 'Faca Chef / BBQ', this)" class="custom-opt p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 text-xs font-medium text-white transition active-opt border-bronze-500 bg-bronze-500/10">
+                                <i class="ph-bold ph-knife text-lg text-bronze-400 mb-1 block"></i>
+                                Faca Chef / BBQ
+                            </button>
+                            <button type="button" onclick="selectOption('tipo', 'Faca de Caça / Bushcraft', this)" class="custom-opt p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 text-xs font-medium text-white transition">
+                                <i class="ph-bold ph-compass text-lg text-bronze-400 mb-1 block"></i>
+                                Caça & Bushcraft
+                            </button>
+                            <button type="button" onclick="selectOption('tipo', 'Adaga Nobre / Coleção', this)" class="custom-opt p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 text-xs font-medium text-white transition">
+                                <i class="ph-bold ph-sword text-lg text-bronze-400 mb-1 block"></i>
+                                Adaga de Coleção
+                            </button>
+                            <button type="button" onclick="selectOption('tipo', 'Machadinha Tática / Rústica', this)" class="custom-opt p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 text-xs font-medium text-white transition">
+                                <i class="ph-bold ph-axe text-lg text-bronze-400 mb-1 block"></i>
+                                Machadinha Custom
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Tipo de Aço -->
+                    <div>
+                        <label class="block text-xs font-bold text-bronze-400 uppercase tracking-widest mb-3">2. Seleção do Aço</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button type="button" onclick="selectOption('aco', 'Aço Damasco (Padrão Exclusivo)', this)" class="custom-opt-aco p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 transition active-opt border-bronze-500 bg-bronze-500/10">
+                                <span class="block text-xs font-bold text-white">Aço Damasco</span>
+                                <span class="text-[10px] text-gray-400 block mt-0.5">Dobra artesanal, padrão único em ondas.</span>
+                            </button>
+                            <button type="button" onclick="selectOption('aco', 'Aço Carbono 1095 / 5160', this)" class="custom-opt-aco p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 transition">
+                                <span class="block text-xs font-bold text-white">Aço Carbono Excepcional</span>
+                                <span class="text-[10px] text-gray-400 block mt-0.5">Fio ultra agressivo e pátina histórica.</span>
+                            </button>
+                            <button type="button" onclick="selectOption('aco', 'Aço Inox de Alta Performance (N690/VG10)', this)" class="custom-opt-aco p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 transition">
+                                <span class="block text-xs font-bold text-white">Inox Premium</span>
+                                <span class="text-[10px] text-gray-400 block mt-0.5">Resistência total a oxidação e brilho.</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Material do Cabo -->
+                    <div>
+                        <label class="block text-xs font-bold text-bronze-400 uppercase tracking-widest mb-3">3. Empunhadura / Cabo</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button type="button" onclick="selectOption('cabo', 'Madeira Nobre Estabilizada (Jacarandá/Imbuia)', this)" class="custom-opt-cabo p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 text-xs font-medium text-white transition active-opt border-bronze-500 bg-bronze-500/10">
+                                Madeira Nobre
+                            </button>
+                            <button type="button" onclick="selectOption('cabo', 'Resina Híbrida / Pinecone', this)" class="custom-opt-cabo p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 text-xs font-medium text-white transition">
+                                Resina Híbrida
+                            </button>
+                            <button type="button" onclick="selectOption('cabo', 'Chifre de Cervo Exótico / Osso', this)" class="custom-opt-cabo p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 text-xs font-medium text-white transition">
+                                Chifre de Cervo
+                            </button>
+                            <button type="button" onclick="selectOption('cabo', 'Micarta / G10 Tático', this)" class="custom-opt-cabo p-3 rounded-lg border border-white/10 bg-steel-900 text-left hover:border-bronze-500 text-xs font-medium text-white transition">
+                                Micarta Tática
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 4. Detalhes & Personalizações Extras -->
+                    <div>
+                        <label class="block text-xs font-bold text-bronze-400 uppercase tracking-widest mb-3">4. Personalização & Gravura</label>
+                        <div class="space-y-3">
+                            <input type="text" id="custom-engraving" placeholder="Iniciais, Nome ou Brasão para gravação na lâmina (Ex: J.S. 1984)" class="w-full bg-steel-900 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-bronze-500">
+                            <div class="flex items-center gap-4">
+                                <label class="inline-flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+                                    <input type="checkbox" id="check-sheath" checked class="rounded border-white/20 bg-steel-900 text-bronze-500 focus:ring-bronze-500">
+                                    Bainha de Couro Bovino Costurada à Mão
+                                </label>
+                                <label class="inline-flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+                                    <input type="checkbox" id="check-box" checked class="rounded border-white/20 bg-steel-900 text-bronze-500 focus:ring-bronze-500">
+                                    Estojo Estilo Caixa de Madeira Nobre
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Live Preview & Action -->
+                <div class="lg:col-span-4 bg-steel-950 p-6 rounded-xl border border-bronze-500/30 shadow-2xl sticky top-28 space-y-6">
+                    <h3 class="font-cinzel text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-4">
+                        <i class="ph-bold ph-file-text text-bronze-400"></i> Resumo do Projetista
+                    </h3>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="flex justify-between py-1.5 border-b border-white/5">
+                            <span class="text-gray-400">Lâmina:</span>
+                            <span id="summary-tipo" class="font-semibold text-white">Faca Chef / BBQ</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-white/5">
+                            <span class="text-gray-400">Aço:</span>
+                            <span id="summary-aco" class="font-semibold text-bronze-400">Aço Damasco</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-white/5">
+                            <span class="text-gray-400">Empunhadura:</span>
+                            <span id="summary-cabo" class="font-semibold text-white">Madeira Nobre</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-white/5">
+                            <span class="text-gray-400">Gravação:</span>
+                            <span id="summary-gravação" class="font-semibold text-gray-300 italic">Nenhuma</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-white/5">
+                            <span class="text-gray-400">Valor:</span>
+                            <span class="font-bold text-bronze-400 uppercase">Sob Consulta (Peça Única)</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded bg-steel-900 border border-white/5 text-[11px] text-gray-400 leading-relaxed">
+                        <i class="ph-bold ph-info text-bronze-400 text-sm inline-block mr-1"></i>
+                        Após enviar o projeto, nosso Master Cuteleiro responderá via WhatsApp com o tempo estimado de forja e orçamento detalhado.
+                    </div>
+
+                    <button onclick="sendCustomProjectWhatsApp()" class="w-full py-4 rounded-md bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs uppercase tracking-widest transition duration-300 shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-whatsapp-logo text-lg"></i> Consultar Valor no WhatsApp
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="depoimentos" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-bronze-400 font-semibold text-xs tracking-widest uppercase block mb-2">Avaliações Reais</span>
+            <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">Palavra de Colecionadores</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="bg-steel-900/60 p-8 rounded-xl border border-white/10 relative flex flex-col justify-between">
+                <div>
+                    <div class="flex text-amber-400 gap-1 mb-4">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm font-light italic leading-relaxed mb-6">
+                        "Encomendei uma Faca Chef de Aço Damasco com cabo de Imbuia e resina azul para presentear meu pai. O nível de acabamento e o equilíbrio do peso superaram tudo o que já vi. É literalmente uma obra de museu."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                    <div class="w-10 h-10 rounded-full bg-leather-700 flex items-center justify-center font-bold text-white text-sm">
+                        DR
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Dr. Roberto Andrade</h4>
+                        <span class="text-xs text-gray-400">Colecionador • São Paulo/SP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-steel-900/60 p-8 rounded-xl border border-white/10 relative flex flex-col justify-between">
+                <div>
+                    <div class="flex text-amber-400 gap-1 mb-4">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm font-light italic leading-relaxed mb-6">
+                        "Minha machadinha tática forjada sob medida me acompanha em todas as expedições de caça no Sul. A retenção do fio do aço 5160 é inacreditável. Valeu cada centavo investido."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                    <div class="w-10 h-10 rounded-full bg-bronze-600 flex items-center justify-center font-bold text-white text-sm">
+                        CM
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Carlos Eduardo Mendes</h4>
+                        <span class="text-xs text-gray-400">Entusiasta Bushcraft • Curitiba/PR</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-steel-900/60 p-8 rounded-xl border border-white/10 relative flex flex-col justify-between">
+                <div>
+                    <div class="flex text-amber-400 gap-1 mb-4">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm font-light italic leading-relaxed mb-6">
+                        "O atendimento personalizado do cuteleiro fez toda a diferença. Ele me enviou fotos de cada etapa do processo de forjamento da minha adaga. Experiência de compra inesquecível!"
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                    <div class="w-10 h-10 rounded-full bg-steel-800 flex items-center justify-center font-bold text-white text-sm">
+                        FB
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Fernando Barbosa</h4>
+                        <span class="text-xs text-gray-400">Empresário • Belo Horizonte/MG</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contato" class="py-24 bg-steel-900 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Info Left -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-bronze-400 font-semibold text-xs tracking-widest uppercase block">Atendimento Exclusivo</span>
+                    <h2 class="font-cinzel text-3xl font-bold text-white">Inicie Sua Encomenda Especial</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Tem alguma dúvida específica ou prefere conversar detalhadamente antes de iniciar seu projeto? Preencha o formulário ou fale conosco diretamente por e-mail ou WhatsApp.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-steel-950 border border-bronze-500/30 flex items-center justify-center text-bronze-400">
+                                <i class="ph-bold ph-whatsapp-logo text-xl"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 block">WhatsApp Direto</span>
+                                <a href="https://wa.me/5511999999999" class="text-white text-sm font-bold hover:text-bronze-400 transition">+55 (11) 99999-9999</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-steel-950 border border-bronze-500/30 flex items-center justify-center text-bronze-400">
+                                <i class="ph-bold ph-envelope-simple text-xl"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 block">E-mail para Orçamentos</span>
+                                <a href="mailto:contato@vulcanuscutelaria.com.br" class="text-white text-sm font-bold hover:text-bronze-400 transition">contato@vulcanuscutelaria.com.br</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-steel-950 border border-bronze-500/30 flex items-center justify-center text-bronze-400">
+                                <i class="ph-bold ph-map-pin text-xl"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 block">Ateliê de Forja</span>
+                                <span class="text-white text-sm font-bold">Serra Gaúcha / SP - Atendimento com hora marcada</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Right -->
+                <div class="lg:col-span-7 bg-steel-950 p-8 rounded-xl border border-white/10 shadow-xl">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Nome Completo</label>
+                                <input type="text" required placeholder="Seu nome" class="w-full bg-steel-900 border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-bronze-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Telefone / WhatsApp</label>
+                                <input type="tel" required placeholder="(11) 99999-9999" class="w-full bg-steel-900 border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-bronze-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Seu E-mail</label>
+                            <input type="email" required placeholder="seu@email.com" class="w-full bg-steel-900 border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-bronze-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Detalhes da Ideia / Projeto</label>
+                            <textarea rows="4" required placeholder="Descreva como imagina sua peça, dimensões, uso (churrasco, coleção, caça) ou dúvidas gerais..." class="w-full bg-steel-900 border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-bronze-500"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-md bg-bronze-500 hover:bg-bronze-400 text-steel-950 font-bold text-xs uppercase tracking-widest transition duration-300 shadow-lg">
+                            Enviar Solicitação de Orçamento
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-steel-950 border-t border-white/10 py-12 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <div class="flex justify-center items-center gap-2">
+                <i class="ph-bold ph-sword text-bronze-400 text-xl"></i>
+                <span class="font-cinzel text-lg font-bold text-white tracking-widest">VULCANUS</span>
+            </div>
+            <p class="max-w-md mx-auto text-gray-400">
+                Cutelaria artesanal sob medida. Todas as peças são forjadas individualmente respeitando os mais altos padrões de qualidade.
+            </p>
+            <div class="pt-4 border-t border-white/5 text-[11px]">
+                &copy; 2026 Vulcanus Cutelaria Artesanal. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-steel-950 border border-bronze-500/40 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">
+                <i class="ph-bold ph-x"></i>
+            </button>
+
+            <div id="modal-content" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Content inserted via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Products Data
+        const products = [
+            {
+                id: 1,
+                name: 'Faca Chef Damasco Valkyrie',
+                category: 'facas',
+                tag: 'Aço Damasco 300 Camadas',
+                price: 'A Consultar',
+                image: 'https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&q=80&w=800',
+                steel: 'Damasco Padrão Twist (1095 + 15N20)',
+                handle: 'Madeira Nobre Estabilizada com Pinos Mosaico',
+                sheath: 'Couro Bovino trabalhado à mão',
+                desc: 'Faca de Chef desenvolvida para alta gastronomia e churrasco nobre. Equilíbrio perfeito na palma da mão e capacidade de corte incomparável.'
+            },
+            {
+                id: 2,
+                name: 'Adaga Cerimonial Imperial',
+                category: 'adagas',
+                tag: 'Peça de Coleção VIP',
+                price: 'A Consultar',
+                image: 'https://images.unsplash.com/photo-1595079672139-cee25a1d30f2?auto=format&fit=crop&q=80&w=800',
+                steel: 'Aço Inox N690 com Espelho Polido',
+                handle: 'Resina Negra com Fios de Latão Dourado',
+                sheath: 'Estojo Luxo em Madeira e Aveludado',
+                desc: 'Adaga de duas lâminas perfeitamente simétricas com guarda esculpida em bronze. Feita sob medida para colecionadores de peças históricas.'
+            },
+            {
+                id: 3,
+                name: 'Machadinha Tática Viking Floki',
+                category: 'machadinhas',
+                tag: 'Forja Rústica & Funcional',
+                price: 'A Consultar',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=800',
+                steel: 'Aço Carbono 5160 Forjado a Fogo',
+                handle: 'Madeira Muiracatiara Queimada e Encada',
+                sheath: 'Protetor de gume em couro marrom',
+                desc: 'Robusta e extremamente afiada. Projetada para corte pesado em acampamentos e bushcraft, com gravações rúnicas sob consulta.'
+            },
+            {
+                id: 4,
+                name: 'Faca Gaucha Dourada BBQ',
+                category: 'facas',
+                tag: 'Edição Especial Churrasco',
+                price: 'A Consultar',
+                image: 'https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&q=80&w=800',
+                steel: 'Aço Carbono 1095 Tratado',
+                handle: 'Chifre de Cervo com Anéis de Latão',
+                sheath: 'Couro Cru Solado',
+                desc: 'Modelo clássico para os amantes de um bom assado. Dorso mosqueado à lima e empunhadura anatômica.'
+            },
+            {
+                id: 5,
+                name: 'Cleaver / Cutelo de Impacto Heavy',
+                category: 'machadinhas',
+                tag: 'Corte Pesado',
+                price: 'A Consultar',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=800',
+                steel: 'Aço 5160 de 6mm de espessura',
+                handle: 'Micarta Negra com Textura Antiderrapante',
+                sheath: 'Kydex Tático com Clip de Cinto',
+                desc: 'Desenvolvido para cortes brutos em carnes pesadas e ossos, mantendo a integridade estrutural do gume.'
+            },
+            {
+                id: 6,
+                name: 'Adaga Tática Shadow Blade',
+                category: 'adagas',
+                tag: 'Acabamento Brut de Forge',
+                price: 'A Consultar',
+                image: 'https://images.unsplash.com/photo-1595079672139-cee25a1d30f2?auto=format&fit=crop&q=80&w=800',
+                steel: 'Aço Carbono 1070 Forjado',
+                handle: 'G10 Verde Oliva Tático',
+                sheath: 'Couro com Passador Tático',
+                desc: 'Design sóbrio e agressivo. Acabamento mantendo as marcas autênticas do martelo de forja na lâmina.'
+            }
+        ];
+
+        // Render Gallery
+        function renderGallery(items) {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = items.map(item => `
+                <div class="bg-steel-900 rounded-xl overflow-hidden border border-white/10 hover:border-bronze-500/50 transition duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-64 overflow-hidden bg-steel-950">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <span class="absolute top-3 left-3 bg-steel-950/80 backdrop-blur-md text-bronze-400 text-[10px] font-bold px-3 py-1 rounded border border-bronze-500/30 uppercase tracking-widest">
+                                ${item.tag}
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-cinzel text-xl font-bold text-white mb-2 group-hover:text-bronze-400 transition">${item.name}</h3>
+                            <p class="text-xs text-gray-400 line-clamp-2 font-light leading-relaxed mb-4">${item.desc}</p>
+                            
+                            <div class="space-y-1.5 text-[11px] text-gray-300 border-t border-white/5 pt-3">
+                                <div><strong class="text-gray-400">Aço:</strong> ${item.steel}</div>
+                                <div><strong class="text-gray-400">Cabo:</strong> ${item.handle}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 flex items-center justify-between gap-3 border-t border-white/5 mt-4">
+                        <span class="text-xs font-bold text-bronze-400 uppercase tracking-wider">${item.price}</span>
+                        <div class="flex gap-2">
+                            <button onclick="openModal(${item.id})" class="px-3 py-2 rounded bg-steel-800 hover:bg-steel-700 text-white text-xs font-semibold transition">
+                                Detalhes
+                            </button>
+                            <a href="https://wa.me/5511999999999?text=Olá!%20Tenho%20interesse%20na%20peça%20${encodeURIComponent(item.name)}" target="_blank" class="px-3 py-2 rounded bg-bronze-500 hover:bg-bronze-400 text-steel-950 text-xs font-bold transition flex items-center gap-1">
+                                <i class="ph-bold ph-whatsapp-logo"></i> Consultar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Functionality
+        function filterGallery(category) {
+            // Update active button state
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-bronze-500', 'text-steel-950', 'border-bronze-500');
+                btn.classList.add('border-white/20', 'text-gray-300');
+            });
+            event.target.classList.add('bg-bronze-500', 'text-steel-950', 'border-bronze-500');
+            event.target.classList.remove('border-white/20', 'text-gray-300');
+
+            if (category === 'todos') {
+                renderGallery(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderGallery(filtered);
+            }
+        }
+
+        // Modal Handlers
+        function openModal(id) {
+            const item = products.find(p => p.id === id);
+            if (!item) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="rounded-lg overflow-hidden bg-steel-900 border border-white/10">
+                    <img src="${item.image}" alt="${item.name}" class="w-full h-80 object-cover">
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs text-bronze-400 uppercase font-bold tracking-widest">${item.tag}</span>
+                    <h2 class="font-cinzel text-2xl font-bold text-white">${item.name}</h2>
+                    <p class="text-xs text-gray-300 leading-relaxed font-light">${item.desc}</p>
+                    
+                    <div class="bg-steel-900 p-4 rounded-lg space-y-2 text-xs border border-white/5">
+                        <div><strong class="text-bronze-400">Especificação do Aço:</strong> <span class="text-gray-300">${item.steel}</span></div>
+                        <div><strong class="text-bronze-400">Material da Empunhadura:</strong> <span class="text-gray-300">${item.handle}</span></div>
+                        <div><strong class="text-bronze-400">Acompanha Bainha:</strong> <span class="text-gray-300">${item.sheath}</span></div>
+                        <div><strong class="text-bronze-400">Disponibilidade:</strong> <span class="text-gray-300">Sob Encomenda Customizada</span></div>
+                    </div>
+
+                    <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20a%20peça%20${encodeURIComponent(item.name)}" target="_blank" class="w-full py-3.5 rounded-md bg-bronze-500 hover:bg-bronze-400 text-steel-950 font-bold text-xs uppercase tracking-widest transition flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-whatsapp-logo text-base"></i> Solicitar Cotação no WhatsApp
+                    </a>
+                </div>
+            `;
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        // Customizer Selection Logic
+        const customState = {
+            tipo: 'Faca Chef / BBQ',
+            aco: 'Aço Damasco (Padrão Exclusivo)',
+            cabo: 'Madeira Nobre Estabilizada (Jacarandá/Imbuia)'
+        };
+
+        function selectOption(category, value, btn) {
+            customState[category] = value;
+            document.getElementById(`summary-${category}`).innerText = value.split('(')[0];
+
+            // Update UI active buttons per group
+            const groupClass = category === 'tipo' ? '.custom-opt' : category === 'aco' ? '.custom-opt-aco' : '.custom-opt-cabo';
+            document.querySelectorAll(groupClass).forEach(b => {
+                b.classList.remove('border-bronze-500', 'bg-bronze-500/10');
+            });
+            btn.classList.add('border-bronze-500', 'bg-bronze-500/10');
+        }
+
+        function sendCustomProjectWhatsApp() {
+            const engraving = document.getElementById('custom-engraving').value || 'Nenhuma';
+            const sheath = document.getElementById('check-sheath').checked ? 'Sim' : 'Não';
+            const box = document.getElementById('check-box').checked ? 'Sim' : 'Não';
+
+            const message = `*NOVO PROJETO CUSTOMIZADO SOB MEDIDA*%0A%0A` +
+                `• *Lâmina/Modelo:* ${customState.tipo}%0A` +
+                `• *Aço Escolhido:* ${customState.aco}%0A` +
+                `• *Empunhadura/Cabo:* ${customState.cabo}%0A` +
+                `• *Gravação Personalizada:* ${engraving}%0A` +
+                `• *Bainha de Couro:* ${sheath}%0A` +
+                `• *Estojo de Madeira:* ${box}%0A%0A` +
+                `Olá! Montei esse projeto no site e gostaria de consultar o orçamento e o prazo de fabricação.`;
+
+            window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+        }
+
+        // Form Submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Sua mensagem e projeto foram recebidos! Em breve nosso mestre cuteleiro entrará em contato via WhatsApp/E-mail.');
+            e.target.reset();
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Initialize Gallery on Load
+        window.onload = function() {
+            renderGallery(products);
+        };
+    </script>
+</body>
+</html>
