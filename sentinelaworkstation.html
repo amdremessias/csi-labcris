@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.E.N.T.I.N.E.L.A. | Sistema Estruturado de Neutralização, Triagem e Inteligência</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        sentinela: {
+                            dark: '#050811',
+                            surface: '#0a1020',
+                            card: '#0f172a',
+                            border: '#1e293b',
+                            cyan: '#00f2fe',
+                            blue: '#3b82f6',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            crimson: '#ff0055',
+                            accent: '#06b6d4'
+                        }
+                    },
+                    boxShadow: {
+                        'glow-cyan': '0 0 30px -5px rgba(0, 242, 254, 0.3)',
+                        'glow-crimson': '0 0 30px -5px rgba(255, 0, 85, 0.4)',
+                        'glow-emerald': '0 0 30px -5px rgba(16, 185, 129, 0.3)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'radar-sweep': 'radar 4s linear infinite',
+                        'scanline': 'scanline 6s linear infinite',
+                    },
+                    keyframes: {
+                        radar: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(1000%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050811;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(10, 16, 32, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(30, 41, 59, 0.8);
+        }
+
+        .glass-panel-interactive {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel-interactive:hover {
+            border-color: rgba(0, 242, 254, 0.5);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00f2fe 0%, #3b82f6 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-crimson {
+            background: linear-gradient(135deg, #ff0055 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .grid-pattern {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(30, 41, 59, 0.25) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 41, 59, 0.25) 1px, transparent 1px);
+        }
+
+        .scanline-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.4)
+            );
+            background-size: 100% 4px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050811;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+    </style>
+</head>
+<body class="grid-pattern antialiased selection:bg-sentinela-cyan selection:text-sentinela-dark">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-sentinela-border px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo with Acronym Expansion -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sentinela-cyan via-sentinela-blue to-sentinela-emerald flex items-center justify-center text-sentinela-dark font-black shadow-glow-cyan group-hover:scale-105 transition-transform">
+                    <i data-lucide="shield-alert" class="w-6 h-6 stroke-[2.5]"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-mono font-black text-xl tracking-wider text-white flex items-center gap-2">
+                        S.E.N.T.I.N.E.L.A.
+                        <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-sentinela-cyan/10 text-sentinela-cyan border border-sentinela-cyan/30">v4.8 ACTIVE</span>
+                    </span>
+                    <span class="text-[9px] text-slate-400 font-mono tracking-tighter uppercase hidden sm:inline">
+                        Sistema Estruturado de Neutralização, Triagem, Inteligência e Notificação
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-7 text-xs font-mono tracking-wider uppercase text-slate-300">
+                <a href="#arquitetura" class="hover:text-sentinela-cyan transition-colors flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5"></i> Arquitetura</a>
+                <a href="#workstation" class="hover:text-sentinela-cyan transition-colors flex items-center gap-1.5"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Supervisor Workstation</a>
+                <a href="#dvr-matrix" class="hover:text-sentinela-cyan transition-colors flex items-center gap-1.5"><i data-lucide="tv" class="w-3.5 h-3.5"></i> Matrix DVR / IA</a>
+                <a href="#modulos" class="hover:text-sentinela-cyan transition-colors flex items-center gap-1.5"><i data-lucide="layers" class="w-3.5 h-3.5"></i> Módulos</a>
+                <a href="#casos-uso" class="hover:text-sentinela-cyan transition-colors flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5"></i> Setores</a>
+            </nav>
+
+            <!-- CTA & Status -->
+            <div class="flex items-center gap-4">
+                <a href="#demonstracao" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-sentinela-cyan to-sentinela-blue hover:from-sentinela-accent hover:to-sentinela-cyan text-sentinela-dark font-extrabold px-5 py-2.5 rounded-xl shadow-glow-cyan hover:shadow-cyan-500/50 transition-all text-xs font-mono uppercase tracking-wider">
+                    <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
+                    <span>Solicitar Trial</span>
+                </a>
+
+                <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white p-2" aria-label="Abrir Menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden pt-4 pb-6 px-4 border-t border-sentinela-border/60 mt-3 space-y-3 font-mono text-xs">
+            <a href="#arquitetura" class="block text-slate-300 hover:text-sentinela-cyan py-1.5">ARQUITETURA DO SISTEMA</a>
+            <a href="#workstation" class="block text-slate-300 hover:text-sentinela-cyan py-1.5">SUPERVISOR WORKSTATION</a>
+            <a href="#dvr-matrix" class="block text-slate-300 hover:text-sentinela-cyan py-1.5">SIMULADOR DVR / IA</a>
+            <a href="#modulos" class="block text-slate-300 hover:text-sentinela-cyan py-1.5">MÓDULOS DE AMEAÇAS</a>
+            <a href="#casos-uso" class="block text-slate-300 hover:text-sentinela-cyan py-1.5">SETORES DE APLICAÇÃO</a>
+            <a href="#demonstracao" class="w-full mt-2 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sentinela-cyan to-sentinela-blue text-sentinela-dark font-extrabold px-5 py-3 rounded-xl">
+                SOLICITAR AGORA
+            </a>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 relative overflow-hidden">
+        <!-- Radial Gradient Lights -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-sentinela-cyan/10 rounded-full blur-[160px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[350px] h-[350px] bg-sentinela-crimson/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            
+            <!-- Acronym Expanded Pill Badge -->
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full glass-panel border border-sentinela-cyan/40 text-sentinela-cyan text-xs font-mono tracking-wide uppercase mb-8 shadow-glow-cyan">
+                <span class="w-2.5 h-2.5 rounded-full bg-sentinela-emerald animate-ping"></span>
+                <span class="font-bold text-white">S.E.N.T.I.N.E.L.A.</span>
+                <span class="text-slate-400">|</span>
+                <span class="text-slate-300">Sistema Estruturado de Neutralização, Triagem, Inteligência e Notificação</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-5xl mx-auto leading-tight">
+                Neutralização de Ameaças & <span class="gradient-text">Streaming de Telas para DVR/VMS</span> com Inteligência Artificial
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="mt-6 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed">
+                Integre telas de computadores operacionais diretamente na sua central de CFTV via RTSP. O módulo <strong class="text-brand-cyan font-mono text-white">SENTINELA Supervisor Workstation</strong> fornece gravação contínua 24/7 no DVR/NVR e triagem autônoma por IA contra vazamento de dados e fraudes.
+            </p>
+
+            <!-- Buttons -->
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-mono text-sm">
+                <a href="#demonstracao" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sentinela-cyan via-sentinela-accent to-sentinela-blue hover:scale-105 text-sentinela-dark font-extrabold px-8 py-4 rounded-xl shadow-glow-cyan transition-all group">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    <span>SOLICITAR DEMONSTRAÇÃO TÉCNICA</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#dvr-matrix" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 glass-panel hover:bg-sentinela-surface text-slate-200 font-semibold px-8 py-4 rounded-xl border border-sentinela-border hover:border-sentinela-cyan/50 transition-all">
+                    <i data-lucide="play" class="w-4 h-4 text-sentinela-cyan"></i>
+                    <span>SIMULADOR DE MATRIX DVR</span>
+                </a>
+            </div>
+
+            <!-- Quick Metrics Header Cards -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                <div class="glass-panel p-4 rounded-xl border border-sentinela-border text-center">
+                    <div class="text-2xl sm:text-3xl font-mono font-bold text-sentinela-cyan">0ms</div>
+                    <div class="text-[11px] font-mono text-slate-400 uppercase mt-1">Perda de Gravação em CFTV</div>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border border-sentinela-border text-center">
+                    <div class="text-2xl sm:text-3xl font-mono font-bold text-sentinela-emerald">&lt; 1%</div>
+                    <div class="text-[11px] font-mono text-slate-400 uppercase mt-1">Uso de CPU da Estação</div>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border border-sentinela-border text-center">
+                    <div class="text-2xl sm:text-3xl font-mono font-bold text-sentinela-amber">100%</div>
+                    <div class="text-[11px] font-mono text-slate-400 uppercase mt-1">Compatível com ONVIF/RTSP</div>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border border-sentinela-border text-center">
+                    <div class="text-2xl sm:text-3xl font-mono font-bold text-sentinela-crimson">250ms</div>
+                    <div class="text-[11px] font-mono text-slate-400 uppercase mt-1">Detecção de Ameaças por IA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workstation" class="py-20 px-4 bg-sentinela-surface/60 border-y border-sentinela-border/80 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Textual Explanation -->
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sentinela-cyan/10 border border-sentinela-cyan/30 text-sentinela-cyan text-xs font-mono uppercase mb-4">
+                        <i data-lucide="cpu" class="w-4 h-4"></i>
+                        <span>Módulo Core do Ecossistema</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                        SENTINELA <span class="gradient-text">Supervisor Workstation</span>
+                    </h2>
+                    <p class="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Mapeie e transforme qualquer estação de trabalho Windows/Linux em um canal de vídeo IP nativo no seu DVR/NVR/VMS. Não dependa apenas de prints estáticos ou logs ilegíveis: acompanhe a operação do PC em tempo real na mesma grade das câmeras físicas de segurança.
+                    </p>
+
+                    <!-- Feature bullets -->
+                    <div class="mt-6 space-y-4 font-sans text-sm">
+                        <div class="flex items-start gap-3 glass-panel p-3.5 rounded-xl border-sentinela-border">
+                            <div class="p-2 rounded-lg bg-sentinela-cyan/20 text-sentinela-cyan shrink-0">
+                                <i data-lucide="radio" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Streaming Nativo RTSP / H.264 & H.265</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">O PC é adicionado ao DVR Intelbras, Hikvision, Dahua ou VMS como uma câmera IP convencional.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 glass-panel p-3.5 rounded-xl border-sentinela-border">
+                            <div class="p-2 rounded-lg bg-sentinela-emerald/20 text-sentinela-emerald shrink-0">
+                                <i data-lucide="hard-drive" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Gravação Operacional Contínua 24/7</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">Armazene o histórico no HD de CFTV corporativo com custo zero de infraestrutura na nuvem.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 glass-panel p-3.5 rounded-xl border-sentinela-border">
+                            <div class="p-2 rounded-lg bg-sentinela-crimson/20 text-sentinela-crimson shrink-0">
+                                <i data-lucide="eye" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Acompanhamento e Triagem com IA</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">A inteligência artificial analisa visualmente a tela para detectar vazamentos, uso de USB e softwares proibidos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic Visual Diagram of Workstation Agent -->
+                <div class="glass-panel p-6 rounded-2xl border border-sentinela-border relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b border-sentinela-border/80 pb-4 mb-4 text-xs font-mono text-slate-300">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-sentinela-emerald animate-pulse"></span>
+                            AGENT_STATUS: ACTIVE STREAMING
+                        </span>
+                        <span class="text-sentinela-cyan">PORT: 554 (RTSP)</span>
+                    </div>
+
+                    <!-- Flow Diagram Card -->
+                    <div class="space-y-4">
+                        <!-- Step 1 -->
+                        <div class="bg-sentinela-dark/90 p-4 rounded-xl border border-sentinela-border flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-slate-800 text-sentinela-cyan flex items-center justify-center font-mono font-bold">PC</div>
+                                <div>
+                                    <div class="text-xs font-bold text-white">Estação de Trabalho Alvo</div>
+                                    <div class="text-[10px] text-slate-400 font-mono">Capture de tela ultra-rápida (NVENC/QuickSync)</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-mono text-sentinela-emerald font-bold">&lt; 1% CPU</span>
+                        </div>
+
+                        <!-- Arrow connector -->
+                        <div class="flex justify-center text-sentinela-cyan my-1">
+                            <i data-lucide="arrow-down" class="w-5 h-5 animate-bounce"></i>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-sentinela-dark/90 p-4 rounded-xl border border-sentinela-cyan/50 flex items-center justify-between shadow-glow-cyan">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-sentinela-cyan/20 text-sentinela-cyan flex items-center justify-center font-mono font-bold">RTSP</div>
+                                <div>
+                                    <div class="text-xs font-bold text-white">Motor SENTINELA Workstation Engine</div>
+                                    <div class="text-[10px] text-slate-400 font-mono">Compressão H.264/H.265 com criptografia TLS 1.3</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] bg-sentinela-cyan/20 text-sentinela-cyan px-2 py-0.5 rounded font-mono">LIVE 1080P</span>
+                        </div>
+
+                        <!-- Arrow connector -->
+                        <div class="flex justify-center text-sentinela-cyan my-1">
+                            <i data-lucide="arrow-down" class="w-5 h-5 animate-bounce"></i>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="bg-sentinela-dark/90 p-4 rounded-xl border border-sentinela-border flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-slate-800 text-sentinela-emerald flex items-center justify-center font-mono font-bold">DVR</div>
+                                <div>
+                                    <div class="text-xs font-bold text-white">Gravador DVR / NVR / Central VMS</div>
+                                    <div class="text-[10px] text-slate-400 font-mono">Gravação contínua no HD corporativo + Matrix de Vídeo</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-mono text-slate-300">CAM IP 08</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dvr-matrix" class="py-24 px-4 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <h2 class="text-xs font-bold tracking-widest text-sentinela-cyan uppercase mb-2 font-mono">Central de Operações Integrada</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold text-white">
+                Simulador da Matrix de Monitoramento DVR + <span class="gradient-text">IA SENTINELA</span>
+            </h3>
+            <p class="mt-3 text-slate-300 text-sm">
+                Acompanhe em tempo real como a central de segurança visualiza as telas de computadores ao lado das câmeras físicas e como a Inteligência Artificial marca as ameaças operacionais.
+            </p>
+        </div>
+
+        <!-- DVR Outer Frame -->
+        <div class="glass-panel p-4 sm:p-6 rounded-2xl border border-sentinela-border shadow-2xl relative">
+            <!-- Top Controls Bar -->
+            <div class="flex flex-wrap items-center justify-between bg-sentinela-dark p-3 rounded-xl border border-sentinela-border mb-4 text-xs font-mono gap-3">
+                <div class="flex items-center gap-3">
+                    <span class="flex items-center gap-2 text-sentinela-emerald font-bold">
+                        <span class="w-2.5 h-2.5 rounded-full bg-sentinela-emerald animate-ping"></span>
+                        DVR ONLINE (16 CANAIS DISPONÍVEIS)
+                    </span>
+                    <span class="text-slate-500 hidden sm:inline">| PROTOCOLO: RTSP / ONVIF PROFILE S</span>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <!-- AI Toggle Button -->
+                    <button id="toggleAiBtn" onclick="toggleAiBoundingBoxes()" class="bg-sentinela-cyan/20 hover:bg-sentinela-cyan/30 text-sentinela-cyan border border-sentinela-cyan/50 px-3 py-1.5 rounded-lg transition-all flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                        <span id="aiToggleText">CAMADA IA: ATIVADA</span>
+                    </button>
+                    <span id="dvrClock" class="text-slate-300">2026-09-20 19:42:10</span>
+                </div>
+            </div>
+
+            <!-- 4 Camera Grid Display -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- CAM 01: Physical IP Camera -->
+                <div class="relative bg-slate-950 rounded-xl overflow-hidden border border-sentinela-border h-64 group">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-50" style="background-image: url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded text-[10px] font-mono text-slate-200 border border-slate-700">
+                        CAM 01 - PERÍMETRO ENTRADA
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">1080p | 30 FPS</div>
+                    <div class="absolute inset-0 scanline-overlay opacity-30 pointer-events-none"></div>
+                </div>
+
+                <!-- CAM 02: SENTINELA WORKSTATION - FINANCEIRO (SAFE) -->
+                <div class="relative bg-sentinela-dark rounded-xl overflow-hidden border border-sentinela-cyan/60 h-64 p-3 flex flex-col justify-between">
+                    <!-- Simulated Desktop OS UI -->
+                    <div class="bg-slate-900 rounded p-2 text-xs font-mono text-slate-300 flex justify-between items-center">
+                        <span class="text-sentinela-cyan font-bold">SAP_ERP_FINANCEIRO_v8</span>
+                        <span>OPERADOR: MARCOS_R</span>
+                    </div>
+
+                    <div class="my-auto space-y-2 font-mono text-[11px] bg-slate-950/80 p-3 rounded border border-slate-800">
+                        <div class="flex justify-between text-slate-300">
+                            <span>LOTE DE PAGAMENTOS:</span>
+                            <span class="text-white font-bold">R$ 38.450,00</span>
+                        </div>
+                        <div class="flex justify-between text-slate-300">
+                            <span>AUTENTICAÇÃO DUPLA:</span>
+                            <span class="text-sentinela-emerald font-bold">VALIDADA</span>
+                        </div>
+                    </div>
+
+                    <!-- AI Visual Overlay -->
+                    <div class="ai-box border border-sentinela-emerald bg-sentinela-emerald/10 p-2 rounded flex items-center justify-between text-[10px] font-mono text-sentinela-emerald">
+                        <span class="flex items-center gap-1.5">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                            PADRÃO DENTRO DOS CONFORMES
+                        </span>
+                        <span>0 ALERTAS</span>
+                    </div>
+
+                    <div class="absolute top-2 left-2 bg-sentinela-dark/90 backdrop-blur-md px-2.5 py-1 rounded text-[10px] font-mono text-sentinela-cyan border border-sentinela-cyan/40">
+                        CAM 02 - WS_FINANCEIRO_02 (SENTINELA STREAM)
+                    </div>
+                    <div class="absolute inset-0 scanline-overlay opacity-20 pointer-events-none"></div>
+                </div>
+
+                <!-- CAM 03: SENTINELA WORKSTATION - CAIXA / THREAT DETECTED -->
+                <div id="cam3Box" class="relative bg-sentinela-dark rounded-xl overflow-hidden border-2 border-sentinela-crimson h-64 p-3 flex flex-col justify-between shadow-glow-crimson transition-all">
+                    <!-- Simulated OS Screen with Suspicious Action -->
+                    <div class="bg-slate-900 rounded p-2 text-xs font-mono text-slate-300 flex justify-between items-center">
+                        <span class="text-rose-400 font-bold">PROCESSO: CMD.EXE / POWERSHELL</span>
+                        <span class="text-rose-400">WS_CAIXA_OPERACIONAL</span>
+                    </div>
+
+                    <div class="bg-black/90 p-2 font-mono text-[10px] text-amber-400 rounded border border-rose-900 leading-tight">
+                        <p>> copy C:\PDV\Database\Cartoes.db D:\USB_DRIVE\</p>
+                        <p class="text-rose-500 font-bold underline mt-1">> ERRO: CÓPIA NÃO AUTORIZADA DE DADOS SENSÍVEIS</p>
+                    </div>
+
+                    <!-- AI Bounding Box for Threat -->
+                    <div class="ai-box border-2 border-sentinela-crimson bg-sentinela-crimson/20 p-2.5 rounded-lg flex items-center gap-3 animate-pulse">
+                        <div class="w-7 h-7 rounded bg-sentinela-crimson flex items-center justify-center text-white shrink-0">
+                            <i data-lucide="alert-octagon" class="w-4 h-4"></i>
+                        </div>
+                        <div class="text-left font-mono">
+                            <div class="text-[11px] font-bold text-white">AMEAÇA: EXFILTRAÇÃO VIA USB DETECTADA</div>
+                            <div class="text-[9px] text-slate-200">Notificação disparada para central de neutralização</div>
+                        </div>
+                    </div>
+
+                    <div class="absolute top-2 left-2 bg-rose-950/90 backdrop-blur-md px-2.5 py-1 rounded text-[10px] font-mono text-rose-300 border border-sentinela-crimson">
+                        CAM 03 - WS_CAIXA_01 (AMEAÇA EM TEMPO REAL)
+                    </div>
+                    <div class="absolute inset-0 scanline-overlay opacity-30 pointer-events-none"></div>
+                </div>
+
+                <!-- CAM 04: Physical Data Center Camera -->
+                <div class="relative bg-slate-950 rounded-xl overflow-hidden border border-sentinela-border h-64 group">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-50" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded text-[10px] font-mono text-slate-200 border border-slate-700">
+                        CAM 04 - DATA CENTER SERVIDORES
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">1080p | 30 FPS</div>
+                    <div class="absolute inset-0 scanline-overlay opacity-30 pointer-events-none"></div>
+                </div>
+            </div>
+
+            <!-- DVR Footer Specs -->
+            <div class="mt-4 pt-3 border-t border-sentinela-border flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 gap-2">
+                <span>Engines: RTSP Streamer + Vision Transformer (ViT) + OCR Engine</span>
+                <span class="text-sentinela-cyan">Latência Média: 180ms</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="modulos" class="py-24 px-4 bg-sentinela-surface/40 border-y border-sentinela-border/80">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-sentinela-cyan uppercase mb-2 font-mono">Visão Geral da Plataforma</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Módulos do Sistema <span class="gradient-text">S.E.N.T.I.N.E.L.A.</span>
+                </h3>
+                <p class="mt-3 text-slate-300 text-sm">
+                    Conheça a estrutura modular desenhada para atuar da detecção à neutralização ativa de ameaças operacionais e cibernéticas.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Module 1: Neutralização -->
+                <div class="glass-panel p-6 rounded-2xl border border-sentinela-border glass-panel-interactive flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-sentinela-crimson/20 border border-sentinela-crimson/40 text-sentinela-crimson flex items-center justify-center font-mono font-bold text-xl mb-5">
+                            N
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Neutralização de Ameaças</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            Bloqueio autônomo instantâneo de processos maliciosos, desconexão de portas USB e bloqueio de tela quando a IA detecta vazamento de dados ou invasão.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sentinela-border/60 text-[11px] font-mono text-sentinela-crimson">
+                        Ação Ativa Autônoma
+                    </div>
+                </div>
+
+                <!-- Module 2: Triagem -->
+                <div class="glass-panel p-6 rounded-2xl border border-sentinela-border glass-panel-interactive flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-sentinela-amber/20 border border-sentinela-amber/40 text-sentinela-amber flex items-center justify-center font-mono font-bold text-xl mb-5">
+                            T
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Triagem Visual Inteligente</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            Filtragem automática do fluxo de gravação para destacar apenas os momentos em que ocorreram anomalias na tela, economizando 90% do tempo dos auditores.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sentinela-border/60 text-[11px] font-mono text-sentinela-amber">
+                        Filtro de Anomalias
+                    </div>
+                </div>
+
+                <!-- Module 3: Inteligência -->
+                <div class="glass-panel p-6 rounded-2xl border border-sentinela-border glass-panel-interactive flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-sentinela-cyan/20 border border-sentinela-cyan/40 text-sentinela-cyan flex items-center justify-center font-mono font-bold text-xl mb-5">
+                            I
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Inteligência Operacional</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            Modelos treinados para reconhecer interfaces de sistemas ERP, caixas bancários, e-mails sensíveis e identificar desvios comportamentais de operadores.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sentinela-border/60 text-[11px] font-mono text-sentinela-cyan">
+                        Vision Transformers & OCR
+                    </div>
+                </div>
+
+                <!-- Module 4: Notificação -->
+                <div class="glass-panel p-6 rounded-2xl border border-sentinela-border glass-panel-interactive flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-sentinela-emerald/20 border border-sentinela-emerald/40 text-sentinela-emerald flex items-center justify-center font-mono font-bold text-xl mb-5">
+                            N
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Notificação Instantânea</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            Envio imediato de alertas para o pop-up da central de CFTV (VMS), Telegram corporativo, e-mail do DPO e disparos de sirenes na matriz do DVR.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sentinela-border/60 text-[11px] font-mono text-sentinela-emerald">
+                        Multi-Channel Alerts
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="casos-uso" class="py-24 px-4 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold tracking-widest text-sentinela-cyan uppercase mb-2 font-mono">Aplicações no Mercado</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold text-white">
+                Onde o <span class="gradient-text">SENTINELA</span> Faz a Diferença?
+            </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Sector 1 -->
+            <div class="glass-panel p-8 rounded-2xl border border-sentinela-border">
+                <div class="w-12 h-12 rounded-xl bg-sentinela-cyan/10 border border-sentinela-cyan/30 text-sentinela-cyan flex items-center justify-center mb-6">
+                    <i data-lucide="shield" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3">Centrais de Monitoramento (CCO)</h4>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Monitore os operadores da sua própria central de segurança. Garanta que as telas de alarmes estejam visíveis e detecte inatividade durante plantões noturnos.
+                </p>
+                <ul class="text-xs font-mono text-slate-400 space-y-2 border-t border-sentinela-border/60 pt-4">
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sentinela-cyan"></i> Auditoria de atendimento de disparos</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sentinela-cyan"></i> Gravação unificada com câmeras de rua</li>
+                </ul>
+            </div>
+
+            <!-- Sector 2 -->
+            <div class="glass-panel p-8 rounded-2xl border border-sentinela-border">
+                <div class="w-12 h-12 rounded-xl bg-sentinela-emerald/10 border border-sentinela-emerald/30 text-sentinela-emerald flex items-center justify-center mb-6">
+                    <i data-lucide="landmark" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3">Caixas & Setores Financeiros</h4>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Auditoria completa das operações de caixa, conciliações bancárias e pagamentos. Acompanhe a digitação de valores sincronizada com a imagem do cliente no balcão.
+                </p>
+                <ul class="text-xs font-mono text-slate-400 space-y-2 border-t border-sentinela-border/60 pt-4">
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sentinela-emerald"></i> Prevenção contra vazamento de PIX/CPFs</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sentinela-emerald"></i> Rastreabilidade total de estornos</li>
+                </ul>
+            </div>
+
+            <!-- Sector 3 -->
+            <div class="glass-panel p-8 rounded-2xl border border-sentinela-border">
+                <div class="w-12 h-12 rounded-xl bg-sentinela-amber/10 border border-sentinela-amber/30 text-sentinela-amber flex items-center justify-center mb-6">
+                    <i data-lucide="server" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3">TI & Acessos Privilegiados (PAM)</h4>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    Grave visualmente todas as conexões remota (SSH, RDP, AnyDesk) de terceiros ou administradores no seu gravador de segurança existente.
+                </p>
+                <ul class="text-xs font-mono text-slate-400 space-y-2 border-t border-sentinela-border/60 pt-4">
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sentinela-amber"></i> Histórico gravado no HD corporativo</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sentinela-amber"></i> Alerta imediato ao executar comandos críticos</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="demonstracao" class="py-24 px-4 relative overflow-hidden bg-sentinela-surface/80 border-t border-sentinela-border">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-xs font-mono font-bold text-sentinela-cyan bg-sentinela-cyan/10 border border-sentinela-cyan/30 px-3 py-1 rounded-full uppercase">
+                    PROVA DE CONCEITO GRATUITA
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-4 leading-tight">
+                    Teste o <span class="gradient-text">SENTINELA Workstation</span> no seu DVR por 14 dias
+                </h2>
+                <p class="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Nossa equipe disponibiliza a licença de avaliação e auxilia na configuração da transmissão RTSP no seu gravador (Intelbras, Hikvision, Dahua, Genetec ou Milestone).
+                </p>
+
+                <div class="mt-8 space-y-3 font-mono text-xs text-slate-300">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-sentinela-cyan"></i>
+                        <span>Instalação do agente em menos de 3 minutos</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-sentinela-cyan"></i>
+                        <span>Sem necessidade de troca de hardware ou gravador</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-sentinela-cyan"></i>
+                        <span>Suporte completo dos nossos engenheiros de segurança</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lead Form -->
+            <div class="glass-panel p-8 rounded-3xl border border-sentinela-border relative">
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-sentinela-cyan"></i>
+                    <span>Solicitar Agendamento de POC</span>
+                </h3>
+
+                <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4 font-sans">
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 mb-1">NOME COMPLETO *</label>
+                        <input type="text" required placeholder="Ex: Carlos Eduardo" class="w-full bg-sentinela-dark border border-sentinela-border focus:border-sentinela-cyan rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-1">E-MAIL CORPORATIVO *</label>
+                            <input type="email" required placeholder="carlos@empresa.com.br" class="w-full bg-sentinela-dark border border-sentinela-border focus:border-sentinela-cyan rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-1">TELEFONE / WHATSAPP *</label>
+                            <input type="tel" required placeholder="(11) 99999-9999" class="w-full bg-sentinela-dark border border-sentinela-border focus:border-sentinela-cyan rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-1">NÚMERO DE COMPUTADORES</label>
+                            <select class="w-full bg-sentinela-dark border border-sentinela-border focus:border-sentinela-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors">
+                                <option>1 a 10 estações</option>
+                                <option>11 a 50 estações</option>
+                                <option>51 a 200 estações</option>
+                                <option>Mais de 200 estações</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-1">MARCA DO SEU DVR/VMS</label>
+                            <input type="text" placeholder="Ex: Intelbras, Hikvision, Dahua" class="w-full bg-sentinela-dark border border-sentinela-border focus:border-sentinela-cyan rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-sentinela-cyan via-sentinela-accent to-sentinela-blue text-sentinela-dark font-extrabold py-4 rounded-xl shadow-glow-cyan text-sm font-mono uppercase tracking-wider hover:opacity-95 transition-opacity mt-2">
+                        SOLICITAR LICENÇA DE TESTE
+                    </button>
+                </form>
+
+                <!-- Success Banner (Hidden by default) -->
+                <div id="formSuccess" class="hidden absolute inset-0 bg-sentinela-surface rounded-3xl p-8 flex flex-col items-center justify-center text-center border border-sentinela-cyan">
+                    <div class="w-16 h-16 rounded-full bg-sentinela-cyan/20 border border-sentinela-cyan text-sentinela-cyan flex items-center justify-center mb-4">
+                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2">Solicitação Recebida!</h4>
+                    <p class="text-sm text-slate-300 max-w-sm">
+                        Nossa equipe entrará em contato em breve para enviar os dados de acesso e a chave de teste do agente S.E.N.T.I.N.E.L.A.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-sentinela-dark border-t border-sentinela-border py-12 px-4 text-xs text-slate-400 font-mono">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-3 md:col-span-1">
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded bg-sentinela-cyan/20 text-sentinela-cyan flex items-center justify-center font-bold">
+                        <i data-lucide="shield" class="w-4 h-4"></i>
+                    </div>
+                    <span class="font-bold text-white text-base">S.E.N.T.I.N.E.L.A.</span>
+                </div>
+                <p class="text-slate-400 text-[11px] leading-relaxed">
+                    Sistema Estruturado de Neutralização, Triagem, Inteligência e Notificação de Entidades e Locais de Ameaças.
+                </p>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold mb-3 uppercase">PROTOCOLOS SUPORTADOS</h5>
+                <ul class="space-y-1.5 text-slate-400">
+                    <li>• RTSP Stream (H.264 / H.265)</li>
+                    <li>• ONVIF Profile S Native</li>
+                    <li>• TLS 1.3 Criptografia Ponta a Ponta</li>
+                    <li>• REST API / Webhooks Integrados</li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold mb-3 uppercase">COMPATIBILIDADE</h5>
+                <ul class="space-y-1.5 text-slate-400">
+                    <li>• Intelbras Security Center / SIM Next</li>
+                    <li>• Hikvision iVMS-4200 / HikCentral</li>
+                    <li>• Dahua SmartPSS / DSS Express</li>
+                    <li>• Genetec Security Center / Milestone</li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold mb-3 uppercase">CONFORMIDADE</h5>
+                <div class="glass-panel p-3 rounded-xl border border-sentinela-border">
+                    <span class="text-sentinela-emerald font-bold block mb-1">100% LGPD & ISO 27001 Ready</span>
+                    <span class="text-[10px] text-slate-400">Tarja automática por IA de dados PII e cartões de crédito em vídeo.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-sentinela-border/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                &copy; 2026 S.E.N.T.I.N.E.L.A. Security Systems. Todos os direitos reservados.
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#" class="hover:text-sentinela-cyan">Termos de Uso</a>
+                <a href="#" class="hover:text-sentinela-cyan">Política de Privacidade</a>
+                <a href="#" class="hover:text-sentinela-cyan">Documentação SDK</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+            startLiveClock();
+        });
+
+        // Live Clock Generator for DVR Display
+        function startLiveClock() {
+            const clockEl = document.getElementById('dvrClock');
+            setInterval(() => {
+                const now = new Date();
+                if (clockEl) {
+                    clockEl.textContent = now.toISOString().replace('T', ' ').substring(0, 19);
+                }
+            }, 1000);
+        }
+
+        // Toggle AI Bounding Boxes overlay in Simulator
+        let aiActive = true;
+        function toggleAiBoundingBoxes() {
+            aiActive = !aiActive;
+            const boxes = document.querySelectorAll('.ai-box');
+            const toggleText = document.getElementById('aiToggleText');
+
+            boxes.forEach(box => {
+                if (aiActive) {
+                    box.style.display = 'flex';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+
+            if (toggleText) {
+                toggleText.textContent = aiActive ? "CAMADA IA: ATIVADA" : "CAMADA IA: DESATIVADA";
+            }
+        }
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Handle Contact Form Submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const success = document.getElementById('formSuccess');
+            if (success) {
+                success.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
