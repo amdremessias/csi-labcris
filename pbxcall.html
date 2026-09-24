@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfonia Cloud & PABX SaaS para Condomínios</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #00a86b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #003366 0%, #0056b3 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: #008f5a;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .pricing {
+            background-color: #e2e8f0;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .price-card .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .price-card.featured { transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Interfonia Cloud & PABX Intelligente para Condomínios</h1>
+        <p>Elimine cabeamentos antigos e custos de manutenção. Conecte a portaria, síndico e moradores diretamente no celular ou ATA com qualidade digital HD.</p>
+        <a href="#contato" class="btn-cta">Solicitar Demonstração Grátis</a>
+    </header>
+
+    <section class="container">
+        <h2 class="section-title">Por que migrar seu Condomínio para o Cloud?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Redução de Custos</h3>
+                <p>Zero necessidade de centrais físicas caras ou manutenção de cabeamento metálico entre blocos e apartamentos.</p>
+            </div>
+            <div class="card">
+                <h3>Portaria na Palma da Mão</h3>
+                <p>O morador atende chamadas da portaria diretamente no aplicativo de smartphone (Android/iOS), esteja onde estiver.</p>
+            </div>
+            <div class="card">
+                <h3>Alta Disponibilidade</h3>
+                <p>Infraestrutura em nuvem com redundância. Chamadas entre ramais internos e portaria com áudio cristalino sem ruídos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Planos SaaS sob Medida</h2>
+            <div class="grid">
+                
+                <div class="price-card">
+                    <h3>Condomínio Enxuto</h3>
+                    <p>Ideal para prédios de pequeno porte</p>
+                    <div class="price">R$ 199<span>/mês</span></div>
+                    <ul class="features-list">
+                        <li>Até 20 Ramais / Apartamentos</li>
+                        <li>1 Ramal para Portaria / Guarita</li>
+                        <li>Chamadas ilimitadas entre ramais</li>
+                        <li>Suporte a Softphone e ATA</li>
+                        <li>Suporte Técnico Standard</li>
+                    </ul>
+                    <a href="#contato" class="btn-cta">Assinar Plano</a>
+                </div>
+
+                <div class="price-card featured">
+                    <div class="badge">Mais Popular</div>
+                    <h3>Condomínio Padrão</h3>
+                    <p>Para condomínios de médio porte</p>
+                    <div class="price">R$ 399<span>/mês</span></div>
+                    <ul class="features-list">
+                        <li>Até 60 Ramais / Apartamentos</li>
+                        <li>Ramais para Portaria, Zeladoria e Síndico</li>
+                        <li>Menu de Atendimento (IVR/URA)</li>
+                        <li>Gravação de chamadas da Portaria</li>
+                        <li>Suporte Prioritário 24/7</li>
+                    </ul>
+                    <a href="#contato" class="btn-cta">Assinar Plano</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Enterprise / Multi-Blocos</h3>
+                    <p>Grandes condomínios e associações</p>
+                    <div class="price">Sob Consulta</div>
+                    <ul class="features-list">
+                        <li>Ramais Ilimitados</li>
+                        <li>Integração com Troncos GSM/ChIP e E1/SIP</li>
+                        <li>Portaria Remota / Virtual integrada</li>
+                        <li>Relatórios avançados e Logs de chamadas</li>
+                        <li>SLA de Atendimento Garantido</li>
+                    </ul>
+                    <a href="#contato" class="btn-cta">Falar com Consultor</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="contato">
+        <h2 class="section-title">Modernize a Comunicação do Seu Condomínio</h2>
+        <p style="text-align: center; margin-bottom: 30px; color: var(--gray);">Preencha para receber uma proposta personalizada ou agendar um teste gratuito no seu condomínio.</p>
+        
+        <form style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" placeholder="Seu Nome ou Nome do Síndico/Administradora" style="padding: 12px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="email" placeholder="E-mail de Contato" style="padding: 12px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="tel" placeholder="WhatsApp / Telefone" style="padding: 12px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="number" placeholder="Quantidade aproximada de apartamentos" style="padding: 12px; border: 1px solid #ccc; border-radius: 4px;">
+            <button type="submit" class="btn-cta" style="border: none; cursor: pointer;">Solicitar Proposta</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Soluções em Interfonia e Telefone SaaS. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
